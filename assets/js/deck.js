@@ -37,26 +37,6 @@ window.Deck = (function () {
     return h.toString(36);
   }
 
-  function parseFrontMatter(text) {
-    var meta = {};
-    var m = /^---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)/.exec(text);
-    if (!m) return { meta: meta, body: text };
-    m[1].split('\n').forEach(function (line) {
-      var kv = /^([A-Za-z_][\w-]*)\s*:\s*(.*)$/.exec(line.trim());
-      if (!kv) return;
-      var key = kv[1].toLowerCase(), value = kv[2].trim();
-      if (/^\[.*\]$/.test(value)) {
-        value = value.slice(1, -1).split(',').map(function (s) {
-          return s.trim().replace(/^["']|["']$/g, '');
-        }).filter(Boolean);
-      } else {
-        value = value.replace(/^["']|["']$/g, '');
-      }
-      meta[key] = value;
-    });
-    return { meta: meta, body: text.slice(m[0].length) };
-  }
-
   /* Split on top-level `---`, respecting fenced code blocks. */
   function splitCards(body) {
     var lines = body.split('\n');
@@ -138,7 +118,7 @@ window.Deck = (function () {
   }
 
   function parse(text, deckId, file) {
-    var fm = parseFrontMatter(String(text).replace(/\r\n?/g, '\n'));
+    var fm = MD.frontMatter(text);
     var cards = splitCards(fm.body)
       .map(function (chunk, i) { return parseCard(chunk, deckId, i); })
       .filter(Boolean);

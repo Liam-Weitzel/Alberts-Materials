@@ -1,0 +1,16 @@
+{
+  "title": "Alberts Materials",
+  "description": "Chapter write-ups and spaced-repetition cards for my reading of Molecular Biology of the Cell.",
+  "chapters": [
+    {
+      "slug": "ch01-cells-and-genomes",
+      "notes": "ch01-cells-and-genomes.md",
+      "deck": "ch01-cells-and-genomes.md"
+    },
+    {
+      "slug": "ch02-cell-chemistry-and-bioenergetics",
+      "notes": "ch02-cell-chemistry-and-bioenergetics.md",
+      "deck": "ch02-cell-chemistry-and-bioenergetics.md"
+    }
+  ]
+}

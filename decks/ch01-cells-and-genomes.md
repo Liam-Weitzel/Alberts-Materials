@@ -1,6 +1,6 @@
 ---
 title: Ch 1. Cells and Genomes
-description: Universal features of cells, the three domains, and model organisms.
+description: Universal features of cells and the three domains of life.
 tags: [mboc, ch1]
 ---
 

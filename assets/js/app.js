@@ -1,16 +1,27 @@
-/* Router + views. Hash routing keeps everything working on GitHub Pages with no
- * server-side rewrites: #/ , #/deck/<id> , #/study/<id|all> , #/settings */
+/* Router + views.
+ *
+ * The site is organised by chapter. A chapter is a write-up (notes/<slug>.md)
+ * paired with a deck of cards (decks/<slug>.md). Either half can be missing while
+ * you're mid-way through a chapter.
+ *
+ * Hash routing keeps everything working on GitHub Pages with no server-side
+ * rewrites:  #/ , #/chapter/<slug> , #/cards/<slug> , #/study/<slug|all> , #/settings
+ */
 (function () {
   'use strict';
 
   var view = document.getElementById('view');
   var toastEl = document.getElementById('toast');
-  var state = { manifest: null, decks: null, loaded: false, error: null };
+  var state = { manifest: null, chapters: null, loaded: false, error: null };
   var session = null;
 
   /* ---------- helpers ---------- */
 
   function esc(s) { return MD.escapeHtml(s); }
+
+  // Write-ups render as an article: `##` is a top-level section (h2, under the
+  // page's h1) and every heading gets an anchor so the sidebar can link to it.
+  var NOTE_OPTS = { headingOffset: 0, minHeading: 2, ids: true };
 
   function el(html) {
     var t = document.createElement('template');
@@ -34,13 +45,17 @@
     return arr;
   }
 
-  function allCards() {
-    return state.decks.reduce(function (acc, d) { return acc.concat(d.cards); }, []);
+  function chapterBySlug(slug) {
+    for (var i = 0; i < state.chapters.length; i++) {
+      if (state.chapters[i].slug === slug) return state.chapters[i];
+    }
+    return null;
   }
 
-  function deckById(id) {
-    for (var i = 0; i < state.decks.length; i++) if (state.decks[i].id === id) return state.decks[i];
-    return null;
+  function cardsOf(chapter) { return chapter && chapter.deck ? chapter.deck.cards : []; }
+
+  function allCards() {
+    return state.chapters.reduce(function (acc, c) { return acc.concat(cardsOf(c)); }, []);
   }
 
   function render(html) {
@@ -49,34 +64,74 @@
     window.scrollTo(0, 0);
   }
 
+  function prettify(slug) {
+    return slug.replace(/^ch(\d+)[-_]?/i, 'Ch $1. ').replace(/[-_]/g, ' ')
+      .replace(/\b\w/g, function (m) { return m.toUpperCase(); });
+  }
+
   /* ---------- loading ---------- */
 
-  function loadDecks() {
-    return fetch('decks/manifest.json', { cache: 'no-cache' })
-      .then(function (r) {
-        if (!r.ok) throw new Error('decks/manifest.json: HTTP ' + r.status);
-        return r.json();
-      })
+  function getText(url) {
+    return fetch(url, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error(url + ': HTTP ' + r.status);
+      return r.text();
+    });
+  }
+
+  function loadChapter(entry) {
+    var chapter = {
+      slug: entry.slug,
+      title: null,
+      description: '',
+      notes: null,
+      deck: null,
+      tags: []
+    };
+
+    var jobs = [];
+
+    if (entry.notes) {
+      jobs.push(getText('notes/' + entry.notes).then(function (text) {
+        var fm = MD.frontMatter(text);
+        chapter.notes = {
+          meta: fm.meta,
+          body: fm.body,
+          words: MD.words(fm.body),
+          search: MD.plain(fm.body).toLowerCase()
+        };
+      }).catch(function (e) {
+        console.error('[chapters] notes failed for ' + entry.slug, e);
+      }));
+    }
+
+    if (entry.deck) {
+      jobs.push(getText('decks/' + entry.deck).then(function (text) {
+        chapter.deck = Deck.parse(text, entry.slug, entry.deck);
+      }).catch(function (e) {
+        console.error('[chapters] deck failed for ' + entry.slug, e);
+      }));
+    }
+
+    return Promise.all(jobs).then(function () {
+      var nm = chapter.notes ? chapter.notes.meta : {};
+      chapter.title = nm.title || (chapter.deck && chapter.deck.title) || prettify(entry.slug);
+      chapter.description = nm.description || (chapter.deck && chapter.deck.description) || '';
+      var tags = nm.tags || (chapter.deck && chapter.deck.tags) || [];
+      chapter.tags = typeof tags === 'string' ? tags.split(/[,\s]+/).filter(Boolean) : tags;
+      chapter.date = nm.date || '';
+      return chapter;
+    });
+  }
+
+  function loadAll() {
+    return getText('chapters.json')
+      .then(function (text) { return JSON.parse(text); })
       .then(function (manifest) {
         state.manifest = manifest;
-        var files = manifest.decks || [];
-        return Promise.all(files.map(function (file) {
-          return fetch('decks/' + file, { cache: 'no-cache' })
-            .then(function (r) {
-              if (!r.ok) throw new Error(file + ': HTTP ' + r.status);
-              return r.text();
-            })
-            .then(function (text) {
-              return Deck.parse(text, file.replace(/\.md$/i, ''), file);
-            })
-            .catch(function (e) {
-              console.error('[decks] failed to load', file, e);
-              return null;
-            });
-        }));
+        return Promise.all((manifest.chapters || []).map(loadChapter));
       })
-      .then(function (decks) {
-        state.decks = decks.filter(Boolean);
+      .then(function (chapters) {
+        state.chapters = chapters;
         state.loaded = true;
       })
       .catch(function (e) {
@@ -85,7 +140,7 @@
       });
   }
 
-  /* ---------- home ---------- */
+  /* ---------- shared bits ---------- */
 
   function progressRing(pct) {
     var r = 15.9155;
@@ -95,68 +150,202 @@
       '</svg>';
   }
 
+  function readingTime(words) {
+    return Math.max(1, Math.round(words / 220)) + ' min read';
+  }
+
+  function studyLink(chapter, cls, label) {
+    return '<a class="' + cls + '" href="#/study/' + encodeURIComponent(chapter.slug) + '">' + label + '</a>';
+  }
+
+  /* ---------- home ---------- */
+
   function viewHome() {
     if (state.error) {
-      return render('<div class="empty"><h2>Could not load decks</h2><p class="mono">' + esc(state.error) + '</p>' +
-        '<p>Check that <code>decks/manifest.json</code> exists and lists your deck files.</p></div>');
+      return render('<div class="empty"><h2>Could not load the material</h2><p class="mono">' + esc(state.error) + '</p>' +
+        '<p>Check that <code>chapters.json</code> exists and lists your chapters.</p></div>');
     }
-    if (!state.decks.length) {
-      return render('<div class="empty"><h2>No decks yet</h2>' +
-        '<p>Add a <code>.md</code> file to <code>decks/</code> and list it in <code>decks/manifest.json</code>.</p></div>');
+    if (!state.chapters.length) {
+      return render('<div class="empty"><h2>Nothing here yet</h2>' +
+        '<p>Add a write-up to <code>notes/</code> or a deck to <code>decks/</code>, then run ' +
+        '<code>python3 build-manifest.py</code>.</p></div>');
     }
 
     var cards = allCards();
     var total = SRS.counts(cards);
     var td = SRS.todayCounts();
-    var studied = total.seen;
-    var pct = total.total ? studied / total.total : 0;
+    var pct = total.total ? total.seen / total.total : 0;
+    var written = state.chapters.filter(function (c) { return c.notes; }).length;
 
     var head =
       '<section class="hero">' +
         '<div class="hero-text">' +
-          '<h1>' + esc(state.manifest.title || 'Flashcards') + '</h1>' +
+          '<h1>' + esc(state.manifest.title || 'Materials') + '</h1>' +
           (state.manifest.description ? '<p class="sub">' + esc(state.manifest.description) + '</p>' : '') +
           '<div class="stat-row">' +
+            '<div class="stat"><span class="stat-n">' + written + '</span><span class="stat-l">write-ups</span></div>' +
             '<div class="stat"><span class="stat-n">' + (total.due + total.learning) + '</span><span class="stat-l">due now</span></div>' +
             '<div class="stat"><span class="stat-n">' + total.new + '</span><span class="stat-l">unseen</span></div>' +
-            '<div class="stat"><span class="stat-n">' + total.total + '</span><span class="stat-l">cards</span></div>' +
             '<div class="stat"><span class="stat-n">' + (td.new + td.reviews) + '</span><span class="stat-l">done today</span></div>' +
           '</div>' +
-          '<a class="btn btn-primary btn-lg" href="#/study/all">Study everything due</a>' +
+          (total.due + total.learning + total.new
+            ? '<a class="btn btn-primary btn-lg" href="#/study/all">Study everything due</a>'
+            : '<span class="muted">Nothing due across all chapters.</span>') +
         '</div>' +
         '<div class="hero-ring">' + progressRing(pct) +
           '<div class="ring-label"><b>' + Math.round(pct * 100) + '%</b><span>introduced</span></div>' +
         '</div>' +
       '</section>';
 
-    var grid = state.decks.map(function (d) {
-      var c = SRS.counts(d.cards);
+    var list = state.chapters.map(function (ch, i) {
+      var c = SRS.counts(cardsOf(ch));
       var dp = c.total ? c.seen / c.total : 0;
+
       var badges = [];
       if (c.due + c.learning) badges.push('<span class="pill pill-due">' + (c.due + c.learning) + ' due</span>');
       if (c.new) badges.push('<span class="pill pill-new">' + c.new + ' new</span>');
-      if (!badges.length) badges.push('<span class="pill pill-done">all caught up</span>');
-      return '<article class="deck">' +
-        '<a class="deck-head" href="#/deck/' + encodeURIComponent(d.id) + '">' +
-          '<h3>' + esc(d.title) + '</h3>' +
-          (d.description ? '<p>' + esc(d.description) + '</p>' : '') +
-        '</a>' +
-        '<div class="deck-badges">' + badges.join('') + '</div>' +
-        '<div class="bar"><span style="width:' + (dp * 100).toFixed(1) + '%"></span></div>' +
-        '<div class="deck-foot">' +
-          '<span class="muted">' + c.total + ' cards</span>' +
-          '<span class="deck-actions">' +
-            '<a class="btn btn-sm" href="#/deck/' + encodeURIComponent(d.id) + '">Browse</a>' +
-            '<a class="btn btn-sm btn-primary" href="#/study/' + encodeURIComponent(d.id) + '">Study</a>' +
-          '</span>' +
+      if (c.total && !c.new && !(c.due + c.learning)) badges.push('<span class="pill pill-done">caught up</span>');
+      if (!c.total) badges.push('<span class="pill pill-todo">no cards yet</span>');
+      if (!ch.notes) badges.push('<span class="pill pill-todo">no write-up yet</span>');
+
+      var actions = [];
+      if (ch.notes) actions.push('<a class="btn btn-sm btn-primary" href="#/chapter/' + encodeURIComponent(ch.slug) + '">Read</a>');
+      if (c.total) {
+        actions.push('<a class="btn btn-sm" href="#/cards/' + encodeURIComponent(ch.slug) + '">Cards</a>');
+        actions.push(studyLink(ch, 'btn btn-sm', 'Study'));
+      }
+
+      var href = ch.notes ? '#/chapter/' + encodeURIComponent(ch.slug)
+                          : (c.total ? '#/cards/' + encodeURIComponent(ch.slug) : '#/');
+
+      return '<article class="chapter">' +
+        '<div class="chapter-n">' + String(i + 1).padStart(2, '0') + '</div>' +
+        '<div class="chapter-main">' +
+          '<a class="chapter-head" href="' + href + '">' +
+            '<h3>' + esc(ch.title) + '</h3>' +
+            (ch.description ? '<p>' + esc(ch.description) + '</p>' : '') +
+          '</a>' +
+          '<div class="chapter-meta">' +
+            (ch.notes ? '<span class="muted small">' + readingTime(ch.notes.words) + '</span>' : '') +
+            (c.total ? '<span class="muted small">' + c.total + ' cards</span>' : '') +
+            badges.join('') +
+          '</div>' +
+          (c.total ? '<div class="bar"><span style="width:' + (dp * 100).toFixed(1) + '%"></span></div>' : '') +
         '</div>' +
+        '<div class="chapter-actions">' + actions.join('') + '</div>' +
       '</article>';
     }).join('');
 
-    render(head + '<section class="deck-grid">' + grid + '</section>');
+    render(head + '<section class="chapter-list">' + list + '</section>');
   }
 
-  /* ---------- browse ---------- */
+  /* ---------- chapter write-up ---------- */
+
+  function viewChapter(slug) {
+    var ch = chapterBySlug(slug);
+    if (!ch) return notFound('Chapter not found');
+    if (!ch.notes) {
+      return render(crumbs(ch.title) +
+        '<div class="empty"><h2>' + esc(ch.title) + '</h2><p>No write-up for this chapter yet.</p>' +
+        (cardsOf(ch).length ? '<p>' + studyLink(ch, 'btn btn-primary', 'Study the deck') + '</p>' : '') + '</div>');
+    }
+
+    var c = SRS.counts(cardsOf(ch));
+    var body = MD.render(ch.notes.body, NOTE_OPTS);
+
+    render(
+      crumbs(ch.title) +
+      '<article class="post">' +
+        '<header class="post-head">' +
+          '<h1>' + esc(ch.title) + '</h1>' +
+          (ch.description ? '<p class="sub">' + esc(ch.description) + '</p>' : '') +
+          '<p class="post-meta">' +
+            (ch.date ? '<span>' + esc(ch.date) + '</span>' : '') +
+            '<span>' + readingTime(ch.notes.words) + '</span>' +
+            (c.total ? '<span>' + c.total + ' cards</span>' : '') +
+          '</p>' +
+        '</header>' +
+        '<div class="post-layout">' +
+          '<nav class="toc" id="toc" aria-label="On this page"></nav>' +
+          '<div class="prose" id="prose">' + body + '</div>' +
+        '</div>' +
+      '</article>' +
+      (c.total ? practicePanel(ch, c) : '') +
+      chapterNav(slug)
+    );
+
+    buildToc();
+    MD.typeset(view);
+  }
+
+  function practicePanel(ch, c) {
+    var due = c.due + c.learning;
+    var line = due ? due + ' cards due now'
+             : c.new ? c.new + ' cards you have not seen yet'
+             : 'All ' + c.total + ' cards are scheduled ahead';
+    return '<section class="practice">' +
+      '<div>' +
+        '<h2>Practice this chapter</h2>' +
+        '<p class="muted">' + line + '.</p>' +
+      '</div>' +
+      '<div class="row">' +
+        '<a class="btn" href="#/cards/' + encodeURIComponent(ch.slug) + '">Browse cards</a>' +
+        studyLink(ch, 'btn btn-primary', 'Study') +
+      '</div>' +
+    '</section>';
+  }
+
+  function chapterNav(slug) {
+    var i = state.chapters.findIndex(function (c) { return c.slug === slug; });
+    var prev = i > 0 ? state.chapters[i - 1] : null;
+    var next = i >= 0 && i < state.chapters.length - 1 ? state.chapters[i + 1] : null;
+    if (!prev && !next) return '';
+    function link(ch, dir, label) {
+      var href = ch.notes ? '#/chapter/' + encodeURIComponent(ch.slug) : '#/cards/' + encodeURIComponent(ch.slug);
+      return '<a class="pager-link ' + dir + '" href="' + href + '">' +
+        '<span class="pager-dir">' + label + '</span>' +
+        '<span class="pager-title">' + esc(ch.title) + '</span></a>';
+    }
+    return '<nav class="pager">' +
+      (prev ? link(prev, 'prev', 'Previous') : '<span></span>') +
+      (next ? link(next, 'next', 'Next') : '<span></span>') +
+    '</nav>';
+  }
+
+  function buildToc() {
+    var prose = view.querySelector('#prose');
+    var toc = view.querySelector('#toc');
+    if (!prose || !toc) return;
+    var heads = prose.querySelectorAll('h2[id], h3[id]');
+    if (heads.length < 3) { toc.remove(); return; }
+    var items = [];
+    for (var i = 0; i < heads.length; i++) {
+      items.push('<li class="toc-' + heads[i].tagName.toLowerCase() + '">' +
+        '<a href="#' + heads[i].id + '">' + esc(heads[i].textContent) + '</a></li>');
+    }
+    toc.innerHTML = '<p class="toc-title">On this page</p><ul>' + items.join('') + '</ul>';
+
+    // Plain #id links would fight the hash router, so scroll manually.
+    toc.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (!a) return;
+      e.preventDefault();
+      var target = prose.querySelector('#' + CSS.escape(a.getAttribute('href').slice(1)));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  function crumbs(leaf, mid) {
+    return '<div class="crumbs"><a href="#/">Chapters</a>' +
+      (mid ? ' <span>/</span> ' + mid : '') +
+      ' <span>/</span> ' + esc(leaf) + '</div>';
+  }
+
+  function notFound(msg) {
+    return render('<div class="empty"><h2>' + esc(msg) + '</h2><p><a href="#/">Back to chapters</a></p></div>');
+  }
+
+  /* ---------- cards browser ---------- */
 
   function cardBackHTML(card) {
     if (card.type === 'mc') {
@@ -175,25 +364,29 @@
     return MD.render(card.back);
   }
 
-  function viewDeck(id) {
-    var deck = deckById(id);
-    if (!deck) return render('<div class="empty"><h2>Deck not found</h2><p><a href="#/">Back to decks</a></p></div>');
-    var c = SRS.counts(deck.cards);
+  function viewCards(slug) {
+    var ch = chapterBySlug(slug);
+    if (!ch) return notFound('Chapter not found');
+    var cards = cardsOf(ch);
+    if (!cards.length) {
+      return render(crumbs('Cards', chapterCrumb(ch)) +
+        '<div class="empty"><h2>No cards yet</h2><p>Add <code>decks/' + esc(ch.slug) + '.md</code> to build this deck.</p></div>');
+    }
+    var c = SRS.counts(cards);
 
     render(
-      '<div class="crumbs"><a href="#/">Decks</a> <span>/</span> ' + esc(deck.title) + '</div>' +
+      crumbs('Cards', chapterCrumb(ch)) +
       '<section class="page-head">' +
         '<div>' +
-          '<h1>' + esc(deck.title) + '</h1>' +
-          (deck.description ? '<p class="sub">' + esc(deck.description) + '</p>' : '') +
-          '<p class="muted">' + c.total + ' cards · ' + c.new + ' new · ' + (c.due + c.learning) + ' due · ' + c.later + ' scheduled</p>' +
+          '<h1>' + esc(ch.title) + '</h1>' +
+          '<p class="muted">' + c.total + ' cards, ' + c.new + ' new, ' + (c.due + c.learning) + ' due, ' + c.later + ' scheduled</p>' +
         '</div>' +
         '<div class="page-head-actions">' +
-          '<a class="btn btn-primary" href="#/study/' + encodeURIComponent(deck.id) + '">Study</a>' +
+          studyLink(ch, 'btn btn-primary', 'Study') +
           '<button class="btn" type="button" data-act="reset-deck">Reset progress</button>' +
         '</div>' +
       '</section>' +
-      '<div class="toolbar"><input id="search" class="input" type="search" placeholder="Search this deck…" autocomplete="off"></div>' +
+      '<div class="toolbar"><input id="search" class="input" type="search" placeholder="Search these cards…" autocomplete="off"></div>' +
       '<section id="card-list" class="card-list"></section>'
     );
 
@@ -202,7 +395,7 @@
 
     function paint(filter) {
       var q = (filter || '').trim().toLowerCase();
-      var matches = deck.cards.filter(function (card) { return !q || card.search.indexOf(q) !== -1; });
+      var matches = cards.filter(function (card) { return !q || card.search.indexOf(q) !== -1; });
       if (!matches.length) {
         listEl.innerHTML = '<div class="empty small"><p>No cards match “' + esc(q) + '”.</p></div>';
         return;
@@ -230,11 +423,16 @@
     paint('');
     searchEl.addEventListener('input', function () { paint(searchEl.value); });
     view.querySelector('[data-act="reset-deck"]').addEventListener('click', function () {
-      if (!confirm('Reset scheduling for all ' + deck.cards.length + ' cards in “' + deck.title + '”?')) return;
-      SRS.resetDeck(deck.cards);
-      toast('Progress reset for this deck');
-      viewDeck(id);
+      if (!confirm('Reset scheduling for all ' + cards.length + ' cards in “' + ch.title + '”?')) return;
+      SRS.resetDeck(cards);
+      toast('Progress reset for this chapter');
+      viewCards(slug);
     });
+  }
+
+  function chapterCrumb(ch) {
+    if (!ch.notes) return esc(ch.title);
+    return '<a href="#/chapter/' + encodeURIComponent(ch.slug) + '">' + esc(ch.title) + '</a>';
   }
 
   /* ---------- study ---------- */
@@ -273,29 +471,30 @@
   }
 
   function viewStudy(scope) {
-    var cards, title;
+    var cards, title, home;
     if (scope === 'all') {
       cards = allCards();
-      title = 'All decks';
+      title = 'All chapters';
+      home = '#/';
     } else {
-      var deck = deckById(scope);
-      if (!deck) return render('<div class="empty"><h2>Deck not found</h2><p><a href="#/">Back to decks</a></p></div>');
-      cards = deck.cards;
-      title = deck.title;
+      var ch = chapterBySlug(scope);
+      if (!ch) return notFound('Chapter not found');
+      cards = cardsOf(ch);
+      title = ch.title;
+      home = ch.notes ? '#/chapter/' + encodeURIComponent(ch.slug) : '#/cards/' + encodeURIComponent(ch.slug);
+    }
+
+    if (!cards.length) {
+      return render('<div class="empty"><h2>No cards to study</h2><p><a href="#/">Back to chapters</a></p></div>');
     }
 
     session = {
-      scope: scope,
-      title: title,
+      scope: scope, title: title, home: home,
       pool: cards,
       queue: buildQueue(cards),
-      done: 0,
-      correct: 0,
-      again: 0,
+      done: 0, again: 0,
       startedAt: Date.now(),
-      revealed: false,
-      picked: [],
-      checked: false
+      revealed: false, picked: [], checked: false
     };
     session.planned = session.queue.length;
     drawStudy();
@@ -304,21 +503,20 @@
   function studyDone() {
     var mins = Math.max(1, Math.round((Date.now() - session.startedAt) / 60000));
     var counts = SRS.counts(session.pool);
-    var backHref = session.scope === 'all' ? '#/' : '#/deck/' + encodeURIComponent(session.scope);
     render(
       '<section class="done">' +
         '<div class="done-mark">✓</div>' +
         '<h1>' + (session.done ? 'Session complete' : 'Nothing due right now') + '</h1>' +
         (session.done
-          ? '<p class="sub">' + session.done + ' cards in ' + mins + ' min · ' + session.again + ' marked <i>Again</i></p>'
-          : '<p class="sub">Next cards in “' + esc(session.title) + '” become available as they fall due.</p>') +
+          ? '<p class="sub">' + session.done + ' cards in ' + mins + ' min, ' + session.again + ' marked <i>Again</i></p>'
+          : '<p class="sub">Cards in “' + esc(session.title) + '” become available as they fall due.</p>') +
         '<div class="stat-row centered">' +
           '<div class="stat"><span class="stat-n">' + counts.new + '</span><span class="stat-l">still new</span></div>' +
           '<div class="stat"><span class="stat-n">' + (counts.due + counts.learning) + '</span><span class="stat-l">due</span></div>' +
           '<div class="stat"><span class="stat-n">' + counts.later + '</span><span class="stat-l">scheduled</span></div>' +
         '</div>' +
         '<div class="done-actions">' +
-          '<a class="btn btn-primary" href="' + backHref + '">Done</a>' +
+          '<a class="btn btn-primary" href="' + session.home + '">Done</a>' +
           (counts.new || counts.due + counts.learning
             ? '<button class="btn" type="button" data-act="again-session">Keep going</button>' : '') +
           '<button class="btn" type="button" data-act="cram">Cram all cards</button>' +
@@ -328,8 +526,7 @@
     var again = view.querySelector('[data-act="again-session"]');
     if (again) again.addEventListener('click', function () { viewStudy(session.scope); });
     view.querySelector('[data-act="cram"]').addEventListener('click', function () {
-      var pool = session.pool.slice();
-      session.queue = shuffle(pool.slice());
+      session.queue = shuffle(session.pool.slice());
       session.planned = session.queue.length;
       session.done = 0; session.again = 0; session.startedAt = Date.now();
       session.cram = true;
@@ -348,13 +545,12 @@
     var totalPlanned = Math.max(session.planned, session.done + session.queue.length);
     var pct = totalPlanned ? (session.done / totalPlanned) * 100 : 0;
     var st = SRS.get(card.id);
-    var deckName = state.decks.length > 1 && session.scope === 'all'
-      ? (deckById(card.deckId) || {}).title : null;
+    var owner = session.scope === 'all' ? chapterBySlug(card.deckId) : null;
 
     render(
       '<section class="study">' +
         '<div class="study-top">' +
-          '<a class="back" href="' + (session.scope === 'all' ? '#/' : '#/deck/' + encodeURIComponent(session.scope)) + '">← ' + esc(session.title) + '</a>' +
+          '<a class="back" href="' + session.home + '">← ' + esc(session.title) + '</a>' +
           '<div class="study-counts">' +
             '<span class="tag tag-state tag-' + st.s + '">' + st.s + '</span>' +
             '<span class="muted">' + session.done + ' / ' + totalPlanned + '</span>' +
@@ -362,7 +558,7 @@
         '</div>' +
         '<div class="bar thin"><span style="width:' + pct.toFixed(1) + '%"></span></div>' +
         '<article class="card" id="card">' +
-          (deckName ? '<div class="card-deck">' + esc(deckName) + '</div>' : '') +
+          (owner ? '<div class="card-deck">' + esc(owner.title) + '</div>' : '') +
           '<div class="card-front">' + MD.render(card.front) + '</div>' +
           '<div class="card-body" id="card-body"></div>' +
         '</article>' +
@@ -430,13 +626,9 @@
     var body = view.querySelector('#card-body');
 
     if (card.type === 'mc') {
-      if (card.back) {
-        var ex = el('<div class="explain">' + MD.render(card.back) + '</div>');
-        body.appendChild(ex);
-      }
-      var verdict = el('<div class="verdict ' + (session.lastCorrect ? 'ok' : 'no') + '">' +
-        (session.lastCorrect ? '✓ Correct' : '✗ Not quite') + '</div>');
-      body.insertBefore(verdict, body.firstChild);
+      if (card.back) body.appendChild(el('<div class="explain">' + MD.render(card.back) + '</div>'));
+      body.insertBefore(el('<div class="verdict ' + (session.lastCorrect ? 'ok' : 'no') + '">' +
+        (session.lastCorrect ? '✓ Correct' : '✗ Not quite') + '</div>'), body.firstChild);
     } else if (card.type === 'cloze') {
       view.querySelector('.card-front').innerHTML = MD.render(card.front, { cloze: 'show' });
       if (card.back) body.innerHTML = '<div class="answer">' + MD.render(card.back) + '</div>';
@@ -488,8 +680,7 @@
     controls.innerHTML = '<div class="ratings">' + RATINGS.map(function (r) {
       return '<button class="btn rate rate-' + r.key + '" type="button" data-rate="' + r.key + '">' +
         '<span class="rate-label">' + r.label + '</span>' +
-        '<span class="rate-ivl">' + SRS.preview(card.id, r.key) + '</span>' +
-        '<span class="rate-key">' + r.num + '</span></button>';
+        '<span class="rate-ivl">' + SRS.preview(card.id, r.key) + '</span></button>';
     }).join('') + '</div>';
     controls.querySelectorAll('[data-rate]').forEach(function (btn) {
       btn.addEventListener('click', function () { rate(card, btn.dataset.rate); });
@@ -507,8 +698,7 @@
     // Cards coming back within the session get requeued a few cards later.
     var soon = next.due - Date.now();
     if (!session.cram && soon <= 20 * SRS.MIN) {
-      var pos = Math.min(session.queue.length, rating === 'again' ? 3 : 6);
-      session.queue.splice(pos, 0, card);
+      session.queue.splice(Math.min(session.queue.length, rating === 'again' ? 3 : 6), 0, card);
     } else if (session.cram && rating === 'again') {
       session.queue.splice(Math.min(session.queue.length, 3), 0, card);
     }
@@ -552,7 +742,7 @@
     var total = SRS.counts(allCards());
 
     render(
-      '<div class="crumbs"><a href="#/">Decks</a> <span>/</span> Settings</div>' +
+      '<div class="crumbs"><a href="#/">Chapters</a> <span>/</span> Settings</div>' +
       '<h1>Settings</h1>' +
       '<section class="panel">' +
         '<h2>Daily limits</h2>' +
@@ -578,7 +768,7 @@
         '<h2>Keyboard</h2>' +
         '<dl class="keys">' +
           '<dt>Space / Enter</dt><dd>Show answer, then rate as <i>Good</i></dd>' +
-          '<dt>1 2 3 4</dt><dd>Again · Hard · Good · Easy</dd>' +
+          '<dt>1 2 3 4</dt><dd>Again, Hard, Good, Easy</dd>' +
           '<dt>A-Z or 1-9</dt><dd>Pick a multiple-choice option</dd>' +
         '</dl>' +
       '</section>'
@@ -658,9 +848,10 @@
     var nav = document.querySelector('[data-nav="' + navKey + '"]');
     if (nav) nav.classList.add('active');
 
-    if (!state.loaded) return render('<div class="loading"><span class="spinner"></span> Loading decks…</div>');
+    if (!state.loaded) return render('<div class="loading"><span class="spinner"></span> Loading…</div>');
 
-    if (parts[0] === 'deck' && parts[1]) return viewDeck(decodeURIComponent(parts[1]));
+    if (parts[0] === 'chapter' && parts[1]) return viewChapter(decodeURIComponent(parts[1]));
+    if (parts[0] === 'cards' && parts[1]) return viewCards(decodeURIComponent(parts[1]));
     if (parts[0] === 'study' && parts[1]) return viewStudy(decodeURIComponent(parts[1]));
     if (parts[0] === 'settings') return viewSettings();
     return viewHome();
@@ -670,6 +861,6 @@
   document.addEventListener('keydown', onKey);
 
   applyTheme(SRS.settings().theme);
-  render('<div class="loading"><span class="spinner"></span> Loading decks…</div>');
-  loadDecks().then(route);
+  render('<div class="loading"><span class="spinner"></span> Loading…</div>');
+  loadAll().then(route);
 })();

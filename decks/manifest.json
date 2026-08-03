@@ -1,8 +1,0 @@
-{
-  "title": "Alberts Materials",
-  "description": "Flashcards for my reading of Molecular Biology of the Cell.",
-  "decks": [
-    "ch01-cells-and-genomes.md",
-    "ch02-cell-chemistry-and-bioenergetics.md"
-  ]
-}

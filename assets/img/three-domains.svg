@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 230" width="620" height="230" role="img" aria-label="Rooted tree showing Bacteria splitting off first, then Archaea and Eukaryotes diverging from a last universal common ancestor">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .domain { font-size: 14px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 11px; }
+    .root { font-size: 11px; font-style: italic; }
+    .branch { stroke: #8b857c; stroke-width: 2; fill: none; stroke-linecap: round; }
+    .split { fill: #2f6f5e; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .domain { fill: #e8e6e1; }
+      .branch { stroke: #7b766e; }
+      .split { fill: #5eb99c; }
+    }
+  </style>
+
+  <path class="branch" d="M30,105 H110"/>
+  <circle class="split" cx="110" cy="105" r="4"/>
+  <text class="root" x="26" y="92">LUCA</text>
+
+  <path class="branch" d="M110,105 V45 H300"/>
+  <path class="branch" d="M110,105 V165 H210"/>
+
+  <text class="domain" x="310" y="50">Bacteria</text>
+  <text class="note" x="310" y="67">no nucleus, circular genome</text>
+
+  <circle class="split" cx="210" cy="165" r="4"/>
+  <path class="branch" d="M210,165 V130 H300"/>
+  <path class="branch" d="M210,165 V200 H300"/>
+
+  <text class="domain" x="310" y="135">Archaea</text>
+  <text class="note" x="310" y="152">no nucleus, eukaryote-like transcription</text>
+
+  <text class="domain" x="310" y="205">Eukaryotes</text>
+  <text class="note" x="310" y="222">nucleus and membrane-bound organelles</text>
+
+  <text class="note" x="26" y="205">Branching order inferred</text>
+  <text class="note" x="26" y="220">from rRNA comparison</text>
+</svg>

@@ -1,40 +1,94 @@
-name: Rebuild deck manifest
+name: Rebuild chapter manifest
 
-# decks/manifest.json is how the site discovers deck files, and it's easy to
-# forget to regenerate it after adding one. This rebuilds it on push and commits
-# the result only when it actually changed. Delete this file to keep it manual.
+# chapters.json is how the site pairs write-ups with decks, and it is easy to
+# forget to regenerate it after adding either half. This is the safety net.
+#
+# Ordering: it waits for the GitHub Pages deploy of this commit to finish before
+# touching anything, so Pages ships exactly what you pushed and this only tidies
+# up afterwards. If the manifest was stale it commits a fix and asks Pages for a
+# fresh build, so the correction actually goes live.
+#
+# Why the wait is a polling loop rather than `workflow_run`: with Pages building
+# from a branch, the deploy runs as a workflow GitHub generates on the fly at
+# `dynamic/pages/pages-build-deployment`. It is not a file in this repo, so a
+# `workflow_run` trigger never matches it and the job simply never fires.
+# Switching Settings > Pages > Source to "GitHub Actions" would let us express
+# the dependency with `needs:` instead, at the cost of owning the deploy.
+#
+# This cannot loop. The commit is pushed with GITHUB_TOKEN, which does not
+# trigger workflows, and the rebuild it requests is not a push event.
+#
+# Delete this file if you would rather keep the manifest fully manual.
 
 on:
   push:
     branches: [main]
     paths:
+      - 'notes/**.md'
       - 'decks/**.md'
-      - 'tools/build-manifest.py'
+      - 'build-manifest.py'
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
-  group: manifest-${{ github.ref }}
-  cancel-in-progress: true
+  group: manifest
+  cancel-in-progress: false
 
 jobs:
   manifest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The branch tip, so the commit below has somewhere to push to.
+          ref: main
+
+      - name: Wait for the Pages deploy of this commit
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in $(seq 1 60); do
+            latest=$(gh api "repos/${{ github.repository }}/pages/builds/latest" \
+                       --jq '"\(.status) \(.commit)"' 2>/dev/null) || latest="unknown "
+            status=${latest%% *}
+            commit=${latest##* }
+            echo "attempt $attempt: status=$status commit=${commit:0:7}"
+            if [ "$commit" = "${{ github.sha }}" ] && [ "$status" = "built" ]; then
+              echo "Pages has deployed this commit."
+              exit 0
+            fi
+            if [ "$status" = "errored" ]; then
+              echo "Pages build errored. Rebuilding the manifest anyway."
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Gave up waiting after 10 minutes. Rebuilding the manifest anyway."
 
       - name: Rebuild manifest
-        run: python3 tools/build-manifest.py
+        run: python3 build-manifest.py
 
       - name: Commit if changed
+        id: commit
         run: |
-          if git diff --quiet -- decks/manifest.json; then
+          if git diff --quiet -- chapters.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Manifest already up to date."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add decks/manifest.json
-          git commit -m "Rebuild deck manifest"
+          git add chapters.json
+          git commit -m "Rebuild chapter manifest"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy the corrected manifest
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${{ github.repository }}/pages/builds"
