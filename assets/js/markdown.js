@@ -68,6 +68,17 @@ window.MD = (function () {
 
   function inline(text) {
     var t = escapeHtml(text);
+    // [[paper-slug]] or [[paper-slug|your own words]] cites a paper summary.
+    // With no label it renders as "Woese et al., 1990", resolved at
+    // render time from the manifest, so a card can cite a paper by slug and
+    // still read properly. An unknown slug stays visible rather than silently
+    // linking nowhere.
+    t = t.replace(/\[\[([^\[\]|]+?)(?:\|([^\[\]]+))?\]\]/g, function (m, slug, label) {
+      var id = slug.trim();
+      var known = window.Papers ? Papers.label(id) : null;
+      return '<a class="paper-ref' + (known ? '' : ' is-missing') + '" href="#/paper/' +
+        encodeURIComponent(id) + '">' + (label ? label.trim() : (known || id)) + '</a>';
+    });
     t = t.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, function (m, alt, src) {
       return '<img src="' + attr(src) + '" alt="' + attr(alt) + '" loading="lazy">';
     });
@@ -305,6 +316,7 @@ window.MD = (function () {
       .replace(/```[\s\S]*?```/g, ' ')
       .replace(/\{\{(.+?)\}\}/g, '$1')
       .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/\[\[([^\[\]|]+?)(?:\|([^\[\]]+))?\]\]/g, function (m, slug, label) { return label || slug; })
       .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
       .replace(/[#>*_`~$=|]/g, '')
       .replace(/\s+/g, ' ')

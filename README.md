@@ -6,6 +6,14 @@ Cell*. Live at **[alberts.liam-w.com](https://alberts.liam-w.com)**.
 Everything is plain markdown. Write it in any editor and commit. There is no build step
 and nothing to install.
 
+> [!WARNING]
+> **The code here is AI-generated. The material is not.**
+>
+> The site itself, meaning the HTML, CSS, Python and JavaScript, was written by an LLM and
+> should be read with that in mind. Everything you actually study is mine: the chapter
+> write-ups in `notes/`, the flashcards in `decks/`, and the paper summaries in `papers/`
+> are written by hand, from my own reading.
+
 ## How it's organised
 
 A **chapter** is two files that share a filename:
@@ -19,15 +27,26 @@ Either half can be missing while you're partway through. A chapter with notes an
 still shows up and is readable; a chapter with a deck and no notes is still studyable. The
 filename is the link between them, so the two must match exactly.
 
-After adding or renaming either file:
+A **paper** is a third thing that sits alongside rather than inside a chapter:
+
+```
+papers/woese-1990-three-domains.md  the summary, plus what it's about
+```
+
+It's a standalone document: your summary of something you read. The front matter names
+the chapters it belongs to, so one paper can surface under several of them, or under none
+while you're still reading it. Its filename is yours to choose.
+
+After adding or renaming any of these, or editing a paper's front matter:
 
 ```bash
 $ python3 build-manifest.py
 ```
 
-That rescans both directories and rewrites `chapters.json`, pairing files by name.
-Static hosting can't list a directory, so `chapters.json` is how the site finds anything.
-Chapters are ordered by filename, which is why they carry `ch01-`, `ch02-` prefixes.
+That rescans all three directories and rewrites `chapters.json`, pairing notes with decks
+by name and lifting each paper's front matter into the index. Static hosting can't list a
+directory, so `chapters.json` is how the site finds anything. Chapters are ordered by
+filename, which is why they carry `ch01-`, `ch02-` prefixes.
 
 If you forget to run it, the GitHub Action in
 [`.github/workflows/manifest.yml`](.github/workflows/manifest.yml) is the safety net. It
@@ -131,6 +150,78 @@ to many lines. Everything up to the next `A:` is the front.
 Cards accept the same markdown as write-ups, plus a `Tags: one, two` line anywhere in the
 card.
 
+## Papers
+
+A paper is your summary of something you read, in `papers/`. The front matter is the
+citation and the wiring; everything below it is yours.
+
+```markdown
+---
+title: Towards a natural system of organisms
+authors: Carl R. Woese, Otto Kandler, Mark L. Wheelis
+year: 1990
+journal: PNAS 87(12), 4576–4579
+link: https://doi.org/10.1073/pnas.87.12.4576
+chapters: [ch01-cells-and-genomes]
+tags: [phylogenetics, archaea]
+date: 2026-08-03
+---
+
+The paper that put the three domains on the map. Alberts states the conclusion in
+a paragraph; this is the four pages of argument underneath it.
+
+## The argument
+
+Same markdown as a write-up, headings, contents sidebar and all.
+```
+
+`title` is the only field that matters. `chapters` is what makes it show up under
+**Further reading** on those chapters' pages, and `ch01` is enough, because the build
+script expands prefixes and warns if one matches nothing. Leave `chapters` off entirely
+and the paper still lives in the library, marked *unlinked*.
+
+Everything is browsable at [`#/papers`](https://alberts.liam-w.com/#/papers), searchable
+by title, author, year or tag.
+
+### Adding one without typing it out
+
+```bash
+$ python3 add-paper.py 10.1073/pnas.87.12.4576 -c ch01
+$ python3 add-paper.py arXiv:2301.00001 -c ch03 -c ch07 -t methods
+```
+
+Looks the metadata up, using Crossref for DOIs and the arXiv API for preprints. Writes
+`papers/<slug>.md` with the front matter filled in and the summary left blank, then
+rebuilds the manifest. Standard library only, nothing to install. To land straight in your
+editor:
+
+```bash
+$ $EDITOR "$(python3 add-paper.py 10.1038/191144a0 -c ch02 --quiet)"
+```
+
+No DOI? Pass the fields by hand with `--title`, `--authors`, `--year`, and it never
+touches the network. `--help` lists the rest. Author lists are trimmed to the first eight
+names, which `--all-authors` overrides.
+
+### Citing a paper from a write-up or a card
+
+`[[paper-slug]]` anywhere in a note or a card links to the summary, and renders as the
+citation:
+
+```markdown
+Q: Why is ribosomal RNA the molecule of choice for building the tree of life?
+A: It is present in every organism and changes slowly enough to stay alignable.
+The argument is made properly in [[woese-1990-three-domains]].
+```
+
+That comes out as *Woese et al., 1990*. Use `[[slug|your own words]]` to write the label
+yourself. A slug that doesn't match anything is left visible in amber rather than linking
+nowhere, so typos are obvious.
+
+Papers deliberately don't generate cards. A summary is its own thing; if reading one
+teaches you something worth drilling, write that card in the chapter deck and cite the
+paper from it.
+
 ## Studying
 
 The scheduler is SM-2 with Anki-style learning steps. New cards appear at 1 and 10 minutes,
@@ -169,19 +260,27 @@ Then open <http://localhost:8000>. It has to be served over HTTP rather than ope
 ```
 index.html                  app shell
 assets/css/style.css        all styling, light and dark
-assets/js/markdown.js       markdown to HTML, with math/code/table/cloze handling
+assets/js/markdown.js       markdown to HTML, with math/code/table/cloze/[[ref]] handling
 assets/js/deck.js           deck file to cards
+assets/js/papers.js         the paper library, and lazy loading of summaries
 assets/js/srs.js            SM-2 scheduling and localStorage
 assets/js/app.js            hash router and views
 assets/img/*.svg            diagrams
 notes/*.md                  chapter write-ups
 decks/*.md                  chapter cards
-chapters.json               generated pairing of the two
+papers/*.md                 paper summaries
+chapters.json               generated index of all three
 build-manifest.py           regenerates the above
+add-paper.py                starts a paper summary from a DOI or arXiv ID
 ```
 
-Routes are hash-based (`#/chapter/<slug>`, `#/cards/<slug>`, `#/study/<slug>`) so deep links
-work on GitHub Pages without server-side rewrites.
+Routes are hash-based (`#/chapter/<slug>`, `#/cards/<slug>`, `#/study/<slug>`,
+`#/papers`, `#/paper/<slug>`) so deep links work on GitHub Pages without server-side
+rewrites.
+
+Notes and decks are all loaded at startup; papers are not. Only their front matter travels
+in `chapters.json`, and a summary is fetched when you open it, so the library can grow
+without slowing the site down.
 
 KaTeX and highlight.js load from jsDelivr and are the only external requests. Both are
 optional. Without them math falls back to raw TeX and code blocks render unhighlighted, so

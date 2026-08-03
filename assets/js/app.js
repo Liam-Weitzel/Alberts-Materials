@@ -4,8 +4,14 @@
  * paired with a deck of cards (decks/<slug>.md). Either half can be missing while
  * you're mid-way through a chapter.
  *
+ * Papers sit alongside rather than inside that. A paper (papers/<slug>.md) is a
+ * standalone summary that names the chapters it belongs to, so it can surface
+ * under several of them, or under none while you're still reading it. See
+ * papers.js.
+ *
  * Hash routing keeps everything working on GitHub Pages with no server-side
- * rewrites:  #/ , #/chapter/<slug> , #/cards/<slug> , #/study/<slug|all> , #/settings
+ * rewrites:  #/ , #/chapter/<slug> , #/cards/<slug> , #/study/<slug|all> ,
+ * #/papers , #/paper/<slug> , #/settings
  */
 (function () {
   'use strict';
@@ -128,6 +134,8 @@
       .then(function (text) { return JSON.parse(text); })
       .then(function (manifest) {
         state.manifest = manifest;
+        // Metadata only. A paper's summary is fetched when you open it.
+        Papers.init(manifest.papers);
         return Promise.all((manifest.chapters || []).map(loadChapter));
       })
       .then(function (chapters) {
@@ -187,6 +195,9 @@
             '<div class="stat"><span class="stat-n">' + (total.due + total.learning) + '</span><span class="stat-l">due now</span></div>' +
             '<div class="stat"><span class="stat-n">' + total.new + '</span><span class="stat-l">unseen</span></div>' +
             '<div class="stat"><span class="stat-n">' + (td.new + td.reviews) + '</span><span class="stat-l">done today</span></div>' +
+            (Papers.count()
+              ? '<a class="stat" href="#/papers"><span class="stat-n">' + Papers.count() + '</span><span class="stat-l">papers</span></a>'
+              : '') +
           '</div>' +
           (total.due + total.learning + total.new
             ? '<a class="btn btn-primary btn-lg" href="#/study/all">Study everything due</a>'
@@ -200,6 +211,7 @@
     var list = state.chapters.map(function (ch, i) {
       var c = SRS.counts(cardsOf(ch));
       var dp = c.total ? c.seen / c.total : 0;
+      var np = Papers.forChapter(ch.slug).length;
 
       var badges = [];
       if (c.due + c.learning) badges.push('<span class="pill pill-due">' + (c.due + c.learning) + ' due</span>');
@@ -228,6 +240,7 @@
           '<div class="chapter-meta">' +
             (ch.notes ? '<span class="muted small">' + readingTime(ch.notes.words) + '</span>' : '') +
             (c.total ? '<span class="muted small">' + c.total + ' cards</span>' : '') +
+            (np ? '<span class="muted small">' + np + ' paper' + (np > 1 ? 's' : '') + '</span>' : '') +
             badges.join('') +
           '</div>' +
           (c.total ? '<div class="bar"><span style="width:' + (dp * 100).toFixed(1) + '%"></span></div>' : '') +
@@ -236,7 +249,21 @@
       '</article>';
     }).join('');
 
-    render(head + '<section class="chapter-list">' + list + '</section>');
+    render(head + '<section class="chapter-list">' + list + '</section>' + provenance());
+  }
+
+  /* Who wrote what. The site was built by an LLM; the material on it was not, and
+   * a reader has no way to tell those apart without being told. */
+  function provenance() {
+    return '<aside class="notice">' +
+      '<span class="notice-mark" aria-hidden="true">⚠</span>' +
+      '<div>' +
+        '<b>The code behind this site is AI-generated. The material on it is not.</b>' +
+        '<p>The chapter write-ups, the flashcards and the paper summaries are written by ' +
+        'hand, from my own reading. Everything else, meaning the site you are looking at, ' +
+        'was written by an LLM.</p>' +
+      '</div>' +
+    '</aside>';
   }
 
   /* ---------- chapter write-up ---------- */
@@ -247,10 +274,12 @@
     if (!ch.notes) {
       return render(crumbs(ch.title) +
         '<div class="empty"><h2>' + esc(ch.title) + '</h2><p>No write-up for this chapter yet.</p>' +
-        (cardsOf(ch).length ? '<p>' + studyLink(ch, 'btn btn-primary', 'Study the deck') + '</p>' : '') + '</div>');
+        (cardsOf(ch).length ? '<p>' + studyLink(ch, 'btn btn-primary', 'Study the deck') + '</p>' : '') + '</div>' +
+        furtherReading(ch));
     }
 
     var c = SRS.counts(cardsOf(ch));
+    var papers = Papers.forChapter(ch.slug).length;
     var body = MD.render(ch.notes.body, NOTE_OPTS);
 
     render(
@@ -263,6 +292,7 @@
             (ch.date ? '<span>' + esc(ch.date) + '</span>' : '') +
             '<span>' + readingTime(ch.notes.words) + '</span>' +
             (c.total ? '<span>' + c.total + ' cards</span>' : '') +
+            (papers ? '<span>' + papers + ' paper' + (papers > 1 ? 's' : '') + '</span>' : '') +
           '</p>' +
         '</header>' +
         '<div class="post-layout">' +
@@ -271,6 +301,7 @@
         '</div>' +
       '</article>' +
       (c.total ? practicePanel(ch, c) : '') +
+      furtherReading(ch) +
       chapterNav(slug)
     );
 
@@ -427,6 +458,155 @@
       SRS.resetDeck(cards);
       toast('Progress reset for this chapter');
       viewCards(slug);
+    });
+  }
+
+  /* ---------- papers ---------- */
+
+  // One entry in a list of papers. `chips` adds the chapters it belongs to, which
+  // the library wants and a chapter page doesn't (you're already standing in it).
+  function paperRow(p, chips) {
+    var meta = [];
+    if (p.authors) meta.push(esc(p.authors));
+    if (p.year) meta.push(esc(p.year));
+    if (p.journal) meta.push('<i>' + esc(p.journal) + '</i>');
+
+    var tail = [];
+    if (chips) {
+      p.chapters.forEach(function (slug) {
+        var ch = chapterBySlug(slug);
+        if (ch) tail.push('<a class="pill pill-chapter" href="#/chapter/' + encodeURIComponent(slug) + '">' + esc(ch.title) + '</a>');
+      });
+      if (!p.chapters.length) tail.push('<span class="pill pill-todo">unlinked</span>');
+    }
+    p.tags.forEach(function (t) { tail.push('<span class="tag">#' + esc(t) + '</span>'); });
+
+    return '<article class="paper-row">' +
+      '<a class="paper-head" href="' + Papers.href(p.slug) + '">' +
+        '<h3>' + esc(p.title) + '</h3>' +
+        (meta.length ? '<p class="paper-cite">' + meta.join(' · ') + '</p>' : '') +
+      '</a>' +
+      (p.excerpt ? '<p class="paper-excerpt">' + esc(p.excerpt) + '</p>' : '') +
+      (tail.length ? '<div class="paper-tail">' + tail.join('') + '</div>' : '') +
+      (p.link ? '<a class="paper-out" href="' + esc(p.link) + '" target="_blank" rel="noopener" ' +
+        'title="Open the paper">Source ↗</a>' : '') +
+    '</article>';
+  }
+
+  // Shown under a chapter write-up: what else to read on this topic.
+  function furtherReading(ch) {
+    var papers = Papers.forChapter(ch.slug);
+    if (!papers.length) return '';
+    return '<section class="reading">' +
+      '<div class="reading-head">' +
+        '<h2>Further reading</h2>' +
+        '<a class="small" href="#/papers">All papers →</a>' +
+      '</div>' +
+      '<div class="paper-list">' + papers.map(function (p) { return paperRow(p, false); }).join('') +
+      '</div>' +
+    '</section>';
+  }
+
+  function viewPapers() {
+    var papers = Papers.all();
+    if (!papers.length) {
+      return render('<div class="crumbs"><a href="#/">Chapters</a> <span>/</span> Papers</div>' +
+        '<div class="empty"><h2>No papers yet</h2>' +
+        '<p>Write a summary into <code>papers/</code>, or let ' +
+        '<code>python3 add-paper.py &lt;doi&gt; -c ch01</code> start one for you.</p></div>');
+    }
+
+    var linked = papers.filter(function (p) { return p.chapters.length; }).length;
+
+    render(
+      '<div class="crumbs"><a href="#/">Chapters</a> <span>/</span> Papers</div>' +
+      '<section class="page-head">' +
+        '<div>' +
+          '<h1>Papers</h1>' +
+          '<p class="muted">' + papers.length + ' summaries, ' + linked + ' linked to a chapter</p>' +
+        '</div>' +
+      '</section>' +
+      '<div class="toolbar"><input id="search" class="input" type="search" ' +
+        'placeholder="Search by title, author, year or tag…" autocomplete="off"></div>' +
+      '<section id="paper-list" class="paper-list"></section>'
+    );
+
+    var listEl = view.querySelector('#paper-list');
+    var searchEl = view.querySelector('#search');
+
+    function paint(filter) {
+      var q = (filter || '').trim().toLowerCase();
+      var matches = papers.filter(function (p) { return !q || p.search.indexOf(q) !== -1; });
+      listEl.innerHTML = matches.length
+        ? matches.map(function (p) { return paperRow(p, true); }).join('')
+        : '<div class="empty small"><p>No papers match “' + esc(q) + '”.</p></div>';
+    }
+
+    paint('');
+    searchEl.addEventListener('input', function () { paint(searchEl.value); });
+  }
+
+  function viewPaper(slug) {
+    var p = Papers.get(slug);
+    if (!p) {
+      return render('<div class="empty"><h2>No paper called “' + esc(slug) + '”</h2>' +
+        '<p>It may not be in <code>chapters.json</code> yet. Run ' +
+        '<code>python3 build-manifest.py</code>.</p>' +
+        '<p><a href="#/papers">Back to papers</a></p></div>');
+    }
+
+    var cite = [];
+    if (p.authors) cite.push(esc(p.authors));
+    if (p.journal) cite.push('<i>' + esc(p.journal) + '</i>');
+    if (p.year) cite.push(esc(p.year));
+
+    var homes = p.chapters.map(function (s) {
+      var ch = chapterBySlug(s);
+      return ch ? '<a class="pill pill-chapter" href="#/chapter/' + encodeURIComponent(s) + '">' + esc(ch.title) + '</a>' : '';
+    }).join('');
+
+    render(
+      '<div class="crumbs"><a href="#/">Chapters</a> <span>/</span> ' +
+        '<a href="#/papers">Papers</a> <span>/</span> ' + esc(Papers.citation(p)) + '</div>' +
+      '<article class="post">' +
+        '<header class="post-head">' +
+          '<h1>' + esc(p.title) + '</h1>' +
+          (cite.length ? '<p class="sub">' + cite.join(', ') + '</p>' : '') +
+          '<p class="post-meta">' +
+            (p.date ? '<span>read ' + esc(p.date) + '</span>' : '') +
+            (p.words ? '<span>' + readingTime(p.words) + '</span>' : '') +
+            (p.link ? '<span><a href="' + esc(p.link) + '" target="_blank" rel="noopener">Source ↗</a></span>' : '') +
+          '</p>' +
+          (homes || p.tags.length
+            ? '<div class="paper-tail">' + homes +
+              p.tags.map(function (t) { return '<span class="tag">#' + esc(t) + '</span>'; }).join('') +
+              '</div>'
+            : '') +
+        '</header>' +
+        '<div class="post-layout">' +
+          '<nav class="toc" id="toc" aria-label="On this page"></nav>' +
+          '<div class="prose" id="prose">' +
+            '<div class="loading"><span class="spinner"></span> Loading the summary…</div>' +
+          '</div>' +
+        '</div>' +
+      '</article>'
+    );
+
+    // The body arrives after the frame above, so make sure we're still on this
+    // page before writing into it.
+    var token = location.hash;
+    Papers.load(slug).then(function (doc) {
+      if (location.hash !== token) return;
+      var prose = view.querySelector('#prose');
+      if (!prose) return;
+      prose.innerHTML = MD.render(doc.body, NOTE_OPTS) || '<p class="muted">This summary is still empty.</p>';
+      buildToc();
+      MD.typeset(view);
+    }).catch(function (e) {
+      if (location.hash !== token) return;
+      var prose = view.querySelector('#prose');
+      if (prose) prose.innerHTML = '<div class="empty small"><p>Could not load this summary.</p>' +
+        '<p class="mono small">' + esc(e.message) + '</p></div>';
     });
   }
 
@@ -844,7 +1024,9 @@
     var parts = hash.split('/').filter(Boolean);
 
     document.querySelectorAll('[data-nav]').forEach(function (a) { a.classList.remove('active'); });
-    var navKey = parts[0] === 'study' ? 'study' : parts[0] === 'settings' ? 'settings' : 'home';
+    var navKey = parts[0] === 'study' ? 'study'
+               : parts[0] === 'papers' || parts[0] === 'paper' ? 'papers'
+               : parts[0] === 'settings' ? 'settings' : 'home';
     var nav = document.querySelector('[data-nav="' + navKey + '"]');
     if (nav) nav.classList.add('active');
 
@@ -853,6 +1035,8 @@
     if (parts[0] === 'chapter' && parts[1]) return viewChapter(decodeURIComponent(parts[1]));
     if (parts[0] === 'cards' && parts[1]) return viewCards(decodeURIComponent(parts[1]));
     if (parts[0] === 'study' && parts[1]) return viewStudy(decodeURIComponent(parts[1]));
+    if (parts[0] === 'paper' && parts[1]) return viewPaper(decodeURIComponent(parts[1]));
+    if (parts[0] === 'papers') return viewPapers();
     if (parts[0] === 'settings') return viewSettings();
     return viewHome();
   }

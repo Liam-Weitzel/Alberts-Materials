@@ -1,7 +1,8 @@
 name: Rebuild chapter manifest
 
-# chapters.json is how the site pairs write-ups with decks, and it is easy to
-# forget to regenerate it after adding either half. This is the safety net.
+# chapters.json is how the site finds write-ups, decks and papers, and it is easy
+# to forget to regenerate it after adding or editing any of them. This is the
+# safety net.
 #
 # Ordering: it waits for the GitHub Pages deploy of this commit to finish before
 # touching anything, so Pages ships exactly what you pushed and this only tidies
@@ -26,6 +27,7 @@ on:
     paths:
       - 'notes/**.md'
       - 'decks/**.md'
+      - 'papers/**.md'
       - 'build-manifest.py'
   workflow_dispatch:
 

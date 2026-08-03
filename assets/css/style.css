@@ -489,6 +489,79 @@ th { font-weight: 620; color: var(--ink); border-bottom-color: var(--line-strong
 td { color: var(--ink-soft); }
 tbody tr:last-child td { border-bottom: none; }
 
+/* ---------- provenance notice ---------- */
+
+.notice {
+  display: flex;
+  gap: .8rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+  padding: .9rem 1.1rem;
+  background: color-mix(in srgb, var(--warn) 8%, var(--bg-raised));
+  border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent);
+  border-radius: var(--radius);
+  font-size: .88rem;
+}
+.notice-mark { flex: none; color: var(--warn); font-size: 1rem; line-height: 1.5; }
+.notice b { display: block; margin-bottom: .2rem; }
+.notice p { margin: 0; color: var(--ink-soft); }
+
+/* ---------- papers ---------- */
+
+.paper-list { display: flex; flex-direction: column; gap: .6rem; }
+.paper-row {
+  position: relative;
+  padding: 1rem 1.2rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color .15s;
+}
+.paper-row:hover { border-color: var(--line-strong); }
+.paper-head { display: block; text-decoration: none; color: inherit; padding-right: 5rem; }
+.paper-head h3 { margin: 0 0 .2em; font-size: 1.02rem; }
+.paper-head:hover h3 { color: var(--accent); }
+.paper-cite { margin: 0; font-size: .84rem; color: var(--ink-faint); }
+.paper-excerpt {
+  margin: .55rem 0 0;
+  font-family: var(--font-read);
+  font-size: .93rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.paper-tail { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: .7rem; }
+.paper-out {
+  position: absolute; top: 1rem; right: 1.2rem;
+  font-size: .78rem; color: var(--ink-faint); text-decoration: none; white-space: nowrap;
+}
+.paper-out:hover { color: var(--accent); }
+
+.pill-chapter {
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.pill-chapter:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+
+.reading { margin: 2.5rem 0 1.5rem; }
+.reading-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .8rem; }
+.reading-head h2 { margin: 0; }
+.reading-head a { text-decoration: none; color: var(--ink-soft); }
+.reading-head a:hover { color: var(--accent); }
+
+/* A [[slug]] citation of a paper, inside a write-up or a card. */
+.paper-ref { text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+.paper-ref:hover { border-bottom-color: currentColor; }
+.paper-ref.is-missing {
+  color: var(--warn);
+  border-bottom-style: dashed;
+  border-bottom-color: color-mix(in srgb, var(--warn) 50%, transparent);
+}
+
+a.stat { text-decoration: none; color: inherit; }
+a.stat:hover .stat-n { color: var(--accent); }
+
 /* ---------- practice panel and pager ---------- */
 
 .practice {
@@ -531,4 +604,6 @@ tbody tr:last-child td { border-bottom: none; }
   .chapter-actions .btn { flex: 1; }
   .pager { grid-template-columns: 1fr; }
   .practice { flex-direction: column; align-items: flex-start; }
+  .paper-head { padding-right: 0; }
+  .paper-out { position: static; display: inline-block; margin-top: .6rem; }
 }

@@ -34,7 +34,7 @@ descent, and it is why you can put a human gene into yeast and have it work.
 
 Life splits into Bacteria, Archaea and Eukaryotes. The surprise is Archaea, which
 look like bacteria under a microscope but turned out to be a separate lineage
-once people started comparing ribosomal RNA sequences.
+once people started comparing ribosomal RNA sequences ([[woese-1990-three-domains]]).
 
 ![The three domains, with Bacteria branching off before Archaea and Eukaryotes separate](assets/img/three-domains.svg)
 

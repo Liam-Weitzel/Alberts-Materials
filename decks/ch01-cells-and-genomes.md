@@ -30,11 +30,13 @@ Tags: prokaryotes
 
 Q: The three domains of life are Bacteria, {{Archaea}} and {{Eukaryotes}}.
 A: Archaea were split off from Bacteria on the basis of ribosomal RNA sequence comparisons. Their information-processing machinery is closer to that of eukaryotes.
+Source: [[woese-1990-three-domains]]
 
 ---
 
 Q: Why is **ribosomal RNA** the molecule of choice for building the tree of life?
 A: rRNA is present in every organism and does the same job everywhere, so homologous sequences stay alignable across billions of years of divergence. It also changes slowly enough to remain comparable while still accumulating enough substitutions to resolve relationships.
+The argument is made properly in [[woese-1990-three-domains|the paper that introduced the three domains]].
 
 ---
 
