@@ -1,0 +1,40 @@
+name: Rebuild deck manifest
+
+# decks/manifest.json is how the site discovers deck files, and it's easy to
+# forget to regenerate it after adding one. This rebuilds it on push and commits
+# the result only when it actually changed. Delete this file to keep it manual.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'decks/**.md'
+      - 'tools/build-manifest.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: manifest-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild manifest
+        run: python3 tools/build-manifest.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- decks/manifest.json; then
+            echo "Manifest already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add decks/manifest.json
+          git commit -m "Rebuild deck manifest"
+          git push

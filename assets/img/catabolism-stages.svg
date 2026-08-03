@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 190" width="640" height="190" role="img" aria-label="Three stages of catabolism">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .stage { font-size: 13px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 11px; }
+    .yield { font-size: 11px; font-weight: 600; fill: #2f6f5e; }
+    .box { fill: #ffffff; stroke: #cdc6bb; }
+    .arrow { stroke: #8b857c; stroke-width: 1.5; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .stage { fill: #e8e6e1; }
+      .yield { fill: #5eb99c; }
+      .box { fill: #1b1e24; stroke: #3a3f49; }
+      .arrow { stroke: #7b766e; }
+    }
+  </style>
+  <defs>
+    <marker id="head" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#8b857c"/>
+    </marker>
+  </defs>
+
+  <rect class="box" x="8" y="40" width="180" height="86" rx="10"/>
+  <text class="stage" x="24" y="66">Stage 1 · Digestion</text>
+  <text class="note" x="24" y="88">proteins, polysaccharides, fats</text>
+  <text class="note" x="24" y="105">→ amino acids, sugars, fatty acids</text>
+  <text class="yield" x="24" y="120">no useful energy</text>
+
+  <path class="arrow" d="M192,83 L222,83" marker-end="url(#head)"/>
+
+  <rect class="box" x="228" y="40" width="180" height="86" rx="10"/>
+  <text class="stage" x="244" y="66">Stage 2 · Glycolysis</text>
+  <text class="note" x="244" y="88">glucose → pyruvate → acetyl CoA</text>
+  <text class="note" x="244" y="105">cytosol, then mitochondrion</text>
+  <text class="yield" x="244" y="120">2 ATP + NADH</text>
+
+  <path class="arrow" d="M412,83 L442,83" marker-end="url(#head)"/>
+
+  <rect class="box" x="448" y="40" width="184" height="86" rx="10"/>
+  <text class="stage" x="464" y="66">Stage 3 · Oxidation</text>
+  <text class="note" x="464" y="88">citric acid cycle +</text>
+  <text class="note" x="464" y="105">oxidative phosphorylation</text>
+  <text class="yield" x="464" y="120">~30 ATP</text>
+
+  <text class="note" x="8" y="163">Per molecule of glucose, most ATP is made in stage 3 by the electron-transport chain.</text>
+</svg>
