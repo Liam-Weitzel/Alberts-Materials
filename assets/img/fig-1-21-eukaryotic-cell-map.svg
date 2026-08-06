@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" width="760" height="560" role="img" aria-label="The major features of a eukaryotic cell: nucleus with chromatin and nucleolus, rough and smooth ER, Golgi apparatus, mitochondria, lysosome, peroxisome, free ribosomes, vesicles, extracellular matrix, and the three cytoskeletal filament systems: actin filaments, microtubules radiating from a centrosome, and intermediate filaments">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .label { font-size: 11.5px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 10px; }
+    .cell { fill: none; stroke: #8b857c; stroke-width: 2; }
+    .nucleus { fill: #e4efea; stroke: #2f6f5e; stroke-width: 1.5; }
+    .nucleolus { fill: #bcd9cd; }
+    .chromatin { fill: #8fb9a6; }
+    .wave { fill: none; stroke: #a5813a; stroke-width: 2; }
+    .golgi { fill: none; stroke: #3d6ea5; stroke-width: 2.5; stroke-linecap: round; }
+    .mito { fill: #f0e3d0; stroke: #a5813a; stroke-width: 1.5; }
+    .fold { stroke: #a5813a; stroke-width: 1.2; fill: none; }
+    .lyso { fill: #f0d3d0; stroke: #a5443d; stroke-width: 1.5; }
+    .perox { fill: #dbe6f2; stroke: #3d6ea5; stroke-width: 1.5; }
+    .vesicle { fill: #f0e3d0; stroke: #a5813a; stroke-width: 1.2; }
+    .dot { fill: #8b857c; }
+    .leader { stroke: #cdc6bb; stroke-width: 1; }
+    .actin { stroke: #a5443d; stroke-width: 1.1; fill: none; opacity: .8; }
+    .mt { stroke: #2f6f5e; stroke-width: 1.4; fill: none; opacity: .85; }
+    .imf { stroke: #3d6ea5; stroke-width: 1.3; fill: none; opacity: .8; }
+    .centrosome { fill: #2f6f5e; }
+    .ecm { stroke: #c99a3a; stroke-width: 1.3; }
+    .scale { stroke: #56514a; stroke-width: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .label { fill: #e8e6e1; }
+      .cell { stroke: #7b766e; }
+      .nucleus { fill: #1d2c28; stroke: #5eb99c; }
+      .nucleolus { fill: #2f4a41; }
+      .chromatin { fill: #3d6455; }
+      .wave { stroke: #cf9f52; }
+      .golgi { stroke: #8db4dd; }
+      .mito { fill: #2b2418; stroke: #cf9f52; }
+      .fold { stroke: #cf9f52; }
+      .lyso { fill: #2c1c1a; stroke: #e08079; }
+      .perox { fill: #1c2733; stroke: #8db4dd; }
+      .vesicle { fill: #2b2418; stroke: #cf9f52; }
+      .dot { fill: #7b766e; }
+      .leader { stroke: #3a3f49; }
+      .actin { stroke: #e08079; }
+      .mt { stroke: #5eb99c; }
+      .imf { stroke: #8db4dd; }
+      .centrosome { fill: #5eb99c; }
+      .ecm { stroke: #cf9f52; }
+      .scale { stroke: #a9a49c; }
+    }
+  </style>
+
+  <text class="label" x="10" y="20" style="font-size:13px">The major features of a eukaryotic cell</text>
+
+  <!-- extracellular matrix: hatching outside the membrane, upper right -->
+  <g class="ecm">
+    <line x1="560" y1="70" x2="600" y2="40"/>
+    <line x1="580" y1="85" x2="622" y2="58"/>
+    <line x1="600" y1="102" x2="646" y2="78"/>
+    <line x1="618" y1="122" x2="666" y2="100"/>
+    <line x1="632" y1="146" x2="682" y2="128"/>
+    <line x1="642" y1="172" x2="694" y2="158"/>
+    <line x1="648" y1="200" x2="700" y2="190"/>
+  </g>
+  <text class="note" x="580" y="30">extracellular matrix</text>
+
+  <ellipse class="cell" cx="360" cy="290" rx="330" ry="205"/>
+
+  <!-- cytoskeleton: microtubules radiating from the centrosome -->
+  <g class="mt">
+    <line x1="255" y1="205" x2="120" y2="130"/>
+    <line x1="255" y1="205" x2="150" y2="100"/>
+    <line x1="255" y1="205" x2="230" y2="90"/>
+    <line x1="255" y1="205" x2="320" y2="85"/>
+    <line x1="255" y1="205" x2="400" y2="95"/>
+    <line x1="255" y1="205" x2="470" y2="120"/>
+    <line x1="255" y1="205" x2="90" y2="220"/>
+    <line x1="255" y1="205" x2="80" y2="290"/>
+    <line x1="255" y1="205" x2="100" y2="360"/>
+    <line x1="255" y1="205" x2="160" y2="430"/>
+    <line x1="255" y1="205" x2="250" y2="470"/>
+    <line x1="255" y1="205" x2="340" y2="475"/>
+  </g>
+  <circle class="centrosome" cx="255" cy="205" r="4"/>
+  <rect class="centrosome" x="248" y="196" width="14" height="4" rx="1.5" transform="rotate(20 255 198)"/>
+  <rect class="centrosome" x="248" y="204" width="14" height="4" rx="1.5" transform="rotate(-70 255 206)"/>
+  <line class="leader" x1="255" y1="188" x2="255" y2="150"/>
+  <text class="note" x="205" y="140">centrosome with</text>
+  <text class="note" x="205" y="152">pair of centrioles</text>
+
+  <!-- cytoskeleton: actin filaments fanning out at the two tapered ends -->
+  <g class="actin">
+    <line x1="55" y1="290" x2="20" y2="255"/>
+    <line x1="55" y1="290" x2="15" y2="278"/>
+    <line x1="55" y1="290" x2="12" y2="300"/>
+    <line x1="55" y1="290" x2="15" y2="322"/>
+    <line x1="55" y1="290" x2="22" y2="342"/>
+    <line x1="55" y1="290" x2="30" y2="358"/>
+    <line x1="660" y1="290" x2="695" y2="255"/>
+    <line x1="660" y1="290" x2="700" y2="275"/>
+    <line x1="660" y1="290" x2="702" y2="298"/>
+    <line x1="660" y1="290" x2="698" y2="320"/>
+    <line x1="660" y1="290" x2="690" y2="340"/>
+    <line x1="620" y1="150" x2="655" y2="115"/>
+    <line x1="620" y1="150" x2="665" y2="130"/>
+    <line x1="620" y1="150" x2="670" y2="150"/>
+  </g>
+  <text class="note" x="15" y="380">actin filaments</text>
+
+  <!-- cytoskeleton: intermediate filaments, meandering -->
+  <g class="imf">
+    <path d="M120,380 q30,-20 60,-5 t60,-5 t60,10 t60,5"/>
+    <path d="M420,420 q25,-25 50,-10 t55,-15"/>
+    <path d="M150,430 q20,-15 45,-2 t50,-8"/>
+  </g>
+  <text class="note" x="400" y="440">intermediate filaments</text>
+
+  <line class="leader" x1="560" y1="120" x2="600" y2="175"/>
+  <text class="note" x="480" y="112">plasma membrane</text>
+
+  <circle class="nucleus" cx="250" cy="290" r="88"/>
+  <circle class="nucleolus" cx="278" cy="272" r="20"/>
+  <circle class="chromatin" cx="220" cy="320" r="2.2"/>
+  <circle class="chromatin" cx="200" cy="290" r="2.2"/>
+  <circle class="chromatin" cx="215" cy="255" r="2.2"/>
+  <circle class="chromatin" cx="250" cy="245" r="2.2"/>
+  <circle class="chromatin" cx="285" cy="235" r="2.2"/>
+  <circle class="chromatin" cx="230" cy="345" r="2.2"/>
+  <circle class="chromatin" cx="270" cy="335" r="2.2"/>
+  <circle class="chromatin" cx="300" cy="300" r="2.2"/>
+  <text class="label" x="205" y="335">nucleus</text>
+  <line class="leader" x1="290" y1="265" x2="335" y2="235"/>
+  <text class="note" x="338" y="233">nucleolus</text>
+
+  <text class="note" x="365" y="185">rough ER</text>
+  <path class="wave" d="M365,205 q15,-12 30,0 t30,0 t30,0 t30,0"/>
+  <circle class="dot" cx="380" cy="198" r="2.2"/>
+  <circle class="dot" cx="410" cy="198" r="2.2"/>
+  <circle class="dot" cx="440" cy="198" r="2.2"/>
+  <circle class="dot" cx="470" cy="198" r="2.2"/>
+  <path class="wave" d="M365,225 q15,-12 30,0 t30,0 t30,0 t30,0"/>
+
+  <text class="note" x="365" y="275">smooth ER</text>
+  <path class="wave" d="M365,290 q15,-12 30,0 t30,0 t30,0 t30,0"/>
+  <path class="wave" d="M365,310 q15,-12 30,0 t30,0 t30,0 t30,0"/>
+
+  <text class="label" x="500" y="185">Golgi apparatus</text>
+  <path class="golgi" d="M500,205 q40,-6 70,0"/>
+  <path class="golgi" d="M500,217 q40,-6 70,0"/>
+  <path class="golgi" d="M500,229 q40,-6 70,0"/>
+  <path class="golgi" d="M500,241 q40,-6 70,0"/>
+
+  <rect class="mito" x="120" y="365" width="95" height="42" rx="20"/>
+  <path class="fold" d="M138,375 q8,10 0,20 M155,375 q8,10 0,20 M172,375 q8,10 0,20 M189,375 q8,10 0,20"/>
+  <rect class="mito" x="150" y="413" width="95" height="42" rx="20"/>
+  <path class="fold" d="M168,423 q8,10 0,20 M185,423 q8,10 0,20 M202,423 q8,10 0,20 M219,423 q8,10 0,20"/>
+  <text class="label" x="110" y="470">mitochondria</text>
+
+  <circle class="lyso" cx="520" cy="365" r="18"/>
+  <text class="note" x="545" y="370">lysosome</text>
+
+  <circle class="perox" cx="560" cy="305" r="14"/>
+  <text class="note" x="578" y="310">peroxisome</text>
+
+  <circle class="vesicle" cx="600" cy="245" r="8"/>
+  <circle class="vesicle" cx="580" cy="225" r="6"/>
+  <circle class="vesicle" cx="615" cy="270" r="7"/>
+  <text class="note" x="605" y="215">vesicles</text>
+
+  <circle class="dot" cx="170" cy="180" r="2.5"/>
+  <circle class="dot" cx="182" cy="170" r="2.5"/>
+  <circle class="dot" cx="192" cy="185" r="2.5"/>
+  <circle class="dot" cx="165" cy="195" r="2.5"/>
+  <circle class="dot" cx="200" cy="160" r="2.5"/>
+  <text class="note" x="130" y="145">ribosomes</text>
+  <text class="note" x="130" y="157">in cytosol</text>
+
+  <line class="scale" x1="610" y1="470" x2="660" y2="470"/>
+  <text class="note" x="620" y="486">5 μm</text>
+
+  <text class="note" x="10" y="540">Cytosol: the fluid the organelles and cytoskeleton sit in. Plant cells add chloroplasts and a rigid cell wall (not shown).</text>
+</svg>

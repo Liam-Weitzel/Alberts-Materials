@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 490" width="640" height="490" role="img" aria-label="Four modes of genetic innovation: intragenic mutation, gene duplication, DNA segment shuffling, and horizontal DNA transfer">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .label { font-size: 12px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 10.5px; }
+    .gene { fill: #e4efea; stroke: #2f6f5e; stroke-width: 1.5; }
+    .gene2 { fill: #efe3cf; stroke: #a5813a; stroke-width: 1.5; }
+    .mut { fill: #f0d3d0; stroke: #a5443d; stroke-width: 1.5; }
+    .cell { fill: none; stroke: #8b857c; stroke-width: 1.5; }
+    .arrow { stroke: #8b857c; stroke-width: 1.5; fill: none; }
+    .colhead { fill: #dbe6f2; }
+    .colhead-txt { font-size: 10px; font-weight: 700; fill: #2f4a63; }
+    .num { fill: #dbe6f2; stroke: #3d6ea5; stroke-width: 1.2; }
+    .num-txt { font-size: 10px; font-weight: 700; fill: #2f4a63; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .label { fill: #e8e6e1; }
+      .gene { fill: #1d2c28; stroke: #5eb99c; }
+      .gene2 { fill: #2b2418; stroke: #cf9f52; }
+      .mut { fill: #2c1c1a; stroke: #e08079; }
+      .cell { stroke: #7b766e; }
+      .arrow { stroke: #7b766e; }
+      .colhead { fill: #1c2733; }
+      .colhead-txt { fill: #8db4dd; }
+      .num { fill: #1c2733; stroke: #8db4dd; }
+      .num-txt { fill: #8db4dd; }
+    }
+  </style>
+  <defs>
+    <marker id="gih" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#8b857c"/>
+    </marker>
+  </defs>
+
+  <rect class="colhead" x="60" y="8" width="150" height="16" rx="3"/>
+  <text class="colhead-txt" x="68" y="19">ORIGINAL GENOME</text>
+  <rect class="colhead" x="265" y="8" width="150" height="16" rx="3"/>
+  <text class="colhead-txt" x="273" y="19">GENETIC INNOVATION</text>
+
+  <g transform="translate(0,26)">
+
+  <!-- Row 1: intragenic mutation -->
+  <circle class="num" cx="18" cy="18" r="9"/>
+  <text class="num-txt" x="15" y="21">1</text>
+  <text class="label" x="32" y="22">Intragenic mutation</text>
+  <rect class="gene" x="60" y="34" width="150" height="20" rx="4"/>
+  <path class="arrow" d="M220,44 L255,44" marker-end="url(#gih)"/>
+  <rect class="gene" x="265" y="34" width="150" height="20" rx="4"/>
+  <rect class="mut" x="330" y="34" width="8" height="20"/>
+  <text class="note" x="430" y="48">one base changes</text>
+
+  <!-- Row 2: gene duplication -->
+  <circle class="num" cx="18" cy="88" r="9"/>
+  <text class="num-txt" x="15" y="91">2</text>
+  <text class="label" x="32" y="92">Gene duplication</text>
+  <rect class="gene" x="60" y="104" width="150" height="20" rx="4"/>
+  <path class="arrow" d="M220,114 L255,114" marker-end="url(#gih)"/>
+  <rect class="gene" x="265" y="100" width="150" height="18" rx="4"/>
+  <rect class="gene" x="265" y="122" width="150" height="18" rx="4"/>
+  <text class="note" x="430" y="115">gene copied in place</text>
+
+  <!-- Row 3: DNA segment shuffling -->
+  <circle class="num" cx="18" cy="168" r="9"/>
+  <text class="num-txt" x="15" y="171">3</text>
+  <text class="label" x="32" y="172">DNA segment shuffling</text>
+  <text class="note" x="60" y="188">gene A</text>
+  <rect class="gene" x="60" y="194" width="150" height="18" rx="4"/>
+  <rect class="gene2" x="60" y="218" width="150" height="18" rx="4"/>
+  <text class="note" x="60" y="250">gene B</text>
+  <path class="arrow" d="M220,215 L255,215" marker-end="url(#gih)"/>
+  <text class="note" x="265" y="188">hybrid gene</text>
+  <rect class="gene" x="265" y="194" width="75" height="18" rx="3"/>
+  <rect class="gene2" x="340" y="194" width="75" height="18" rx="3"/>
+
+  <!-- Row 4: horizontal transfer -->
+  <circle class="num" cx="18" cy="288" r="9"/>
+  <text class="num-txt" x="15" y="291">4</text>
+  <text class="label" x="32" y="292">Horizontal DNA transfer</text>
+
+  <text class="note" x="105" y="320">organism A</text>
+  <ellipse class="cell" cx="150" cy="385" rx="95" ry="65"/>
+  <rect class="mut" x="105" y="355" width="90" height="16" rx="3"/>
+  <rect class="gene" x="105" y="378" width="90" height="16" rx="3"/>
+  <rect class="gene2" x="105" y="401" width="90" height="16" rx="3"/>
+
+  <text class="note" x="425" y="320">organism B</text>
+  <ellipse class="cell" cx="470" cy="385" rx="95" ry="65"/>
+  <rect class="gene" x="425" y="368" width="90" height="16" rx="3"/>
+  <rect class="gene2" x="425" y="391" width="90" height="16" rx="3"/>
+
+  <path class="arrow" d="M198,362 C 280,335 350,335 422,362" marker-end="url(#gih)"/>
+  <text class="note" x="270" y="340">gene moves</text>
+  <text class="note" x="60" y="460">Genes cross between species, rather than passing from parent to offspring.</text>
+  </g>
+</svg>

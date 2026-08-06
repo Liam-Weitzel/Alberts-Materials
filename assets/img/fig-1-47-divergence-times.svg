@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img" aria-label="Times of divergence of different vertebrate pairs, plotted on a geological timescale from the present to 575 million years ago, alongside the percent amino acid identity between each pair's hemoglobin alpha chain, which generally falls the longer ago the pair diverged">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .title { font-size: 13px; font-weight: 700; fill: #1e1c19; }
+    .era { font-size: 10px; font-weight: 600; fill: #4a463f; }
+    .sp { font-size: 9.5px; fill: #3d6ea5; }
+    .pct { font-size: 9.5px; }
+    .axis-lbl { font-size: 9px; }
+    .axis-title { font-size: 10px; }
+    .tick { stroke: #8b857c; stroke-width: 1; }
+    .leader { stroke: #3d6ea5; stroke-width: .8; }
+    .pctcol { fill: #dbe6f2; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .title { fill: #e8e6e1; }
+      .era { fill: #14161a; }
+      .sp { fill: #8db4dd; }
+      .tick { stroke: #7b766e; }
+      .leader { stroke: #8db4dd; }
+      .pctcol { fill: #1c2733; }
+    }
+  </style>
+  <text class="title" x="10" y="20">Times of divergence of different vertebrates</text>
+  <rect x="220" y="46.0" width="160" height="53.3" fill="#fdf3b0"/>
+  <text class="era" x="300.0" y="75.7" text-anchor="middle">Tertiary</text>
+  <rect x="220" y="99.3" width="160" height="65.6" fill="#f5e94e"/>
+  <text class="era" x="300.0" y="135.1" text-anchor="middle">Cretaceous</text>
+  <rect x="220" y="164.9" width="160" height="45.1" fill="#f0c26a"/>
+  <text class="era" x="300.0" y="190.4" text-anchor="middle">Jurassic</text>
+  <rect x="220" y="210.0" width="160" height="41.0" fill="#e0995a"/>
+  <text class="era" x="300.0" y="233.5" text-anchor="middle">Triassic</text>
+  <rect x="220" y="251.0" width="160" height="41.0" fill="#c97a52"/>
+  <text class="era" x="300.0" y="274.5" text-anchor="middle">Permian</text>
+  <rect x="220" y="292.0" width="160" height="49.2" fill="#c9a873"/>
+  <text class="era" x="300.0" y="319.6" text-anchor="middle">Carboniferous</text>
+  <rect x="220" y="341.2" width="160" height="45.1" fill="#cfe0b0"/>
+  <text class="era" x="300.0" y="366.8" text-anchor="middle">Devonian</text>
+  <rect x="220" y="386.3" width="160" height="24.6" fill="#a8cf7a"/>
+  <text class="era" x="300.0" y="401.6" text-anchor="middle">Silurian</text>
+  <rect x="220" y="410.9" width="160" height="36.9" fill="#aed4e8"/>
+  <text class="era" x="300.0" y="432.3" text-anchor="middle">Ordovician</text>
+  <rect x="220" y="447.8" width="160" height="41.0" fill="#bfe0d8"/>
+  <text class="era" x="300.0" y="471.3" text-anchor="middle">Cambrian</text>
+  <rect x="220" y="488.8" width="160" height="28.7" fill="#6ab0d8"/>
+  <text class="era" x="300.0" y="506.1" text-anchor="middle">Proterozoic</text>
+  <line class="tick" x1="210" y1="46.0" x2="220" y2="46.0"/>
+  <text class="axis-lbl" x="206" y="49.0" text-anchor="end">0</text>
+  <line class="tick" x1="210" y1="87.0" x2="220" y2="87.0"/>
+  <text class="axis-lbl" x="206" y="90.0" text-anchor="end">50</text>
+  <line class="tick" x1="210" y1="128.0" x2="220" y2="128.0"/>
+  <text class="axis-lbl" x="206" y="131.0" text-anchor="end">100</text>
+  <line class="tick" x1="210" y1="169.0" x2="220" y2="169.0"/>
+  <text class="axis-lbl" x="206" y="172.0" text-anchor="end">150</text>
+  <line class="tick" x1="210" y1="210.0" x2="220" y2="210.0"/>
+  <text class="axis-lbl" x="206" y="213.0" text-anchor="end">200</text>
+  <line class="tick" x1="210" y1="251.0" x2="220" y2="251.0"/>
+  <text class="axis-lbl" x="206" y="254.0" text-anchor="end">250</text>
+  <line class="tick" x1="210" y1="292.0" x2="220" y2="292.0"/>
+  <text class="axis-lbl" x="206" y="295.0" text-anchor="end">300</text>
+  <line class="tick" x1="210" y1="333.0" x2="220" y2="333.0"/>
+  <text class="axis-lbl" x="206" y="336.0" text-anchor="end">350</text>
+  <line class="tick" x1="210" y1="374.0" x2="220" y2="374.0"/>
+  <text class="axis-lbl" x="206" y="377.0" text-anchor="end">400</text>
+  <line class="tick" x1="210" y1="415.0" x2="220" y2="415.0"/>
+  <text class="axis-lbl" x="206" y="418.0" text-anchor="end">450</text>
+  <line class="tick" x1="210" y1="456.0" x2="220" y2="456.0"/>
+  <text class="axis-lbl" x="206" y="459.0" text-anchor="end">500</text>
+  <line class="tick" x1="210" y1="497.0" x2="220" y2="497.0"/>
+  <text class="axis-lbl" x="206" y="500.0" text-anchor="end">550</text>
+  <text class="axis-title" x="20" y="276.0" transform="rotate(-90 20 276.0)" text-anchor="middle">time in millions of years</text>
+  <rect class="pctcol" x="656" y="40" width="46" height="483.5"/>
+  <text class="axis-title" x="715" y="226.0" transform="rotate(-90 715 226.0)" text-anchor="middle">percent amino acids identical, hemoglobin alpha chain</text>
+  <path class="leader" d="M380,46.0 L394,46.0" fill="none"/>
+  <text class="sp" x="400" y="49.0">human/chimp</text>
+  <text class="pct" x="678" y="49.0" text-anchor="middle">100</text>
+  <path class="leader" d="M380,58.3 L394,59.2" fill="none"/>
+  <text class="sp" x="400" y="62.2">human/orangutan</text>
+  <text class="pct" x="678" y="62.2" text-anchor="middle">98</text>
+  <path class="leader" d="M380,62.4 L394,72.4" fill="none"/>
+  <text class="sp" x="400" y="75.4">mouse/rat</text>
+  <text class="pct" x="678" y="75.4" text-anchor="middle">84</text>
+  <path class="leader" d="M380,91.1 L394,91.1" fill="none"/>
+  <text class="sp" x="400" y="94.1">cat/dog</text>
+  <text class="pct" x="678" y="94.1" text-anchor="middle">86</text>
+  <path class="leader" d="M380,99.3 L394,104.3" fill="none"/>
+  <text class="sp" x="400" y="107.3">pig/whale</text>
+  <text class="pct" x="678" y="107.3" text-anchor="middle">77</text>
+  <path class="leader" d="M380,101.8 L394,117.5" fill="none"/>
+  <text class="sp" x="400" y="120.5">pig/sheep</text>
+  <text class="pct" x="678" y="120.5" text-anchor="middle">87</text>
+  <path class="leader" d="M380,118.2 L394,130.7" fill="none"/>
+  <text class="sp" x="400" y="133.7">human/rabbit</text>
+  <text class="pct" x="678" y="133.7" text-anchor="middle">82</text>
+  <path class="leader" d="M380,127.2 L394,143.9" fill="none"/>
+  <text class="sp" x="400" y="146.9">human/elephant</text>
+  <text class="pct" x="678" y="146.9" text-anchor="middle">83</text>
+  <path class="leader" d="M380,119.8 L394,157.1" fill="none"/>
+  <text class="sp" x="400" y="160.1">human/mouse</text>
+  <text class="pct" x="678" y="160.1" text-anchor="middle">89</text>
+  <path class="leader" d="M380,128.0 L394,170.3" fill="none"/>
+  <text class="sp" x="400" y="173.3">human/sloth</text>
+  <text class="pct" x="678" y="173.3" text-anchor="middle">81</text>
+  <path class="leader" d="M380,177.2 L394,183.5" fill="none"/>
+  <text class="sp" x="400" y="186.5">human/kangaroo</text>
+  <text class="pct" x="678" y="186.5" text-anchor="middle">81</text>
+  <path class="leader" d="M380,242.8 L394,242.8" fill="none"/>
+  <text class="sp" x="400" y="245.8">bird/crocodile</text>
+  <text class="pct" x="678" y="245.8" text-anchor="middle">76</text>
+  <path class="leader" d="M380,275.6 L394,275.6" fill="none"/>
+  <text class="sp" x="400" y="278.6">human/lizard</text>
+  <text class="pct" x="678" y="278.6" text-anchor="middle">57</text>
+  <path class="leader" d="M380,300.2 L394,300.2" fill="none"/>
+  <text class="sp" x="400" y="303.2">human/chicken</text>
+  <text class="pct" x="678" y="303.2" text-anchor="middle">70</text>
+  <path class="leader" d="M380,333.0 L394,333.0" fill="none"/>
+  <text class="sp" x="400" y="336.0">human/frog</text>
+  <text class="pct" x="678" y="336.0" text-anchor="middle">56</text>
+  <path class="leader" d="M380,398.6 L394,398.6" fill="none"/>
+  <text class="sp" x="400" y="401.6">human/tuna fish</text>
+  <text class="pct" x="678" y="401.6" text-anchor="middle">55</text>
+  <path class="leader" d="M380,423.2 L394,423.2" fill="none"/>
+  <text class="sp" x="400" y="426.2">human/shark</text>
+  <text class="pct" x="678" y="426.2" text-anchor="middle">51</text>
+  <path class="leader" d="M380,497.0 L394,497.0" fill="none"/>
+  <text class="sp" x="400" y="500.0">human/lamprey</text>
+  <text class="pct" x="678" y="500.0" text-anchor="middle">35</text>
+  <text class="axis-lbl" x="10" y="547.5">Estimates from amino acid sequence comparisons of orthologous proteins. Longer independent</text>
+  <text class="axis-lbl" x="10" y="561.5">evolution means fewer identical positions, though rate varies: bird/crocodile (76%) is closer than</text>
+  <text class="axis-lbl" x="10" y="575.5">its 240-million-year split would suggest, since crocodile lineages evolve unusually slowly.</text>
+</svg>

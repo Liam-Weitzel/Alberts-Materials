@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" role="img" aria-label="Behavior of phospholipid molecules in water. A phospholipid has a hydrophilic head and hydrophobic tails. At an oil-water interface the molecules line up as a monolayer, heads in the water and tails in the oil. Fully immersed in water they instead form a closed bilayer vesicle, with the two rings of heads facing water on the outside and inside and their tails filling the sealed hydrophobic band between them.">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .label { font-size: 12px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 10.5px; }
+    .head { fill: #a5443d; }
+    .tail { stroke: #a5443d; stroke-width: 1.6; fill: none; }
+    .tailline { stroke: #a5813a; stroke-width: 1.4; }
+    .water { fill: #dbe6f2; }
+    .core { fill: #efe3cf; }
+    .oil { fill: #f5eec2; }
+    .iface { stroke: #8b857c; stroke-width: 1.2; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .label { fill: #e8e6e1; }
+      .head { fill: #e08079; }
+      .tail { stroke: #e08079; }
+      .tailline { stroke: #cf9f52; }
+      .water { fill: #1c2733; }
+      .core { fill: #2b2418; }
+      .oil { fill: #332c17; }
+      .iface { stroke: #7b766e; }
+    }
+  </style>
+
+  <text class="label" x="10" y="20">(A) a phospholipid</text>
+  <circle class="head" cx="70" cy="55" r="9"/>
+  <path class="tail" d="M70,64 q-6,20 0,38"/>
+  <path class="tail" d="M70,64 q6,20 0,38"/>
+  <text class="note" x="95" y="50">hydrophilic head</text>
+  <text class="note" x="95" y="100">hydrophobic tails</text>
+  <text class="note" x="10" y="270">Part water-loving,</text>
+  <text class="note" x="10" y="284">part water-fearing:</text>
+  <text class="note" x="10" y="298">an amphiphilic molecule.</text>
+
+  <line x1="205" y1="10" x2="205" y2="330" stroke="#cdc6bb" stroke-width="1"/>
+
+  <text class="label" x="230" y="20">(B) a monolayer at an oil-water interface</text>
+  <rect class="oil" x="230" y="40" width="270" height="80"/>
+  <text class="note" x="240" y="60">OIL</text>
+  <rect class="water" x="230" y="140" width="270" height="140"/>
+  <text class="note" x="240" y="270">WATER</text>
+  <line class="iface" x1="230" y1="120" x2="500" y2="120"/>
+
+  <circle class="head" cx="255" cy="128" r="6"/>
+  <line class="tail" x1="255" y1="122" x2="255" y2="88"/>
+  <circle class="head" cx="285" cy="128" r="6"/>
+  <line class="tail" x1="285" y1="122" x2="285" y2="88"/>
+  <circle class="head" cx="315" cy="128" r="6"/>
+  <line class="tail" x1="315" y1="122" x2="315" y2="88"/>
+  <circle class="head" cx="345" cy="128" r="6"/>
+  <line class="tail" x1="345" y1="122" x2="345" y2="88"/>
+  <circle class="head" cx="375" cy="128" r="6"/>
+  <line class="tail" x1="375" y1="122" x2="375" y2="88"/>
+  <circle class="head" cx="405" cy="128" r="6"/>
+  <line class="tail" x1="405" y1="122" x2="405" y2="88"/>
+  <circle class="head" cx="435" cy="128" r="6"/>
+  <line class="tail" x1="435" y1="122" x2="435" y2="88"/>
+  <circle class="head" cx="465" cy="128" r="6"/>
+  <line class="tail" x1="465" y1="122" x2="465" y2="88"/>
+
+  <text class="note" x="230" y="298">Heads sit in the water, tails poke up</text>
+  <text class="note" x="230" y="312">into the oil: a single sheet, one</text>
+  <text class="note" x="230" y="326">molecule thick, water-tight throughout.</text>
+
+  <line x1="520" y1="10" x2="520" y2="330" stroke="#cdc6bb" stroke-width="1"/>
+
+  <text class="label" x="545" y="20">(C) a bilayer vesicle in water</text>
+
+  <!-- outside: water -->
+  <circle class="water" cx="680" cy="160" r="130"/>
+  <!-- hydrophobic core: solid band between the two leaflets, opaque, nothing shows through it -->
+  <circle class="core" cx="680" cy="160" r="118"/>
+  <!-- inside: water, drawn on top so the core only shows as the ring between r=82 and r=118 -->
+  <circle class="water" cx="680" cy="160" r="82"/>
+
+  <!-- outer leaflet: heads facing outward, tails pointing in -->
+  <g>
+    <circle class="head" cx="798.0" cy="160.0" r="5"/>
+    <line class="tailline" x1="798.0" y1="160.0" x2="774.0" y2="160.0"/>
+    <circle class="head" cx="789.0" cy="205.2" r="5"/>
+    <line class="tailline" x1="789.0" y1="205.2" x2="766.8" y2="196.0"/>
+    <circle class="head" cx="763.4" cy="243.4" r="5"/>
+    <line class="tailline" x1="763.4" y1="243.4" x2="746.5" y2="226.5"/>
+    <circle class="head" cx="725.2" cy="269.0" r="5"/>
+    <line class="tailline" x1="725.2" y1="269.0" x2="716.0" y2="246.8"/>
+    <circle class="head" cx="680.0" cy="278.0" r="5"/>
+    <line class="tailline" x1="680.0" y1="278.0" x2="680.0" y2="254.0"/>
+    <circle class="head" cx="634.8" cy="269.0" r="5"/>
+    <line class="tailline" x1="634.8" y1="269.0" x2="644.0" y2="246.8"/>
+    <circle class="head" cx="596.6" cy="243.4" r="5"/>
+    <line class="tailline" x1="596.6" y1="243.4" x2="613.5" y2="226.5"/>
+    <circle class="head" cx="571.0" cy="205.2" r="5"/>
+    <line class="tailline" x1="571.0" y1="205.2" x2="593.2" y2="196.0"/>
+    <circle class="head" cx="562.0" cy="160.0" r="5"/>
+    <line class="tailline" x1="562.0" y1="160.0" x2="586.0" y2="160.0"/>
+    <circle class="head" cx="571.0" cy="114.8" r="5"/>
+    <line class="tailline" x1="571.0" y1="114.8" x2="593.2" y2="124.0"/>
+    <circle class="head" cx="596.6" cy="76.6" r="5"/>
+    <line class="tailline" x1="596.6" y1="76.6" x2="613.5" y2="93.5"/>
+    <circle class="head" cx="634.8" cy="51.0" r="5"/>
+    <line class="tailline" x1="634.8" y1="51.0" x2="644.0" y2="73.2"/>
+    <circle class="head" cx="680.0" cy="42.0" r="5"/>
+    <line class="tailline" x1="680.0" y1="42.0" x2="680.0" y2="66.0"/>
+    <circle class="head" cx="725.2" cy="51.0" r="5"/>
+    <line class="tailline" x1="725.2" y1="51.0" x2="716.0" y2="73.2"/>
+    <circle class="head" cx="763.4" cy="76.6" r="5"/>
+    <line class="tailline" x1="763.4" y1="76.6" x2="746.5" y2="93.5"/>
+    <circle class="head" cx="789.0" cy="114.8" r="5"/>
+    <line class="tailline" x1="789.0" y1="114.8" x2="766.8" y2="124.0"/>
+  </g>
+
+  <!-- inner leaflet: heads facing inward, tails pointing out -->
+  <g>
+    <circle class="head" cx="762.0" cy="160.0" r="5"/>
+    <line class="tailline" x1="762.0" y1="160.0" x2="786.0" y2="160.0"/>
+    <circle class="head" cx="755.8" cy="191.4" r="5"/>
+    <line class="tailline" x1="755.8" y1="191.4" x2="777.9" y2="200.6"/>
+    <circle class="head" cx="738.0" cy="218.0" r="5"/>
+    <line class="tailline" x1="738.0" y1="218.0" x2="755.0" y2="235.0"/>
+    <circle class="head" cx="711.4" cy="235.8" r="5"/>
+    <line class="tailline" x1="711.4" y1="235.8" x2="720.6" y2="257.9"/>
+    <circle class="head" cx="680.0" cy="242.0" r="5"/>
+    <line class="tailline" x1="680.0" y1="242.0" x2="680.0" y2="266.0"/>
+    <circle class="head" cx="648.6" cy="235.8" r="5"/>
+    <line class="tailline" x1="648.6" y1="235.8" x2="639.4" y2="257.9"/>
+    <circle class="head" cx="622.0" cy="218.0" r="5"/>
+    <line class="tailline" x1="622.0" y1="218.0" x2="605.0" y2="235.0"/>
+    <circle class="head" cx="604.2" cy="191.4" r="5"/>
+    <line class="tailline" x1="604.2" y1="191.4" x2="582.1" y2="200.6"/>
+    <circle class="head" cx="598.0" cy="160.0" r="5"/>
+    <line class="tailline" x1="598.0" y1="160.0" x2="574.0" y2="160.0"/>
+    <circle class="head" cx="604.2" cy="128.6" r="5"/>
+    <line class="tailline" x1="604.2" y1="128.6" x2="582.1" y2="119.4"/>
+    <circle class="head" cx="622.0" cy="102.0" r="5"/>
+    <line class="tailline" x1="622.0" y1="102.0" x2="605.0" y2="85.0"/>
+    <circle class="head" cx="648.6" cy="84.2" r="5"/>
+    <line class="tailline" x1="648.6" y1="84.2" x2="639.4" y2="62.1"/>
+    <circle class="head" cx="680.0" cy="78.0" r="5"/>
+    <line class="tailline" x1="680.0" y1="78.0" x2="680.0" y2="54.0"/>
+    <circle class="head" cx="711.4" cy="84.2" r="5"/>
+    <line class="tailline" x1="711.4" y1="84.2" x2="720.6" y2="62.1"/>
+    <circle class="head" cx="738.0" cy="102.0" r="5"/>
+    <line class="tailline" x1="738.0" y1="102.0" x2="755.0" y2="85.0"/>
+    <circle class="head" cx="755.8" cy="128.6" r="5"/>
+    <line class="tailline" x1="755.8" y1="128.6" x2="777.9" y2="119.4"/>
+  </g>
+
+  <text class="note" x="650" y="164">water</text>
+  <text class="note" x="675" y="35">water</text>
+
+  <text class="note" x="545" y="298">Fully surrounded by water, the same</text>
+  <text class="note" x="545" y="312">molecules seal into a bilayer instead:</text>
+  <text class="note" x="545" y="326">a closed vesicle, no exposed hydrophobic edge.</text>
+</svg>

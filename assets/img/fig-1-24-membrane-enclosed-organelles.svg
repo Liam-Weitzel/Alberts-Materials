@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-label="Membrane-enclosed organelles distributed through a eukaryotic cell: nucleus, mitochondrion, lysosome, peroxisome, Golgi apparatus, endoplasmic reticulum, endosome and transport vesicles, all sitting in the cytosol">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .label { font-size: 11.5px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 10.5px; }
+    .outline { fill: #ffffff; stroke: #8b857c; stroke-width: 2; }
+    .nucleus { fill: #efe3cf; stroke: #a5813a; stroke-width: 1.5; }
+    .er { stroke: #5c8a6e; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+    .golgi { stroke: #a5443d; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+    .lyso { fill: #e8c94a; stroke: #a5813a; stroke-width: 1.2; }
+    .perox { fill: #dbe6f2; stroke: #3d6ea5; stroke-width: 1.2; }
+    .mito { fill: #efe3cf; stroke: #a5813a; stroke-width: 1.2; }
+    .endosome { fill: #c98a5a; stroke: #8a5a30; stroke-width: 1.2; }
+    .vesicle { fill: #bcd9cd; stroke: #2f6f5e; stroke-width: 1.2; }
+    .leader { stroke: #cdc6bb; stroke-width: 1; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .label { fill: #e8e6e1; }
+      .outline { fill: #14161a; stroke: #7b766e; }
+      .nucleus { fill: #2b2418; stroke: #cf9f52; }
+      .er { stroke: #6fae86; }
+      .golgi { stroke: #e08079; }
+      .lyso { fill: #b89a3a; stroke: #cf9f52; }
+      .perox { fill: #1c2733; stroke: #8db4dd; }
+      .mito { fill: #2b2418; stroke: #cf9f52; }
+      .endosome { fill: #8a5a30; stroke: #cf9f52; }
+      .vesicle { fill: #1d2c28; stroke: #5eb99c; }
+      .leader { stroke: #3a3f49; }
+    }
+  </style>
+
+  <text class="label" x="10" y="20" style="font-size:13px">Membrane-enclosed organelles in the cytosol</text>
+
+  <path class="outline" d="M180,60 C 260,30 380,35 430,70 C 480,60 520,90 500,130 C 540,150 530,200 490,210 C 510,250 470,290 420,275 C 400,320 320,330 290,290 C 230,320 170,290 175,245 C 120,240 110,190 145,165 C 100,150 110,100 160,95 C 150,75 165,65 180,60 Z"/>
+
+  <circle class="nucleus" cx="290" cy="180" r="55"/>
+  <text class="label" x="255" y="184">nucleus</text>
+
+  <path class="er" d="M230,110 q20,-10 40,0 t40,0 t40,0"/>
+  <path class="er" d="M230,125 q20,-10 40,0 t40,0 t40,0"/>
+  <text class="label" x="220" y="98">endoplasmic reticulum</text>
+
+  <path class="golgi" d="M370,190 q26,-4 46,0"/>
+  <path class="golgi" d="M370,200 q26,-4 46,0"/>
+  <path class="golgi" d="M370,210 q26,-4 46,0"/>
+  <text class="label" x="400" y="175">Golgi apparatus</text>
+
+  <rect class="mito" x="200" y="220" width="55" height="26" rx="13"/>
+  <text class="label" x="150" y="255">mitochondrion</text>
+
+  <path class="lyso" d="M420,110 q10,-10 20,0 q6,10 -4,16 q-14,4 -16,-16 Z"/>
+  <text class="label" x="445" y="112">lysosome</text>
+
+  <circle class="perox" cx="440" cy="150" r="12"/>
+  <text class="label" x="460" y="154">peroxisome</text>
+
+  <path class="endosome" d="M300,260 q20,6 30,20 q-4,10 -20,8 q-16,-4 -10,-28 Z"/>
+  <text class="label" x="320" y="300">endosome</text>
+
+  <circle class="vesicle" cx="170" cy="170" r="7"/>
+  <circle class="vesicle" cx="150" cy="200" r="6"/>
+  <text class="label" x="60" y="180">transport vesicle</text>
+
+  <text class="note" x="10" y="395">The cytosol is everything outside these organelles: the fluid the whole system sits in.</text>
+</svg>

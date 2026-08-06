@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" width="420" height="420" role="img" aria-label="Cell types can vary enormously in size and shape: a human neuron with a large branching dendritic tree is compared to a small round neutrophil white blood cell, drawn to the same scale">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .label { font-size: 12px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 10.5px; }
+    .cellstroke { stroke: #56514a; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .neutrophil { fill: #cdc6bb; stroke: #56514a; stroke-width: 1.6; }
+    .scale { stroke: #8b857c; stroke-width: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .label { fill: #e8e6e1; }
+      .cellstroke { stroke: #a9a49c; }
+      .neutrophil { fill: #3a3f49; stroke: #a9a49c; }
+      .scale { stroke: #7b766e; }
+    }
+  </style>
+
+  <text class="label" x="10" y="20">Cell types can vary enormously in size and shape</text>
+
+  <g class="cellstroke">
+    <path d="M210,340 L210,300"/>
+    <path d="M210,300 L180,260 M210,300 L240,260 M210,300 L210,255"/>
+    <path d="M180,260 L155,225 M180,260 L170,215"/>
+    <path d="M240,260 L265,220 M240,260 L250,210"/>
+    <path d="M210,255 L190,205 M210,255 L230,200 M210,255 L210,190"/>
+    <path d="M155,225 L130,195 M155,225 L145,190"/>
+    <path d="M265,220 L290,190 M265,220 L280,185"/>
+    <path d="M170,215 L150,175 M170,215 L180,170"/>
+    <path d="M250,210 L270,170 M250,210 L240,165"/>
+    <path d="M190,205 L170,160 M190,205 L200,155"/>
+    <path d="M230,200 L250,155 M230,200 L220,150"/>
+    <path d="M210,190 L195,140 M210,190 L225,140"/>
+  </g>
+  <circle cx="210" cy="320" r="10" class="cellstroke" fill="#e4efea"/>
+  <text class="label" x="140" y="365">neuron</text>
+
+  <circle class="neutrophil" cx="330" cy="335" r="9"/>
+  <text class="label" x="345" y="340">neutrophil</text>
+
+  <line class="scale" x1="30" y1="390" x2="90" y2="390"/>
+  <text class="note" x="30" y="405">25 μm</text>
+
+  <text class="note" x="10" y="60">A human nerve cell (neuron) compared with a human white</text>
+  <text class="note" x="10" y="74">blood cell (neutrophil), drawn to the same scale. Both share</text>
+  <text class="note" x="10" y="88">the same genome; nothing about their shape is written into</text>
+  <text class="note" x="10" y="102">a different set of genes.</text>
+</svg>

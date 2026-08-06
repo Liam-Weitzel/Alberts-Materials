@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" width="520" height="280" role="img" aria-label="Histogram of susceptibility to mutation for millions of randomly generated genetic codes, forming a bell curve, with the natural genetic code marked as a rare outlier far to the low-susceptibility side">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .label { font-size: 12px; font-weight: 600; fill: #1e1c19; }
+    .note { font-size: 10.5px; }
+    .axis { stroke: #8b857c; stroke-width: 1.5; }
+    .curve { fill: #e4efea; stroke: #2f6f5e; stroke-width: 1.5; }
+    .arrow { stroke: #a5443d; stroke-width: 1.5; fill: none; }
+    .nat { font-size: 11px; font-weight: 600; fill: #a5443d; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .label { fill: #e8e6e1; }
+      .axis { stroke: #7b766e; }
+      .curve { fill: #1d2c28; stroke: #5eb99c; }
+      .arrow { stroke: #e08079; }
+      .nat { fill: #e08079; }
+    }
+  </style>
+  <defs>
+    <marker id="cmh" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#a5443d"/>
+    </marker>
+  </defs>
+
+  <text class="label" x="10" y="18">Mutation susceptibility: natural code vs. random codes</text>
+
+  <line class="axis" x1="60" y1="230" x2="60" y2="30"/>
+  <line class="axis" x1="60" y1="230" x2="490" y2="230"/>
+  <text class="note" x="8" y="35">20</text>
+  <text class="note" x="18" y="132">10</text>
+  <text class="note" x="28" y="228">0</text>
+
+  <text class="note" x="60" y="245">0</text>
+  <text class="note" x="155" y="245">5</text>
+  <text class="note" x="253" y="245">10</text>
+  <text class="note" x="350" y="245">15</text>
+  <text class="note" x="448" y="245">20</text>
+  <text class="note" x="220" y="265">susceptibility to mutation</text>
+  <text class="note" x="18" y="140" text-anchor="middle" transform="rotate(-90 18 140)">number of codes (thousands)</text>
+
+  <path class="curve" d="M60,230 L123,230 C 165,225 186,150 221,90 C 242,55 256,42 270,42 C 284,42 305,55 326,90 C 361,150 382,210 410,228 L470,230 Z"/>
+
+  <path class="arrow" d="M148,270 L148,225" marker-end="url(#cmh)"/>
+  <text class="nat" x="90" y="270">natural code</text>
+</svg>

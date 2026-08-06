@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" width="520" height="320" role="img" aria-label="From DNA to protein: DNA replicates into a second DNA molecule, is transcribed into RNA, and RNA is translated into protein">
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #56514a; }
+    .label { font-size: 12px; font-weight: 600; fill: #1e1c19; }
+    .proc { font-size: 11px; font-weight: 600; fill: #a5443d; }
+    .note { font-size: 10.5px; }
+    .dna { fill: #efe3cf; stroke: #a5813a; stroke-width: 1.5; }
+    .rna { fill: #dbe6f2; stroke: #3d6ea5; stroke-width: 1.5; }
+    .bead { fill: #e4efea; stroke: #2f6f5e; stroke-width: 1.5; }
+    .arrow { stroke: #8b857c; stroke-width: 1.5; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #a9a49c; }
+      .label { fill: #e8e6e1; }
+      .proc { fill: #e08079; }
+      .dna { fill: #2b2418; stroke: #cf9f52; }
+      .rna { fill: #1c2733; stroke: #8db4dd; }
+      .bead { fill: #1d2c28; stroke: #5eb99c; }
+      .arrow { stroke: #7b766e; }
+    }
+  </style>
+  <defs>
+    <marker id="d2p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#8b857c"/>
+    </marker>
+  </defs>
+
+  <text class="label" x="60" y="32">DNA</text>
+  <rect class="dna" x="60" y="40" width="150" height="18" rx="4"/>
+
+  <text class="label" x="310" y="32">DNA</text>
+  <rect class="dna" x="310" y="40" width="150" height="18" rx="4"/>
+
+  <path class="arrow" d="M210,45 C 250,15 320,15 360,40" marker-end="url(#d2p)"/>
+  <text class="proc" x="245" y="18">replication</text>
+  <text class="note" x="245" y="70">(DNA copies itself; the</text>
+  <text class="note" x="245" y="82">two daughter helices are identical)</text>
+
+  <path class="arrow" d="M135,58 L135,98" marker-end="url(#d2p)"/>
+  <text class="proc" x="145" y="82">transcription</text>
+
+  <text class="label" x="60" y="120">RNA</text>
+  <rect class="rna" x="60" y="126" width="150" height="14" rx="4"/>
+
+  <path class="arrow" d="M135,140 L135,180" marker-end="url(#d2p)"/>
+  <text class="proc" x="145" y="164">translation</text>
+
+  <text class="label" x="60" y="205">PROTEIN</text>
+  <circle class="bead" cx="70" cy="226" r="10"/>
+  <circle class="bead" cx="90" cy="226" r="10"/>
+  <circle class="bead" cx="110" cy="226" r="10"/>
+  <circle class="bead" cx="130" cy="226" r="10"/>
+  <circle class="bead" cx="150" cy="226" r="10"/>
+  <circle class="bead" cx="170" cy="226" r="10"/>
+  <circle class="bead" cx="190" cy="226" r="10"/>
+
+  <text class="note" x="60" y="270">DNA is the archive: replication copies DNA to DNA. Its information is</text>
+  <text class="note" x="60" y="284">also read out through RNA (transcription) and then into protein</text>
+  <text class="note" x="60" y="298">(translation). Only DNA replicates; RNA and protein are remade fresh</text>
+  <text class="note" x="60" y="312">from DNA each time, they are not copied from each other.</text>
+</svg>
