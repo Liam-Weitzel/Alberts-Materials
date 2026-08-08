@@ -24,7 +24,7 @@ separately because a chapter's write-up, deck, and summary rarely finish togethe
 | Ch | Pages | Days | Reading | Deck | Chapter Summary | Paper Summaries |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 49 | 1.5 | ✅ | ✅ | ⬜ | ⬜ |
-| 2 | 66 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 2 | 66 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 3 | 68 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 5 | 68 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 6 | 76 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
