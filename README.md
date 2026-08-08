@@ -121,7 +121,7 @@ the file you're writing in. This trips people up: the markdown lives in `notes/`
 page is served from `/`, so there is no `../`.
 
 ```markdown
-![The three domains, with Bacteria branching off first](assets/img/three-domains.svg)
+![The three domains, with Bacteria branching off first](assets/img/fig-1-09.png)
 ```
 
 When an image sits alone in its own paragraph, it renders as a figure and the alt text
@@ -133,19 +133,20 @@ The same syntax works inside a card, on either side:
 ```markdown
 Q: In the diagram below, which stage produces the majority of the cell's ATP?
 
-![Three stages of catabolism](assets/img/catabolism-stages.svg)
+![Three stages of catabolism](assets/img/fig-2-14.png)
 
 - [ ] Stage 1, digestion
 - [x] Stage 3, oxidative phosphorylation
 ```
 
-Both examples are live in the repo: the tree in
-[`notes/ch01-cells-and-genomes.md`](notes/ch01-cells-and-genomes.md) and the card in
-[`decks/ch02-cell-chemistry-and-bioenergetics.md`](decks/ch02-cell-chemistry-and-bioenergetics.md).
+A live example is the card in
+[`decks/ch01-cells-and-genomes.md`](decks/ch01-cells-and-genomes.md).
 
-SVG is worth preferring for diagrams you draw yourself. It stays sharp at any size, weighs
-almost nothing, and a `@media (prefers-color-scheme: dark)` block inside the file lets it
-follow the site theme, which is what the two existing diagrams do.
+`assets/img/` holds the book's own figures, extracted from the PDF and named by their
+figure number: `fig-1-23.png` is Figure 1–23, `fig-q1-02.png` is problem figure Q1–2, and
+`panel-2-04.png` is Panel 2–4. Chapters 1 and 2 are covered. They are scans, so they carry
+a white background in both themes; the stylesheet puts them on a plate so they don't glare
+in dark mode.
 
 ## Writing cards
 
@@ -299,7 +300,7 @@ assets/js/deck.js           deck file to cards
 assets/js/papers.js         the paper library, and lazy loading of summaries
 assets/js/srs.js            SM-2 scheduling and localStorage
 assets/js/app.js            hash router and views
-assets/img/*.svg            diagrams
+assets/img/*.png            figures from the book, named by figure number
 notes/*.md                  chapter write-ups
 decks/*.md                  chapter cards
 papers/*.md                 paper summaries

@@ -91,7 +91,18 @@ h3 { font-size: 1.05rem; }
 p { margin: 0 0 .8em; }
 a { color: var(--accent); text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 2px; }
 a:hover { text-decoration-color: currentColor; }
-img { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+/* Figures are scans from the book, so they carry their own white background.
+   The plate keeps them from floating as a bare white slab in dark mode. */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  background: #fff;
+  padding: .6em;
+  border: 1px solid var(--line);
+  box-sizing: border-box;
+}
 hr { border: 0; border-top: 1px solid var(--line); margin: 1.2em 0; }
 code, pre, .mono { font-family: var(--font-mono); }
 code { font-size: .89em; background: var(--bg-sunken); padding: .12em .35em; border-radius: 5px; }

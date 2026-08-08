@@ -29,7 +29,7 @@ A: No. Most living cells contain DNA, but some specialized or mature cells lose 
 
 Q: What is a nucleotide? What does it consist of?
 A: A nucleotide is a monomer of a DNA (or RNA) strand. It consists of a sugar (deoxyribose in DNA) with a phosphate group attached, and a **base**: adenine (A), guanine (G), cytosine (C) or thymine (T).
-![A nucleotide built from phosphate, sugar and base, and a stretch of double-strand DNA showing A-T and G-C base pairing](assets/img/fig-1-02-nucleotide-and-base-pairing.svg)
+![A nucleotide built from phosphate, sugar and base, and a stretch of double-strand DNA showing A-T and G-C base pairing](assets/img/fig-1-02.png)
 
 ---
 
@@ -48,7 +48,7 @@ Q: What are the three features shared by basically *all* living cells?
 A: 1. They store hereditary information in **DNA**.
 2. They transcribe portions of it into **RNA**, and translate some of that RNA into **protein**.
 3. They are bounded by a **plasma membrane** across which nutrients and waste must pass.
-![A phospholipid has a hydrophilic head and hydrophobic tails, and in water these molecules spontaneously form a closed bilayer vesicle with heads facing the water on both sides](assets/img/fig-1-06-phospholipid-bilayer.svg)
+![A phospholipid has a hydrophilic head and hydrophobic tails, and in water these molecules spontaneously form a closed bilayer vesicle with heads facing the water on both sides](assets/img/fig-1-06.png)
 Tags: universals, core
 
 ---
@@ -56,7 +56,7 @@ Tags: universals, core
 Q: State the central dogma in its standard arrow form.
 A: $$\text{DNA} \xrightarrow{\text{transcription}} \text{RNA} \xrightarrow{\text{translation}} \text{protein}$$
 Replication copies DNA to DNA. Reverse transcriptase, used by some viruses, runs RNA back to DNA.
-![From DNA to protein: DNA replicates itself, is transcribed into RNA, and RNA is translated into protein](assets/img/fig-1-04-dna-to-protein.svg)
+![From DNA to protein: DNA replicates itself, is transcribed into RNA, and RNA is translated into protein](assets/img/fig-1-04.png)
 
 ---
 
@@ -77,7 +77,7 @@ A: **20** naturally occurring amino acids. With triplet codons there are $4^3 = 
 
 Q: What is a catalyst?
 A: A molecule that speeds up a specific chemical reaction without itself being consumed or permanently changed.
-![Life as an autocatalytic process: DNA and RNA provide sequence information used to build proteins, and proteins provide the catalytic activity needed to build DNA, RNA and more protein, closing the loop](assets/img/fig-1-05-autocatalytic-life.svg)
+![Life as an autocatalytic process: DNA and RNA provide sequence information used to build proteins, and proteins provide the catalytic activity needed to build DNA, RNA and more protein, closing the loop](assets/img/fig-1-05.png)
 A cell is this loop made physical: DNA and RNA supply sequence information, proteins supply catalytic activity, and each is needed to make the other.
 
 ---
@@ -119,7 +119,7 @@ A: Roughly 60 to 80 universal core genes, plus up to about 200 to 300 broader fu
 
 Q: Why is **ribosomal RNA** the molecule of choice for building the tree of life?
 A: rRNA is present in every organism and does the same job everywhere, so homologous sequences stay alignable across billions of years of divergence. It also changes slowly enough to stay comparable, while still accumulating enough substitutions to resolve relationships.
-![A stretch of ribosomal RNA gene sequence aligned across a human, an archaeon and a bacterium, with most positions identical, showing how little this gene has changed since the last universal common ancestor](assets/img/fig-1-17-conserved-rrna.svg)
+![A stretch of ribosomal RNA gene sequence aligned across a human, an archaeon and a bacterium, with most positions identical, showing how little this gene has changed since the last universal common ancestor](assets/img/fig-1-17.png)
 
 ---
 
@@ -163,7 +163,7 @@ Genes of this second kind are highly conserved. Over 3.5 billion years of evolut
 
 Q: How are new genes generated from preexisting genes?
 A: Four main routes: intragenic mutation, gene duplication, DNA segment shuffling, and horizontal (intercellular) DNA transfer.
-![Four modes of genetic innovation: intragenic mutation, gene duplication, DNA segment shuffling, and horizontal DNA transfer](assets/img/fig-1-18-genetic-innovation-modes.svg)
+![Four modes of genetic innovation: intragenic mutation, gene duplication, DNA segment shuffling, and horizontal DNA transfer](assets/img/fig-1-18.png)
 
 ---
 
@@ -196,14 +196,14 @@ Q: Define a **homolog**, and distinguish orthologs from paralogs.
 A: **Homologs** are genes descended from a common ancestral gene.
 - **Orthologs**: homologs in different species, separated by a *speciation* event.
 - **Paralogs**: homologs within one genome, separated by a *gene duplication*.
-![Orthologs arise from speciation, paralogs arise from gene duplication within one genome](assets/img/fig-1-20-orthologs-vs-paralogs.svg)
+![Orthologs arise from speciation, paralogs arise from gene duplication within one genome](assets/img/fig-1-20.png)
 
 ---
 
 Q: Label the major features of a eukaryotic cell.
-A: ![Simplified map of a eukaryotic cell showing the nucleus, rough and smooth ER, Golgi apparatus, mitochondria, lysosome, peroxisome and free ribosomes](assets/img/fig-1-21-eukaryotic-cell-map.svg)
+A: ![Simplified map of a eukaryotic cell showing the nucleus, rough and smooth ER, Golgi apparatus, mitochondria, lysosome, peroxisome and free ribosomes](assets/img/fig-1-21.png)
 The nucleus holds the DNA; the nucleolus inside it is where ribosome assembly starts. Rough ER (ribosome-studded) and smooth ER handle protein and lipid synthesis. The Golgi apparatus modifies and sorts what comes from the ER. Mitochondria supply ATP. Lysosomes digest waste, peroxisomes handle oxidative reactions, and free ribosomes in the cytosol translate proteins that stay in the cytosol.
-![Membrane-enclosed organelles distributed through a eukaryotic cell: nucleus, mitochondrion, lysosome, peroxisome, Golgi apparatus, endoplasmic reticulum, endosome and transport vesicles, all sitting in the cytosol](assets/img/fig-1-24-membrane-enclosed-organelles.svg)
+![Membrane-enclosed organelles distributed through a eukaryotic cell: nucleus, mitochondrion, lysosome, peroxisome, Golgi apparatus, endoplasmic reticulum, endosome and transport vesicles, all sitting in the cytosol](assets/img/fig-1-24.png)
 An endosome is where material taken in by endocytosis first arrives, before it's sorted onward to a lysosome or elsewhere.
 Tags: organelles
 
@@ -243,13 +243,13 @@ A: Small membrane-bound organelles that run oxidative reactions, including fatty
 
 Q: What is endocytosis?
 A: The general process by which a cell takes in material from outside by wrapping plasma membrane around it and pinching off an internal vesicle. Phagocytosis (engulfing large particles) and pinocytosis (taking in fluid and dissolved molecules) are both forms of it.
-![Endocytosis pinches material into the cell as a vesicle, exocytosis fuses a vesicle with the membrane to release material outside](assets/img/fig-1-23-endocytosis-exocytosis.svg)
+![Endocytosis pinches material into the cell as a vesicle, exocytosis fuses a vesicle with the membrane to release material outside](assets/img/fig-1-23.png)
 
 ---
 
 Q: What is exocytosis?
 A: The process by which a cell exports material: a membrane-bound vesicle travels to the plasma membrane and fuses with it, releasing its contents outside the cell.
-![Endocytosis pinches material into the cell as a vesicle, exocytosis fuses a vesicle with the membrane to release material outside](assets/img/fig-1-23-endocytosis-exocytosis.svg)
+![Endocytosis pinches material into the cell as a vesicle, exocytosis fuses a vesicle with the membrane to release material outside](assets/img/fig-1-23.png)
 
 ---
 
@@ -281,7 +281,7 @@ Tags: organelles
 
 Q: In what sense do eukaryotic genomes have a hybrid origin?
 A: The information-processing genes (DNA replication, transcription, translation) trace back to an archaeal-like host lineage, while many metabolic genes trace back to the bacterial endosymbiont that became the mitochondrion. A eukaryotic genome is a mosaic built from both lineages rather than a clean descendant of either one alone.
-![Eukaryotic cells descend from an archaeal host that acquired a bacterial endosymbiont which became the mitochondrion, and later, in the plant lineage, a photosynthetic bacterium that became the chloroplast](assets/img/fig-1-29-eukaryotic-hybrid-genome.svg)
+![Eukaryotic cells descend from an archaeal host that acquired a bacterial endosymbiont which became the mitochondrion, and later, in the plant lineage, a photosynthetic bacterium that became the chloroplast](assets/img/fig-1-29.png)
 Tags: genome-evolution
 
 ---
@@ -312,7 +312,7 @@ Tags: genome-evolution
 
 Q: Are all eukaryotic cells part of multicellular organisms?
 A: No. Many eukaryotic cells live as solitary, free-living cells: amoebae, yeast, and other single-celled protists. Multicellularity is one thing eukaryotic cells can do, not a defining feature of the cell type.
-![A eukaryotic tree of life based on genome comparisons, showing eight major supergroups: Archaeplastida, Haptophytes, Alveolates, Stramenopiles, Rhizaria, Amoebozoa, Excavates and Opisthokonts (animals and fungi), with animals and plants separated by many single-celled lineages](assets/img/fig-1-35-eukaryotic-tree.svg)
+![A eukaryotic tree of life based on genome comparisons, showing eight major supergroups: Archaeplastida, Haptophytes, Alveolates, Stramenopiles, Rhizaria, Amoebozoa, Excavates and Opisthokonts (animals and fungi), with animals and plants separated by many single-celled lineages](assets/img/fig-1-35.png)
 Animals and plants sit on opposite sides of the eukaryotic tree, separated by several solitary-celled lineages, which is why multicellularity is thought to have evolved independently more than once.
 
 ---
@@ -361,7 +361,7 @@ Tags: viruses, genome-evolution
 
 Q: How does yeast reproduce?
 A: Either vegetatively, by budding as a haploid or diploid cell, or sexually: two haploid cells of opposite mating type fuse to form a diploid, which under starvation can undergo meiosis to produce haploid spores.
-![The yeast life cycle: diploid cells proliferate by budding, or under starvation undergo meiosis and sporulation into haploid spores, which hatch into haploid cells that proliferate by budding or mate to restore the diploid state](assets/img/fig-1-40-yeast-life-cycle.svg)
+![The yeast life cycle: diploid cells proliferate by budding, or under starvation undergo meiosis and sporulation into haploid spores, which hatch into haploid cells that proliferate by budding or mate to restore the diploid state](assets/img/fig-1-40.png)
 Tags: model-organisms
 
 ---
@@ -374,7 +374,6 @@ Tags: model-organisms
 
 Q: Roughly how long ago did each of these lineages diverge: Archaea from Bacteria, vertebrates from insects, fish from mammals, and flowering plants from other plant lineages?
 A: Archaea and Bacteria: about 3.5 billion years ago. Vertebrates and insects: about 700 million years ago. Fish and mammals: about 450 million years ago. Flowering plants: only about 150 million years ago.
-![Timeline of divergence times: flowering plants 150 million years ago, fish and mammals 450 million years ago, vertebrates and insects 700 million years ago, archaea and bacteria 3.5 billion years ago](assets/img/fig-1-47-divergence-times.svg)
 Tags: genome-evolution
 
 ---
@@ -418,7 +417,7 @@ A:
 | Human | $3200 \times 10^6$ | ~20,000 |
 
 Gene count does not scale cleanly with genome size or with organismal complexity: *Drosophila* and *Arabidopsis* have similar-sized genomes, but the plant has almost twice as many genes.
-![Genome sizes compared on a log scale](assets/img/fig-1-30-genome-sizes-compared.svg)
+![Genome sizes compared on a log scale](assets/img/fig-1-30.png)
 Tags: model-organisms, genome-evolution
 
 ---
@@ -449,14 +448,14 @@ Tags: model-organisms, human-genome
 
 Q: Why does understanding cells increasingly require mathematics and computation, not just biochemistry?
 A: Cell behavior emerges from large networks of interacting genes and proteins wired together with feedback loops, and the outputs of those circuits, switches, oscillations, thresholds, are often not predictable from the individual parts by intuition alone. Making sense of that requires quantitative modeling, along with the computational tools needed to handle the scale of modern genomic and proteomic data.
-![A very simple gene regulatory circuit: a gene's regulatory DNA and protein-coding region are transcribed into mRNA and translated into a transcription regulator protein, which feeds back to bind the gene's own regulatory DNA](assets/img/fig-1-50-gene-regulatory-circuit.svg)
+![A very simple gene regulatory circuit: a gene's regulatory DNA and protein-coding region are transcribed into mRNA and translated into a transcription regulator protein, which feeds back to bind the gene's own regulatory DNA](assets/img/fig-1-50.png)
 Even a single self-regulating gene like this one can settle into a steady state, flip like a switch, or oscillate, and telling which without measured parameters is not something intuition can do.
 Tags: genome-evolution
 
 ---
 
 Q: Cells within one organism can look and behave completely differently, a neuron versus a red blood cell versus a skin cell, despite (almost) every cell carrying an identical copy of the genome. How is that possible?
-![Cell types can vary enormously in size and shape: a human neuron with a large branching dendritic tree is compared to a small round neutrophil white blood cell, drawn to the same scale](assets/img/fig-1-31-cell-types-vary.svg)
+![Cell types can vary enormously in size and shape: a human neuron with a large branching dendritic tree is compared to a small round neutrophil white blood cell, drawn to the same scale](assets/img/fig-1-31.png)
 A: The genome isn't a shopping list every cell fully acts on; it's more like a reference library big enough for the whole organism, and each cell type only calls up part of it. Regulatory DNA, bound by transcription regulator proteins, determines which genes get switched on or off in a given cell, so identical hardware (the genome) runs different software (the expression pattern) in a neuron versus a neutrophil. Those expression differences, not any difference in the DNA sequence itself, are what make cell types look and behave so differently.
 Tags: genome-evolution, regulatory-dna
 
@@ -493,7 +492,7 @@ Tags: problems
 ---
 
 Q: The natural genetic code sits at the extreme low end of a mutation-susceptibility distribution built from millions of randomly generated alternative codes: only about one in a million random codes resists mutation better than the real one. Does that argue for the code being a frozen accident, or a product of natural selection?
-![Histogram of susceptibility to mutation for millions of randomly generated genetic codes, forming a bell curve, with the natural genetic code marked as a rare outlier far to the low-susceptibility side](assets/img/fig-q1-01-codon-mutation-susceptibility.svg)
+![Histogram of susceptibility to mutation for millions of randomly generated genetic codes, forming a bell curve, with the natural genetic code marked as a rare outlier far to the low-susceptibility side](assets/img/fig-q1-01.png)
 A: It argues for natural selection having shaped the code. A pure frozen accident predicts the natural code should land somewhere unremarkable within the distribution, wherever chance first happened to fix it. Instead it sits far out in the tail, more error-resistant than 999,999 out of a million alternatives. That's the signature of codes with poor mutation tolerance being selected against over time. The honest complication: selection could have acted early and then the improved code got frozen in place, so "frozen accident" and "shaped by selection" aren't fully exclusive.
 Tags: problems
 
@@ -548,7 +547,7 @@ Tags: problems
 ---
 
 Q: Plant hemoglobin genes, found in legumes, were once hypothesized to have arisen by horizontal transfer from an animal. Given a phylogenetic tree built from hemoglobin sequences across vertebrates, invertebrates, plants and protozoa, does the tree support or refute that hypothesis, and what would the tree look like instead if the transfer had come from a parasitic nematode?
-![Unrooted phylogenetic tree of hemoglobin genes: vertebrates, invertebrates, plants including legumes, and protozoa each form their own separate branch from a shared center, rather than plant hemoglobins nesting inside the animal branch](assets/img/fig-q1-02-hemoglobin-phylogenetic-tree.svg)
+![Unrooted phylogenetic tree of hemoglobin genes: vertebrates, invertebrates, plants including legumes, and protozoa each form their own separate branch from a shared center, rather than plant hemoglobins nesting inside the animal branch](assets/img/fig-q1-02.png)
 A: The tree refutes it. If the legume genes had been transferred from an animal, they should nest inside the animal branch, closest to whichever animal was the donor. Instead the plant hemoglobins, legumes included, form their own coherent branch, as far from any single animal sequence as the animal sequences are from each other. That's the pattern expected from vertical inheritance of an ancient gene present before plants and animals diverged, not from a recent transfer.
 If the source had instead been a parasitic nematode, the legume genes would be expected to branch from within, or as the closest sister to, the nematode's own sequence among the invertebrates, rather than forming an independent plant branch.
 Tags: problems
