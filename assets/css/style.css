@@ -587,6 +587,93 @@ tbody tr:last-child td { border-bottom: none; }
 a.stat { text-decoration: none; color: inherit; }
 a.stat:hover .stat-n { color: var(--accent); }
 
+/* ---------- videos ---------- */
+
+.video-list { display: flex; flex-direction: column; gap: .6rem; }
+.video-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 17rem 1fr;
+  gap: 0 1.2rem;
+  align-items: start;
+  padding: 1rem 1.2rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color .15s;
+}
+.video-row:hover { border-color: var(--line-strong); }
+
+/* 16:9 box that holds the facade first and the iframe after a click. */
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;
+  background: var(--bg-sunken);
+  border: 1px solid var(--line);
+}
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-frame.is-playing { border-color: var(--line-strong); }
+
+/* Once it is actually playing, the player stops being a thumbnail and takes the
+   full width of the card, with the title dropping underneath it. */
+.video-row.is-playing { grid-template-columns: 1fr; gap: .9rem; }
+.video-row.is-playing .video-body { padding-right: 5rem; }
+
+.video-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  width: 100%;
+  font: inherit;
+  color: var(--ink-soft);
+  text-decoration: none;
+  background: radial-gradient(120% 120% at 50% 0%, color-mix(in srgb, var(--accent) 12%, var(--bg-sunken)), var(--bg-sunken));
+  border: 0;
+  cursor: pointer;
+  transition: color .15s, background .15s;
+}
+.video-play:hover, .video-play:focus-visible { color: var(--accent); }
+.video-play-mark {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding-left: .12em;
+  font-size: 1rem;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  transition: transform .15s;
+}
+.video-play:hover .video-play-mark { transform: scale(1.06); }
+.video-play-out .video-play-mark { padding-left: 0; }
+.video-play-hint { font-size: .78rem; letter-spacing: .01em; }
+
+.video-body { min-width: 0; padding-right: 5rem; }
+.video-body h3 { margin: 0 0 .2em; font-size: 1.02rem; }
+.video-cite { margin: 0; font-size: .84rem; color: var(--ink-faint); }
+.video-note {
+  margin: .55rem 0 0;
+  font-family: var(--font-read);
+  font-size: .93rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.video-tail { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: .7rem; }
+
+@media (max-width: 40rem) {
+  .video-row { grid-template-columns: 1fr; gap: .9rem; }
+  .video-body { padding-right: 0; }
+  .video-row .paper-out { position: static; display: block; margin-top: .6rem; }
+}
+
 /* ---------- practice panel and pager ---------- */
 
 .practice {

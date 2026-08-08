@@ -167,7 +167,12 @@
         state.manifest = manifest;
         // Metadata only. A paper's summary is fetched when you open it.
         Papers.init(manifest.papers);
-        return Promise.all((manifest.chapters || []).map(loadChapter));
+        var slugs = (manifest.chapters || []).map(function (c) { return c.slug; });
+        // videos.json is its own hand-edited file rather than part of the
+        // manifest, and it is optional: if it fails, everything else still loads.
+        var videos = Videos.load().then(function (data) { Videos.init(data, slugs); });
+        return Promise.all([videos].concat((manifest.chapters || []).map(loadChapter)))
+          .then(function (results) { return results.slice(1); });
       })
       .then(function (chapters) {
         state.chapters = chapters;
@@ -243,6 +248,7 @@
       var c = SRS.counts(cardsOf(ch));
       var dp = c.total ? c.seen / c.total : 0;
       var np = Papers.forChapter(ch.slug).length;
+      var nv = Videos.forChapter(ch.slug).length;
 
       var badges = [];
       if (c.due + c.learning) badges.push('<span class="pill pill-due">' + (c.due + c.learning) + ' due</span>');
@@ -272,6 +278,7 @@
             (ch.notes ? '<span class="muted small">' + readingTime(ch.notes.words) + '</span>' : '') +
             (c.total ? '<span class="muted small">' + c.total + ' cards</span>' : '') +
             (np ? '<span class="muted small">' + np + ' paper' + (np > 1 ? 's' : '') + '</span>' : '') +
+            (nv ? '<span class="muted small">' + nv + ' video' + (nv > 1 ? 's' : '') + '</span>' : '') +
             badges.join('') +
           '</div>' +
           (c.total ? '<div class="bar"><span style="width:' + (dp * 100).toFixed(1) + '%"></span></div>' : '') +
@@ -306,11 +313,13 @@
       return render(crumbs(ch.title) +
         '<div class="empty"><h2>' + esc(ch.title) + '</h2><p>No write-up for this chapter yet.</p>' +
         (cardsOf(ch).length ? '<p>' + studyLink(ch, 'btn btn-primary', 'Study the deck') + '</p>' : '') + '</div>' +
+        chapterVideos(ch) +
         furtherReading(ch));
     }
 
     var c = SRS.counts(cardsOf(ch));
     var papers = Papers.forChapter(ch.slug).length;
+    var videos = Videos.forChapter(ch.slug).length;
     var body = MD.render(ch.notes.body, NOTE_OPTS);
 
     render(
@@ -324,6 +333,7 @@
             '<span>' + readingTime(ch.notes.words) + '</span>' +
             (c.total ? '<span>' + c.total + ' cards</span>' : '') +
             (papers ? '<span>' + papers + ' paper' + (papers > 1 ? 's' : '') + '</span>' : '') +
+            (videos ? '<span>' + videos + ' video' + (videos > 1 ? 's' : '') + '</span>' : '') +
           '</p>' +
         '</header>' +
         '<div class="post-layout">' +
@@ -332,6 +342,7 @@
         '</div>' +
       '</article>' +
       (c.total ? practicePanel(ch, c) : '') +
+      chapterVideos(ch) +
       furtherReading(ch) +
       chapterNav(slug)
     );
@@ -536,6 +547,74 @@
       '</div>' +
       '<div class="paper-list">' + papers.map(function (p) { return paperRow(p, false); }).join('') +
       '</div>' +
+    '</section>';
+  }
+
+  /* ---------- videos ---------- */
+
+  // A video renders as a facade, not an iframe: a play button over a title bar.
+  // The iframe is created on click, so opening a chapter costs no request to
+  // YouTube and a chapter with six videos is as cheap as one with none.
+  function videoCard(v) {
+    var meta = [];
+    if (v.source) meta.push(esc(v.source));
+    if (v.duration) meta.push(esc(v.duration));
+
+    var body = v.embed
+      ? '<button class="video-play" type="button" data-video="' + esc(v.id) + '" ' +
+          'aria-label="Play ' + esc(v.title) + '">' +
+          '<span class="video-play-mark" aria-hidden="true">▶</span>' +
+          '<span class="video-play-hint">Play here</span>' +
+        '</button>'
+      : '<a class="video-play video-play-out" href="' + esc(v.watch) + '" target="_blank" rel="noopener">' +
+          '<span class="video-play-mark" aria-hidden="true">↗</span>' +
+          '<span class="video-play-hint">Open</span>' +
+        '</a>';
+
+    return '<article class="video-row" data-video-row="' + esc(v.id) + '">' +
+      '<div class="video-frame">' + body + '</div>' +
+      '<div class="video-body">' +
+        '<h3>' + esc(v.title) + '</h3>' +
+        (meta.length ? '<p class="video-cite">' + meta.join(' · ') + '</p>' : '') +
+        (v.description ? '<p class="video-note">' + esc(v.description) + '</p>' : '') +
+        (v.tags.length
+          ? '<div class="video-tail">' + v.tags.map(function (t) { return '<span class="tag">#' + esc(t) + '</span>'; }).join('') + '</div>'
+          : '') +
+      '</div>' +
+      (v.watch ? '<a class="paper-out" href="' + esc(v.watch) + '" target="_blank" rel="noopener" ' +
+        'title="Open on ' + esc(v.provider || 'the source site') + '">Source ↗</a>' : '') +
+    '</article>';
+  }
+
+  // Swap a facade for the real player. Only ever called from a click, so
+  // autoplay is allowed and the reader does not have to press play twice.
+  function playVideo(id) {
+    var v = Videos.get(id);
+    if (!v || !v.embed) return;
+    var row = view.querySelector('[data-video-row="' + id + '"] .video-frame');
+    if (!row) return;
+    var sep = v.embed.indexOf('?') === -1 ? '?' : '&';
+    row.innerHTML = '<iframe src="' + esc(v.embed + sep + 'autoplay=1') + '" ' +
+      'title="' + esc(v.title) + '" loading="lazy" allowfullscreen ' +
+      'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+      'referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    row.classList.add('is-playing');
+    var card = view.querySelector('[data-video-row="' + id + '"]');
+    if (card) card.classList.add('is-playing');
+    var f = row.querySelector('iframe');
+    if (f) f.focus();
+  }
+
+  // Shown under a chapter: the lectures and talks that cover it.
+  function chapterVideos(ch) {
+    var videos = Videos.forChapter(ch.slug);
+    if (!videos.length) return '';
+    return '<section class="reading videos">' +
+      '<div class="reading-head">' +
+        '<h2>Videos</h2>' +
+        '<span class="small muted">' + videos.length + ' for this chapter</span>' +
+      '</div>' +
+      '<div class="video-list">' + videos.map(videoCard).join('') + '</div>' +
     '</section>';
   }
 
@@ -1104,6 +1183,12 @@
 
   window.addEventListener('hashchange', route);
   document.addEventListener('keydown', onKey);
+
+  // Delegated so it survives every re-render without rebinding per view.
+  view.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-video]') : null;
+    if (btn) playVideo(btn.getAttribute('data-video'));
+  });
 
   applyTheme(SRS.settings().theme);
   render('<div class="loading"><span class="spinner"></span> Loading…</div>');

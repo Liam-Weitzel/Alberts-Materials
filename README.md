@@ -296,6 +296,53 @@ Papers deliberately don't generate cards. A summary is its own thing; if reading
 teaches you something worth drilling, write that card in the chapter deck and cite the
 paper from it.
 
+## Videos
+
+Lectures and talks show up in a **Videos** section on a chapter's page, and play in place
+without leaving the site. They're the one thing here that isn't a file in this repo, so
+there's nothing to scan and nothing to rebuild: the whole library is `videos.json` at the
+root. Add an entry, commit, done.
+
+```json
+{
+  "videos": [
+    {
+      "title": "Proteins and Their Functions",
+      "url": "https://www.youtube.com/watch?v=klkoHEoWKOA",
+      "source": "Last Minute Lecture",
+      "duration": "56:12",
+      "chapters": ["ch03"],
+      "tags": ["chapter-summary"]
+    }
+  ]
+}
+```
+
+`url` is the only field that has to be right. `chapters` behaves exactly as it does on a
+paper: `ch03` is enough because prefixes are expanded, and one video can list several
+chapters when an episode spans them. Everything else is decoration.
+
+A video naming a chapter that doesn't exist yet is kept and shown nowhere, which is what
+makes it worth filling in a whole playlist at once: each episode appears by itself the day
+its chapter gets a write-up or a deck. The shipped `videos.json` covers all 24 chapters
+from [Last Minute Lecture](https://www.youtube.com/playlist?list=PLI3TocC2xS24xTmVmwcyWxUN30hgnRyqF),
+so chapters 4 onward are already waiting.
+
+> [!NOTE]
+> That playlist numbers three of its episodes differently from the 7th edition, so those
+> are matched by title rather than by the chapter number in the video's own title: the
+> book's ch 20 (Cancer) is the playlist's "Chapter 23", ch 23 (Pathogens and Infection) is
+> its "Chapter 24", and ch 24 (The Innate and Adaptive Immune Systems) is split across its
+> "Chapter 20" and "Chapter 24". Each of those carries a `description` saying so.
+
+YouTube and Vimeo links are recognised in all their usual shapes, including `youtu.be`
+short links and a `t=90` or `t=1m30s` start time. Anything else still renders as a card
+with an outbound link rather than vanishing, so a link to a site that can't be embedded is
+never silently dropped.
+
+Nothing is requested from YouTube until you press play: the card is an ordinary button
+until then, and the player is only created on the click. Embeds use `youtube-nocookie.com`.
+
 ## Studying
 
 The scheduler is SM-2 with Anki-style learning steps. New cards appear at 1 and 10 minutes,
@@ -337,6 +384,7 @@ assets/css/style.css        all styling, light and dark
 assets/js/markdown.js       markdown to HTML, with math/code/table/cloze/[[ref]] handling
 assets/js/deck.js           deck file to cards
 assets/js/papers.js         the paper library, and lazy loading of summaries
+assets/js/videos.js         video links to embeds, and chapter matching
 assets/js/srs.js            SM-2 scheduling and localStorage
 assets/js/app.js            hash router and views
 assets/img/*.png            figures from the book, named by figure number
@@ -344,7 +392,8 @@ notes/*.md                  chapter write-ups
 decks/*.md                  chapter cards
 papers/*.md                 paper summaries
 chapters.json               generated index of all three
-build-manifest.py           regenerates the above
+videos.json                 videos per chapter, hand-edited, no build step
+build-manifest.py           regenerates chapters.json
 add-paper.py                starts a paper summary from a DOI or arXiv ID
 ```
 
@@ -354,9 +403,11 @@ rewrites.
 
 Notes and decks are all loaded at startup; papers are not. Only their front matter travels
 in `chapters.json`, and a summary is fetched when you open it, so the library can grow
-without slowing the site down.
+without slowing the site down. `videos.json` is fetched once at startup and is optional: if
+it is missing or malformed, the videos sections disappear and nothing else notices.
 
-KaTeX and highlight.js load from jsDelivr and are the only external requests. Both are
+KaTeX and highlight.js load from jsDelivr and are the only external requests the site makes
+on its own; a video embed is the one you opt into by pressing play. Both libraries are
 optional. Without them math falls back to raw TeX and code blocks render unhighlighted, so
 the site still works offline or if the CDN is blocked. To drop the network dependency,
 download both into `assets/vendor/` and repoint the tags in `index.html`.

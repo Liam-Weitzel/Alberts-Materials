@@ -1,0 +1,494 @@
+{
+  "_comment": "Videos shown under each chapter. Add an entry, commit, done: no build step. `chapters` takes ch01-style prefixes and a video may list several. A video whose chapter does not exist yet is simply not shown.",
+  "videos": [
+    {
+      "title": "Cells, Genomes, and the Diversity of Life",
+      "url": "https://www.youtube.com/watch?v=YuapruQkk5A",
+      "source": "Last Minute Lecture",
+      "duration": "39:43",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Are We All Actually Archaea?",
+      "url": "https://www.youtube.com/watch?v=7LdmcFoYQtU",
+      "source": "PBS Eons",
+      "duration": "9:51",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "archaea",
+        "genome-evolution"
+      ],
+      "description": "Where eukaryotes sit relative to the archaea, including the Asgard group the chapter mentions."
+    },
+    {
+      "title": "The Inner Life of the Cell",
+      "url": "https://www.youtube.com/watch?v=wJyUtbn0O5Y",
+      "source": "XVIVO Scientific Animation",
+      "duration": "3:12",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "cell-biology",
+        "animation"
+      ],
+      "description": "The animation Harvard commissioned to show a white blood cell's interior at molecular scale. Beautiful, and worth knowing that it compresses timescales enormously and leaves out the crowding and thermal jostling that dominate real cytoplasm."
+    },
+    {
+      "title": "The Origin of Cellular Life on Earth",
+      "url": "https://www.youtube.com/watch?v=PqPGOhXoprU",
+      "source": "iBiology",
+      "duration": "54:40",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "origin-of-life",
+        "protocells"
+      ],
+      "description": "The full Szostak lecture behind the RNA world short, and the direct companion to the Blain and Szostak paper filed under this chapter."
+    },
+    {
+      "title": "The RNA World Hypothesis",
+      "url": "https://www.youtube.com/watch?v=MPzWrv6l9l0",
+      "source": "iBiology",
+      "duration": "6:23",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "origin-of-life",
+        "rna-world"
+      ],
+      "description": "Jack Szostak, in six minutes, on why RNA is the plausible first replicator."
+    },
+    {
+      "title": "Cell Chemistry and Bioenergetics",
+      "url": "https://www.youtube.com/watch?v=kKgjsL5DqUY",
+      "source": "Last Minute Lecture",
+      "duration": "52:25",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Biochemical Reactions, Enzymes, and ATP",
+      "url": "https://www.youtube.com/watch?v=OBloWTHFPZc",
+      "source": "MIT OpenCourseWare",
+      "duration": "43:36",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "thermodynamics",
+        "enzymes"
+      ],
+      "description": "MIT 7.01SC, covering free energy, coupled reactions and why ATP hydrolysis drives what it drives."
+    },
+    {
+      "title": "Proteins and Their Functions",
+      "url": "https://www.youtube.com/watch?v=klkoHEoWKOA",
+      "source": "Last Minute Lecture",
+      "duration": "56:12",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "AlphaFold: The Most Useful Thing AI Has Ever Done",
+      "url": "https://www.youtube.com/watch?v=P_fHJIYENdI",
+      "source": "Veritasium",
+      "duration": "24:51",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding",
+        "structure-prediction"
+      ],
+      "description": "The deep-learning turn the chapter mentions in a sentence and does not explain."
+    },
+    {
+      "title": "Discovering Kinesin",
+      "url": "https://www.youtube.com/watch?v=TJ0QU26Ul0A",
+      "source": "iBiology",
+      "duration": "19:16",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "motors",
+        "history"
+      ],
+      "description": "Ron Vale on finding the motor the chapter opens by naming. A good account of what the experiments actually looked like."
+    },
+    {
+      "title": "How Enzymes Work",
+      "url": "https://www.youtube.com/watch?v=yk14dOOvwMk",
+      "source": "RCSB Protein Data Bank",
+      "duration": "4:52",
+      "chapters": [
+        "ch02",
+        "ch03"
+      ],
+      "tags": [
+        "enzymes",
+        "catalysis"
+      ],
+      "description": "Transition-state stabilisation shown on real structures rather than schematics."
+    },
+    {
+      "title": "Liquid Phase Separation in Living Cells",
+      "url": "https://www.youtube.com/watch?v=AP47mIkd-h0",
+      "source": "iBiology",
+      "duration": "46:04",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "condensates",
+        "idr"
+      ],
+      "description": "Cliff Brangwynne on biomolecular condensates, which the chapter introduces late and briefly."
+    },
+    {
+      "title": "Molecular Motor Proteins",
+      "url": "https://www.youtube.com/watch?v=9RUHJhskW00",
+      "source": "iBiology",
+      "duration": "35:25",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "motors",
+        "machines"
+      ],
+      "description": "The lecture version: how a shape change plus ATP hydrolysis becomes directed movement."
+    },
+    {
+      "title": "The Protein Folding Revolution",
+      "url": "https://www.youtube.com/watch?v=cAJQbSLlonI",
+      "source": "Science Magazine",
+      "duration": "3:44",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding"
+      ],
+      "description": "Why folding was considered intractable, which is the setup the chapter's last section pays off."
+    },
+    {
+      "title": "What is a Protein?",
+      "url": "https://www.youtube.com/watch?v=wvTv8TqWC48",
+      "source": "RCSB Protein Data Bank",
+      "duration": "6:58",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "structure"
+      ],
+      "description": "Primary through quaternary structure, built up on actual PDB entries."
+    },
+    {
+      "title": "DNA, Chromosomes, and Genomes",
+      "url": "https://www.youtube.com/watch?v=fnExlC0hNqc",
+      "source": "Last Minute Lecture",
+      "duration": "30:07",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "DNA Replication, Repair, and Recombination",
+      "url": "https://www.youtube.com/watch?v=vNr7sXAHG80",
+      "source": "Last Minute Lecture",
+      "duration": "1:27:04",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "How Cells Read the Genome: From DNA to Protein",
+      "url": "https://www.youtube.com/watch?v=TkqL6T8BV6c",
+      "source": "Last Minute Lecture",
+      "duration": "38:07",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Control of Gene Expression",
+      "url": "https://www.youtube.com/watch?v=IvhGXYUyb88",
+      "source": "Last Minute Lecture",
+      "duration": "49:02",
+      "chapters": [
+        "ch07"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Analyzing Cells, Molecules, and Systems",
+      "url": "https://www.youtube.com/watch?v=--kDhYMhu5w",
+      "source": "Last Minute Lecture",
+      "duration": "1:05:54",
+      "chapters": [
+        "ch08"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Visualizing Cells",
+      "url": "https://www.youtube.com/watch?v=rBEvw3SmMZY",
+      "source": "Last Minute Lecture",
+      "duration": "43:51",
+      "chapters": [
+        "ch09"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Membrane Structure",
+      "url": "https://www.youtube.com/watch?v=06eDvSkhI2E",
+      "source": "Last Minute Lecture",
+      "duration": "32:29",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Membrane Transport & Electrical Properties of Membranes",
+      "url": "https://www.youtube.com/watch?v=J7zmBo8yNvw",
+      "source": "Last Minute Lecture",
+      "duration": "45:46",
+      "chapters": [
+        "ch11"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Intracellular Compartments and Protein Sorting",
+      "url": "https://www.youtube.com/watch?v=6sVZs8ILiyU",
+      "source": "Last Minute Lecture",
+      "duration": "38:31",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Intracellular Vesicular Traffic",
+      "url": "https://www.youtube.com/watch?v=jsLalqRnGnw",
+      "source": "Last Minute Lecture",
+      "duration": "28:20",
+      "chapters": [
+        "ch13"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Energy Conversion: Mitochondria and Chloroplasts",
+      "url": "https://www.youtube.com/watch?v=jnKxhemM43k",
+      "source": "Last Minute Lecture",
+      "duration": "22:00",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Electron Transport Chain",
+      "url": "https://www.youtube.com/watch?v=nmoLoiFakxY",
+      "source": "WEHI",
+      "duration": "4:27",
+      "chapters": [
+        "ch02",
+        "ch14"
+      ],
+      "tags": [
+        "bioenergetics",
+        "animation"
+      ],
+      "description": "Stage 3 of catabolism, which chapter 2 names and chapter 14 explains."
+    },
+    {
+      "title": "Synthesis of ATP",
+      "url": "https://www.youtube.com/watch?v=OT5AXGS1aL8",
+      "source": "WEHI",
+      "duration": "2:15",
+      "chapters": [
+        "ch02",
+        "ch14"
+      ],
+      "tags": [
+        "atp",
+        "animation"
+      ],
+      "description": "Drew Berry's animation of ATP synthase turning. The rotary mechanism is far easier to believe once you have watched it."
+    },
+    {
+      "title": "Mechanisms of Cell Communication",
+      "url": "https://www.youtube.com/watch?v=80Efr5-j9nE",
+      "source": "Last Minute Lecture",
+      "duration": "34:35",
+      "chapters": [
+        "ch15"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Cytoskeletal Systems",
+      "url": "https://www.youtube.com/watch?v=A4F3LRdUQ28",
+      "source": "Last Minute Lecture",
+      "duration": "37:04",
+      "chapters": [
+        "ch16"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "The Cell Cycle",
+      "url": "https://www.youtube.com/watch?v=RYjatZ6iysg",
+      "source": "Last Minute Lecture",
+      "duration": "57:47",
+      "chapters": [
+        "ch17"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Cell Death and Apoptosis",
+      "url": "https://www.youtube.com/watch?v=szpqtYml0jc",
+      "source": "Last Minute Lecture",
+      "duration": "21:08",
+      "chapters": [
+        "ch18"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Cell Junctions, Cell Adhesion, & Extracellular Matrix",
+      "url": "https://www.youtube.com/watch?v=4ojEoRZobx4",
+      "source": "Last Minute Lecture",
+      "duration": "49:53",
+      "chapters": [
+        "ch19"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Cancer",
+      "url": "https://www.youtube.com/watch?v=Wwfpt6-ASTI",
+      "source": "Last Minute Lecture",
+      "duration": "38:26",
+      "chapters": [
+        "ch20"
+      ],
+      "tags": [
+        "chapter-summary"
+      ],
+      "description": "The playlist numbers this one Chapter 23; it is chapter 20 in the 7th edition."
+    },
+    {
+      "title": "Development of Multicellular Organisms",
+      "url": "https://www.youtube.com/watch?v=3Eux3NWfnPM",
+      "source": "Last Minute Lecture",
+      "duration": "1:00:08",
+      "chapters": [
+        "ch21"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Stem Cells and Tissue Renewal",
+      "url": "https://www.youtube.com/watch?v=AOmhLbV8IwY",
+      "source": "Last Minute Lecture",
+      "duration": "37:00",
+      "chapters": [
+        "ch22"
+      ],
+      "tags": [
+        "chapter-summary"
+      ]
+    },
+    {
+      "title": "Pathogens, Infection, and Innate Immunity",
+      "url": "https://www.youtube.com/watch?v=OHh0Ajvn4rc",
+      "source": "Last Minute Lecture",
+      "duration": "18:52",
+      "chapters": [
+        "ch23",
+        "ch24"
+      ],
+      "tags": [
+        "chapter-summary"
+      ],
+      "description": "The playlist numbers this one Chapter 24; it spans chapter 23 and the innate half of chapter 24 in the 7th edition."
+    },
+    {
+      "title": "The Adaptive Immune System",
+      "url": "https://www.youtube.com/watch?v=PLxtx8iWJsg",
+      "source": "Last Minute Lecture",
+      "duration": "27:49",
+      "chapters": [
+        "ch24"
+      ],
+      "tags": [
+        "chapter-summary"
+      ],
+      "description": "The playlist numbers this one Chapter 20; it covers the adaptive half of chapter 24 in the 7th edition."
+    }
+  ]
+}
