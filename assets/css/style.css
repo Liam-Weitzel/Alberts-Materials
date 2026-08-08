@@ -254,6 +254,11 @@ mark { background: color-mix(in srgb, var(--warn) 30%, transparent); color: inhe
 .tag-new { color: var(--new); background: color-mix(in srgb, var(--new) 14%, transparent); }
 .tag-review { color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, transparent); }
 .tag-learning, .tag-relearning { color: var(--warn); background: color-mix(in srgb, var(--warn) 16%, transparent); }
+.tag-follow-up { color: var(--accent); background: var(--accent-soft); }
+
+/* A follow-up is indented under the question it continues, so a chain reads as
+   one block when you scan the deck. */
+.browse-card.is-follow-up { margin-left: 1.4rem; border-left: 2px solid var(--accent-soft); }
 .card-tags { display: flex; gap: .35rem; flex-wrap: wrap; margin-top: .8rem; }
 
 .choices.static { list-style: none; padding: 0; margin: 0 0 .6em; }
@@ -281,6 +286,15 @@ mark { background: color-mix(in srgb, var(--warn) 30%, transparent); color: inhe
   display: flex; flex-direction: column; gap: .2rem;
 }
 .card-deck { font-family: var(--font-ui); font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); margin-bottom: .6rem; }
+/* The question a follow-up continues, so the card still reads on its own. */
+.card-follows {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  color: var(--ink-faint);
+  border-left: 2px solid var(--accent-soft);
+  padding-left: .7rem;
+  margin-bottom: .8rem;
+}
 .card-front { font-size: 1.16em; }
 .card-front :is(p):last-child { margin-bottom: 0; }
 .card-rule { border-top: 1px dashed var(--line-strong); margin: 1.2em 0; }

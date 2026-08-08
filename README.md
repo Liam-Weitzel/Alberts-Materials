@@ -179,11 +179,50 @@ Tags: structure, bonds
 | **Multiple choice** | `- [x]` correct, `- [ ]` wrong | Clickable options, graded immediately. More than one `[x]` makes it select-all. An `A:` becomes the explanation. |
 | **Cloze** | `{{hidden text}}` in the question | Renders as a blank, filled in on reveal. Use `{{answer::hint}}` for a hint instead of `[ … ]`. |
 
+Any of the three can also be written as a [follow-up](#follow-up-questions) with `Q+:`,
+which pins it to the card before it.
+
 `Q:`/`A:` can also be written `Question:`/`Answer:` or `Front:`/`Back:`. Both sides can run
 to many lines. Everything up to the next `A:` is the front.
 
 Cards accept the same markdown as write-ups, plus a `Tags: one, two` line anywhere in the
 card.
+
+### Follow-up questions
+
+A card written with `Q+:` instead of `Q:` is a **follow-up**: it reads as a continuation of
+the card above it, and is never shown without it.
+
+```markdown
+Q: Which organelle produces most of the cell's ATP?
+A: The mitochondrion.
+
+---
+
+Q+: And which stage of catabolism happens there?
+A: Stage 3, oxidative phosphorylation.
+```
+
+The question and its follow-ups form a chain. Put several `Q+:` cards in a row and they all
+hang off the same opening question. Any card type works as a follow-up, so a `Q+:` card can
+be multiple choice or cloze like any other.
+
+The chain is what gets shuffled, not the individual cards, so the order inside it never
+changes but the chain lands anywhere in the queue. Two consequences worth knowing:
+
+- **A chain is pulled into the session whole**, as soon as any card in it comes up. So if a
+  follow-up is due and its question isn't, you still get the question first. Over time this
+  pulls a chain's cards onto a shared rhythm, which is usually what you want from questions
+  that only make sense together.
+- **A chain is never split by the daily limits.** The last chain admitted can spill a card
+  or two past `newPerDay`, which beats stranding a follow-up with nothing to follow.
+
+Each card still keeps its own scheduling, so you can rate the follow-up *Again* and the
+question *Easy*. When a follow-up comes back later in a session, it shows the question it
+continues above it, so it still reads on its own.
+
+A `Q+:` card at the very top of a deck has nothing to follow; it's treated as an ordinary
+question and a warning goes to the browser console.
 
 ## Papers
 

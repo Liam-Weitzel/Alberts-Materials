@@ -51,6 +51,37 @@
     return arr;
   }
 
+  /* A question and its `Q+:` follow-ups travel as one unit. Grouping by the id
+   * the parser assigned, rather than by adjacency, keeps chains intact when
+   * cards from several decks are pooled together. */
+  function groupsOf(cards) {
+    var groups = [], byId = {};
+    cards.forEach(function (card) {
+      var key = card.group || card.id;
+      if (!byId[key]) { byId[key] = []; groups.push(byId[key]); }
+      byId[key].push(card);
+    });
+    return groups;
+  }
+
+  function flatten(groups) {
+    return groups.reduce(function (out, g) { return out.concat(g); }, []);
+  }
+
+  /* The question a follow-up hangs off, looked up in the current session's pool. */
+  function parentOf(card) {
+    if (!card.followUp || !session) return null;
+    for (var i = 0; i < session.pool.length; i++) {
+      if (session.pool[i].id === card.group) return session.pool[i];
+    }
+    return null;
+  }
+
+  function excerpt(text, max) {
+    text = (text || '').replace(/\s+/g, ' ').trim();
+    return text.length > max ? text.slice(0, max - 1).replace(/\s+\S*$/, '') + '…' : text;
+  }
+
   function chapterBySlug(slug) {
     for (var i = 0; i < state.chapters.length; i++) {
       if (state.chapters[i].slug === slug) return state.chapters[i];
@@ -433,10 +464,11 @@
       }
       listEl.innerHTML = matches.map(function (card) {
         var st = SRS.get(card.id);
-        return '<details class="browse-card">' +
+        return '<details class="browse-card' + (card.followUp ? ' is-follow-up' : '') + '">' +
           '<summary>' +
             '<span class="browse-front">' + MD.render(card.front || '(choices only)') + '</span>' +
             '<span class="browse-meta">' +
+              (card.followUp ? '<span class="tag tag-follow-up">follow-up</span>' : '') +
               '<span class="tag tag-' + card.type + '">' + card.type + '</span>' +
               '<span class="tag tag-state tag-' + st.s + '">' + SRS.dueLabel(st) + '</span>' +
             '</span>' +
@@ -617,20 +649,45 @@
 
   /* ---------- study ---------- */
 
+  /* Admits whole groups until the limit is reached, so the last group may spill
+   * past it. Splitting a chain would strand a follow-up without its question,
+   * which is worse than a couple of cards over the daily cap. */
+  function takeGroups(groups, limit) {
+    var out = [], used = 0;
+    for (var i = 0; i < groups.length && used < limit; i++) {
+      out.push(groups[i]);
+      used += groups[i].cards.length;
+    }
+    return out;
+  }
+
+  /* The queue is built from groups, not cards. A group is pulled in whole as
+   * soon as any of its members comes up, which is what keeps a follow-up with
+   * the question it continues even once their intervals have drifted apart. */
   function buildQueue(cards) {
     var now = Date.now();
     var dueReview = [], learning = [], fresh = [];
-    cards.forEach(function (card) {
-      var st = SRS.get(card.id);
-      if (st.s === 'new') fresh.push(card);
-      else if (st.due <= now) (st.s === 'review' ? dueReview : learning).push(card);
+
+    groupsOf(cards).forEach(function (group) {
+      var hasLearning = false, hasReview = false, hasNew = false, soonest = Infinity;
+      group.forEach(function (card) {
+        var st = SRS.get(card.id);
+        if (st.s === 'new') { hasNew = true; return; }
+        if (st.due > now) return;
+        soonest = Math.min(soonest, st.due);
+        if (st.s === 'review') hasReview = true; else hasLearning = true;
+      });
+      var entry = { cards: group, due: soonest };
+      if (hasLearning) learning.push(entry);
+      else if (hasReview) dueReview.push(entry);
+      else if (hasNew) fresh.push(entry);
     });
 
     if (SRS.settings().shuffle) { shuffle(dueReview); shuffle(fresh); }
-    learning.sort(function (a, b) { return SRS.get(a.id).due - SRS.get(b.id).due; });
+    learning.sort(function (a, b) { return a.due - b.due; });
 
-    dueReview = dueReview.slice(0, SRS.reviewRemaining());
-    fresh = fresh.slice(0, SRS.newRemaining());
+    dueReview = takeGroups(dueReview, SRS.reviewRemaining());
+    fresh = takeGroups(fresh, SRS.newRemaining());
 
     // Interleave new cards through the review queue rather than front-loading them.
     var queue = learning.concat(dueReview);
@@ -647,7 +704,7 @@
         queue = out;
       }
     }
-    return queue;
+    return flatten(queue.map(function (g) { return g.cards; }));
   }
 
   function viewStudy(scope) {
@@ -706,7 +763,7 @@
     var again = view.querySelector('[data-act="again-session"]');
     if (again) again.addEventListener('click', function () { viewStudy(session.scope); });
     view.querySelector('[data-act="cram"]').addEventListener('click', function () {
-      session.queue = shuffle(session.pool.slice());
+      session.queue = flatten(shuffle(groupsOf(session.pool)));
       session.planned = session.queue.length;
       session.done = 0; session.again = 0; session.startedAt = Date.now();
       session.cram = true;
@@ -726,6 +783,9 @@
     var pct = totalPlanned ? (session.done / totalPlanned) * 100 : 0;
     var st = SRS.get(card.id);
     var owner = session.scope === 'all' ? chapterBySlug(card.deckId) : null;
+    // A follow-up carries the question it continues, so it still reads on its
+    // own when a rating of Again brings it back later in the session.
+    var follows = card.followUp ? parentOf(card) : null;
 
     render(
       '<section class="study">' +
@@ -739,6 +799,7 @@
         '<div class="bar thin"><span style="width:' + pct.toFixed(1) + '%"></span></div>' +
         '<article class="card" id="card">' +
           (owner ? '<div class="card-deck">' + esc(owner.title) + '</div>' : '') +
+          (follows ? '<div class="card-follows">' + esc(excerpt(MD.plain(follows.front), 110)) + '</div>' : '') +
           '<div class="card-front">' + MD.render(card.front) + '</div>' +
           '<div class="card-body" id="card-body"></div>' +
         '</article>' +

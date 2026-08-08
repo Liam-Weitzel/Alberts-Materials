@@ -22,8 +22,17 @@
  *
  *   Q: ATP is produced mainly by {{oxidative phosphorylation}}.
  *
+ *   ---
+ *
+ *   Q+: And which organelle carries that out?
+ *   A: The mitochondrion.
+ *
  * Cards are separated by a line of `---`. A line of `---` inside a fenced code
- * block is ignored. Both Q/A and Front/Back spellings work. */
+ * block is ignored. Both Q/A and Front/Back spellings work.
+ *
+ * `Q+:` marks a follow-up: a question that reads as a continuation of the card
+ * before it. Follow-ups stay attached to that card and are never separated from
+ * it, however the queue is shuffled. Several in a row form one chain. */
 window.Deck = (function () {
   'use strict';
 
@@ -56,6 +65,9 @@ window.Deck = (function () {
   }
 
   var RE_Q = /^(?:Q|Question|Front)\s*:\s*/i;
+  // `Q+:` marks a follow-up: a card that only makes sense after the one before
+  // it, so the two are kept adjacent and shuffled as a unit.
+  var RE_Q_MORE = /^(?:Q|Question|Front)\s*\+\s*:\s*/i;
   var RE_A = /^(?:A|Answer|Back)\s*:\s*/i;
   var RE_TAGS = /^Tags\s*:\s*(.*)$/i;
   var RE_CHOICE = /^[-*]\s*\[([ xX])\]\s*(.*)$/;
@@ -63,7 +75,7 @@ window.Deck = (function () {
   function parseCard(chunk, deckId, index) {
     var lines = chunk.split('\n');
     var front = [], back = [], choices = [], tags = [];
-    var section = 'front', inFence = false, sawQ = false;
+    var section = 'front', inFence = false, sawQ = false, followUp = false;
 
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i];
@@ -74,6 +86,13 @@ window.Deck = (function () {
         var t = RE_TAGS.exec(line);
         if (t) {
           tags = t[1].split(/[,\s]+/).map(function (s) { return s.replace(/^#/, '').trim(); }).filter(Boolean);
+          continue;
+        }
+        // Test the `Q+:` form first: `Q:` cannot match it, but keeping the more
+        // specific pattern first means adding front spellings stays safe.
+        if (RE_Q_MORE.test(line)) {
+          sawQ = true; followUp = true; section = 'front';
+          front.push(line.replace(RE_Q_MORE, ''));
           continue;
         }
         if (RE_Q.test(line)) { sawQ = true; section = 'front'; front.push(line.replace(RE_Q, '')); continue; }
@@ -107,6 +126,7 @@ window.Deck = (function () {
       index: index,
       type: type,
       sawQ: sawQ,
+      followUp: followUp,
       front: frontText,
       back: backText,
       choices: choices.length ? choices : null,
@@ -117,11 +137,28 @@ window.Deck = (function () {
     };
   }
 
+  /* Tie each run of `Q+:` cards to the question that opened it. The group is
+   * identified by that first card's id, which is stable across edits to the
+   * follow-ups, and is what the study queue shuffles and schedules as a unit. */
+  function groupCards(cards, deckId) {
+    var groupId = null;
+    cards.forEach(function (card) {
+      if (card.followUp && groupId === null) {
+        console.warn('[deck] ' + deckId + ' card ' + (card.index + 1) +
+          ': Q+: has nothing to follow, treating it as an ordinary question');
+        card.followUp = false;
+      }
+      if (!card.followUp) groupId = card.id;
+      card.group = groupId;
+    });
+    return cards;
+  }
+
   function parse(text, deckId, file) {
     var fm = MD.frontMatter(text);
-    var cards = splitCards(fm.body)
+    var cards = groupCards(splitCards(fm.body)
       .map(function (chunk, i) { return parseCard(chunk, deckId, i); })
-      .filter(Boolean);
+      .filter(Boolean), deckId);
 
     var deckTags = fm.meta.tags;
     if (typeof deckTags === 'string') deckTags = deckTags.split(/[,\s]+/).filter(Boolean);
