@@ -14,6 +14,40 @@ and nothing to install.
 > write-ups in `notes/`, the flashcards in `decks/`, and the paper summaries in `papers/`
 > are written by hand, from my own reading.
 
+## Current progress
+
+Chapters in the order I'm working through them, not the book's own numbering, so that
+everything is done before the Molecular Medicine master's at EMC starts. **Days** is a
+rough time budget scaled to page count, not a deadline. The four checkbox columns track
+separately because a chapter's write-up, deck, and summary rarely finish together.
+
+| Ch | Pages | Days | Reading | Deck | Chapter Summary | Paper Summaries |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 49 | 1.5 | ✅ | ✅ | ⬜ | ⬜ |
+| 2 | 66 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 3 | 68 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 5 | 68 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 6 | 76 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 10 | 34 | 1.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 12 | 66 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 17 | 62 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 14 | 62 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 13 | 62 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 15 | 76 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 7 | 78 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 16 | 78 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 22 | 34 | 1.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 4 | 70 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 8 | 88 | 3.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 9 | 40 | 1.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 11 | 46 | 1.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 18 | 16 | 0.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 19 | 58 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 20 | 54 | 1.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 21 | 62 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 23 | 40 | 1.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 24 | 51 | 1.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+
 ## How it's organised
 
 A **chapter** is two files that share a filename:
