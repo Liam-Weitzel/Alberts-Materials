@@ -882,6 +882,176 @@
         "evolution"
       ],
       "description": "Michael Lynch on why mutation rates are the values they are rather than lower. The chapter says a low rate is necessary for life as we know it; this asks what stops selection driving it lower still."
+    },
+    {
+      "title": "Discovery of the Structure of the Nucleosome",
+      "url": "https://www.youtube.com/watch?v=sIfCFwtGrWg",
+      "source": "iBiology Science Stories",
+      "duration": "20:11",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "nucleosome",
+        "structure"
+      ],
+      "description": "Karolin Luger on solving the nucleosome core particle by x-ray crystallography, the 1997 structure that Figure 4-23 is taken from. The account of what it took to crystallise a histone octamer wrapped in DNA is the part the figure cannot show."
+    },
+    {
+      "title": "Epigenetics: Why Your DNA Isn't Enough",
+      "url": "https://www.youtube.com/watch?v=PSLnivqiF8k",
+      "source": "iBiology",
+      "duration": "42:22",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "histones",
+        "chromatin"
+      ],
+      "description": "C. David Allis on histone modifications and the reader-writer-eraser logic, from the lab that proposed the histone code. Goes deeper than the chapter on why a mark means whatever its reader decides it means."
+    },
+    {
+      "title": "Epigenetics in Development and Disease",
+      "url": "https://www.youtube.com/watch?v=KtOnBUMuZiY",
+      "source": "iBiology",
+      "duration": "45:10",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "histones",
+        "cancer"
+      ],
+      "description": "The sequel, and the direct companion to the chapter's oncohistone paragraph: how a single H3K27M substitution in one of many histone gene copies acts dominantly and drives a paediatric brain tumour."
+    },
+    {
+      "title": "X Chromosome Inactivation: Making and Breaking the Silence",
+      "url": "https://www.youtube.com/watch?v=y3ST0whbA4k",
+      "source": "iBiology",
+      "duration": "45:44",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "heterochromatin",
+        "regulation"
+      ],
+      "description": "Jeannie Lee on the best-studied case of facultative heterochromatin. The chapter names macroH2A and X inactivation in a figure caption and leaves it there; this is the mechanism."
+    },
+    {
+      "title": "The Genome Folding Problem",
+      "url": "https://www.youtube.com/watch?v=UzrgTA2x6ko",
+      "source": "Serious Science",
+      "duration": "13:42",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "chromosomes",
+        "chromatin"
+      ],
+      "description": "Leonid Mirny in thirteen minutes on loop extrusion and topologically associated domains, from the group whose polymer modelling predicted the mechanism before it was seen directly."
+    },
+    {
+      "title": "Things You Can't Browse at UCSC",
+      "url": "https://www.youtube.com/watch?v=7hT0_tQVjzA",
+      "source": "Broad Institute",
+      "duration": "30:55",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "chromosomes",
+        "human-genome"
+      ],
+      "description": "Erez Lieberman Aiden on Hi-C and what the contact maps show, by one of the people who built the method the chapter describes in Figure 4-53."
+    },
+    {
+      "title": "Chromosome Segregation",
+      "url": "https://www.youtube.com/watch?v=xtqUu8DGQko",
+      "source": "iBiology",
+      "duration": "30:44",
+      "chapters": [
+        "ch04",
+        "ch17"
+      ],
+      "tags": [
+        "centromeres",
+        "chromosomes"
+      ],
+      "description": "Sue Biggins on centromeres and kinetochores, including how a centromere is specified by CENP-A chromatin rather than by a DNA sequence. Picks up exactly where the chapter's account of neocentromeres stops."
+    },
+    {
+      "title": "Separating Duplicated Chromosomes",
+      "url": "https://www.youtube.com/watch?v=dvbFbBRHrWE",
+      "source": "iBiology Techniques",
+      "duration": "22:54",
+      "chapters": [
+        "ch04",
+        "ch17"
+      ],
+      "tags": [
+        "chromosomes",
+        "machines"
+      ],
+      "description": "Richard McIntosh on the electron microscopy of mitotic chromosomes and how the spindle moves them. Useful against Figure 4-60, which is one of his kind of images."
+    },
+    {
+      "title": "Archaic Genomics",
+      "url": "https://www.youtube.com/watch?v=M7VdRKQuAa8",
+      "source": "National Human Genome Research Institute",
+      "duration": "1:01:06",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "evolution"
+      ],
+      "description": "Svante Pääbo on sequencing Neanderthal and Denisovan genomes and what the interbreeding signal actually rests on. The primary source for Figure 4-78."
+    },
+    {
+      "title": "Finishing the First Truly Complete Human Genome",
+      "url": "https://www.youtube.com/watch?v=KnHeF8Zwbq4",
+      "source": "CSHL Leading Strand",
+      "duration": "57:56",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "centromeres"
+      ],
+      "description": "Adam Phillippy on the telomere-to-telomere assembly, which sequenced the satellite arrays and centromeres that Table 4-1's footnote lists as too repetitive to read. Updates the chapter directly."
+    },
+    {
+      "title": "The DNA Double Helix Discovery",
+      "url": "https://www.youtube.com/watch?v=1vm3od_UmFg",
+      "source": "HHMI BioInteractive",
+      "duration": "17:09",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "dna-structure",
+        "history"
+      ],
+      "description": "The x-ray diffraction evidence and the model built on it, including Franklin's contribution, for the two pages of the chapter that go past it in a paragraph."
+    },
+    {
+      "title": "ENCODE: Encyclopedia of DNA Elements",
+      "url": "https://www.youtube.com/watch?v=Y3V2thsJ1Wc",
+      "source": "Nature Video",
+      "duration": "4:37",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "genome-evolution"
+      ],
+      "description": "ENCODE stating its own case, published alongside the 2012 papers. Worth watching precisely because the chapter rejects the conclusion drawn here, and the paper filed under this chapter is the rebuttal."
     }
   ]
 }

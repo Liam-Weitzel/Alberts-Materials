@@ -18,12 +18,36 @@
       "deck": "ch03-proteins.md"
     },
     {
+      "slug": "ch04-dna-chromosomes-and-genomes",
+      "notes": "ch04-dna-chromosomes-and-genomes.md",
+      "deck": "ch04-dna-chromosomes-and-genomes.md"
+    },
+    {
       "slug": "ch05-dna-replication-repair-and-recombination",
       "notes": "ch05-dna-replication-repair-and-recombination.md",
       "deck": "ch05-dna-replication-repair-and-recombination.md"
     }
   ],
   "papers": [
+    {
+      "slug": "doolittle-2017-causal-roles-selected",
+      "file": "doolittle-2017-causal-roles-selected.md",
+      "title": "On causal roles and selected effects: our genome is mostly junk",
+      "authors": "W. Ford Doolittle, Tyler D. P. Brunet",
+      "year": "2017",
+      "journal": "BMC Biology 15(1)",
+      "link": "https://doi.org/10.1186/s12915-017-0460-9",
+      "date": "2026-08-09",
+      "chapters": [
+        "ch04-dna-chromosomes-and-genomes"
+      ],
+      "tags": [
+        "junk-dna",
+        "genome-evolution"
+      ],
+      "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
+      "words": 27
+    },
     {
       "slug": "blain-2014-progress-synthetic-cells",
       "file": "blain-2014-progress-synthetic-cells.md",
