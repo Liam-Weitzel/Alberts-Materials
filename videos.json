@@ -70,6 +70,63 @@
       "description": "Jack Szostak, in six minutes, on why RNA is the plausible first replicator."
     },
     {
+      "title": "Origin of the eukaryotic cell",
+      "url": "https://www.youtube.com/watch?v=gaXhkZoOOYc",
+      "source": "MoleCluesTV",
+      "duration": "43:45",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "organelles",
+        "genome-evolution",
+        "endosymbiosis"
+      ],
+      "description": "Nick Lane on where mitochondria came from and why that one event may be the reason complex cells exist at all. He argues a specific and contested position rather than surveying the field, which is what makes it worth the time next to the chapter's short treatment of organelles."
+    },
+    {
+      "title": "HIV Life Cycle",
+      "url": "https://www.youtube.com/watch?v=PlSvywlLuNw",
+      "source": "HHMI BioInteractive",
+      "duration": "4:57",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "viruses",
+        "animation"
+      ],
+      "description": "A virus running the whole cycle: entry, reverse transcription, integration into the host genome, and assembly of new particles. The chapter treats viruses partly as mobile genetic elements, and this is that idea moving."
+    },
+    {
+      "title": "Model Organisms in Biomedical Research",
+      "url": "https://www.youtube.com/watch?v=Jj5QlYlE66w",
+      "source": "University of Leicester",
+      "duration": "6:24",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "model-organisms"
+      ],
+      "description": "Why a fruit fly or a yeast cell is used to answer questions about humans, and how far the answers carry. The chapter introduces the standard model organisms and the deck leans on them heavily, but the book says little about the reasoning behind the choice."
+    },
+    {
+      "title": "The Genome as the Modern Rosetta Stone",
+      "url": "https://www.youtube.com/watch?v=9lSfzwZ4s90",
+      "source": "iBiology",
+      "duration": "13:05",
+      "chapters": [
+        "ch01"
+      ],
+      "tags": [
+        "human-genome",
+        "regulatory-dna",
+        "genome-evolution"
+      ],
+      "description": "Rob Phillips (Caltech) on how much of a sequenced genome we still cannot read: the regulatory DNA between the genes, whose function is largely unknown. A useful corrective to the chapter's account of what having a genome sequence actually buys you."
+    },
+    {
       "title": "Cell Chemistry and Bioenergetics",
       "url": "https://www.youtube.com/watch?v=kKgjsL5DqUY",
       "source": "Last Minute Lecture",
@@ -203,6 +260,81 @@
         "structure"
       ],
       "description": "Primary through quaternary structure, built up on actual PDB entries."
+    },
+    {
+      "title": "Reversible Protein Phosphorylation as a Regulatory Mechanism",
+      "url": "https://www.youtube.com/watch?v=8XKRAduG2Hk",
+      "source": "iBiology",
+      "duration": "16:20",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "phosphorylation",
+        "regulation",
+        "history"
+      ],
+      "description": "Edmond Fischer on the discovery he shared a Nobel for: that adding and removing a phosphate is how a cell switches a protein on and off. The single most-used idea in the chapter's regulation section, told by one of the people who found it."
+    },
+    {
+      "title": "Prion Disease",
+      "url": "https://www.youtube.com/watch?v=60H5_ZmnEgc",
+      "source": "iBiology",
+      "duration": "13:24",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "prions",
+        "amyloid",
+        "folding"
+      ],
+      "description": "Susan Lindquist (MIT/HHMI) on a protein whose misfolded form is infectious because it makes other copies misfold the same way. The chapter's amyloid and prion material from a researcher who spent a career on it."
+    },
+    {
+      "title": "Ras oncogene",
+      "url": "https://www.youtube.com/watch?v=wozIHg82Rl8",
+      "source": "iBiology",
+      "duration": "5:24",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "gtpases",
+        "regulation",
+        "signaling"
+      ],
+      "description": "Alfred Wittinghofer (MPI) on Ras as a molecular switch: bound GTP means on, hydrolysis to GDP means off, and a mutation that blocks the hydrolysis leaves it jammed on. Five minutes, and the structural basis for the chapter's GTPase switch."
+    },
+    {
+      "title": "T-State and R-State of Hemoglobin",
+      "url": "https://www.youtube.com/watch?v=LKvQLasB6jw",
+      "source": "Andrey K",
+      "duration": "10:54",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "allostery",
+        "binding",
+        "regulation"
+      ],
+      "description": "Allostery in the example the chapter builds it on: two conformations, and binding at one site shifting the whole molecule's affinity at the others. Worth watching before the chapter's allosteric enzymes, since hemoglobin is where the idea is easiest to see."
+    },
+    {
+      "title": "Ubiquitination of Proteins",
+      "url": "https://www.youtube.com/watch?v=ao5DJ4q2DsA",
+      "source": "Andrey K",
+      "duration": "9:03",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "ubiquitin",
+        "regulation",
+        "degradation"
+      ],
+      "description": "How a protein gets tagged for destruction, and why the tag is a chain rather than a single mark. The chapter's control-by-degradation thread, which the deck returns to repeatedly."
     },
     {
       "title": "DNA, Chromosomes, and Genomes",

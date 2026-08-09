@@ -11,6 +11,11 @@
       "slug": "ch02-cell-chemistry-and-bioenergetics",
       "notes": "ch02-cell-chemistry-and-bioenergetics.md",
       "deck": "ch02-cell-chemistry-and-bioenergetics.md"
+    },
+    {
+      "slug": "ch03-proteins",
+      "notes": "ch03-proteins.md",
+      "deck": "ch03-proteins.md"
     }
   ],
   "papers": [
@@ -53,6 +58,25 @@
         "ATP",
         "chemical bonds",
         "bioenergetics"
+      ],
+      "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
+      "words": 27
+    },
+    {
+      "slug": "anfinsen-1973-principles-that-govern",
+      "file": "anfinsen-1973-principles-that-govern.md",
+      "title": "Principles that Govern the Folding of Protein Chains",
+      "authors": "Christian B. Anfinsen",
+      "year": "1973",
+      "journal": "Science 181(4096), 223-230",
+      "link": "https://doi.org/10.1126/science.181.4096.223",
+      "date": "2026-08-08",
+      "chapters": [
+        "ch03-proteins"
+      ],
+      "tags": [
+        "protein-folding",
+        "thermodynamics"
       ],
       "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
       "words": 27
