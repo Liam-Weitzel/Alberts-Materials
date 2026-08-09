@@ -322,6 +322,22 @@ root. Add an entry, commit, done.
 paper: `ch03` is enough because prefixes are expanded, and one video can list several
 chapters when an episode spans them. Everything else is decoration.
 
+The card shows the video's poster image, derived from the url, with the player swapped in
+on click — so a chapter page loads a thumbnail per video rather than an embedded player
+each. An optional `thumbnail` overrides that, for the rare video whose own poster is
+useless. Only one video plays at a time: starting a second collapses the first.
+
+A green bar along the bottom of a poster is how far you got last time, and clicking picks
+up where you left off. This is tracked by listening to the embedded player, so it only
+knows about watching done here — following the **Source ↗** link and watching on YouTube
+leaves no trace. It lives in `localStorage` under `alberts-video-progress-v1`, its own key
+rather than part of the SRS record, so resetting a chapter's scheduling doesn't disturb it.
+**Export progress** carries it anyway, as a `videos` key beside `data` in the same file, so
+one export still moves everything to another device — and an export file written before
+this existed imports fine, just without any bars. **Reset everything** clears it along with
+the scheduling; the per-chapter **Reset progress** button doesn't, since that one is scoped
+to a deck's cards.
+
 A video naming a chapter that doesn't exist yet is kept and shown nowhere, which is what
 makes it worth filling in a whole playlist at once: each episode appears by itself the day
 its chapter gets a write-up or a deck. The shipped `videos.json` covers all 24 chapters

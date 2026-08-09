@@ -96,6 +96,9 @@
   }
 
   function render(html) {
+    // Navigating away destroys whatever iframe was playing, so bank its
+    // position first: leaving a video by clicking a link is normal.
+    stopWatching();
     view.innerHTML = html;
     MD.typeset(view);
     window.scrollTo(0, 0);
@@ -552,27 +555,72 @@
 
   /* ---------- videos ---------- */
 
-  // A video renders as a facade, not an iframe: a play button over a title bar.
-  // The iframe is created on click, so opening a chapter costs no request to
-  // YouTube and a chapter with six videos is as cheap as one with none.
-  function videoCard(v) {
-    var meta = [];
-    if (v.source) meta.push(esc(v.source));
-    if (v.duration) meta.push(esc(v.duration));
+  // A video renders as a facade, not an iframe: the poster image with a play
+  // button over it. The iframe is created on click, so opening a chapter costs
+  // one image per video rather than a whole embedded player each.
+  //
+  // The facade is its own function because collapsing a card puts it back, not
+  // only because the card is built from it.
+  // Past this much, a video counts as finished: the bar fills and the next
+  // click starts it over rather than dropping you into the closing credits.
+  var WATCHED = 0.97;
+  // Below this, resuming is more annoying than helpful — you have watched a
+  // title card, and being put back there feels like the click did nothing.
+  var RESUME_MIN = 15;
+
+  /* Where a click should start the video, and what the button should say. */
+  function resumePoint(v) {
+    var rec = Videos.progress(v.key);
+    var frac = Videos.fraction(rec, v.seconds);
+    var at = (frac > 0 && frac < WATCHED && rec.t >= RESUME_MIN) ? rec.t : 0;
+    return { frac: frac, at: at, done: frac >= WATCHED };
+  }
+
+  function videoFacade(v) {
+    // alt="" on purpose: the heading next to it already names the video, so a
+    // second copy would just be read out twice.
+    var poster = v.thumb
+      ? '<img class="video-thumb" src="' + esc(v.thumb) + '" alt="" loading="lazy" decoding="async"' +
+        (v.thumbFallback ? ' data-thumb-fallback="' + esc(v.thumbFallback) + '"' : '') + '>'
+      : '';
+
+    var p = resumePoint(v);
+    var hint = p.at ? 'Resume ' + Videos.clock(p.at) : (p.done ? 'Watch again' : 'Play here');
+    var label = p.at ? 'Resume ' + v.title + ' at ' + Videos.clock(p.at) : 'Play ' + v.title;
+
+    // Drawn last so it sits over the scrim. aria-hidden because the button it
+    // covers already says "Resume 8:12", which is the same fact in words.
+    var bar = p.frac > 0
+      // A finished video is drawn full rather than at its true 99.4%: the
+      // sliver of track left over reads as a glitch, not as "nearly done".
+      ? '<div class="video-progress' + (p.done ? ' is-done' : '') + '" aria-hidden="true">' +
+          '<span style="width:' + (p.done ? '100' : (p.frac * 100).toFixed(2)) + '%"></span>' +
+        '</div>'
+      : '';
 
     var body = v.embed
       ? '<button class="video-play" type="button" data-video="' + esc(v.id) + '" ' +
-          'aria-label="Play ' + esc(v.title) + '">' +
+          'aria-label="' + esc(label) + '">' +
           '<span class="video-play-mark" aria-hidden="true">▶</span>' +
-          '<span class="video-play-hint">Play here</span>' +
+          '<span class="video-play-hint">' + esc(hint) + '</span>' +
         '</button>'
       : '<a class="video-play video-play-out" href="' + esc(v.watch) + '" target="_blank" rel="noopener">' +
           '<span class="video-play-mark" aria-hidden="true">↗</span>' +
           '<span class="video-play-hint">Open</span>' +
         '</a>';
 
+    return poster + body + bar;
+  }
+
+  function frameClass(v) { return 'video-frame' + (v.thumb ? ' has-thumb' : ''); }
+
+  function videoCard(v) {
+    var meta = [];
+    if (v.source) meta.push(esc(v.source));
+    if (v.duration) meta.push(esc(v.duration));
+
     return '<article class="video-row" data-video-row="' + esc(v.id) + '">' +
-      '<div class="video-frame">' + body + '</div>' +
+      '<div class="' + frameClass(v) + '">' + videoFacade(v) + '</div>' +
       '<div class="video-body">' +
         '<h3>' + esc(v.title) + '</h3>' +
         (meta.length ? '<p class="video-cite">' + meta.join(' · ') + '</p>' : '') +
@@ -586,21 +634,125 @@
     '</article>';
   }
 
+  /* ---- watch progress ----
+   *
+   * With enablejsapi=1 the embed reports where the player has got to over
+   * postMessage. We speak that protocol directly rather than loading YouTube's
+   * player API script, which would pull a third-party script onto every page
+   * and undo the point of the facade. The message format is YouTube's own and
+   * undocumented, so nothing here trusts it: every field is checked, and if
+   * they ever change it the cost is a bar that stops filling.
+   */
+
+  var YT_ORIGINS = ['https://www.youtube-nocookie.com', 'https://www.youtube.com'];
+  var live = null;   // the one playing video, or null
+
+  function tell(win, msg) {
+    try { win.postMessage(JSON.stringify(msg), '*'); } catch (e) { /* gone */ }
+  }
+
+  function beginWatching(frame, v) {
+    var f = frame.querySelector('iframe');
+    if (!f || !v.key) return;
+    live = { key: v.key, frame: f, t: 0, d: v.seconds || 0, heard: false, ticks: 0 };
+
+    // The player answers only once it has loaded, and there is no event for
+    // that from out here, so we keep saying hello until it replies. Twenty
+    // tries is ten seconds; past that it is not going to.
+    live.timer = setInterval(function () {
+      if (!live) return;
+      live.ticks++;
+      if (!live.heard) {
+        if (live.ticks <= 20 && f.contentWindow) {
+          tell(f.contentWindow, { event: 'listening', id: 1, channel: 'widget' });
+        }
+      } else if (live.ticks % 20 === 0) {
+        Videos.flush();   // roughly every ten seconds, not on every message
+      }
+    }, 500);
+  }
+
+  // Called whenever the iframe goes away: another video, a new page, or the
+  // tab closing. This is the write that makes progress survive the session.
+  function stopWatching() {
+    if (!live) return;
+    clearInterval(live.timer);
+    if (live.t) { Videos.mark(live.key, live.t, live.d); Videos.flush(); }
+    live = null;
+  }
+
+  window.addEventListener('message', function (e) {
+    if (!live || YT_ORIGINS.indexOf(e.origin) === -1) return;
+    var d;
+    try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (err) { return; }
+    if (!d || !d.info) return;
+
+    live.heard = true;
+    if (typeof d.info.duration === 'number' && d.info.duration > 0) live.d = d.info.duration;
+    if (typeof d.info.currentTime === 'number' && d.info.currentTime >= 0) {
+      live.t = d.info.currentTime;
+      Videos.mark(live.key, live.t, live.d);   // in memory; flushed on a timer
+    }
+  });
+
+  // Closing the tab mid-video is the normal way to leave one unfinished, so it
+  // has to be a save point. pagehide fires where unload is unreliable on mobile.
+  window.addEventListener('pagehide', stopWatching);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden' && live && live.t) {
+      Videos.mark(live.key, live.t, live.d);
+      Videos.flush();
+    }
+  });
+
+  // Put a card back the way it started. Replacing the frame's contents destroys
+  // the iframe, which is also what stops the sound.
+  function collapseVideo(card) {
+    var v = Videos.get(card.getAttribute('data-video-row'));
+    var frame = card.querySelector('.video-frame');
+    stopWatching();   // before the rebuild, so the facade draws the new bar
+    if (v && frame) {
+      frame.innerHTML = videoFacade(v);
+      frame.className = frameClass(v);
+    }
+    card.classList.remove('is-playing');
+  }
+
   // Swap a facade for the real player. Only ever called from a click, so
   // autoplay is allowed and the reader does not have to press play twice.
   function playVideo(id) {
     var v = Videos.get(id);
     if (!v || !v.embed) return;
-    var row = view.querySelector('[data-video-row="' + id + '"] .video-frame');
+    var card = view.querySelector('[data-video-row="' + id + '"]');
+    var row = card && card.querySelector('.video-frame');
     if (!row) return;
+
+    // One player at a time. Two enlarged cards would mean two soundtracks, and
+    // the enlarged state is what marks which video the page is currently on.
+    // Collapsing a card above this one shortens the list, so hold the card the
+    // reader actually clicked where it is instead of letting the page lurch.
+    var top = card.getBoundingClientRect().top;
+    var open = view.querySelectorAll('.video-row.is-playing');
+    for (var i = 0; i < open.length; i++) {
+      if (open[i].getAttribute('data-video-row') !== id) collapseVideo(open[i]);
+    }
+    var shift = card.getBoundingClientRect().top - top;
+    if (shift) window.scrollBy(0, shift);
+
+    // A saved position wins over the author's deep link: if you have watched
+    // half of it, half is where you want to be, whatever t= said.
+    var at = resumePoint(v).at || v.start;
     var sep = v.embed.indexOf('?') === -1 ? '?' : '&';
-    row.innerHTML = '<iframe src="' + esc(v.embed + sep + 'autoplay=1') + '" ' +
+    var src = v.embed + sep + 'autoplay=1' + (at ? '&start=' + Math.floor(at) : '');
+
+    row.innerHTML = '<iframe src="' + esc(src) + '" ' +
       'title="' + esc(v.title) + '" loading="lazy" allowfullscreen ' +
       'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
       'referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    row.classList.remove('has-thumb');
     row.classList.add('is-playing');
-    var card = view.querySelector('[data-video-row="' + id + '"]');
-    if (card) card.classList.add('is-playing');
+    card.classList.add('is-playing');
+    beginWatching(row, v);
     var f = row.querySelector('iframe');
     if (f) f.focus();
   }
@@ -1076,7 +1228,7 @@
       '</section>' +
       '<section class="panel">' +
         '<h2>Progress</h2>' +
-        '<p class="muted">' + total.seen + ' of ' + total.total + ' cards introduced. Scheduling lives in this browser\'s localStorage. Export it to carry it to another device.</p>' +
+        '<p class="muted">' + total.seen + ' of ' + total.total + ' cards introduced. Scheduling and video watch progress live in this browser\'s localStorage. Export carries both to another device.</p>' +
         '<div class="row">' +
           '<button class="btn" type="button" data-act="export">Export progress</button>' +
           '<button class="btn" type="button" data-act="import">Import progress…</button>' +
@@ -1107,8 +1259,16 @@
       toast('Saved');
     });
 
+    // Watch progress rides along as a sibling of `data` rather than inside it,
+    // so srs.js stays unaware of videos and the two stay separate on disk.
+    function exportAll() {
+      var payload = JSON.parse(SRS.exportJSON());
+      payload.videos = Videos.dump();
+      return JSON.stringify(payload, null, 2);
+    }
+
     view.querySelector('[data-act="export"]').addEventListener('click', function () {
-      var blob = new Blob([SRS.exportJSON()], { type: 'application/json' });
+      var blob = new Blob([exportAll()], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = 'alberts-progress-' + new Date().toISOString().slice(0, 10) + '.json';
@@ -1124,8 +1284,11 @@
       var reader = new FileReader();
       reader.onload = function () {
         try {
+          // SRS first: it is the half that validates the file, so a bad import
+          // throws before any watch progress has been overwritten.
           var n = SRS.importJSON(reader.result);
-          toast('Imported ' + n + ' cards of progress');
+          var v = Videos.restore(JSON.parse(reader.result).videos);
+          toast('Imported ' + n + ' cards' + (v ? ' and ' + v + ' videos' : '') + ' of progress');
           viewSettings();
         } catch (e) {
           alert('Could not import that file: ' + e.message);
@@ -1135,8 +1298,9 @@
     });
 
     view.querySelector('[data-act="reset"]').addEventListener('click', function () {
-      if (!confirm('Delete all scheduling and history? This cannot be undone.')) return;
+      if (!confirm('Delete all scheduling, history and watch progress? This cannot be undone.')) return;
       SRS.resetAll();
+      Videos.forget();
       toast('All progress cleared');
       viewSettings();
     });
@@ -1189,6 +1353,22 @@
     var btn = e.target.closest ? e.target.closest('[data-video]') : null;
     if (btn) playVideo(btn.getAttribute('data-video'));
   });
+
+  // Not every video has a maxres poster. `error` does not bubble, hence capture.
+  // Dropping the class returns the frame to the plain gradient facade, so a
+  // video with no usable poster at all still looks deliberate.
+  view.addEventListener('error', function (e) {
+    var img = e.target;
+    if (!img || img.tagName !== 'IMG' || !img.classList.contains('video-thumb')) return;
+    var next = img.getAttribute('data-thumb-fallback');
+    if (next) {
+      img.removeAttribute('data-thumb-fallback');
+      img.src = next;
+    } else if (img.parentNode) {
+      img.parentNode.classList.remove('has-thumb');
+      img.parentNode.removeChild(img);
+    }
+  }, true);
 
   applyTheme(SRS.settings().theme);
   render('<div class="loading"><span class="spinner"></span> Loading…</div>');

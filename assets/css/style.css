@@ -616,6 +616,17 @@ a.stat:hover .stat-n { color: var(--accent); }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .video-frame.is-playing { border-color: var(--line-strong); }
 
+/* YouTube's hqdefault fallback is 4:3 with black bars baked in; `cover` in a
+   16:9 box crops exactly those bars away, so both sizes frame the same. */
+.video-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* Once it is actually playing, the player stops being a thumbnail and takes the
    full width of the card, with the title dropping underneath it. */
 .video-row.is-playing { grid-template-columns: 1fr; gap: .9rem; }
@@ -638,6 +649,17 @@ a.stat:hover .stat-n { color: var(--accent); }
   cursor: pointer;
   transition: color .15s, background .15s;
 }
+/* Over a poster the gradient becomes a scrim instead: dark enough for the hint
+   text to read on any frame, lifting on hover so the image comes through. */
+.has-thumb .video-play {
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, .62), rgba(0, 0, 0, .18) 55%, rgba(0, 0, 0, .3));
+}
+.has-thumb .video-play:hover,
+.has-thumb .video-play:focus-visible {
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, .08) 55%, rgba(0, 0, 0, .2));
+}
 .video-play:hover, .video-play:focus-visible { color: var(--accent); }
 .video-play-mark {
   display: grid;
@@ -655,6 +677,27 @@ a.stat:hover .stat-n { color: var(--accent); }
 .video-play:hover .video-play-mark { transform: scale(1.06); }
 .video-play-out .video-play-mark { padding-left: 0; }
 .video-play-hint { font-size: .78rem; letter-spacing: .01em; }
+
+/* How far into the video you got last time, in YouTube's position but the
+   site's colour. The track is dark rather than tinted so it reads the same
+   over a bright poster as over a dark one. */
+.video-progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, .45);
+  pointer-events: none;
+}
+.video-progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+/* Finished: the same bar, dimmed, so a watched video is legible at a glance
+   without competing with the one you are part-way through. */
+.video-progress.is-done span { opacity: .55; }
 
 .video-body { min-width: 0; padding-right: 5rem; }
 .video-body h3 { margin: 0 0 .2em; font-size: 1.02rem; }

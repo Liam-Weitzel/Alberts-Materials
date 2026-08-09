@@ -367,6 +367,97 @@
       "description": "Drew Berry's animation of ATP synthase turning. The rotary mechanism is far easier to believe once you have watched it."
     },
     {
+      "title": "Overview of the citric acid cycle",
+      "url": "https://www.youtube.com/watch?v=_SkPwVO9BFI",
+      "source": "Harvard Online",
+      "duration": "4:31",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "citric-acid-cycle",
+        "metabolism"
+      ],
+      "description": "Four and a half minutes on the cycle as a whole: what goes in, what comes out, and why the carbons end up as CO2 while the energy leaves on carriers. Start here before the long one below."
+    },
+    {
+      "title": "Metabolism | The Krebs Cycle",
+      "url": "https://www.youtube.com/watch?v=rr7IRYLqleg",
+      "source": "Ninja Nerd",
+      "duration": "32:15",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "citric-acid-cycle",
+        "metabolism",
+        "deep-dive"
+      ],
+      "description": "The whiteboard version, enzyme by enzyme and intermediate by intermediate. Far more detail than the chapter asks for, which is the point when a step stops making sense."
+    },
+    {
+      "title": "Electron carrier molecules",
+      "url": "https://www.youtube.com/watch?v=yDCeMg0krRM",
+      "source": "Khan Academy Medicine",
+      "duration": "10:02",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "electron-carriers",
+        "nadh",
+        "activated-carriers"
+      ],
+      "description": "NAD+/NADH and FAD/FADH2 as the chapter's activated carriers: what is actually being carried, and why a reduced carrier is a way of holding energy until something needs it."
+    },
+    {
+      "title": "ATP hydrolysis mechanism",
+      "url": "https://www.youtube.com/watch?v=-KE7jTXwNYs",
+      "source": "Khan Academy",
+      "duration": "4:26",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "atp",
+        "coupled-reactions",
+        "thermodynamics"
+      ],
+      "description": "Why ATP to ADP releases usable energy, at the level of the bond rather than the slogan. The chapter leans on ATP as the cell's currency constantly and explains this once."
+    },
+    {
+      "title": "Muscle metabolism",
+      "url": "https://www.youtube.com/watch?v=HRa1Qd_RAuY",
+      "source": "Janet Lindsley",
+      "duration": "16:18",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "exercise",
+        "anaerobic",
+        "glycolysis",
+        "metabolism"
+      ],
+      "description": "A biochemistry lecturer's account of how muscle actually pays for contraction: which pathway is used over what timescale, and why the fast one runs without oxygen and yields so much less ATP. This is the chapter's aerobic/anaerobic distinction at the level of the pathways rather than the training plan."
+    },
+    {
+      "title": "Overview of Lactate Formation and Recycling",
+      "url": "https://www.youtube.com/watch?v=sJO78WVzR1g",
+      "source": "Andrey K",
+      "duration": "15:23",
+      "chapters": [
+        "ch02"
+      ],
+      "tags": [
+        "anaerobic",
+        "lactate",
+        "glycolysis",
+        "metabolism"
+      ],
+      "description": "Where pyruvate goes when it cannot be oxidised fast enough, why regenerating NAD+ is the actual point of making lactate, and how the liver buys it back through the Cori cycle. The chapter's fermentation section in more detail, and the corrective to the lactic-acid-causes-soreness story."
+    },
+    {
       "title": "Mechanisms of Cell Communication",
       "url": "https://www.youtube.com/watch?v=80Efr5-j9nE",
       "source": "Last Minute Lecture",

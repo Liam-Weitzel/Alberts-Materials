@@ -22,9 +22,13 @@
  * several chapters. A video naming a chapter that does not exist yet is kept but
  * shown nowhere, so the whole playlist can be filled in ahead of the reading.
  *
- * `url` is the only field that has to be right. It is parsed into an embed URL,
- * and anything unrecognized still renders as a plain outbound link rather than
- * disappearing.
+ * `url` is the only field that has to be right. It is parsed into an embed URL
+ * and a poster image, and anything unrecognized still renders as a plain
+ * outbound link rather than disappearing.
+ *
+ * `thumbnail` is optional and almost never needed: YouTube posters are derived
+ * from the url. Set it to override a bad poster, or to give one to a provider
+ * whose thumbnails we cannot derive.
  */
 window.Videos = (function () {
   'use strict';
@@ -32,6 +36,28 @@ window.Videos = (function () {
   var order = [];
 
   /* ---- url parsing ---- */
+
+  /* "56:12" and "1:02:33", the way durations are written in videos.json. */
+  function clockToSeconds(s) {
+    if (typeof s === 'number') return s;
+    if (!s) return 0;
+    var parts = String(s).split(':');
+    var total = 0;
+    for (var i = 0; i < parts.length; i++) {
+      var n = parseInt(parts[i], 10);
+      if (isNaN(n)) return 0;
+      total = total * 60 + n;
+    }
+    return total;
+  }
+
+  /* Back the other way, for "Resume 8:12". */
+  function clock(sec) {
+    sec = Math.max(0, Math.round(sec || 0));
+    var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+    var mm = h && m < 10 ? '0' + m : String(m);
+    return (h ? h + ':' : '') + mm + ':' + (s < 10 ? '0' + s : s);
+  }
 
   /* "1h2m3s", "90s" and "90" are all accepted by YouTube's t= parameter. */
   function seconds(t) {
@@ -81,18 +107,119 @@ window.Videos = (function () {
     // youtube-nocookie keeps the embed from writing tracking cookies, and the
     // iframe is only ever created after a click, so nothing is requested from
     // YouTube until the reader asks for it.
-    var q = ['rel=0', 'modestbranding=1', 'playsinline=1'];
-    var start = seconds(u.searchParams.get('t') || u.searchParams.get('start'));
-    if (start) q.push('start=' + start);
+    // enablejsapi lets the player report where it has got to, which is what
+    // draws the watched bar. `origin` is what makes that channel safe to talk
+    // on; without a real http origin (a file:// preview, say) it is left off
+    // and the bar simply never fills.
+    var q = ['rel=0', 'modestbranding=1', 'playsinline=1', 'enablejsapi=1'];
+    var here = (typeof location !== 'undefined' && location.origin) || '';
+    if (/^https?:\/\//.test(here)) q.push('origin=' + encodeURIComponent(here));
+
     var list = u.searchParams.get('list');
     if (list) q.push('list=' + encodeURIComponent(list));
+
+    // Deliberately not folded into the query: a saved position has to be able
+    // to override the author's deep link, and two start= params would not.
+    var start = seconds(u.searchParams.get('t') || u.searchParams.get('start'));
+
+    // maxresdefault is 1280x720 but only exists for videos uploaded with a big
+    // enough source; hqdefault always exists, so it is the fallback the card
+    // swaps in when the first one 404s.
+    var vi = 'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/';
 
     return {
       provider: 'youtube',
       id: id,
       embed: 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?' + q.join('&'),
-      watch: 'https://www.youtube.com/watch?v=' + encodeURIComponent(id) + (list ? '&list=' + encodeURIComponent(list) : '')
+      watch: 'https://www.youtube.com/watch?v=' + encodeURIComponent(id) + (list ? '&list=' + encodeURIComponent(list) : ''),
+      thumb: vi + 'maxresdefault.jpg',
+      thumbFallback: vi + 'hqdefault.jpg',
+      start: start
     };
+  }
+
+  /* ---- watch progress ----
+   *
+   * Kept in its own localStorage key rather than inside the SRS record, so
+   * resetting your scheduling does not wipe what you have watched and vice
+   * versa. Keyed by the provider's own video id, never by position in
+   * videos.json, so reordering or inserting entries does not shuffle anyone's
+   * history onto the wrong video.
+   */
+
+  var PKEY = 'alberts-video-progress-v1';
+  var marks = null;
+
+  function store() {
+    if (marks) return marks;
+    marks = {};
+    try {
+      var d = JSON.parse(localStorage.getItem(PKEY) || 'null');
+      if (d && d.videos) marks = d.videos;
+    } catch (e) {
+      // Private mode, or someone hand-edited it into nonsense. Starting empty
+      // loses history; failing here would lose the videos section entirely.
+    }
+    return marks;
+  }
+
+  /* Writes are batched by the caller: this is the one that touches the disk. */
+  function flush() {
+    try {
+      localStorage.setItem(PKEY, JSON.stringify({ version: 1, videos: store() }));
+    } catch (e) {
+      // Full or read-only storage. A progress bar is not worth an exception.
+    }
+  }
+
+  function mark(key, t, d) {
+    if (!key || typeof t !== 'number' || !isFinite(t) || t < 0) return;
+    var s = store();
+    var rec = s[key] || (s[key] = {});
+    rec.t = Math.round(t);
+    if (typeof d === 'number' && d > 0) rec.d = Math.round(d);
+    rec.at = Date.now();
+  }
+
+  function progress(key) { return (key && store()[key]) || null; }
+
+  function forget() { marks = {}; flush(); }
+
+  /* ---- carried in the export file ----
+   *
+   * Storage stays in its own key; only the transport file is shared, so one
+   * export still moves everything to another device.
+   */
+
+  function dump() { return store(); }
+
+  /* Replaces the whole record. Returns how many videos came in — 0 for a file
+   * written before watch progress existed, which is not an error. */
+  function restore(videos) {
+    if (!videos || typeof videos !== 'object') return 0;
+    var clean = {}, n = 0;
+    Object.keys(videos).forEach(function (k) {
+      var r = videos[k];
+      // Hand-edited or truncated files get filtered rather than trusted: a
+      // bad record here would draw a nonsense bar on every card.
+      if (!r || typeof r.t !== 'number' || !isFinite(r.t) || r.t < 0) return;
+      clean[k] = { t: Math.round(r.t), at: r.at || Date.now() };
+      if (typeof r.d === 'number' && r.d > 0) clean[k].d = Math.round(r.d);
+      n++;
+    });
+    marks = clean;
+    flush();
+    return n;
+  }
+
+  /* How far in, 0 to 1. `fallback` is the duration from videos.json, used when
+   * the player has not reported one of its own yet. 0 means "cannot tell",
+   * which is drawn as no bar rather than an empty one. */
+  function fraction(rec, fallback) {
+    if (!rec || !rec.t) return 0;
+    var d = rec.d || fallback || 0;
+    if (!d) return 0;
+    return Math.max(0, Math.min(1, rec.t / d));
   }
 
   /* ---- chapter references ---- */
@@ -139,7 +266,15 @@ window.Videos = (function () {
         tags: v.tags || [],
         embed: src ? src.embed : '',
         watch: src ? src.watch : (v.url || ''),
-        provider: src ? src.provider : ''
+        provider: src ? src.provider : '',
+        // `thumbnail` in the json wins, so a video whose poster is wrong (or
+        // whose provider has none) can be given one by hand.
+        thumb: v.thumbnail || (src && src.thumb) || '',
+        thumbFallback: v.thumbnail ? '' : ((src && src.thumbFallback) || ''),
+        // Stable across edits to videos.json, unlike `id`, which is the index.
+        key: src ? src.provider + ':' + src.id : '',
+        start: (src && src.start) || 0,
+        seconds: clockToSeconds(v.duration)
       };
     }).filter(function (v) { return v.url; });
 
@@ -175,6 +310,9 @@ window.Videos = (function () {
 
   return {
     init: init, all: all, count: count, get: get, forChapter: forChapter,
-    load: load, parse: parse
+    load: load, parse: parse,
+    progress: progress, mark: mark, flush: flush, forget: forget,
+    fraction: fraction, clock: clock,
+    dump: dump, restore: restore
   };
 })();
