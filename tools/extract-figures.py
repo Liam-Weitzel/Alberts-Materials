@@ -44,6 +44,7 @@ TEXT_JOIN = 60         # px, how close a label must sit to attach to artwork
 ABSORB = 150           # px, gap across which separate panels count as one figure
 ALIGNED_ABSORB = 330   # px, same but for panels sharing a row/column
 MIN_COMPONENT = 200
+TABLE_JOIN = 90        # px, how far a table's ruled grid may run on downward
 
 
 def is_body(fam):
@@ -91,7 +92,7 @@ def parse_page(pel, fonts):
 
 CAP_RE = re.compile(r"^\s*Figure\s+(Q?)(\d+)[–\-](\d+)")
 PANEL_RE = re.compile(r"^\s*PANEL\s+(\d+)[–\-](\d+)")
-TABLE_RE = re.compile(r"^\s*TABLE\s+(\d+)[–\-](\d+)")
+TABLE_RE = re.compile(r"^\s*TABLE\s+(Q?)(\d+)[–\-](\d+)")
 TAG_RE = re.compile(r"^\s*MBoC7\b(.*)$")
 NUM_RE = re.compile(r"^(Q?)(\d+)\.(\d+)$")
 
@@ -193,10 +194,24 @@ def extract_page(page, pel, fonts):
             x0, y0, x1, y1 = box(it, pad=2)
             ink_keep[y0:y1, x0:x1] = False
 
+    # An art tag is invisible in the printed page but still occupies a text
+    # box, and it is often laid straight over a figure's own label. Painting it
+    # out there would rub out part of the label, so leave those alone: there is
+    # no ink under them to hide.
+    label_boxes = [box(it, pad=2) for it in items
+                   if it["text"].strip() and not is_caption_font(it["fam"])
+                   and not is_body(it["fam"]) and not TAG_RE.match(it["text"])]
+
+    def over_label(b):
+        return any(min(b[2], l[2]) - max(b[0], l[0]) > 0
+                   and min(b[3], l[3]) - max(b[1], l[1]) > 0 for l in label_boxes)
+
     clean = img.copy()
     for it in items:
         if is_caption_font(it["fam"]) or is_body(it["fam"]) or TAG_RE.match(it["text"]):
             x0, y0, x1, y1 = box(it, pad=2)
+            if TAG_RE.match(it["text"]) and over_label((x0, y0, x1, y1)):
+                continue
             clean[y0:y1, x0:x1] = 255
     clean[:head_cut, :] = 255
     clean[foot_cut:, :] = 255
@@ -249,19 +264,6 @@ def extract_page(page, pel, fonts):
             figs[key] = list(comps[best])
             used.add(best)
 
-    # Tables are ruled grids, not artwork. Let each table claim the graphics
-    # directly beneath its caption so no figure can absorb them.
-    for it in items:
-        if not TABLE_RE.match(it["text"]):
-            continue
-        tx0, ty0, tx1, ty1 = box(it, pad=0)
-        for ci, c in enumerate(comps):
-            if ci in used:
-                continue
-            overlaps_col = min(c[2], tx1 + 1400) - max(c[0], tx0 - 60) > 0
-            if overlaps_col and c[1] >= ty0 - 40:
-                used.add(ci)
-
     # A few figures carry no art tag; seed those from their caption instead.
     for key, (ax, ay) in cap_anchors.items():
         if key in figs:
@@ -277,6 +279,47 @@ def extract_page(page, pel, fonts):
         if best is not None and bd < 900:
             figs[key] = list(comps[best])
             used.add(best)
+
+    # Tables are ruled grids, not artwork. Let each table claim the graphics
+    # directly beneath its caption so no figure can absorb them. This runs
+    # after every figure has been seeded, because a table in one column can
+    # sit level with a figure in the other and would otherwise claim its art.
+    for it in items:
+        if not TABLE_RE.match(it["text"]):
+            continue
+        tx0, ty0, tx1, ty1 = box(it, pad=0)
+        # The grid starts at the caption's own left edge, so a plain overlap
+        # test already covers tables far wider than their caption line. Keeping
+        # the reach inside the caption's span is what stops a table claiming a
+        # figure beside it in the next column. Rules are contiguous, so walk
+        # down from the caption rather than swallowing the rest of the column:
+        # a figure lower on the same page is not part of the table.
+        def under_caption(ci):
+            c = comps[ci]
+            return (ci not in used
+                    and min(c[2], tx1 + 20) - max(c[0], tx0 - 60) > 0
+                    and c[1] >= ty0 - 40)
+
+        # The grid's own top rule is erased along with the coloured header the
+        # caption sits in, so the first component can start well below it. Take
+        # the nearest one outright, then only keep going while the rules stay
+        # contiguous.
+        below = [ci for ci in range(len(comps)) if under_caption(ci)]
+        if not below:
+            continue
+        first = min(below, key=lambda ci: comps[ci][1])
+        used.add(first)
+        bottom = comps[first][3]
+        for _ in range(8):
+            grew = False
+            for ci in range(len(comps)):
+                if not under_caption(ci) or comps[ci][1] > bottom + TABLE_JOIN:
+                    continue
+                used.add(ci)
+                bottom = max(bottom, comps[ci][3])
+                grew = True
+            if not grew:
+                break
 
     # Absorb neighbouring panels of the same figure.
     for _ in range(6):

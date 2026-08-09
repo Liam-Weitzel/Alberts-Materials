@@ -712,6 +712,176 @@
         "chapter-summary"
       ],
       "description": "The playlist numbers this one Chapter 20; it covers the adaptive half of chapter 24 in the 7th edition."
+    },
+    {
+      "title": "Matthew Meselson: The Semi-Conservative Replication of DNA",
+      "url": "https://www.youtube.com/watch?v=V2evjmkur7k",
+      "source": "iBiology Science Stories",
+      "duration": "13:09",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "replication",
+        "classic-experiments"
+      ],
+      "description": "Meselson telling his own experiment, which is the evidence for the semiconservative replication the chapter asserts in a sentence. Direct companion to the Meselson and Stahl paper filed under this chapter."
+    },
+    {
+      "title": "Chromosomal DNA Replication: Initiation of DNA Replication",
+      "url": "https://www.youtube.com/watch?v=sxedBRA18Ro",
+      "source": "Science Communication Lab",
+      "duration": "27:29",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "origins",
+        "replication"
+      ],
+      "description": "Stephen Bell on ORC, helicase loading and licensing. The chapter compresses the once-and-only-once problem into two paragraphs; this is the version with the experiments in it."
+    },
+    {
+      "title": "Investigating How DNA Replication Initiates in Eukaryotes",
+      "url": "https://www.youtube.com/watch?v=lmX8tqw6Aqk",
+      "source": "Int'l Centre for Genetic Eng. and Biotechnology",
+      "duration": "1:02:47",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "origins",
+        "replication"
+      ],
+      "description": "John Diffley on rebuilding eukaryotic origin firing from purified proteins. Watch after the Bell talk: this is what it took to prove the licensing model rather than infer it."
+    },
+    {
+      "title": "DNA Topology and the Mechanism of Type II DNA Topoisomerases",
+      "url": "https://www.youtube.com/watch?v=7vcechGKzJw",
+      "source": "INI Seminar Room 1",
+      "duration": "45:29",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "topoisomerases",
+        "enzymes"
+      ],
+      "description": "Anthony Maxwell on how a type II enzyme passes one helix through another, and on why trapping it mid-cycle is what makes the fluoroquinolone antibiotics lethal."
+    },
+    {
+      "title": "Paul Modrich: Mechanisms in E. coli and Human Mismatch Repair",
+      "url": "https://www.youtube.com/watch?v=ggIOSLL7ACw",
+      "source": "Nobel Prize",
+      "duration": "32:16",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "mismatch-repair",
+        "fidelity"
+      ],
+      "description": "The 2015 Nobel lecture, and one of the chapter's own references. Modrich on how the strand-discrimination problem was actually solved, first with GATC methylation in bacteria and then without it in humans."
+    },
+    {
+      "title": "Aziz Sancar: Mechanisms of DNA Repair by Photolyase and Excision Nuclease",
+      "url": "https://www.youtube.com/watch?v=RKFT8Iym8Zs",
+      "source": "Nobel Prize",
+      "duration": "50:22",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "dna-repair",
+        "enzymes"
+      ],
+      "description": "The companion 2015 Nobel lecture, also in the chapter's reference list. Nucleotide excision repair from the person who purified the machinery, including the transcription coupling that Cockayne syndrome breaks."
+    },
+    {
+      "title": "DNA Break Repair by Homologous Recombination",
+      "url": "https://www.youtube.com/watch?v=Xe-83tBcxhs",
+      "source": "WEHImovies",
+      "duration": "3:43",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "recombination",
+        "double-strand-breaks"
+      ],
+      "description": "Drew Berry's animation of resection, strand invasion and repair synthesis. Worth pairing with Figure 5-47 because the strand dance is much easier to follow moving than drawn."
+    },
+    {
+      "title": "How Do Little Chromosomes Know That They Are Little?",
+      "url": "https://www.youtube.com/watch?v=yLvmF36P5Mw",
+      "source": "Memorial Sloan Kettering Cancer Center",
+      "duration": "58:16",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "meiosis",
+        "recombination"
+      ],
+      "description": "Scott Keeney on crossover control, which the chapter calls fascinating and poorly understood before moving on. The guarantee that even the smallest chromosome gets one crossover is the question this whole talk is about."
+    },
+    {
+      "title": "Elizabeth Blackburn: Discovery of Telomeric DNA and Telomerase",
+      "url": "https://www.youtube.com/watch?v=0zfpfD_ILF0",
+      "source": "iBiology Science Stories",
+      "duration": "19:59",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "telomeres",
+        "classic-experiments"
+      ],
+      "description": "Blackburn on finding the repeats in Tetrahymena and then the enzyme that makes them, which is the organism and the reaction drawn in Figure 5-34."
+    },
+    {
+      "title": "Virology Lectures 2023 #9: Reverse Transcription and Integration",
+      "url": "https://www.youtube.com/watch?v=07Zu1sWKuuE",
+      "source": "MicrobeTV",
+      "duration": "1:05:29",
+      "chapters": [
+        "ch05",
+        "ch23"
+      ],
+      "tags": [
+        "retroviruses",
+        "viruses"
+      ],
+      "description": "Vincent Racaniello's undergraduate virology course on how a retroviral genome becomes DNA and gets integrated. The chapter gives integrase one sentence; this is the mechanism."
+    },
+    {
+      "title": "TWiV 935: Mobile DNA with Cedric Feschotte",
+      "url": "https://www.youtube.com/watch?v=qIt_NR50Jn8",
+      "source": "MicrobeTV",
+      "duration": "1:24:41",
+      "chapters": [
+        "ch05",
+        "ch04"
+      ],
+      "tags": [
+        "transposons",
+        "genome-evolution"
+      ],
+      "description": "A long conversation with a researcher who works on transposable elements and their domestication, covering what half of the human genome is doing and which elements are still moving."
+    },
+    {
+      "title": "Evolution of Replication and Transcription Error Rates Across the Tree of Life",
+      "url": "https://www.youtube.com/watch?v=GHm4IcjKkQg",
+      "source": "JINR",
+      "duration": "46:07",
+      "chapters": [
+        "ch05"
+      ],
+      "tags": [
+        "fidelity",
+        "evolution"
+      ],
+      "description": "Michael Lynch on why mutation rates are the values they are rather than lower. The chapter says a low rate is necessary for life as we know it; this asks what stops selection driving it lower still."
     }
   ]
 }
