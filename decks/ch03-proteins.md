@@ -400,6 +400,18 @@ Tags: assembly
 
 ---
 
+Q+: An **assembly factor** and a **molecular chaperone** are both proteins that help something reach its final structure without ending up in it. What separates them?
+A: What they act on, and whether their contribution is negative or instructive. A chaperone acts on a single polypeptide chain and its job is preventive: it recognizes something generic, exposed hydrophobic surface, which a folded protein buries and an unfolded one does not, and binds it to stop the chain aggregating or settling into a wrong intramolecular contact before it has finished. It supplies no information about the answer, since the native structure is still specified by the sequence, so a chaperone raises the yield and the rate of folding without deciding the outcome. That is why one chaperone can serve thousands of unrelated clients. An assembly factor acts on a multi-subunit structure and its job is to impose an order on intermolecular events that would otherwise happen in any sequence: holding subunits in a competent state, blocking premature contacts, sometimes acting as a physical template, and often coupling a step to nucleotide hydrolysis so that assembly runs one way. Assembly factors are correspondingly dedicated to one product rather than promiscuous. The reason the category has to exist at all is that pure self-assembly can reach a dead end: a structure that could form spontaneously in principle will often become kinetically trapped in a wrong intermediate first, and the factor is what makes the correct pathway the only one available.
+Tags: assembly, folding
+
+---
+
+Q+: Where does the distinction break down, and what should you do about it?
+A: In the middle of the spectrum, where proteins called chaperones do assembly-factor work. Histone chaperones are the standard case: NAP1, ASF1 and CAF1 are named chaperones because they prevent free histones, which are highly basic, from binding DNA indiscriminately, but they also hand H3-H4 and H2A-H2B over in a fixed order to build a nucleosome, which is ordering intermolecular events. They are duly also called chromatin assembly factors, and both names are used for the same complexes. Bacteriophage scaffolding proteins sit at the other end, being purely factors and never chaperones. The useful move is to stop treating the words as a classification of proteins and treat them as a description of two jobs: preventing wrong outcomes for one chain, and prescribing the order of events between several. Plenty of proteins do both, and the names they were given usually record which job was noticed first.
+Tags: assembly, chromatin
+
+---
+
 Q: Insulin cannot refold on its own after denaturation, even though it is a small protein. Why not?
 ![Proinsulin folding and stabilization by disulfide bonds, removal of the connecting peptide to leave two-chain insulin, and the irreversible separation of the chains by reduction](assets/img/fig-3-30.png)
 A: Because part of the information needed to fold it has been deliberately thrown away. Insulin is synthesized as a larger protein, proinsulin, which folds into a specific shape stabilized by disulfide bonds, and only then is a proteolytic enzyme used to excise part of the chain. That excision removes some of the sequence that specified the fold, so once insulin has been denatured and its two chains separated by reduction, the ability to reassemble is gone. Proteolytic cleavage of this kind is an essential and irreversible step in normal assembly, and collagen is treated the same way.

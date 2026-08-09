@@ -1052,6 +1052,163 @@
         "genome-evolution"
       ],
       "description": "ENCODE stating its own case, published alongside the 2012 papers. Worth watching precisely because the chapter rejects the conclusion drawn here, and the paper filed under this chapter is the rebuttal."
+    },
+    {
+      "title": "Anfinsen's Experiment on Protein Folding",
+      "url": "https://www.youtube.com/watch?v=pZee0XCCqH4",
+      "source": "Andrey K",
+      "duration": "11:13",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding",
+        "structure"
+      ],
+      "description": "The ribonuclease refolding experiment worked through properly. Sets up everything the chaperone videos then complicate: the sequence carries all the folding information, so a chaperone can raise the yield but cannot supply the answer. Companion to the Anfinsen paper filed under this chapter."
+    },
+    {
+      "title": "Chaperones: Folding Helpers in the Cell",
+      "url": "https://www.youtube.com/watch?v=XKiwOZ3oVJw",
+      "source": "Max Planck Society",
+      "duration": "9:07",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding",
+        "assembly"
+      ],
+      "description": "Nine minutes from Hartl's institute on why a crowded cytosol makes unassisted folding fail and what the two main chaperone classes do about it. The quickest orientation before the longer talks."
+    },
+    {
+      "title": "Chaperone-Assisted Protein Folding, Part 1A",
+      "url": "https://www.youtube.com/watch?v=jOhNyVjkChM",
+      "source": "iBiology",
+      "duration": "38:09",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding",
+        "machines"
+      ],
+      "description": "Arthur Horwich, who identified what GroEL actually does, on the chaperonin cage: how an unfolded chain is captured, sealed into a private chamber by GroES, and given one ATP-timed attempt at folding without its neighbours."
+    },
+    {
+      "title": "Chaperone-Assisted Protein Folding, Part 1B",
+      "url": "https://www.youtube.com/watch?v=4GYOmosYerQ",
+      "source": "iBiology",
+      "duration": "20:27",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding",
+        "machines"
+      ],
+      "description": "The continuation, on the mechanism and the experiments behind it. Worth watching for how the question was settled rather than for the finished cartoon."
+    },
+    {
+      "title": "Molecular Chaperones and Protein Quality Control",
+      "url": "https://www.youtube.com/watch?v=4rNYzYhrgs8",
+      "source": "Research Institute of Molecular Pathology",
+      "duration": "55:50",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding",
+        "machines"
+      ],
+      "description": "F.-Ulrich Hartl's Max Birnstiel Lecture, the other half of the chaperone story: Hsp70 binding hydrophobic patches on chains still emerging from the ribosome, and what happens across a proteome when the system is overloaded."
+    },
+    {
+      "title": "Hsp90: A Driver of Novelty in Evolution",
+      "url": "https://www.youtube.com/watch?v=QlijS4YdwYw",
+      "source": "iBiology",
+      "duration": "58:46",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "folding",
+        "evolution"
+      ],
+      "description": "Susan Lindquist on a chaperone with a client list rather than a general one, and on the argument that by holding mutant clients in working shape Hsp90 lets cryptic variation accumulate until stress releases it. A chaperone acting as an evolutionary capacitor."
+    },
+    {
+      "title": "Phosphorylation as a Paradigm for Reversible Post-translational Modification",
+      "url": "https://www.youtube.com/watch?v=v26Stt5W-9U",
+      "source": "Israel Institute for Advanced Studies",
+      "duration": "47:14",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "phosphorylation",
+        "regulation"
+      ],
+      "description": "Tony Hunter, who discovered tyrosine phosphorylation, on why a phosphate makes such a good switch and how the kinase and phosphatase sides set the position of the switch rather than either one alone."
+    },
+    {
+      "title": "Phosphorylation as Covalent Modification",
+      "url": "https://www.youtube.com/watch?v=zHJexIQbHvc",
+      "source": "Andrey K",
+      "duration": "16:05",
+      "chapters": [
+        "ch03"
+      ],
+      "tags": [
+        "phosphorylation",
+        "enzymes"
+      ],
+      "description": "The mechanism at the level you would be examined on: what adding two negative charges to a serine, threonine or tyrosine does to a protein's conformation, and why the modification is reversible without being freely reversible."
+    },
+    {
+      "title": "Regulating Glycogen Breakdown in Muscle",
+      "url": "https://www.youtube.com/watch?v=W11XV-_tI04",
+      "source": "Andrey K",
+      "duration": "9:17",
+      "chapters": [
+        "ch03",
+        "ch02"
+      ],
+      "tags": [
+        "phosphorylation",
+        "allostery"
+      ],
+      "description": "The canonical worked example of an enzyme switched on by phosphorylation: glycogen phosphorylase under a kinase cascade and under allosteric control at the same time, with the two inputs doing different jobs."
+    },
+    {
+      "title": "Controlling the Cell Cycle: Introduction",
+      "url": "https://www.youtube.com/watch?v=koudmJdil60",
+      "source": "iBiology",
+      "duration": "28:31",
+      "chapters": [
+        "ch03",
+        "ch17"
+      ],
+      "tags": [
+        "phosphorylation",
+        "regulation"
+      ],
+      "description": "David Morgan, one of this book's authors, on cyclin-dependent kinases as the case where phosphorylation is not tuning an enzyme but driving an irreversible decision. Useful for seeing what a switch is for once you know how one works."
+    },
+    {
+      "title": "Virus Assembly",
+      "url": "https://www.youtube.com/watch?v=YiLTCaRNboY",
+      "source": "MicrobeTV",
+      "duration": "1:11:44",
+      "chapters": [
+        "ch03",
+        "ch23"
+      ],
+      "tags": [
+        "assembly",
+        "viruses"
+      ],
+      "description": "Vincent Racaniello's Columbia virology lecture on assembly, and the best available treatment of genuine assembly factors: scaffolding proteins that template a capsid, are never part of it, and are removed or degraded once the shell is closed."
     }
   ]
 }
