@@ -791,6 +791,46 @@ Tags: human-genome, transposons, genome-evolution
 
 ---
 
+Q: Figure 4-63 names LINEs and SINEs and sends you to Chapter 5 for the mechanism. What are they, and which of them can move on its own?
+A: A **LINE**, long interspersed nuclear element, is about 6 kb at full length and encodes its own machinery in two open reading frames: ORF1p, an RNA-binding protein that chaperones the transcript, and ORF2p, which carries both an endonuclease and a reverse transcriptase. It is therefore autonomous, and L1 is the only autonomous element still moving in humans. A **SINE**, short interspersed nuclear element, is a few hundred nucleotide pairs, encodes no protein at all, and is non-autonomous: it is transcribed and then captures L1's ORF2p to get itself copied. The human SINE is *Alu*, about 300 nucleotide pairs, derived from the gene for 7SL RNA, the RNA component of the signal recognition particle. A third family, SVA, is hominid-specific, about 2 kb, a composite of several sequence types, and also depends on L1. The numbers behind the figure's slices: L1 at roughly 500,000 copies and 17% of the genome, *Alu* at roughly 1.1 million copies and 11%, SVA at only about 3000 copies.
+Tags: transposons, human-genome, genome-evolution
+
+---
+
+Q+: Both copy themselves through an RNA intermediate. How does the new copy actually get into the DNA?
+A: By **target-primed reverse transcription**. The ORF2p endonuclease nicks one strand at a loose consensus of the form 5′-TTTT/AA-3′, which frees a 3′ hydroxyl at the target site, and that hydroxyl is what primes reverse transcription of the element's own RNA. The copy is therefore written directly into the target site rather than being made elsewhere and then inserted. Three signatures follow from the mechanism and can be read straight off a sequence: the new copy sits between short target site duplications, because the two strands are cut at staggered positions; it ends in a poly(A) tail, inherited from the polyadenylated RNA that was copied; and it is very often truncated at its 5′ end, because reverse transcription frequently fails to run the whole length. That last point explains why so few of the half-million L1 copies are of any use to the element: most arrived already broken.
+Tags: transposons, machines
+
+---
+
+Q+: If nearly half the genome is transposon relics, how many elements can still move, and how often do they manage it?
+A: Very few, and rarely. Of the roughly 500,000 L1 copies, only about 80 to 100 per diploid genome are retrotransposition-competent, all belonging to the youngest subfamily L1HS, and a small number of unusually active "hot" L1s account for much of the measured activity. Pedigree studies that sequenced parent and child directly put the germline rate at about 1 new *Alu* insertion per 40 births, 1 new L1 per 63 births, and 1 new SVA per 900 births, which sits inside the wider 1 in 20 to 1 in 200 range that earlier phylogenetic estimates gave. Worth keeping separate from that: the 2000 mobile-element insertions per genome in Table 4-3 are not new events, they are inherited polymorphic insertions that this person carries and the reference assembly happens to lack, accumulated over many generations.
+Tags: transposons, human-genome
+
+---
+
+Q+: You find a 6 kb insertion in an intron. It is flanked by a 14 nucleotide pair duplication of the target sequence and it ends in a run of A residues. What put it there?
+- [x] A LINE, by target-primed reverse transcription
+- [ ] A DNA-only transposon, by cutting itself out and pasting itself in
+- [ ] A segmental duplication, by unequal crossing-over
+- [ ] A retroviral integration, by an integrase acting on a double-stranded cDNA
+A: The target site duplication and the poly(A) tail together are the fingerprint of target-primed reverse transcription, and 6 kb is full-length L1. A DNA-only transposon also leaves target site duplications, but it moves as DNA and has no reason to carry a poly(A) tract, and in humans the DNA-only elements are fossils that stopped moving tens of millions of years ago. A segmental duplication would be a copy of ordinary genomic sequence, not an element with its own structure. A retrovirus reverse transcribes its RNA in the cytoplasm and integrates a finished double-stranded cDNA, so the priming happens away from the target site rather than on it.
+Tags: transposons, human-genome
+
+---
+
+Q: Do mobile elements actually cause human disease, or are they only a fossil record?
+A: They cause disease, and showing that was how the field started. In 1988 Kazazian and colleagues found two unrelated boys with haemophilia A whose factor VIII gene had been interrupted by a *de novo* L1 insertion, which established that retrotransposition is still happening in the human germ line rather than having stopped in the distant past. By 2016 about 124 cases of human genetic disease caused by L1-mediated insertions had been catalogued, with examples from all three active families: L1 into factor VIII, *Alu* into the cystic fibrosis gene, and SVA into the gene behind X-linked dystonia-parkinsonism. That count is small beside the number of disease-causing point mutations, but it is an undercount rather than a fair measure, because an insertion of several kilobases is exactly the kind of variant that standard short-read alignment pipelines drop unless a caller is specifically looking for it.
+Tags: transposons, medicine, human-genome
+
+---
+
+Q+: There is a second way *Alu* causes disease that has nothing to do with a new element landing anywhere. What is it?
+A: Recombination between two *Alu* copies that are already there. With over a million near-identical *Alu* elements scattered through the genome, any two of them in the same neighbourhood present the recombination machinery with a pair of homologous sequences at non-allelic positions, and a crossover between them deletes or duplicates everything in between. This is non-allelic homologous recombination, and the *LDLR* gene is the worked example: familial hypercholesterolaemia is caused variously by a 5 kb deletion removing the exons for the transmembrane and cytoplasmic domains, generated by recombination between two oppositely oriented *Alu* elements, and by a 14 kb duplication of exons 2 to 8 generated between *Alu* elements in introns 1 and 8. Around 10% of molecularly solved familial hypercholesterolaemia is copy-number change of this kind. So the elements do damage twice over: once when they insert, and then indefinitely afterwards by being a dispersed library of repeats that the genome can recombine against.
+Tags: transposons, medicine, genome-evolution
+
+---
+
 Q: How much do the genomes of humans and the great apes differ?
 ![A phylogenetic tree of human, chimpanzee, gorilla and orangutan, with each lineage differing from the last common ancestor by a little over 1.5% and about 14 million years of history shown](assets/img/fig-4-64.png)
 A: The homologous portions of the genomes of human, chimpanzee, gorilla and orangutan each differ from the sequence of their last common ancestor by a little over 1.5%. Pairwise comparisons show twice that divergence, because changes accumulate independently on both diverging lineages, so human-chimpanzee comparisons come out at approximately 1.2%. Getting that factor of two the right way round is the point of the figure: a percentage quoted between two living species is a round trip through the ancestor, not a distance from it.
@@ -1090,6 +1130,90 @@ Tags: human-genome
 Q+: If common variants have weak effects, how do genome-wide association studies find anything?
 A: By adding up the weak effects. GWAS associates human traits with a large set of alleles that are relatively common in the population, and frequent SNVs are ideal markers for it precisely because they are frequent. Individually most of those SNVs have little or no effect on fitness, which is why they are still common. But the combined effect of many common alleles can produce a large impact on phenotype, and that is what has let GWAS identify many associations between common traits, including common diseases, and common alleles in recent years.
 Tags: human-genome
+
+---
+
+Q: The chapter says no threshold separates a SNP from a SNV any more. Why did the distinction stop being useful, and what replaced it?
+A: Because the technology stopped forcing the question. The 1% cutoff belonged to an era when variants were assayed on genotyping arrays: a site had to be chosen in advance and put on the chip, and only sites common enough to be worth the space made the cut, so "polymorphism" really meant "common enough for us to be looking at it". Sequencing an individual finds every variant they carry irrespective of frequency, so the category has nothing left to do. What replaced it is the number itself: instead of calling a variant a SNP you quote its allele frequency in a reference population database, and the frequency is what carries the meaning. In practice SNV is now the neutral term for the class of variant, and SNP survives mostly as a label for the common array-genotyped markers used in association studies, plus in the rs identifiers from dbSNP that everyone still uses as names.
+Tags: human-genome, medicine
+
+---
+
+Q: Table 4-3 puts indels at 1 to 49 nucleotide pairs. Where does that boundary come from, and why are indels harder to call than SNVs?
+A: The boundary is a convention rather than a biological fact. Fifty nucleotide pairs is roughly where a difference stops fitting inside a single short sequencing read and its alignment, so below 50 it is called an **indel** by the ordinary variant caller and at 50 and above it is called a structural variant and needs different methods. The difficulty is that an indel has no single correct position. In a homopolymer run or a short tandem repeat, which is where indels overwhelmingly occur because replication slippage is what generates them, the same deleted nucleotide can be written at any of several positions and the alignment is genuinely ambiguous, so two pipelines will represent the identical variant differently unless the representation is normalised by left-alignment. On top of that, the polymerase error rate rises sharply in homopolymer runs, so a false indel is a much more likely artefact than a false substitution. They are nonetheless the second most numerous class of variation, at 0.4 to 0.5 million per genome against 3 to 4 million SNVs.
+Tags: human-genome, medicine
+
+---
+
+Q+: Why does a single nucleotide inserted into an exon usually matter far more than a single nucleotide substituted there?
+A: Because the reading frame is shared by everything downstream. A substitution changes one codon, and most of the time the result is a synonymous change or a missense change that the protein tolerates. An insertion or deletion of one or two nucleotides shifts the frame, so every codon after it is read wrongly, and a premature stop codon typically turns up within a few dozen codons simply by chance. The transcript carrying that premature stop is then usually destroyed by nonsense-mediated decay rather than translated into a truncated protein, so the practical effect of a frameshift is a null allele: no product at all from that copy of the gene. Two qualifications are worth carrying: an indel of three nucleotides, or any multiple of three, stays in frame and removes or adds a residue instead, which is often far milder, and a premature stop in the last exon escapes nonsense-mediated decay and does yield a truncated protein, which can be worse than a null if that protein interferes with its normal partner.
+Tags: human-genome, medicine
+
+---
+
+Q: Structural variants are only tens of thousands per genome against millions of SNVs. Why do they matter so disproportionately in the clinic?
+A: Two reasons, one arithmetic and one mechanistic. The arithmetic is that a single structural variant can move tens or hundreds of thousands of nucleotides, so a few tens of thousands of them contribute a comparable number of differing nucleotides to the millions of SNVs. The mechanism is that deleting or duplicating a segment changes gene dosage outright, which the chapter names as one of the three kinds of change with large effects on health, and a rearrangement can also break a gene in the middle or separate a gene from its regulatory DNA without touching either. They also recur at predictable places rather than falling randomly: where two segmental duplications flank a region, non-allelic homologous recombination between them deletes or duplicates the interval, which is why the recurrent genomic disorders keep reappearing at the same coordinates in unrelated patients, the 22q11.2 deletion behind DiGeorge syndrome being the standard example. So the same repeats that Figure 4-63 counts as genomic clutter are what make particular rearrangements happen over and over.
+Tags: human-genome, medicine, genome-evolution
+
+---
+
+Q: The chapter mentions GWAS in two sentences and refers you to Chapter 8. What does the study design actually consist of?
+A: You take a large group of people scored for a trait, either as cases and controls for a disease or as a measured quantity such as height or blood pressure, and you genotype every one of them at hundreds of thousands of common variants using an array. The genotypes are then extended by **imputation**: because nearby variants are inherited together in blocks, a reference panel of fully sequenced genomes lets you infer genotypes at millions of sites that were never on the chip. Then each variant is tested separately for association with the trait, usually under an additive model in which the effect is proportional to how many copies of the allele a person carries, by logistic regression for a disease or linear regression for a measurement, including covariates for age, sex and ancestry. The output is one effect size and one p-value per variant, millions of times over. Nothing about the design tests a hypothesis about any particular gene, which is the point of it: the whole genome is scanned without a prior candidate, which is why it found so much that candidate-gene studies had missed.
+Tags: human-genome, medicine
+
+---
+
+Q+: Testing millions of variants at once means a p-value of 0.05 is worthless. What threshold is used, and where does it come from?
+A: Genome-wide significance is $p < 5 \times 10^{-8}$, and it is a Bonferroni correction: $0.05$ divided by roughly $10^6$, on the reasoning that although many millions of variants are tested, linkage disequilibrium makes neighbouring variants highly correlated, so the number of genuinely independent tests across the genome is on the order of a million. The number came originally from Risch and Merikangas in 1996 by a different route, assuming 100,000 genes with about five variants tested in each, and the original assumptions are long obsolete while the threshold has survived essentially untouched, in the practical sense that associations meeting it have very rarely failed to replicate. The standard display of the result is a **Manhattan plot**, with genomic position along the x-axis and $-\log_{10}(p)$ up the y-axis, so the threshold is a horizontal line at 7.3 and a real association appears as a tower of correlated variants rising through it rather than as a single point.
+Tags: human-genome, medicine
+
+---
+
+Q+: A GWAS names a specific variant. Why is that variant usually not the one doing anything?
+A: Because association is inherited in blocks. Variants close together on a chromosome are in **linkage disequilibrium**, meaning they are correlated across the population because recombination has not yet had time to separate them, so a genotyped marker reports not only on itself but on everything it is correlated with. That is what makes the array design work at all, since a few hundred thousand well-chosen tag SNPs can capture most common variation, but it also means the strongest signal in a region is simply the variant most tightly correlated with the causal one, which is a matter of which markers were on the chip and how the local block is structured. Resolving this is **fine-mapping**: use the pattern of association across the whole block, plus the shorter blocks in populations with more historical recombination, to compute a credible set of variants that plausibly contains the causal one. Frequently the credible set still holds dozens of candidates, and the honest position for most GWAS loci is that the causal variant, and often the causal gene, is not yet identified.
+Tags: human-genome, regulatory-dna, medicine
+
+---
+
+Q+: Where in the genome do the hits actually land, and what does that tell you about how they work?
+A: Overwhelmingly outside protein-coding sequence. In the first systematic survey of the catalogue, 45% of trait-associated variants were intronic and 43% intergenic, so about 88% were noncoding, and the picture has not changed as the catalogue has grown. The interpretation is that most common variants influencing common traits act by changing how much of a gene product is made, when, and in which cell type, rather than by changing a protein's sequence, which is what you would expect from the argument the chapter makes elsewhere: a variant altering a protein directly is more likely to be strongly deleterious and therefore rare, while a regulatory variant nudging expression can be tolerated and stay common. Following one up therefore means finding which regulatory element it sits in and which gene that element controls, typically by asking whether the same variant is associated with expression of a nearby gene, an expression quantitative trait locus, and whether the two association signals genuinely coincide rather than being two separate variants in the same block.
+Tags: human-genome, regulatory-dna, medicine
+
+---
+
+Q: What is **population stratification**, and why is it the failure mode a GWAS has to be designed against?
+A: It is confounding by ancestry. Allele frequencies differ between populations for entirely historical reasons, as the chapter's account of bottlenecks and founder effects explains, and disease prevalence differs between populations too, for reasons that may be environmental or cultural. If your cases and controls are drawn in different proportions from two ancestral groups, then every variant whose frequency differs between those groups will be associated with the trait, and none of those associations mean anything causal. The teaching illustration is a study that would confidently identify a "gene for eating with chopsticks" in a mixed sample, since any variant more common in the group that uses chopsticks will track the behaviour perfectly. The correction is to measure ancestry from the genotype data itself, usually as the leading principal components of the genotype matrix, and fit those as covariates, or to use a linear mixed model that accounts for relatedness and ancestry together. Residual stratification is checked by asking whether test statistics are inflated across the whole genome rather than at particular loci.
+Tags: human-genome, medicine
+
+---
+
+Q: How large are the effects a GWAS finds, and how does that compare with the mutations behind rare inherited disease?
+A: Small, and the contrast is the organising fact of human genetics. A typical common variant associated with a common disease carries an odds ratio around 1.1, meaning it shifts risk by roughly a tenth, and effects of that size are only detectable in cohorts of tens or hundreds of thousands of people. The mutations behind rare Mendelian disease sit at the other corner: allele frequencies far below 1 in 1000, effects large enough that a single variant is diagnostic in one family. Those two corners are the ones you can populate, and the reason is the chapter's own argument about allele frequency, since a variant with a large effect on fitness is kept rare by selection and cannot become common, so common variants of large effect are largely absent by construction rather than by our failure to find them. The corner that remains genuinely hard is rare variants of moderate effect, which are too rare for association testing and too weak to segregate cleanly in a pedigree.
+Tags: human-genome, medicine, evolution
+
+---
+
+Q: What is the **missing heritability** problem, and what happened to it?
+A: Twin and family studies estimated that human height is about 80% heritable, but the first well-powered GWAS found around 40 variants that together explained about 5% of the variance in height. The gap between the two was named missing heritability, and it was for some years the standard objection to the whole enterprise. Most of the gap turned out to be a power problem rather than a missing mechanism: the trait is influenced by very large numbers of variants of very small effect, and each one only crosses the significance threshold when the sample is large enough. The 2022 height study is the demonstration, using 5.4 million people to identify 12,111 independent variants that account for essentially all the heritability attributable to common variants, and about 40% of the variance in populations of European ancestry. Those variants cluster in around 7200 genomic segments covering some 21% of the genome, which is the point where the word polygenic stops being an abstraction. The remainder of the gap is attributed to rare variants that arrays do not capture, and to the twin-study estimates themselves being somewhat inflated by shared environment.
+Tags: human-genome, medicine
+
+---
+
+Q+: If thousands of variants each contribute a little, they can be added up. What is a **polygenic risk score**, and what is wrong with it at the moment?
+A: A polygenic risk score sums the risk alleles a person carries, each weighted by the effect size estimated from a GWAS, giving one number that places them in the distribution of genetic liability for a trait. For several common diseases the tail of that distribution now identifies people at a risk comparable to carrying a rare high-penetrance mutation, which is what makes it interesting for prevention rather than diagnosis. The problem is that the score does not transfer between ancestries. Weights are estimated in one population and applied in another, but allele frequencies and the linkage disequilibrium between the marker and the causal variant both differ, so the marker is a worse proxy elsewhere: prediction accuracy measured as $R^2$ is about 4.5 times lower in people of African ancestry than in Europeans. That is a direct consequence of who has been studied, since people of European ancestry are roughly 16% of the world population and have supplied around 79% of GWAS participants, so a technology sold as precision medicine would currently deliver its precision unevenly.
+Tags: human-genome, medicine
+
+---
+
+Q: When a patient's genome turns up a variant nobody has seen before, what is the first question asked of it, and what resource answers it?
+A: How common is it in people without the disease. A variant proposed to cause a severe early-onset disorder cannot be sitting at appreciable frequency in the general population, so an allele frequency above what the disease prevalence and inheritance mode allow rules it out immediately, and this single filter removes most candidates before anything else is considered. The resource is a population frequency database, in practice gnomAD, whose version 4 aggregates 807,162 individuals, 730,947 by exome sequencing and 76,215 by genome sequencing. The reasoning is exactly the chapter's own: common variants are common because selection tolerated them, so frequency is evidence about effect. The care needed is that frequency must be read within the relevant ancestry group rather than globally, since a variant can be rare worldwide and common in one population, and the databases remain thinner for some populations than others, which makes the filter weaker precisely where it is most needed.
+Tags: human-genome, medicine
+
+---
+
+Q+: Frequency alone rarely settles it. How is the evidence formalised, and what is a **VUS**?
+A: Under the ACMG and AMP framework a variant is placed in one of five tiers: pathogenic, likely pathogenic, uncertain significance, likely benign, benign. The classification combines lines of evidence of different strengths, including population frequency, the type of change and whether loss of function is a known mechanism for that gene, segregation with disease in families, whether the variant arose *de novo*, functional assays, and computational prediction, each weighted and then combined by rules rather than by impression. A **variant of uncertain significance** is the verdict when the evidence does not reach either end, and it is the most common outcome for a novel missense change. It is not a weak diagnosis but the absence of one, and it is not actionable: acting on a VUS as though it were pathogenic is a recognised source of harm. VUS rates are substantially higher for patients from populations underrepresented in the reference databases, for the same reason polygenic scores travel badly, so the two problems have one root.
+Tags: human-genome, medicine
 
 ---
 

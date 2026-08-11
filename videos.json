@@ -1054,6 +1054,134 @@
       "description": "ENCODE stating its own case, published alongside the 2012 papers. Worth watching precisely because the chapter rejects the conclusion drawn here, and the paper filed under this chapter is the rebuttal."
     },
     {
+      "title": "Introduction to Transposable Elements",
+      "url": "https://www.youtube.com/watch?v=_cJfsWYR42M",
+      "source": "iBiology",
+      "duration": "38:13",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "transposons",
+        "genome-evolution"
+      ],
+      "description": "Susan Wessler on what the LINEs and SINEs in Figure 4-63 actually are, from someone who has worked on transposable elements since the maize days. The chapter names the classes in a pie chart and defers everything else to Chapter 5; this is the missing half."
+    },
+    {
+      "title": "How Transposable Elements Amplify Throughout Genomes",
+      "url": "https://www.youtube.com/watch?v=IOXvZXtc93U",
+      "source": "iBiology",
+      "duration": "1:15:02",
+      "chapters": [
+        "ch04",
+        "ch05"
+      ],
+      "tags": [
+        "transposons",
+        "genome-evolution"
+      ],
+      "description": "The sequel, and the mechanism behind the numbers: copy-and-paste through an RNA intermediate, why autonomous elements carry their own reverse transcriptase and non-autonomous ones borrow it, and how a few active copies produce a million dead ones."
+    },
+    {
+      "title": "Human Genome Structural Variation, Disease, and Evolution",
+      "url": "https://www.youtube.com/watch?v=KVJV_pg5zaM",
+      "source": "National Human Genome Research Institute",
+      "duration": "35:10",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "genome-evolution"
+      ],
+      "description": "Evan Eichler on the row of Table 4-3 that spans nine orders of magnitude, and on why segmental duplications make particular deletions recur in unrelated patients. From 2010, so it predates long-read sequencing; the Phillippy talk above is the update on what that changed."
+    },
+    {
+      "title": "Genome-Wide Association Studies",
+      "url": "https://www.youtube.com/watch?v=HHvdupHgeFg",
+      "source": "National Human Genome Research Institute",
+      "duration": "1:27:38",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "medicine"
+      ],
+      "description": "Karen Mohlke teaching the whole method from first principles as part of the Current Topics in Genome Analysis course: linkage disequilibrium, tag SNPs, the significance threshold, and population stratification. From 2012, so it stops before polygenic scores, but it is the most careful full-length treatment of the design the chapter mentions in two sentences."
+    },
+    {
+      "title": "GWAS: A Refreshed Perspective",
+      "url": "https://www.youtube.com/watch?v=Kmm8exqsyas",
+      "source": "Broad Institute",
+      "duration": "50:57",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "medicine"
+      ],
+      "description": "The modern counterpart to the lecture above, from the Broad's MPG Primer series: what fifteen years of biobank-scale studies changed about how the results are read. Start here if you want the current state rather than the fundamentals."
+    },
+    {
+      "title": "Introduction to Fine-Mapping",
+      "url": "https://www.youtube.com/watch?v=pglYf7wocSI",
+      "source": "Broad Institute",
+      "duration": "49:39",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "medicine"
+      ],
+      "description": "The problem that a GWAS hit is a block rather than a variant, and the statistics used to narrow it to a credible set. This is the technical version of why the reported SNP is usually not the causal one."
+    },
+    {
+      "title": "Connecting GWAS and eQTLs Through Colocalization",
+      "url": "https://www.youtube.com/watch?v=lfHa7mmjv1I",
+      "source": "Broad Institute",
+      "duration": "43:39",
+      "chapters": [
+        "ch04",
+        "ch07"
+      ],
+      "tags": [
+        "human-genome",
+        "regulatory-dna"
+      ],
+      "description": "Given that most trait-associated variants are noncoding, this is how you get from an association to a gene: test whether the trait signal and the expression signal are the same variant rather than two neighbours, which is the step most easily got wrong."
+    },
+    {
+      "title": "Developing More Generalizable Polygenic Risk Scores",
+      "url": "https://www.youtube.com/watch?v=kKcAnPznDE4",
+      "source": "Broad Institute",
+      "duration": "44:40",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "medicine"
+      ],
+      "description": "How a score is built from thousands of weak effects, and the portability problem: weights estimated in one population predict poorly in another because allele frequencies and linkage disequilibrium both differ. The methodological response to a limitation that is usually only stated."
+    },
+    {
+      "title": "Variant Classification Using the ACMG/AMP Guidelines",
+      "url": "https://www.youtube.com/watch?v=xVAnjg_AqSg",
+      "source": "Broad Institute",
+      "duration": "48:46",
+      "chapters": [
+        "ch04"
+      ],
+      "tags": [
+        "human-genome",
+        "medicine"
+      ],
+      "description": "What happens to a variant after it is found: the five tiers, how evidence of different strengths is combined by rule, and why so many novel missense changes come back as variants of uncertain significance. The chapter's closing paragraph on precision medicine, done properly."
+    },
+    {
       "title": "Anfinsen's Experiment on Protein Folding",
       "url": "https://www.youtube.com/watch?v=pZee0XCCqH4",
       "source": "Andrey K",
