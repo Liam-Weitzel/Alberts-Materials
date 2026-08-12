@@ -26,9 +26,33 @@
       "slug": "ch05-dna-replication-repair-and-recombination",
       "notes": "ch05-dna-replication-repair-and-recombination.md",
       "deck": "ch05-dna-replication-repair-and-recombination.md"
+    },
+    {
+      "slug": "ch06-how-cells-read-the-genome",
+      "notes": "ch06-how-cells-read-the-genome.md",
+      "deck": "ch06-how-cells-read-the-genome.md"
     }
   ],
   "papers": [
+    {
+      "slug": "noller-2017-parable-caveman-ferrari",
+      "file": "noller-2017-parable-caveman-ferrari.md",
+      "title": "The parable of the caveman and the Ferrari: protein synthesis and the RNA world",
+      "authors": "Harry F. Noller",
+      "year": "2017",
+      "journal": "Philosophical Transactions of the Royal Society B: Biological Sciences 372(1716), 20160187",
+      "link": "https://doi.org/10.1098/rstb.2016.0187",
+      "date": "2026-08-11",
+      "chapters": [
+        "ch06-how-cells-read-the-genome"
+      ],
+      "tags": [
+        "origins",
+        "ribosome"
+      ],
+      "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
+      "words": 27
+    },
     {
       "slug": "doolittle-2017-causal-roles-selected",
       "file": "doolittle-2017-causal-roles-selected.md",

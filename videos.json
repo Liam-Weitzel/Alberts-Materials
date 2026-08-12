@@ -373,6 +373,178 @@
       ]
     },
     {
+      "title": "Discovery of Transcription Factors",
+      "url": "https://www.youtube.com/watch?v=bevffHy9pvg",
+      "source": "iBiology Techniques",
+      "duration": "10:04",
+      "chapters": [
+        "ch06",
+        "ch07"
+      ],
+      "tags": [
+        "transcription",
+        "history"
+      ],
+      "description": "Robert Tjian on how the general transcription factors were found in the first place. The chapter presents TFIID through TFIIH as a finished table; this is the fractionation experiment that had to work before any of those names existed."
+    },
+    {
+      "title": "Towards a Mechanistic Understanding of Genome Regulation",
+      "url": "https://www.youtube.com/watch?v=b3_DMMToD3M",
+      "source": "MRC Laboratory of Molecular Biology",
+      "duration": "59:43",
+      "chapters": [
+        "ch06",
+        "ch07"
+      ],
+      "tags": [
+        "transcription",
+        "machines"
+      ],
+      "description": "Patrick Cramer on the structures behind Figures 6-9, 6-14 and 6-19, from his own laboratory: how polymerase II is loaded at a promoter, released, and gets through a nucleosome. The best single talk on the machine the first half of the chapter is about."
+    },
+    {
+      "title": "Split Genes and RNA Splicing",
+      "url": "https://www.youtube.com/watch?v=eL9FKdAtU7c",
+      "source": "iBiology",
+      "duration": "35:57",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "splicing",
+        "history"
+      ],
+      "description": "Melissa Moore on why introns were such a shock in 1977 and what follows from a gene being in pieces. Covers the lariat mechanism and alternative splicing at the level the chapter does, with the experiments attached."
+    },
+    {
+      "title": "Spliceosome Structure and Dynamics",
+      "url": "https://www.youtube.com/watch?v=D-6s_uUKKwM",
+      "source": "iBiology",
+      "duration": "39:34",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "splicing",
+        "machines"
+      ],
+      "description": "The sequel, and the answer to the question the chapter raises but does not settle: why a machine of five RNAs and hundreds of proteins burns eight ATP on a reaction whose chemistry needs none. On the rearrangements that check the splice sites over and over."
+    },
+    {
+      "title": "Multiphase Liquid Behavior of the Nucleus",
+      "url": "https://www.youtube.com/watch?v=HzG5_Q1whiI",
+      "source": "iBiology",
+      "duration": "38:08",
+      "chapters": [
+        "ch06",
+        "ch04"
+      ],
+      "tags": [
+        "condensates",
+        "organelles"
+      ],
+      "description": "Cliff Brangwynne on the nucleolus as a liquid, by the group whose fusing-droplet experiments are Figure 6-45. Explains why three nested zones amount to an assembly line, and why a compartment can exist with no membrane at all."
+    },
+    {
+      "title": "Protein Synthesis: A High Fidelity Molecular Event",
+      "url": "https://www.youtube.com/watch?v=7EZ87bIvCOM",
+      "source": "iBiology",
+      "duration": "43:06",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "translation",
+        "fidelity"
+      ],
+      "description": "Rachel Green on how the ribosome gets to one error in ten thousand from base pairs that differ in stability by a factor of ten. The full version of the induced-fit and kinetic-proofreading argument that the chapter compresses into two paragraphs."
+    },
+    {
+      "title": "Protein Synthesis: mRNA Surveillance by the Ribosome",
+      "url": "https://www.youtube.com/watch?v=-kXEHmBlnpE",
+      "source": "iBiology",
+      "duration": "37:18",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "quality-control",
+        "ribosome"
+      ],
+      "description": "The companion talk, on what happens when translation goes wrong: stalling, ribosome collisions, and the decision to destroy the message and the half-made protein. Directly extends Figures 6-80 and 6-81."
+    },
+    {
+      "title": "Ribosomal RNA: The Kernel of Life",
+      "url": "https://www.youtube.com/watch?v=rlFo77klWNg",
+      "source": "IGB Illinois",
+      "duration": "39:58",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "ribosome",
+        "origins"
+      ],
+      "description": "Harry Noller arguing that the ribosome is an RNA machine with proteins added later, by the person who did much of the work establishing it. The case for reading the ribosome as a relic of the RNA world rather than as a modern design."
+    },
+    {
+      "title": "Discovery of Chaperonin-Assisted Protein Folding",
+      "url": "https://www.youtube.com/watch?v=Ho0QlG2dKg8",
+      "source": "iBiology Science Stories",
+      "duration": "21:19",
+      "chapters": [
+        "ch06",
+        "ch03"
+      ],
+      "tags": [
+        "chaperones",
+        "folding"
+      ],
+      "description": "Arthur Horwich on finding the GroEL barrel of Figure 6-84 and working out that a protein could need a chamber to fold in. Worth watching against Anfinsen, since the sequence still determines the structure and yet the cell cannot get there unaided."
+    },
+    {
+      "title": "A Primer on the Ubiquitin-Proteasome System",
+      "url": "https://www.youtube.com/watch?v=ILdEOXCfgUc",
+      "source": "iBiology",
+      "duration": "35:07",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "ubiquitin",
+        "machines"
+      ],
+      "description": "Raymond Deshaies on how a protein is condemned and destroyed: E1, E2 and E3, what makes a lysine 48 chain different from the other ubiquitin signals, and how the proteasome unfolds its substrate on the way in."
+    },
+    {
+      "title": "Discovering Ribozymes",
+      "url": "https://www.youtube.com/watch?v=WAChisSiW3o",
+      "source": "iBiology Science Stories",
+      "duration": "10:06",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "origins",
+        "catalysis"
+      ],
+      "description": "Tom Cech on the Tetrahymena experiment that showed RNA can be an enzyme, told in ten minutes by the person who did it. The observation the whole final section of the chapter rests on, including the account of why the spliceosome is built the way it is."
+    },
+    {
+      "title": "Nobel Lecture: Katalin Karikó",
+      "url": "https://www.youtube.com/watch?v=gPdUnYjvWxo",
+      "source": "Nobel Prize",
+      "duration": "42:16",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "rna-processing",
+        "medicine"
+      ],
+      "description": "The chapter mentions that cells mark their own mRNAs by modification and reject RNA that lacks the marks, and separately that pseudouridine is common in cellular RNA. This is what happens when those two facts are put together: modified nucleosides make synthetic mRNA usable as a medicine."
+    },
+    {
       "title": "Control of Gene Expression",
       "url": "https://www.youtube.com/watch?v=IvhGXYUyb88",
       "source": "Last Minute Lecture",
