@@ -17,26 +17,26 @@ and nothing to install.
 ## Current progress
 
 Chapters in the order I'm working through them, not the book's own numbering, so that
-everything is done before the Molecular Medicine master's at EMC starts. **Days** is a
+everything is done before the Molecular Medicine master's at EMC ends. **Days** is a
 rough time budget scaled to page count, not a deadline. The four checkbox columns track
 separately because a chapter's write-up, deck, and summary rarely finish together.
 
-| Ch | Pages | Days | Reading | Deck | Chapter Summary | Paper Summaries |
+| Ch | Pages | Days | Reading | Deck | Chapter summary | Paper summaries |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 49 | 1.5 | ✅ | ✅ | ⬜ | ⬜ |
 | 2 | 66 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 3 | 68 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 4 | 70 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
-| 5 | 68 | 2.0 | ✅ | ✅| ⬜ | ⬜ |
-| 6 | 76 | 2.5 | 🟨 | 🟨 | ⬜ | ⬜ |
+| 5 | 68 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
+| 6 | 76 | 2.0 | 🟨 | 🟨 | ⬜ | ⬜ |
 | 10 | 34 | 1.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 12 | 66 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 17 | 62 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 14 | 62 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 13 | 62 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
-| 15 | 76 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
-| 7 | 78 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
-| 16 | 78 | 2.5 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 15 | 76 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 7 | 78 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 16 | 78 | 2.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 22 | 34 | 1.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 8 | 88 | 3.0 | ⬜ | ⬜ | ⬜ | ⬜ |
 | 9 | 40 | 1.5 | ⬜ | ⬜ | ⬜ | ⬜ |
