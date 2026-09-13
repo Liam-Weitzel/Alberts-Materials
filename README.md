@@ -23,8 +23,8 @@ separately because a chapter's write-up, deck, and summary rarely finish togethe
 
 | Ch | Pages | Days | Reading | Deck | Chapter summary | Paper summaries |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 49 | 1.5 | ✅ | ✅ | ⬜ | ⬜ |
-| 2 | 66 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
+| 1 | 49 | 1.5 | ✅ | ✅ | ✅ | ⬜ |
+| 2 | 66 | 2.0 | ✅ | ✅ | ✅ | ⬜ |
 | 3 | 68 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 4 | 70 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 5 | 68 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
@@ -59,7 +59,8 @@ decks/ch01-cells-and-genomes.md     the cards
 
 Either half can be missing while you're partway through. A chapter with notes and no deck
 still shows up and is readable; a chapter with a deck and no notes is still studyable. The
-filename is the link between them, so the two must match exactly.
+filename is the link between them, so the two must match exactly. 
+The chapter summaries for the early chapters are primarily based on my notes from the Molecular Medicine master's at EMC.
 
 A **paper** is a third thing that sits alongside rather than inside a chapter:
 
