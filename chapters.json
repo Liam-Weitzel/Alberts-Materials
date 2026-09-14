@@ -31,6 +31,11 @@
       "slug": "ch06-how-cells-read-the-genome",
       "notes": "ch06-how-cells-read-the-genome.md",
       "deck": "ch06-how-cells-read-the-genome.md"
+    },
+    {
+      "slug": "ch10-membrane-structure",
+      "notes": "ch10-membrane-structure.md",
+      "deck": "ch10-membrane-structure.md"
     }
   ],
   "papers": [
@@ -93,6 +98,25 @@
       ],
       "excerpt": "Genomes and genome replication What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
       "words": 28
+    },
+    {
+      "slug": "munro-2003-lipid-rafts",
+      "file": "munro-2003-lipid-rafts.md",
+      "title": "Lipid Rafts: Elusive or Illusive?",
+      "authors": "Sean Munro",
+      "year": "2003",
+      "journal": "Cell 115(4), 377-388",
+      "link": "https://doi.org/10.1016/s0092-8674(03)00882-1",
+      "date": "2026-09-14",
+      "chapters": [
+        "ch10-membrane-structure"
+      ],
+      "tags": [
+        "lipid-rafts",
+        "membrane-domains"
+      ],
+      "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
+      "words": 27
     },
     {
       "slug": "westheimer-1987-why-nature-chose",

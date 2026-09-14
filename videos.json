@@ -593,6 +593,174 @@
       ]
     },
     {
+      "title": "Kai Simons Part 2: Lipid Rafts as a Membrane Organizing Principle",
+      "url": "https://www.youtube.com/watch?v=m-yuJz7ZEZw",
+      "source": "iBiology",
+      "duration": "36:43",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "lipid-rafts"
+      ],
+      "description": "The case for rafts from the scientist who proposed them. Watch it alongside Satyajit Mayor's talk and Munro's 2003 essay for the other side of the debate the chapter leaves open."
+    },
+    {
+      "title": "Satyajit Mayor Part 3: Making Rafts in Living Cell Membranes",
+      "url": "https://www.youtube.com/watch?v=sw7KXUfmfD8",
+      "source": "iBiology",
+      "duration": "20:39",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "lipid-rafts",
+        "membrane-domains"
+      ],
+      "description": "Living-cell biophysics on nanoscale clusters of lipid-anchored proteins: the transient, protein-assisted organization the chapter settles on instead of large rafts."
+    },
+    {
+      "title": "The Membrane Phase Transition and its Impact on Plasma Membrane Structure and Function",
+      "url": "https://www.youtube.com/watch?v=4DeqzfxXut0",
+      "source": "Sarah Veatch, Carnegie Science",
+      "duration": "33:08",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "phase-separation",
+        "lipid-rafts"
+      ],
+      "description": "The physics behind the separated domains in the giant liposomes of Figure 10-12, and what near-critical membranes might mean for real cells."
+    },
+    {
+      "title": "Nobel Lecture: Richard Henderson, Nobel Prize in Chemistry 2017",
+      "url": "https://www.youtube.com/watch?v=XY4czaK4koA",
+      "source": "Nobel Prize",
+      "duration": "28:44",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "bacteriorhodopsin",
+        "cryo-em"
+      ],
+      "description": "From the 1975 electron crystallography map of bacteriorhodopsin to single-particle cryo-EM, told by the person who made both steps."
+    },
+    {
+      "title": "Farese and Walther Part 2: Mechanisms of Lipid Droplet Formation",
+      "url": "https://www.youtube.com/watch?v=i2N9kHGK-Go",
+      "source": "iBiology",
+      "duration": "25:10",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "lipid-droplets"
+      ],
+      "description": "How lipid droplets bud from the ER, including seipin, from the lab whose model Figure 10-14 is adapted from."
+    },
+    {
+      "title": "Measuring Dynamics: Photobleaching and Photoactivation",
+      "url": "https://www.youtube.com/watch?v=t91gwtdE7L0",
+      "source": "Jennifer Lippincott-Schwartz, iBiology",
+      "duration": "26:29",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "frap",
+        "diffusion"
+      ],
+      "description": "How FRAP and related bleaching and photoactivation methods are turned into numbers for diffusion and exchange, the technique behind Figure 10-33."
+    },
+    {
+      "title": "Stephen G. Sligar: Herbert A. Sober Award Lecture",
+      "url": "https://www.youtube.com/watch?v=JChZVO3SsHw",
+      "source": "ASBMB",
+      "duration": "27:03",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "nanodiscs",
+        "membrane-proteins"
+      ],
+      "description": "The nanodisc platform for studying membrane protein structure and function, presented by the chemist whose lab developed it."
+    },
+    {
+      "title": "The Other Third: Coming to Grips with Membrane Proteins",
+      "url": "https://www.youtube.com/watch?v=Jv8TwfcHFFY",
+      "source": "Gunnar von Heijne, ISMB 2012",
+      "duration": "1:03:56",
+      "chapters": [
+        "ch10",
+        "ch12"
+      ],
+      "tags": [
+        "membrane-proteins",
+        "topology"
+      ],
+      "description": "How transmembrane segments are recognized, inserted and oriented, and how topology is predicted from sequence. Given in 2012, so it predates the AlphaFold era of structure prediction."
+    },
+    {
+      "title": "Karl Deisseroth: Development of Optogenetics",
+      "url": "https://www.youtube.com/watch?v=MUGky_QaaV0",
+      "source": "iBiology",
+      "duration": "21:23",
+      "chapters": [
+        "ch10",
+        "ch11"
+      ],
+      "tags": [
+        "optogenetics",
+        "channelrhodopsin"
+      ],
+      "description": "How the algal channelrhodopsins mentioned in passing in the chapter became a tool for switching specific neurons on with light, told by the scientist who developed it."
+    },
+    {
+      "title": "Carolyn Bertozzi Part 1: Chemical Glycobiology",
+      "url": "https://www.youtube.com/watch?v=WCbg-kOY_8E",
+      "source": "iBiology",
+      "duration": "47:44",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "glycobiology",
+        "glycocalyx"
+      ],
+      "description": "Cell-surface glycans and the chemical tools for labelling and studying them, well beyond the chapter's short section on the carbohydrate layer."
+    },
+    {
+      "title": "Membrane Sculpting by F-BAR Domain Lattices",
+      "url": "https://www.youtube.com/watch?v=fp5gxqRsT-o",
+      "source": "Theoretical and Computational Biophysics Group, UIUC",
+      "duration": "1:07",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "membrane-curvature",
+        "simulation"
+      ],
+      "description": "A one-minute simulation of a lattice of F-BAR proteins bending a flat membrane into a tube: the scaffold mechanism of Figure 10-40C in motion."
+    },
+    {
+      "title": "Function and Structure of the Scramblase",
+      "url": "https://www.youtube.com/watch?v=te_mM2GYRSI",
+      "source": "Takaharu Sakuragi, IFReC",
+      "duration": "3:06",
+      "chapters": [
+        "ch10"
+      ],
+      "tags": [
+        "scramblase",
+        "apoptosis"
+      ],
+      "description": "A three-minute summary from Shigekazu Nagata's group of the scramblases that expose phosphatidylserine on dying cells, the step the chapter attributes simply to failed maintenance."
+    },
+    {
       "title": "Membrane Transport & Electrical Properties of Membranes",
       "url": "https://www.youtube.com/watch?v=J7zmBo8yNvw",
       "source": "Last Minute Lecture",
