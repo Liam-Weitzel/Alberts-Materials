@@ -236,34 +236,3 @@ The diversity of life is built on a common cellular and molecular foundation.
 Many genes and cellular mechanisms have been conserved over enormous evolutionary distances.
 
 Studying simpler organisms can therefore reveal principles that also apply to human cells.
-if you compare ribosomal dna between human, ecoli and methanococcus we see that there is very little mutation/ difference.
-
-This is probably because of ribosomal dna being highly preserved.
-
-humans have 21000 protien coding genes
-
-how do we get new genes?
-- intragenic mutation - no, we lose and and gain a new one
-- gene duplication - yes, we get 2 that can mutate seperately
-- dna segment shuffling - no, the sum of genes stay the same
-- horizontal transfer - yes, we get an extra gene
-
-gene duplication
-in hemogbloin, that consists of alpha globin and beta globin
-seperate from myoglobin, all come from an acenstral globin gene.
-there are many differnet types of globin genes that are all very similra.
-that has been beneficial evolutionarily as they all serve slightly different functions.
-This was likely caused by gene duplication
-early life even in humans use differnet hemoglobin than adult hemoglobin.
-
-paralogs vs orthologs
-paralogs are two versions of the same gene
-orthologs are the same gene but in different species
-
-\>200 gene families: deduce function of 'new' gene
-
-The trend is that more complex organisms have larger genomes, but there are exceptions of course.
-
-the differnet models used to study the genome (drosphila, frogs, mice, nematode worms, zebrafish etc. etc.)
-what they taught us
-
