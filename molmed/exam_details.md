@@ -9,3 +9,4 @@ Most of the questions on the exam will be open or follow up multiple choice
 Every lecture will have 1 question on the exam
 Every question has an equal weight
 
+Session 2 what will be asked on the exam: The concepts, what types of amino acids, you don't have to remember all amino acids for example.
