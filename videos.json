@@ -213,7 +213,8 @@
       "source": "iBiology",
       "duration": "46:04",
       "chapters": [
-        "ch03"
+        "ch03",
+        "ch12"
       ],
       "tags": [
         "condensates",
@@ -1677,6 +1678,161 @@
         "viruses"
       ],
       "description": "Vincent Racaniello's Columbia virology lecture on assembly, and the best available treatment of genuine assembly factors: scaffolding proteins that template a capsid, are never part of it, and are removed or degraded once the shell is closed."
+    },
+    {
+      "title": "Compartmentalization of Proteins Inside Cells",
+      "url": "https://www.youtube.com/watch?v=kbGiEZ67h-c",
+      "source": "Ramanujan Hegde, Science Communication Lab",
+      "duration": "43:07",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "sorting",
+        "translocation"
+      ],
+      "description": "The closest thing to a lecture version of this chapter, given by someone who works on the machinery. Covers signal sequences, SRP, the Sec61 translocator and how membrane protein topology is decided."
+    },
+    {
+      "title": "Quality Control of Protein Localization",
+      "url": "https://www.youtube.com/watch?v=9Fc3OIbJzQ0",
+      "source": "Ramanujan Hegde, Science Communication Lab",
+      "duration": "34:08",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "quality-control",
+        "sorting"
+      ],
+      "description": "What happens to proteins that engage the wrong translocator or fail to reach any compartment at all. The chapter deals with misfolding in the ER lumen; this is the complementary problem of mistargeting, which Alberts barely mentions."
+    },
+    {
+      "title": "Organelle Biosynthesis and Protein Sorting",
+      "url": "https://www.youtube.com/watch?v=PEZqys5Rc-M",
+      "source": "Tom Rapoport, Science Communication Lab",
+      "duration": "35:00",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "translocation",
+        "er"
+      ],
+      "description": "Rapoport's group solved the SecY/Sec61 structure that Figure 12-22 is drawn from, so this is the lateral gate and the plug explained by the person who found them."
+    },
+    {
+      "title": "How Are Cellular Organelles Shaped?",
+      "url": "https://www.youtube.com/watch?v=YZfSs-SzmLg",
+      "source": "Tom Rapoport, Science Communication Lab",
+      "duration": "32:29",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "er",
+        "organelles"
+      ],
+      "description": "The chapter shows the ER as a network of tubules and sheets without saying what makes it that shape. This is the membrane-curvature machinery that does it."
+    },
+    {
+      "title": "Unfolding the UPR",
+      "url": "https://www.youtube.com/watch?v=cvE6Kia0T9E",
+      "source": "Peter Walter, iBiology Science Stories",
+      "duration": "14:55",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "quality-control",
+        "er"
+      ],
+      "description": "Walter's own account of finding IRE1 and the cytosolic mRNA splicing reaction that still has no other example in biology. Short, and the best fifteen minutes available on the unfolded protein response."
+    },
+    {
+      "title": "Formation of P Granules",
+      "url": "https://www.youtube.com/watch?v=HRlOlu5NsqQ",
+      "source": "Anthony Hyman, Science Communication Lab",
+      "duration": "32:29",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "condensates"
+      ],
+      "description": "The other half of the same story, on how P granules are positioned and inherited asymmetrically in the C. elegans embryo, which the chapter lists in its table of condensates without explaining."
+    },
+    {
+      "title": "Factors and Functions of Organelle Membrane Contact Sites",
+      "url": "https://www.youtube.com/watch?v=un20jsubzvY",
+      "source": "Gia Voeltz, Science Communication Lab",
+      "duration": "24:32",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "er",
+        "lipids",
+        "organelles"
+      ],
+      "description": "Figure 12-14A comes from Voeltz's lab. Contact sites get two pages in the chapter and are the only route lipids have into mitochondria, so they deserve more than that."
+    },
+    {
+      "title": "Signals and Blockers in Nuclear-Cytoplasmic Transport",
+      "url": "https://www.youtube.com/watch?v=l1xVhm2lFgk",
+      "source": "Yuh Min Chook, TAMEST",
+      "duration": "28:28",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "nucleus",
+        "transport"
+      ],
+      "description": "How karyopherins recognize such varied localization signals, from a lab that has mapped those signals systematically, and what it takes to block a particular one with a drug."
+    },
+    {
+      "title": "Structure of the Nuclear Pore Complex by Integrative Determination",
+      "url": "https://www.youtube.com/watch?v=w9_4qZKKTlQ",
+      "source": "Jan Kosinski, Polonium Foundation",
+      "duration": "17:39",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "nucleus",
+        "structure"
+      ],
+      "description": "The chapter says the arrangement of nucleoporins is still debated and that the size and flexibility of the NPC defeat ordinary structural methods. This is how the problem is actually attacked: cryo-electron tomography combined with crystal structures of subcomplexes and computational fitting."
+    },
+    {
+      "title": "An Inside-Out Origin of the Eukaryotic Cell",
+      "url": "https://www.youtube.com/watch?v=v7HIQctIwHE",
+      "source": "David Baum, Evolution 2014",
+      "duration": "14:51",
+      "chapters": [
+        "ch12",
+        "ch01"
+      ],
+      "tags": [
+        "genome-evolution",
+        "organelles"
+      ],
+      "description": "Figure 12-3 is adapted from Baum and Baum 2014, which is also in the chapter's reference list. Here is Baum making the argument himself, including what the model predicts that the standard account does not."
+    },
+    {
+      "title": "Signal Sequences and Signal-Recognition Particles",
+      "url": "https://www.youtube.com/watch?v=kp06l4zx7Pw",
+      "source": "Andrey K",
+      "duration": "11:53",
+      "chapters": [
+        "ch12"
+      ],
+      "tags": [
+        "sorting",
+        "er"
+      ],
+      "description": "A compact blackboard treatment of the SRP cycle at the level the chapter expects, useful for fixing the order of events before watching any of the research talks."
     }
   ]
 }

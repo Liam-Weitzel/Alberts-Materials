@@ -36,6 +36,11 @@
       "slug": "ch10-membrane-structure",
       "notes": "ch10-membrane-structure.md",
       "deck": "ch10-membrane-structure.md"
+    },
+    {
+      "slug": "ch12-intracellular-organization-and-protein-sorting",
+      "notes": "ch12-intracellular-organization-and-protein-sorting.md",
+      "deck": "ch12-intracellular-organization-and-protein-sorting.md"
     }
   ],
   "papers": [
@@ -98,6 +103,24 @@
       ],
       "excerpt": "Genomes and genome replication What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
       "words": 28
+    },
+    {
+      "slug": "hlsmann-2012-permeability-reconstituted-nuclear",
+      "file": "hlsmann-2012-permeability-reconstituted-nuclear.md",
+      "title": "The Permeability of Reconstituted Nuclear Pores Provides Direct Evidence for the Selective Phase Model",
+      "authors": "Bastian B. Hülsmann, Aksana A. Labokha, Dirk Görlich",
+      "year": "2012",
+      "journal": "Cell 150(4), 738-751",
+      "link": "https://doi.org/10.1016/j.cell.2012.07.019",
+      "date": "2026-09-16",
+      "chapters": [
+        "ch12-intracellular-organization-and-protein-sorting"
+      ],
+      "tags": [
+        "nuclear-transport"
+      ],
+      "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
+      "words": 27
     },
     {
       "slug": "munro-2003-lipid-rafts",

@@ -94,7 +94,7 @@ CAP_RE = re.compile(r"^\s*Figure\s+(Q?)(\d+)[–\-](\d+)")
 PANEL_RE = re.compile(r"^\s*PANEL\s+(\d+)[–\-](\d+)")
 TABLE_RE = re.compile(r"^\s*TABLE\s+(Q?)(\d+)[–\-](\d+)")
 TAG_RE = re.compile(r"^\s*MBoC7\b(.*)$")
-NUM_RE = re.compile(r"^(Q?)(\d+)\.(\d+)$")
+NUM_RE = re.compile(r"^(Q?)(\d+)[.\-](\d+)$")   # problem figures tag as "Q12-1"
 
 
 def find_tags(items):
@@ -107,7 +107,19 @@ def find_tags(items):
         rest = m.group(1).strip()
         token = rest.split("/")[-1].strip() if "/" in rest else rest.split()[-1] if rest.split() else ""
         nm = NUM_RE.match(token)
+        if not nm and "-" in token:
+            # a handful of tags separate the two halves with a hyphen rather
+            # than a slash ("MBoC7 n12.107-12.41"); the figure number is still
+            # the trailing half
+            nm = NUM_RE.match(token.rsplit("-", 1)[-1])
         if not nm:
+            # Art that is not a numbered figure still carries a tag: the
+            # section-opener road maps are tagged "mp669/12.D". Keep it as an
+            # anonymous claim so that its artwork is spoken for and cannot be
+            # absorbed into the figure beside it. Dropped before output.
+            if token:
+                tags.append({"idx": i, "key": f"~{len(tags)}",
+                             "x": it["x"], "y": it["y"]})
             continue
         q, ch, num = nm.groups()
         tags.append({"idx": i, "key": f"{'q' if q else ''}{ch}-{int(num):02d}",
@@ -255,6 +267,12 @@ def extract_page(page, pel, fonts):
         for ci, c in enumerate(comps):
             if ci in used:
                 continue
+            # A hairline is a stray rule or a row of dashes that happened to
+            # line up, never the body of a figure. Seeding on one strands the
+            # real artwork, which is then too far away to be absorbed, so skip
+            # them here; they can still be absorbed once a figure is seeded.
+            if c[3] - c[1] < 6 or c[2] - c[0] < 6:
+                continue
             dy = ay - c[3]                       # positive when art is above tag
             dx = max(c[0] - ax, ax - c[2], 0)
             cost = (dy if dy >= -40 else 6000 - dy) + dx * 1.6
@@ -350,6 +368,8 @@ def extract_page(page, pel, fonts):
 
     results = []
     for key, b in figs.items():
+        if key.startswith("~"):      # anonymous claim, not a numbered figure
+            continue
         x0, y0, x1, y1 = b
         for _ in range(4):
             grew = False
