@@ -6,14 +6,6 @@ Cell*. Live at **[alberts.liam-w.com](https://alberts.liam-w.com)**.
 Everything is plain markdown. Write it in any editor and commit. There is no build step
 and nothing to install.
 
-> [!WARNING]
-> **The code here is AI-generated. The material is not.**
->
-> The site itself, meaning the HTML, CSS, Python and JavaScript, was written by an LLM and
-> should be read with that in mind. Everything you actually study is mine: the chapter
-> write-ups in `notes/`, the flashcards in `decks/`, and the paper summaries in `papers/`
-> are written by hand, from my own reading.
-
 ## Current progress
 
 Chapters in the order I'm working through them, not the book's own numbering, so that
@@ -27,7 +19,7 @@ separately because a chapter's write-up, deck, and summary rarely finish togethe
 | 2 | 66 | 2.0 | ✅ | ✅ | ✅ | ⬜ |
 | 3 | 68 | 2.0 | ✅ | ✅ | ✅ | ⬜ |
 | 4 | 70 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
-| 5 | 68 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
+| 5 | 68 | 2.0 | ✅ | ✅ | ✅ | ⬜ |
 | 6 | 76 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 10 | 34 | 1.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 12 | 66 | 2.0 | 🟨 | 🟨 | ⬜ | ⬜ |

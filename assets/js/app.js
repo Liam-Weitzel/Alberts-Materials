@@ -290,21 +290,7 @@
       '</article>';
     }).join('');
 
-    render(head + '<section class="chapter-list">' + list + '</section>' + provenance());
-  }
-
-  /* Who wrote what. The site was built by an LLM; the material on it was not, and
-   * a reader has no way to tell those apart without being told. */
-  function provenance() {
-    return '<aside class="notice">' +
-      '<span class="notice-mark" aria-hidden="true">⚠</span>' +
-      '<div>' +
-        '<b>The code behind this site is AI-generated. The material on it is not.</b>' +
-        '<p>The chapter write-ups, the flashcards and the paper summaries are written by ' +
-        'hand, from my own reading. Everything else, meaning the site you are looking at, ' +
-        'was written by an LLM.</p>' +
-      '</div>' +
-    '</aside>';
+    render(head + '<section class="chapter-list">' + list + '</section>');
   }
 
   /* ---------- chapter write-up ---------- */
