@@ -5,6 +5,12 @@ date: 2026-08-08
 tags: [mboc, ch3]
 ---
 
+> **Session 2** of the *Molecular Biology of the Cell* course in the **Molecular Medicine master's at Erasmus MC**, given by **Titia Sixma** (Netherlands Cancer Institute). Her stated sources are **Branden & Tooze, *Introduction to Protein Structure***, **Petsko & Ringe, *Protein Structure and Function***, and Alberts chapter 3. **Protein function is set as self study**, and is the last part of this summary.
+>
+> The exam asks about what was covered in the **lectures**, not the chapter as a whole, so this summary follows the slides.
+>
+> The lecture's own list of topics: **basic principles** (covalent and noncovalent interactions, the hydrophobic effect) · **protein structure** (primary, secondary, tertiary, quaternary) · **protein folding** (theoretical, in vitro, in vivo, prediction) · **protein function** (enzyme, structural, signalling, motor activity).
+
 ## Why study protein structure?
 
 Proteins regulate the cell. They both **regulate** and **execute** cellular processes.
@@ -541,6 +547,8 @@ Many proteins consist of more than one polypeptide chain, called **subunits**.
 | **Heterotetramer** | $\alpha_2\beta_2$ | hemoglobin (see Ch 1) |
 | **Heteropentamer** | $\alpha_2\beta\gamma\delta$ | nicotinic acetylcholine receptor |
 
+Beyond that, the slide's gallery runs **dimer, trimer, planar tetramer, tetramer, pentamer, planar hexamer, hexamer (trimer of dimers), heptamer, octamer, dodecamer, icosahedron** and irregular cases such as a **pseudoheptameric** assembly. Rings and closed shells dominate, for the reason given below.
+
 Identical subunits often assemble into **symmetric** complexes, such as dimers, trimers, tetramers, and larger **rings**.
 
 ![A symmetrical CAP protein dimer formed through one identical binding site on each monomer, and a symmetrical neuraminidase tetramer formed through two nonidentical binding sites](assets/img/fig-3-19.png)
@@ -698,7 +706,7 @@ The **hemagglutinin** protein of the influenza virus is a good example. It is fi
 
 Histones carry many different PTMs on their tails, including acetylation, methylation, phosphorylation, and ubiquitination.
 
-The **combination** of modifications acts as a signal that regulates chromatin structure and gene expression. The protein acts like a **"microchip"** that integrates many inputs.
+The **combination** of modifications acts as a signal that regulates chromatin structure and gene expression. The protein acts like a **"microchip"** that integrates many inputs. The lecture shows the full map from Huang *et al.*, "SnapShot: Histone Modifications", *Cell* **159** (2014).
 
 ![A spectrum of covalent modifications producing a combinatorial regulatory code that is read to change a protein's binding, location or fate, and the known modifications of p53](assets/img/fig-3-81.png)
 
@@ -742,6 +750,8 @@ Phase separation is used as a **method of signalling** and organization. It is c
 Aggregation of IDPs can also be the **basis of disease**.
 
 In **synucleinopathies** such as Parkinson's disease, the disordered protein α-synuclein forms toxic aggregates.
+
+The review the lecturer points to for this whole section is **Theillet *et al.*, 2016**.
 
 ![How two alpha-synuclein monomers pair through a hydrophobic zipper to create the fibril spine, a cryo-EM rendering of the fibril, and an electron micrograph of the fibrils](assets/img/fig-3-32.png)
 
@@ -895,6 +905,8 @@ possible conformations.
 
 If a small protein folded into its native state by **randomly checking all possible conformations**, the process would take **longer than the age of the universe** (> 100 billion years).
 
+The slide makes the contrast with a folding simulation run on a **reverse time scale** — 90 ns, 30 ns, 0.26 ns, 0 ns — a chain collapsing to its native fold in **nanoseconds**.
+
 Yet folding can occur in a **fraction of a second**.
 
 This is the **protein folding problem**, or **Levinthal's paradox**.
@@ -991,6 +1003,16 @@ The lecture slides present protein function as self study.
 
 A structure gives a **static view**, but protein function takes place in a **dynamic world** in which proteins move and change shape.
 
+The slide quantifies "move", and the three rows are worth keeping apart because they are powered differently:
+
+| Motion | Spatial displacement (Å) | Characteristic time (s) | Energy source |
+|---|---|---|---|
+| **Fluctuations** (atomic vibrations) | 0.01–1 | 10⁻¹⁵–10⁻¹¹ | thermal (k_BT) |
+| **Collective motions** — fast and infrequent (Tyr/Phe ring flips) or slow (domain movement, hinge bending) | 0.01 to >5 | 10⁻¹²–10⁻³ | thermal (k_BT) |
+| **Triggered conformational changes** | 0.5 to >10 | 10⁻⁹–10³ | **binding interactions** |
+
+Only the third row is what we mean by a protein "doing" something: it is large, it can be slow, and it is **paid for by binding** rather than by thermal noise.
+
 | Function | What it does |
 |---|---|
 | **Binding** | Bind a ligand, DNA, or protein |
@@ -1070,7 +1092,7 @@ Binding does not obey the simple 1-to-1 model when, for example:
 * a molecule binds with **multiple sites at once** (avidity), as with a bivalent antibody
 * binding is coupled to a **conformational change**
 
-Binding and dissociation can be measured in real time by **surface plasmon resonance (SPR)**.
+Binding and dissociation can be measured in real time by **surface plasmon resonance (SPR)**. The **bait** is tethered to a **~50 nm gold film**; light hits the film through a prism at the **resonance angle** and excites surface plasmons, whose evanescent field extends just beyond the gold. Flowing **prey** molecules over it changes the resonance angle, and the trace reads out **association** while the prey flows and **dissociation** after a **buffer wash** — giving $k_{on}$, $k_{off}$ and therefore $K_D$ from one experiment.
 
 ## Catalysis
 
@@ -1089,6 +1111,22 @@ The reaction takes place in the **catalytic pocket**, or **active site**. The en
 ![Three general strategies for enzyme catalysis: orienting two substrates precisely, rearranging electrons to create partial charges, and straining the substrate toward a transition state](assets/img/fig-3-50.png)
 
 Because enzymes bind the transition state tightly, a molecule that mimics the transition state can act as a strong **inhibitor**. This is used in **drug design**. Antibodies raised against transition-state mimics can even act as enzymes (**catalytic antibodies**).
+
+**How much acceleration?** The slide's comparison of uncatalysed ($k_{non}$) and catalysed ($k_{cat}$) rates spans twelve orders of magnitude between enzymes:
+
+| Enzyme | Rate acceleration ($k_{cat}/k_{non}$) |
+|---|---|
+| Cyclophilin | 4.6 × 10⁵ |
+| Carbonic anhydrase | 7.7 × 10⁶ |
+| Chymotrypsin | 10⁷ |
+| Triosephosphate isomerase | 3 × 10⁹ |
+| Fumarase | 10¹¹ |
+| Adenosine deaminase | 2.1 × 10¹² |
+| Urease | 10¹⁴ |
+| Alkaline phosphatase | 10¹⁷ |
+| **ODCase** | **1.4 × 10¹⁷** |
+
+ODCase takes a reaction with a half-life of millions of years and runs it 39 times a second.
 
 ### Michaelis–Menten kinetics
 
@@ -1128,7 +1166,12 @@ The cell regulates the catalytic activities of its enzymes by:
 
 ## Switching
 
-**Many proteins function as molecular switches** through conformational changes.
+**Many proteins function as molecular switches** through conformational changes, and the lecture puts the two kinds side by side, because they are the same logic with different chemistry:
+
+* **Signalling by phosphorylation.** A **protein kinase** transfers a phosphate from ATP onto the protein and switches it **ON**; a **protein phosphatase** removes it and switches it **OFF**.
+* **Signalling by a GTP-binding protein.** The protein is **ON** with **GTP** bound and **OFF** with **GDP**. A **GEF** exchanges GDP for GTP (on), a **GAP** accelerates hydrolysis to GDP + Pᵢ (off).
+
+In both cases the input is a covalent or binding event, the output is a conformational change, and the switch is reset by a second enzyme.
 
 **Ras** is a classic example:
 
@@ -1145,6 +1188,8 @@ Mutant Ras proteins that are stuck in the GTP state are found in many cancers.
 ## Structural proteins
 
 **Proteins can provide structure to a cell**, for example the cytoskeleton and keratin.
+
+**Elastin** is the slide's second example, and it makes the opposite point to a folded domain: single elastin molecules are loosely structured and **cross-linked** into an **elastic fiber**, which uncoils when stretched and recoils when released. The function comes from the **absence** of a fixed fold.
 
 **Coiled coils** are built from two (or more) alpha helices wound around each other. The sequence has a regular pattern of seven residues (a heptad, positions *abcdefg*). Positions **a** and **d** are hydrophobic, often **leucines**. They form a hydrophobic stripe along each helix, which packs against the stripe on the partner helix.
 

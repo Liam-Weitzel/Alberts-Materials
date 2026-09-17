@@ -5,7 +5,11 @@ date: 2026-08-11
 tags: [mboc, ch6]
 ---
 
-The lecture was given by **Fabio Catalano** (postdoc in the Pim Pijnappel lab at Erasmus MC, working on gene therapy and muscle-on-a-chip). It is **part I** of chapter 6 and covers only the first arrow of the central dogma: **from DNA to RNA**. Translation, the genetic code, the ribosome, protein folding and degradation are part II.
+> **Session 4** of the *Molecular Biology of the Cell* course in the **Molecular Medicine master's at Erasmus MC**, given by **Fabio Catalano** (postdoc in the Pim Pijnappel lab at Erasmus MC, working on gene therapy and muscle-on-a-chip).
+>
+> The exam asks about what was covered in the **lectures**, not the chapter as a whole, so this summary follows the slides.
+
+It is **part I** of chapter 6 and covers only the first arrow of the central dogma: **from DNA to RNA**. Translation, the genetic code, the ribosome, protein folding and degradation are part II.
 
 The lecture follows the chapter closely but reorders it around five questions, each introduced by its own title slide:
 

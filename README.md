@@ -52,7 +52,12 @@ decks/ch01-cells-and-genomes.md     the cards
 Either half can be missing while you're partway through. A chapter with notes and no deck
 still shows up and is readable; a chapter with a deck and no notes is still studyable. The
 filename is the link between them, so the two must match exactly. 
-The chapter summaries for the early chapters are primarily based on my notes from the Molecular Medicine master's at EMC.
+The chapter summaries for the early chapters are written from the lectures of the *Molecular Biology of
+the Cell* course in the Molecular Medicine master's at Erasmus MC, one session per chapter, and each one
+names its lecturer at the top: ch 1 Thamar van Dijk, ch 2 Andrea Lolli, ch 3 Titia Sixma, ch 5 Arnab Ray
+Chaudhuri, ch 6 Fabio Catalano. The exam covers what is in those slides rather than the chapter as a
+whole, so the summaries follow the slides and flag anything added from the book. The decks in `molmed/slides/`
+are the source.
 
 A **paper** is a third thing that sits alongside rather than inside a chapter:
 

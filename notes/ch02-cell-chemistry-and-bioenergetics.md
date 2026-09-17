@@ -5,9 +5,22 @@ date: 2026-08-08
 tags: [mboc, ch2]
 ---
 
+> **Session 1b** of the *Molecular Biology of the Cell* course in the **Molecular Medicine master's at Erasmus MC**, given by **Andrea Lolli** (Dept. of Oral & Maxillofacial Surgery). It follows session 1a, which took chapter 1.
+>
+> The exam asks about what was covered in the **lectures**, not the chapter as a whole, so this summary follows the slides.
+
+## The cell as a living industrial city
+
+The lecture's framing for the whole chapter: a cell takes in **resources and raw materials** and uses them for **energy production**, for **construction and maintenance**, and produces **waste**. Everything below is the chemistry of those three arrows.
+
 ## Atoms and chemical bonds
 
 All cellular chemistry ultimately depends on atoms and the bonds and interactions between them.
+
+Two kinds of bond, distinguished by what happens to the electrons:
+
+* **Sharing of electrons → a covalent bond.** Strong, and what **(macro)molecules are built from**.
+* **Transfer of an electron → an ionic bond**, giving a positive and a negative ion. **Easily reversible, and what allows molecules to interact.**
 
 ![Periodic table with the four main elements of cells highlighted in red, seven minor elements in blue, and trace elements in green](assets/img/fig-2-01.png)
 
@@ -124,6 +137,27 @@ Ionic interactions are much weaker in water because polar water molecules surrou
 
 This is why many ionic compounds dissolve readily in water.
 
+### The numbers that matter (Table 2–1)
+
+| Bond | Length (nm) | Strength in vacuum (kJ/mol) | Strength **in water** (kJ/mol) |
+|---|---|---|---|
+| **Covalent** | 0.15 | 377 (90 kcal) | **377 (90 kcal)** |
+| **Ionic** | 0.25 | 335 (80) | **12.6 (3)** |
+| **Hydrogen** | 0.30 | 16.7 (4) | **4.2 (1)** |
+| **Van der Waals** (per atom) | 0.35 | 0.4 (0.1) | **0.4 (0.1)** |
+
+…plus the **hydrophobic force**, which has no entry in the table because it is not a bond at all.
+
+The lecturer circles the **in-water** column, and that is the point of the table: a covalent bond is unchanged by water, but an ionic bond loses **96%** of its strength, because water molecules crowd around each charge and screen it. In a cell — which is water — noncovalent interactions are individually feeble, and the cell gets specificity by using **very many of them at once**.
+
+### Donors and acceptors
+
+A hydrogen bond runs from a **donor** to an **acceptor**, and in biology the four combinations are **O–H···O**, **O–H···N**, **N–H···O** and **N–H···N**. Individually weak, present in enormous numbers: they are what keeps **water a liquid at room temperature**, and why polar and charged (**hydrophilic**) molecules dissolve in it.
+
+### Van der Waals and the hydrophobic force
+
+**Van der Waals forces** are weak attractions between **transient charges** in atoms. The **hydrophobic force** is the aggregation of nonpolar molecules caused by their **forced exclusion from a polar environment** — the slide shows lipids in water lining up into a bilayer as a result, which is the same argument as the membrane slide in session 1a.
+
 ![A molecule of acetic acid dissolving in water to give acetate and hydronium, and water molecules exchanging protons to form hydronium and hydroxyl ions](assets/img/fig-2-05.png)
 
 ---
@@ -155,7 +189,7 @@ $$
 \text{sugars} \rightarrow \text{polysaccharides}
 $$
 
-Fatty acids are important components of lipids, although lipids are not generally polymers in the same way that proteins and nucleic acids are.
+Fatty acids are important components of lipids, although lipids are not generally polymers in the same way that proteins and nucleic acids are. The four families map onto the four classes of larger molecule: **sugars → polysaccharides, glycogen and starch**; **fatty acids → fats and membrane lipids**; **amino acids → proteins**; **nucleotides → nucleic acids**.
 
 ![Panel on fatty acids and other lipids, showing saturated and unsaturated chains, triacylglycerols, phospholipids and micelle and bilayer formation](assets/img/panel-2-05.png)
 
@@ -175,9 +209,22 @@ During hydrolysis, water is used to break a covalent bond.
 
 Hydrolysis reactions are often energetically favorable, although whether a particular reaction proceeds spontaneously depends on its overall free-energy change.
 
+The asymmetry is the whole reason the rest of the chapter exists: **condensation is energetically unfavourable and hydrolysis is favourable**, so **building a macromolecule costs energy** and the cell has to supply it.
+
+## Two levels of assembly
+
+The lecture separates them explicitly, because they use different bonds:
+
+* **Subunits → macromolecules**, by **covalent** bonds. Amino acids into a protein chain, nucleotides into an RNA.
+* **Macromolecules → macromolecular assemblies**, by **noncovalent** interactions. The example on the slide is the **ribosome**, about **30 nm** across, built from RNA molecules and globular proteins held together without a single new covalent bond.
+
+So the same noncovalent forces that looked negligible in Table 2–1 are what **drive protein folding and enzymatic activity** — and they are reversible, which a covalent bond is not.
+
 ---
 
 # Thermodynamics and cellular order
+
+*The lecture puts this as a question: **how do cells create order in a chaotic universe?***
 
 ## First law of thermodynamics
 
@@ -204,6 +251,10 @@ Cells are highly ordered structures, but they do not violate the second law.
 Cells maintain and create local order by consuming energy and releasing heat and waste into their surroundings.
 
 The increase in disorder outside the cell exceeds the decrease in disorder produced inside the cell.
+
+Put as the slide puts it: **cells take energy from food to order their molecules, but they release heat**, which increases the motion of everything around them, so **disorder increases overall**. **Heat is energy in its most disordered form**, which is why releasing it is how the books are balanced.
+
+The lecturer's teenager's-bedroom slide makes the same point twice: the room becomes disordered "spontaneously" as time elapses, and reversing it takes **organised effort requiring energy input**.
 
 ![A cell taking in energy and releasing heat, ordering its own molecules while increasing the disorder of the surrounding sea of matter](assets/img/fig-2-16.png)
 
@@ -235,6 +286,8 @@ They increase local order within the cell.
 
 Catabolic reactions can therefore provide both the energy and the building blocks required for anabolic reactions.
 
+The slide draws the two as one coordinated flow: **food molecules → catabolic pathways →** (some energy **lost as heat**) **→ useful forms of energy** and **the many building blocks for biosynthesis → anabolic pathways → the many molecules that form the cell**, with order increasing at the right-hand end. **Altogether that is metabolism, and it is made possible by enzymes.**
+
 These pathways depend on enzymes to occur at biologically useful rates.
 
 ![A set of enzymes acting in series, each catalysing one reaction, converting molecule A through to molecule F](assets/img/fig-2-13.png)
@@ -244,6 +297,15 @@ These pathways depend on enzymes to occur at biologically useful rates.
 # Oxidation and reduction
 
 Many energy-transfer reactions in cells involve the movement of electrons.
+
+## Carbon cycles through the biosphere
+
+The two halves are the same chemistry run in opposite directions:
+
+* **Photosynthesis** (plants, algae, some bacteria, driven by **sunlight**): CO₂ + H₂O → O₂ + sugars.
+* **Cellular respiration** (most living organisms): sugars + O₂ → H₂O + CO₂, releasing **useful chemical-bond energy**.
+
+Respiration is an **oxidation**, and the carbon atoms cycle between the two.
 
 ## Oxidation
 
@@ -257,6 +319,14 @@ In biological molecules, oxidation often corresponds to:
 
 ![Formation of a polar covalent bond in which one atom gains a greater share of the electrons, and the ladder from methane through methanol, formaldehyde and formic acid to carbon dioxide](assets/img/fig-2-20.png)
 
+### The oxidation ladder
+
+The slide's one-carbon series is the cleanest way to see what "oxidation state" means, reading **down** as oxidation and **up** as reduction:
+
+**methane (CH₄) → methanol (CH₃OH) → formaldehyde (CH₂O) → formic acid (HCOOH) → carbon dioxide (CO₂)**
+
+At each step a **C–H bond is replaced by a bond to oxygen**. So in biological molecules, **oxidation = removal of electrons = H atoms replaced by O atoms = fewer C–H bonds**, and the reverse for reduction. A fully reduced carbon (methane, or the hydrocarbon tail of a fatty acid) has the most energy to give; a fully oxidised one (CO₂) has none left.
+
 ## Reduction
 
 **Reduction** is the gain of electrons.
@@ -267,7 +337,7 @@ Oxidation and reduction always occur together.
 
 If one molecule loses electrons, another molecule must accept them.
 
-These coupled reactions are called **redox reactions**.
+These coupled reactions are called **redox reactions**. Reduction and oxidation **always occur simultaneously**, because the number of electrons is conserved.
 
 A useful mnemonic is:
 
@@ -280,7 +350,7 @@ Reduction Is Gain
 
 # Gibbs free energy
 
-**Gibbs free energy**, represented by \(G\), describes the amount of energy available to perform useful work under a particular set of conditions.
+**Gibbs free energy**, represented by \(G\), is the energy available **"to do work"** — for example to drive a chemical reaction.
 
 The change in free energy during a reaction is:
 
@@ -301,6 +371,8 @@ the reaction is energetically favorable and can occur spontaneously.
 The products contain less free energy than the reactants.
 
 Free energy is released during the reaction.
+
+On the slide's own wording: a **reduction of G (ΔG < 0)** goes with a **reduction of order**, and an **increase of G (ΔG > 0)** with an **increase of order**. A favourable reaction disperses order into the universe; making something ordered is what costs free energy.
 
 This does not necessarily mean that the reaction occurs rapidly.
 
@@ -342,7 +414,7 @@ Even a reaction with a negative ΔG may occur extremely slowly.
 
 Before the reaction can proceed, reactants must pass through a high-energy transition state.
 
-The energy required to reach this state is called the **activation energy**.
+The energy required to reach this state is called the **activation energy**, and something has to supply it — **the heat of a lighted match, or simply a collision between molecules**. The lecturer's cartoon is a kick: the reaction is downhill, but it still has to be pushed over the edge.
 
 On a graph of free energy against reaction progress, this appears as an energy barrier.
 
@@ -358,13 +430,25 @@ This allows the reaction to proceed more rapidly.
 
 Enzymes do **not** change the overall ΔG of the reaction.
 
-They only provide a lower-energy pathway between reactants and products.
+They only provide a lower-energy pathway between reactants and products. Comparing the two energy diagrams on the slide, the **reactant level (b)** and the **product level (c)** are identical in both; only the height of the barrier changes, from **a** (uncatalysed) to **d** (enzyme-catalysed).
+
+### Two quiz questions from the slides
+
+**1) A graph shows a reaction with a reduction in free energy G. This could represent:** addition of an amino acid during synthesis of β-globin / photosynthesis in *aloe vera* / hydrolysis of glycogen to glucose / a reaction that releases heat / all of the previous.
+
+The two **biosynthetic** options are out: adding an amino acid to a growing chain is a **condensation** (ΔG > 0), and photosynthesis is driven by light *into* a higher-energy product. **Hydrolysis of glycogen** and a **heat-releasing reaction** are both energetically downhill, so those are the ones the graph can represent.
+
+**2) This reaction is "spontaneous" since:** it requires no energy input to occur / it happens very quickly / it cannot be stopped or slowed down / it can also occur without enzymes / none of the previous.
+
+**It requires no energy input.** "Spontaneous" is a statement about thermodynamics, not about speed — a spontaneous reaction can be immeasurably slow, can be regulated, and is in fact usually slow until an enzyme lowers its activation energy.
 
 ![Diagram showing that catalysed and uncatalysed versions of a reaction reach the same equilibrium point, with the catalysed one arriving faster](assets/img/fig-2-23.png)
 
 ---
 
 # Reaction coupling
+
+**Many of the reactions a cell needs are unfavourable**, which is the problem this section solves.
 
 Cells can drive energetically unfavorable reactions by coupling them to favorable reactions.
 
@@ -390,7 +474,7 @@ the combined process becomes energetically favorable.
 
 ![An energetically unfavourable reaction driven by being coupled to a favourable one, so that the net free-energy change is negative](assets/img/fig-2-29.png)
 
-This principle is used throughout cellular metabolism.
+This principle is used throughout cellular metabolism, and the cell does the coupling with a courier. On the slide, **catabolism** (food molecule → oxidised food molecule, energetically favourable) loads an **activated carrier molecule** with energy in **energy-rich covalent bonds**, and the carrier drives **anabolism** (available molecule → molecule needed by the cell, energetically unfavourable). The two halves need never meet.
 
 ![A mechanical model in which falling rocks either produce heat alone, or turn a paddle wheel that lifts a bucket of water whose stored energy can drive machines](assets/img/fig-2-32.png)
 
@@ -422,11 +506,20 @@ This produces a higher-energy intermediate that can participate in a reaction th
 
 ![A phosphate group transferred from ATP to a hydroxyl group on another molecule, converting a phosphoanhydride bond into a phosphoester bond](assets/img/fig-2-34.png)
 
-ATP is commonly used during biosynthetic reactions in which molecules need to be joined together.
+ATP is commonly used during biosynthetic reactions in which molecules need to be joined together, and the slide shows the mechanism in two steps, using **glutamic acid + ammonia → glutamine** as the example. The direct reaction does not go. Instead:
+
+1. **Activation step:** ATP transfers a phosphate to A–OH, producing a **high-energy intermediate A–O–P** (here, phosphorylated glutamic acid), and ADP.
+2. **Condensation step:** the activated intermediate reacts with **B–H** (ammonia) to give **A–B**, releasing inorganic phosphate.
+
+**Net result: A–OH + B–H + ATP → A–B + ADP + Pᵢ.** The same two-step trick builds macromolecules.
+
+The energy for ATP itself comes from **sunlight or from the breakdown of food** (ΔG° > 0 to make it), and is released on hydrolysis (ΔG° < 0) to **drive energetically unfavourable reactions**. The bonds that carry it are the two **phosphoanhydride bonds**.
 
 ## NADH and NADPH
 
 **NADH** and **NADPH** are activated electron carriers.
+
+In the reaction shown on the slide, **molecule 1 is oxidised** as NADP⁺ takes up **two electrons and one H⁺**, and the resulting **NADPH then reduces molecule 2**. The worked biological example is the last step of cholesterol synthesis: **7-dehydrocholesterol + NADPH + H⁺ → cholesterol + NADP⁺**.
 
 They carry high-energy electrons in the form of a hydride ion, equivalent to:
 
@@ -460,13 +553,38 @@ FAD and FADH₂ participate in redox reactions, including reactions involved in 
 
 ## Acetyl-CoA
 
-**Acetyl-CoA** carries an activated two-carbon acetyl group.
+**Acetyl-CoA** carries an activated two-carbon acetyl group on a **high-energy thioester bond** to the sulfur of coenzyme A — which is itself built around a nucleotide. It **provides the two carbons** used in the biosynthesis of larger molecules.
 
 ![The structure of acetyl CoA, with the sulfur atom forming a thioester bond to acetate](assets/img/fig-2-38.png)
 
 It is important both in energy metabolism and in biosynthesis.
 
 The acetyl group can be transferred into other metabolic pathways or oxidized to obtain energy.
+
+## The full list (Table 2–3)
+
+The lecture shows six, and the pattern is that each carries **one chemical group in a high-energy linkage**:
+
+| Activated carrier | Group carried |
+|---|---|
+| **ATP** | phosphate |
+| **NADH, NADPH, FADH₂** | electrons and hydrogens |
+| **Acetyl CoA** | acetyl group |
+| **Carboxylated biotin** | carboxyl group |
+| **S-adenosylmethionine (SAM)** | methyl group |
+| **Uridine diphosphate glucose (UDP-glucose)** | glucose |
+
+The last three are the ones people forget: biotin for carboxylations, SAM for every methylation in the cell (including the DNA and histone methylation of later chapters), and UDP-glucose for building polysaccharides and glycogen.
+
+### A quiz question from the slides
+
+**Succinate dehydrogenase converts succinate to fumarate, and FAD becomes FADH₂. Which statements are true?**
+
+* *It is an oxidation reaction since both succinate and FAD are oxidised* — **false**; they cannot both be oxidised, since electrons are conserved.
+* *Succinate is oxidised while FAD is reduced* — **true**: two hydrogens leave succinate (a C–C single bond becomes a double bond) and are taken up by FAD.
+* *The reaction has negative ΔG* — **true**, since it proceeds in the cell.
+* *The reaction has positive ΔG* — false.
+* *FAD can later be regenerated by reducing FADH₂* — **false as written**: regenerating FAD from FADH₂ means **oxidising** FADH₂, which is what the electron transport chain does with those electrons.
 
 ---
 
@@ -496,6 +614,8 @@ $$
 \rightarrow 2\text{ pyruvate} + 2 NADH + 2 ATP + 2H_2O
 $$
 
+The ten steps fall into three blocks on the slide: an **energy-investment** phase (steps 1–3, two ATP spent, ending at fructose 1,6-bisphosphate), the **cleavage** of the six-carbon sugar into **two three-carbon sugars** (glyceraldehyde 3-phosphate, steps 4–5), and an **energy-generation** phase (steps 6–10), where each of the two three-carbon units yields one NADH and two ATP.
+
 Four ATP molecules are produced during glycolysis, but two ATP molecules are consumed earlier in the pathway.
 
 The **net gain is therefore 2 ATP**.
@@ -510,9 +630,11 @@ $$
 \text{pyruvate} \rightarrow \text{lactate}
 $$
 
-This reaction regenerates \(NAD^+\), allowing glycolysis to continue.
+This reaction regenerates \(NAD^+\), allowing glycolysis to continue — which is the entire point, because without NAD⁺ step 6 of glycolysis stops and no ATP is made at all.
 
-This process is called **lactate fermentation**.
+This process is called **lactate fermentation**, and it is what a **vigorously active muscle cell** does under limited oxygen supply.
+
+**Yeast solves the same problem differently:** pyruvate is decarboxylated to release **CO₂** and then reduced to **ethanol**, again regenerating NAD⁺. Same logic, different waste product — and the basis of brewing and baking.
 
 ![Fermentation in a vigorously active muscle cell producing lactate, and fermentation in yeast producing ethanol and carbon dioxide](assets/img/fig-2-50.png)
 
@@ -520,7 +642,7 @@ This process is called **lactate fermentation**.
 
 Under aerobic conditions, pyruvate enters the mitochondrion.
 
-It is converted into **acetyl-CoA**.
+It is converted into **acetyl-CoA** by **pyruvate dehydrogenase**, which attaches the two-carbon unit to **CoA–SH**, reduces **NAD⁺ to NADH**, and releases the third carbon as **CO₂**.
 
 Acetyl-CoA then enters the citric acid cycle.
 
@@ -554,15 +676,23 @@ The carbon atoms of the acetyl group are ultimately oxidized.
 
 ![Overview of the citric acid cycle, with acetyl CoA joining oxaloacetate to form citrate and the cycle regenerating oxaloacetate](assets/img/fig-2-58.png)
 
+Per turn, the slide's net result: **3 NADH, 1 GTP, 1 FADH₂ and 2 CO₂**, with **oxaloacetate (4C)** regenerated to accept the next acetyl group. The carbon count runs 4C + 2C → **6C citrate** → 6C → **5C** (losing CO₂) → 4C (losing CO₂) → 4C → 4C → oxaloacetate.
+
+**Amino acids and fatty acids can also enter the cycle**, either as acetyl CoA or as other intermediates, which is why this is the hub of catabolism and not just the sugar pathway.
+
 Most of the usable energy is captured in NADH and FADH₂.
 
 These electron carriers can then supply electrons to the electron transport chain, where much larger amounts of ATP can be generated.
+
+The lecturer flags this as "**in the next episodes**" — it is chapter 14 — but shows the destination: NADH and FADH₂ hand their electrons to a chain of **protein complexes (I–IV, with Q and cytochrome c)** in the inner mitochondrial membrane, which **pump H⁺** across it; the H⁺ then flows back through **ATP synthase**, making ATP. Electron transport plus chemiosmosis is **oxidative phosphorylation**, and oxygen is the final electron acceptor, reduced to water.
 
 ---
 
 # Fatty acid breakdown
 
 Fatty acids can also be used as a major source of energy.
+
+Both routes converge inside the mitochondrion: **sugars → glucose → pyruvate → acetyl CoA**, and **fats → fatty acids → acetyl CoA**.
 
 They are transported into mitochondria and broken down through **beta-oxidation**.
 
@@ -572,7 +702,7 @@ These two-carbon units are released as acetyl-CoA.
 
 ![Triacylglycerol hydrolysed to fatty acids, activated as fatty acyl CoA, and shortened two carbons at a time in a cycle producing acetyl CoA, NADH and FADH2](assets/img/fig-2-57.png)
 
-The pathway also produces NADH and FADH₂.
+Each turn of the cycle produces **one FADH₂ and one NADH** as well as the acetyl CoA, and the cycle repeats until the fatty acid is completely oxidised.
 
 The resulting acetyl-CoA can enter the citric acid cycle.
 
@@ -586,7 +716,7 @@ Cells and organisms store energy in different chemical forms.
 
 Glucose can be stored in the form of **glycogen**.
 
-When energy is required, glycogen can be broken down and the resulting glucose derivatives can enter glycolysis.
+When energy is required, **glycogen phosphorylase** releases **glucose 1-phosphate**, which is converted to **glucose 6-phosphate** and enters glycolysis. The granules are visible in the cytoplasm of a liver cell, and the store is **enough for roughly one day** of normal activity.
 
 ![The branched structure of glycogen, an electron micrograph of glycogen granules in a liver cell, and the action of glycogen phosphorylase](assets/img/fig-2-52.png)
 
@@ -594,7 +724,9 @@ When energy is required, glycogen can be broken down and the resulting glucose d
 
 Fat is an especially concentrated form of energy storage.
 
-Fatty acids contain many reduced carbon atoms and therefore release a large amount of energy when oxidized.
+Fatty acids contain many reduced carbon atoms and therefore release a large amount of energy when oxidized. Fat is stored as **triacylglycerol** — three hydrocarbon tails attached to glycerol by **ester bonds** — in droplets inside fat cells, and it is **enough for roughly one month** of normal activity, against glycogen's one day.
+
+**Mobilising it:** stored fat is **hydrolysed to fatty acids and glycerol**, the fatty acids travel in the **bloodstream**, are taken up by (for example) a muscle cell, and are **oxidised in its mitochondria** to CO₂ and ATP.
 
 ![Fat droplets stained red in the cytoplasm of developing adipocytes, and lipid droplets in yeast cells](assets/img/fig-2-51.png)
 
@@ -613,12 +745,37 @@ These molecules can be used to make:
 * lipids
 * other cellular components
 
-Metabolic pathways therefore form an interconnected network.
+Metabolic pathways therefore form an interconnected network. The branch points the slide marks:
+
+| Intermediate | Feeds into |
+|---|---|
+| glucose 6-phosphate | nucleotides |
+| fructose 6-phosphate | amino sugars, glycolipids, glycoproteins |
+| dihydroxyacetone phosphate | lipids |
+| 3-phosphoglycerate | serine |
+| phosphoenolpyruvate | amino acids, pyrimidines |
+| pyruvate | alanine |
+| citrate | cholesterol, fatty acids |
+| α-ketoglutarate | glutamate, other amino acids, purines |
+| succinyl CoA | heme, chlorophyll |
+| oxaloacetate | aspartate, other amino acids, purines, pyrimidines |
+
+Drawn at full scale — the KEGG map the lecture ends on — glycolysis and the citric acid cycle are a thin red thread through a few thousand reactions, and every one of those branch points is where something is drawn off.
 
 ![Glycolysis and the citric acid cycle shown feeding branches that lead to nucleotides, amino acids, lipids, sugars and other biosynthetic products](assets/img/fig-2-60.png)
 
 Catabolism provides both energy and molecular building blocks.
 
 Anabolism uses those resources to construct the molecules required by the cell.
+
+## Key points
+
+From the closing slide:
+
+* **Biomolecules → polymers costs energy** (ΔG > 0).
+* **Enzymes lower the activation energy**, and **energy carriers store the energy derived from food**.
+* **Food:** sugars → **glycolysis** (cytoplasm); fat → the **fatty acid cycle** (mitochondria).
+* **In mitochondria:** acetyl CoA → the **citric acid cycle** and **oxidative phosphorylation** (ATP production).
+* **Intermediates from glycolysis and the citric acid cycle are also precursors for biosynthesis.**
 
 ![Some 2000 metabolic reactions of a human cell shown schematically, with glycolysis and the citric acid cycle highlighted at the centre](assets/img/fig-2-62.png)

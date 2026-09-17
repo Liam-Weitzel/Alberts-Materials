@@ -5,7 +5,11 @@ date: 2026-08-09
 tags: [mboc, ch5]
 ---
 
-The lecture was given by **Arnab Ray Chaudhuri** (Erasmus MC). It follows the chapter only as far as the replication fork, and then turns into a lecture about what happens when replication goes wrong: replication stress, homologous recombination, BRCA1/2, the techniques used to study all three, and how their failure is exploited in the clinic.
+> **Session 3** of the *Molecular Biology of the Cell* course in the **Molecular Medicine master's at Erasmus MC**, given by **Arnab Ray Chaudhuri** (Dept. of Molecular Genetics, Erasmus MC).
+>
+> The exam asks about what was covered in the **lectures**, not the chapter as a whole, so this summary follows the slides. A few places add background from the chapter to make the slides make sense, and say so.
+
+The lecture follows the chapter only as far as the replication fork, and then turns into a lecture about what happens when replication goes wrong: replication stress, homologous recombination, BRCA1/2, the techniques used to study all three, and how their failure is exploited in the clinic. Much of the second half is the lecturer's own work — the fork-protection and chemoresistance results below are from **Ray Chaudhuri *et al.*, *Nature* 2016** and the reviews **Ray Chaudhuri & Nussenzweig, *Nat. Rev. Mol. Cell Biol.* / *EMBO Mol. Med.* 2017**, all listed on his closing slide.
 
 The stated learning goals were:
 
@@ -18,6 +22,8 @@ The stated learning goals were:
 7. Describe the roles of important common factors in homologous recombination and the replication stress response
 8. Describe the main techniques used to study homologous recombination and replication stress
 9. Explain how replication stress and homologous recombination defects can be exploited for cancer treatments
+
+Learning goals 1–4 are the chapter; 5–9 are the lecture, and that is where the weight of the slides lies.
 
 ---
 
