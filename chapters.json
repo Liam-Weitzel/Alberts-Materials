@@ -200,5 +200,57 @@
       "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
       "words": 27
     }
+  ],
+  "molmed": [
+    {
+      "session": "1a",
+      "lecturer": "Thamar van Dijk",
+      "title": "Course Introduction · Cells Genomes and the Diversity of Life",
+      "part": "",
+      "chapter": "ch01-cells-and-genomes",
+      "chapterNumber": 1,
+      "slides": "molmed/slides/Session 1a - Thamar van Dijk_Course Introduction_Cells Genomes and the Diversity of Life _Ch 1.pdf",
+      "deck": "1a-ch01-cells-and-genomes.md"
+    },
+    {
+      "session": "1b",
+      "lecturer": "Andrea Lolli",
+      "title": "Cell chemistry and bioenergetics",
+      "part": "",
+      "chapter": "ch02-cell-chemistry-and-bioenergetics",
+      "chapterNumber": 2,
+      "slides": "molmed/slides/Session 1b - Andrea Lolli_Cell chemistry and bioenergetics_Ch 2.pdf",
+      "deck": "1b-ch02-cell-chemistry-and-bioenergetics.md"
+    },
+    {
+      "session": "2",
+      "lecturer": "Titia Sixma",
+      "title": "Protein Structure",
+      "part": "",
+      "chapter": "ch03-proteins",
+      "chapterNumber": 3,
+      "slides": "molmed/slides/Session 2 - Titia Sixma_Protein Structure_Ch 3.pdf",
+      "deck": "2-ch03-proteins.md"
+    },
+    {
+      "session": "3",
+      "lecturer": "Arnab Ray Chaudhuri",
+      "title": "DNA Replication, Repair, and Recombination",
+      "part": "",
+      "chapter": "ch05-dna-replication-repair-and-recombination",
+      "chapterNumber": 5,
+      "slides": "molmed/slides/Session 3 - 2025_Arnab Ray Chaudhuri_DNA Replication, Repair, and Recombination_Ch 5.pdf",
+      "deck": "3-ch05-dna-replication-repair-and-recombination.md"
+    },
+    {
+      "session": "4",
+      "lecturer": "Fabio Catalano",
+      "title": "From DNA to protein part I",
+      "part": "a",
+      "chapter": "ch06-how-cells-read-the-genome",
+      "chapterNumber": 6,
+      "slides": "molmed/slides/Session 4 - Fabio Catalano_From DNA to protein part I_Ch 6a_.pdf",
+      "deck": "4-ch06-how-cells-read-the-genome.md"
+    }
   ]
 }

@@ -357,6 +357,51 @@ never silently dropped.
 Nothing is requested from YouTube until you press play: the card is an ordinary button
 until then, and the player is only created on the click. Embeds use `youtube-nocookie.com`.
 
+## MolMed revision
+
+The **MolMed** tab is the exam side of the site, and it is deliberately separate from the
+book side. The Molecular Medicine master's at Erasmus MC lectures a subset of these
+chapters, one session each, and the exam asks about **what is in those slides**, not about
+the chapter as a whole. So each session gets its own deck, written only from its slides.
+
+```
+molmed/slides/Session 2 - Titia Sixma_Protein Structure_Ch 3.pdf   the source
+molmed/decks/2-ch03-proteins.md                                    the cards
+molmed/exam_details.md                                             exam rules and logistics
+```
+
+Nothing here is hand-registered. `build-manifest.py` scans `molmed/slides/` and reads each
+filename, which has to look like this:
+
+```
+Session <n> - [<year>_]<lecturer>_<title>_Ch <n>.pdf
+```
+
+That gives the session number, the lecturer, the title and the chapter, and the chapter
+number is matched to a chapter slug the same way a paper's `chapters:` field is. Adding a
+lecture is therefore a matter of dropping its deck in the folder and rebuilding. A session
+with no revision deck yet is listed with its slides and a *no cards yet* badge; a deck
+whose name matches no session is reported as a warning rather than shown.
+
+The revision deck is named `<session>-<chapter-slug>.md` and is an ordinary deck file, the
+same three card types and the same markdown as anything in `decks/`. Check one with:
+
+```bash
+$ node tools/check-deck.js molmed/decks/2-ch03-proteins.md
+```
+
+**Scheduling is separate.** A card's identity is its deck id plus a hash of its question,
+and these decks carry a `molmed:` deck id, so a session's cards are scheduled
+independently of the book deck covering the same chapter. Revising for the exam never
+disturbs the reading, the same fact can be drilled in both places at different times, and
+**Reset progress** on a session only touches that session. **Export progress** carries
+both, since it is one store.
+
+Routes: [`#/molmed`](https://alberts.liam-w.com/#/molmed) for the session list,
+`#/molmed/cards/<session>` to browse a deck, `#/molmed/study/<session>` to study one and
+`#/molmed/study/all` for everything due across the course. The home page grows a **molmed
+due** counter when revision cards come due, since they are otherwise invisible from there.
+
 ## Studying
 
 The scheduler is SM-2 with Anki-style learning steps. New cards appear at 1 and 10 minutes,
@@ -405,7 +450,9 @@ assets/img/*.png            figures from the book, named by figure number
 notes/*.md                  chapter write-ups
 decks/*.md                  chapter cards
 papers/*.md                 paper summaries
-chapters.json               generated index of all three
+molmed/slides/*.pdf         the lecture decks the course is examined on
+molmed/decks/*.md           revision cards, one deck per lecture, slides only
+chapters.json               generated index of all of it
 videos.json                 videos per chapter, hand-edited, no build step
 build-manifest.py           regenerates chapters.json
 add-paper.py                starts a paper summary from a DOI or arXiv ID

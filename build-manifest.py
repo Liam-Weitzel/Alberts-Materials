@@ -17,6 +17,16 @@ document and may be listed under several chapters, or none. Their front matter i
 lifted into the manifest so the chapter pages and the library index can render
 without fetching every summary; only the paper's own page loads its body.
 
+A **molmed session** is a lecture of the Molecular Medicine course, found by
+scanning the slide decks themselves:
+
+    molmed/slides/Session 2 - Titia Sixma_Protein Structure_Ch 3.pdf
+    molmed/decks/2-ch03-proteins.md     revision cards, written from those slides
+
+The session number, lecturer, title and chapter are read out of the PDF's
+filename, so adding a lecture is a matter of dropping its deck in the folder.
+The revision deck is optional and is named `<session>-<chapter-slug>.md`.
+
 Static hosting can't list a directory, so this file is how the site finds any of
 it. Run this after adding or renaming anything:
 
@@ -36,6 +46,9 @@ ROOT = pathlib.Path(__file__).resolve().parent
 NOTES = ROOT / "notes"
 DECKS = ROOT / "decks"
 PAPERS = ROOT / "papers"
+MOLMED = ROOT / "molmed"
+MOLMED_SLIDES = MOLMED / "slides"
+MOLMED_DECKS = MOLMED / "decks"
 CHAPTERS = ROOT / "chapters.json"
 
 FRONT_MATTER = re.compile(r"^---[ \t]*\n(.*?)\n---[ \t]*(?:\n|$)", re.S)
@@ -165,6 +178,74 @@ def collect_papers(chapter_slugs):
     return papers
 
 
+SESSION_FILE = re.compile(
+    r"^Session\s+(?P<session>[0-9]+[a-z]?)\s*-\s*(?P<rest>.+)\.pdf$", re.I)
+
+
+def collect_molmed(chapter_slugs):
+    """Sessions of the Molecular Medicine course, read from the slide filenames.
+
+    `Session 3 - 2025_Arnab Ray Chaudhuri_DNA Replication…_Ch 5.pdf` gives the
+    session number, an optional year, the lecturer, the title, and the chapter it
+    covers. Anything that doesn't parse is reported and skipped rather than
+    guessed at, since a wrong chapter link is worse than a missing one.
+    """
+    if not MOLMED_SLIDES.is_dir():
+        return []
+
+    decks = {p.stem: p.name for p in MOLMED_DECKS.glob("*.md")} if MOLMED_DECKS.is_dir() else {}
+    used_decks = set()
+    sessions = []
+
+    for path in sorted(MOLMED_SLIDES.glob("*.pdf")):
+        m = SESSION_FILE.match(path.name)
+        if not m:
+            warn(f"{path.name}: not named 'Session <n> - <lecturer>_<title>_Ch <n>.pdf'; skipped")
+            continue
+
+        parts = [p.strip(" _") for p in m.group("rest").split("_")]
+        parts = [p for p in parts if p]
+        if len(parts) < 2:
+            warn(f"{path.name}: cannot read lecturer and chapter from the filename; skipped")
+            continue
+        if re.fullmatch(r"(19|20)\d\d", parts[0]):      # `Session 3 - 2025_Name_…`
+            parts.pop(0)
+
+        chapter_part = parts.pop()
+        ch = re.search(r"ch\s*(\d+)\s*([a-z]?)", chapter_part, re.I)
+        if not ch:
+            warn(f"{path.name}: no 'Ch <n>' at the end of the filename; skipped")
+            continue
+
+        number = int(ch.group(1))
+        slug = resolve_chapter(f"ch{number:02d}", chapter_slugs, path.name)
+        lecturer = parts.pop(0) if parts else ""
+        title = " · ".join(parts)
+
+        session = m.group("session")
+        deck = decks.get(f"{session}-{slug}") if slug else None
+        if deck:
+            used_decks.add(f"{session}-{slug}")
+
+        sessions.append({
+            "session": session,
+            "lecturer": lecturer,
+            "title": title,
+            "part": ch.group(2).lower(),        # the `a` of `Ch 6a`, when a chapter is split
+            "chapter": slug,
+            "chapterNumber": number,
+            "slides": f"molmed/slides/{path.name}",
+            "deck": deck,
+        })
+
+    for stem in sorted(set(decks) - used_decks):
+        warn(f"molmed/decks/{decks[stem]}: no session's slides match '{stem}'; not listed")
+
+    # Natural order: session 1a, 1b, 2, 3 … rather than lexicographic 1a, 1b, 10, 2.
+    sessions.sort(key=lambda s: (int(re.match(r"\d+", s["session"]).group()), s["session"]))
+    return sessions
+
+
 existing = {}
 if CHAPTERS.exists():
     try:
@@ -174,6 +255,7 @@ if CHAPTERS.exists():
 
 chapters = collect_chapters()
 papers = collect_papers([c["slug"] for c in chapters])
+molmed = collect_molmed([c["slug"] for c in chapters])
 
 if not chapters and not papers:
     print("warning: found no .md files in notes/, decks/ or papers/", file=sys.stderr)
@@ -185,6 +267,7 @@ CHAPTERS.write_text(
             "description": existing.get("description", ""),
             "chapters": chapters,
             "papers": papers,
+            "molmed": molmed,
         },
         indent=2,
         ensure_ascii=False,
@@ -203,6 +286,12 @@ for ch in chapters:
 
 for paper in papers:
     print(f"  {paper['slug']:<40} {', '.join(paper['chapters']) or 'unlinked'}")
+
+if molmed:
+    print(f"\n{len(molmed)} molmed session(s):")
+    for s_ in molmed:
+        deck = s_["deck"] or "no revision deck yet"
+        print(f"  session {s_['session']:<4} {(s_['chapter'] or '?'):<40} {s_['lecturer']:<22} {deck}")
 
 partial = [c["slug"] for c in chapters if not c["notes"] or not c["deck"]]
 if partial:

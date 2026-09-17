@@ -9,16 +9,24 @@
  * under several of them, or under none while you're still reading it. See
  * papers.js.
  *
+ * MolMed revision is a third thing again: the Molecular Medicine course covers
+ * some of these chapters in its own lectures, and each lecture has a deck of
+ * cards written only from that lecture's slides, since that is what the exam
+ * asks about. Those decks are scheduled separately from the book's own, so
+ * revising for the exam never disturbs the reading. See the `molmed` section of
+ * chapters.json, built from molmed/slides/ by build-manifest.py.
+ *
  * Hash routing keeps everything working on GitHub Pages with no server-side
  * rewrites:  #/ , #/chapter/<slug> , #/cards/<slug> , #/study/<slug|all> ,
- * #/papers , #/paper/<slug> , #/settings
+ * #/papers , #/paper/<slug> , #/molmed , #/molmed/cards/<session> ,
+ * #/molmed/study/<session|all> , #/settings
  */
 (function () {
   'use strict';
 
   var view = document.getElementById('view');
   var toastEl = document.getElementById('toast');
-  var state = { manifest: null, chapters: null, loaded: false, error: null };
+  var state = { manifest: null, chapters: null, molmed: [], loaded: false, error: null };
   var session = null;
 
   /* ---------- helpers ---------- */
@@ -95,6 +103,43 @@
     return state.chapters.reduce(function (acc, c) { return acc.concat(cardsOf(c)); }, []);
   }
 
+  function sessionById(id) {
+    for (var i = 0; i < state.molmed.length; i++) {
+      if (state.molmed[i].id === id) return state.molmed[i];
+    }
+    return null;
+  }
+
+  function sessionCards(s) { return s && s.deck ? s.deck.cards : []; }
+
+  function allMolmedCards() {
+    return state.molmed.reduce(function (acc, s) { return acc.concat(sessionCards(s)); }, []);
+  }
+
+  /* What to call the deck a card came from, in a session pooling several decks.
+   * A molmed card's deckId is `molmed:<session>`; a chapter card's is its slug. */
+  function deckOwnerTitle(card) {
+    if (!card) return '';
+    if (card.deckId.indexOf('molmed:') === 0) {
+      var s = sessionById(card.deckId.slice('molmed:'.length));
+      return s ? sessionLabel(s) : '';
+    }
+    var ch = chapterBySlug(card.deckId);
+    return ch ? ch.title : '';
+  }
+
+  /* "Session 3 · Ch 5" — short enough for a card corner, and says both the thing
+   * you revise by (the lecture) and the thing it maps onto (the chapter). */
+  function sessionLabel(s) {
+    var tail = s.chapterNumber ? ' · Ch ' + s.chapterNumber + (s.part ? s.part : '') : '';
+    return 'Session ' + s.id + tail;
+  }
+
+  function sessionTitle(s) {
+    var ch = s.chapter ? chapterBySlug(s.chapter) : null;
+    return ch ? ch.title : (s.title || sessionLabel(s));
+  }
+
   function render(html) {
     // Navigating away destroys whatever iframe was playing, so bank its
     // position first: leaving a video by clicking a link is normal.
@@ -163,6 +208,28 @@
     });
   }
 
+  /* One lecture of the Molecular Medicine course: its slides, and the revision
+   * deck written from them. The deck id is namespaced with `molmed:` so its
+   * cards get their own scheduling, separate from the chapter deck covering the
+   * same material. */
+  function loadMolmed(entry) {
+    var session = {
+      id: entry.session,
+      lecturer: entry.lecturer || '',
+      title: entry.title || '',
+      part: entry.part || '',
+      chapter: entry.chapter || null,
+      chapterNumber: entry.chapterNumber || 0,
+      slides: entry.slides || '',
+      deck: null
+    };
+    if (!entry.deck) return Promise.resolve(session);
+    return getText('molmed/decks/' + entry.deck)
+      .then(function (text) { session.deck = Deck.parse(text, 'molmed:' + entry.session, entry.deck); })
+      .catch(function (e) { console.error('[molmed] deck failed for session ' + entry.session, e); })
+      .then(function () { return session; });
+  }
+
   function loadAll() {
     return getText('chapters.json')
       .then(function (text) { return JSON.parse(text); })
@@ -174,11 +241,13 @@
         // videos.json is its own hand-edited file rather than part of the
         // manifest, and it is optional: if it fails, everything else still loads.
         var videos = Videos.load().then(function (data) { Videos.init(data, slugs); });
-        return Promise.all([videos].concat((manifest.chapters || []).map(loadChapter)))
-          .then(function (results) { return results.slice(1); });
+        var chapters = Promise.all((manifest.chapters || []).map(loadChapter));
+        var molmed = Promise.all((manifest.molmed || []).map(loadMolmed));
+        return Promise.all([videos, chapters, molmed]);
       })
-      .then(function (chapters) {
-        state.chapters = chapters;
+      .then(function (results) {
+        state.chapters = results[1];
+        state.molmed = results[2];
         state.loaded = true;
       })
       .catch(function (e) {
@@ -220,6 +289,8 @@
 
     var cards = allCards();
     var total = SRS.counts(cards);
+    var mm = SRS.counts(allMolmedCards());
+    var molmedDue = mm.due + mm.learning;
     var td = SRS.todayCounts();
     var pct = total.total ? total.seen / total.total : 0;
     var written = state.chapters.filter(function (c) { return c.notes; }).length;
@@ -236,6 +307,11 @@
             '<div class="stat"><span class="stat-n">' + (td.new + td.reviews) + '</span><span class="stat-l">done today</span></div>' +
             (Papers.count()
               ? '<a class="stat" href="#/papers"><span class="stat-n">' + Papers.count() + '</span><span class="stat-l">papers</span></a>'
+              : '') +
+            // MolMed cards are scheduled separately, so they would otherwise be
+            // invisible from here until you went looking for them.
+            (molmedDue
+              ? '<a class="stat" href="#/molmed"><span class="stat-n">' + molmedDue + '</span><span class="stat-l">molmed due</span></a>'
               : '') +
           '</div>' +
           (total.due + total.learning + total.new
@@ -426,32 +502,10 @@
     return MD.render(card.back);
   }
 
-  function viewCards(slug) {
-    var ch = chapterBySlug(slug);
-    if (!ch) return notFound('Chapter not found');
-    var cards = cardsOf(ch);
-    if (!cards.length) {
-      return render(crumbs('Cards', chapterCrumb(ch)) +
-        '<div class="empty"><h2>No cards yet</h2><p>Add <code>decks/' + esc(ch.slug) + '.md</code> to build this deck.</p></div>');
-    }
-    var c = SRS.counts(cards);
-
-    render(
-      crumbs('Cards', chapterCrumb(ch)) +
-      '<section class="page-head">' +
-        '<div>' +
-          '<h1>' + esc(ch.title) + '</h1>' +
-          '<p class="muted">' + c.total + ' cards, ' + c.new + ' new, ' + (c.due + c.learning) + ' due, ' + c.later + ' scheduled</p>' +
-        '</div>' +
-        '<div class="page-head-actions">' +
-          studyLink(ch, 'btn btn-primary', 'Study') +
-          '<button class="btn" type="button" data-act="reset-deck">Reset progress</button>' +
-        '</div>' +
-      '</section>' +
-      '<div class="toolbar"><input id="search" class="input" type="search" placeholder="Search these cards…" autocomplete="off"></div>' +
-      '<section id="card-list" class="card-list"></section>'
-    );
-
+  /* The searchable list of cards. Shared by a chapter deck and a molmed session
+   * deck, which differ in what surrounds the list but not in the list itself.
+   * Expects `#card-list` and `#search` to be in the rendered view already. */
+  function paintCardList(cards) {
     var listEl = view.querySelector('#card-list');
     var searchEl = view.querySelector('#search');
 
@@ -485,11 +539,163 @@
 
     paint('');
     searchEl.addEventListener('input', function () { paint(searchEl.value); });
+  }
+
+  function viewCards(slug) {
+    var ch = chapterBySlug(slug);
+    if (!ch) return notFound('Chapter not found');
+    var cards = cardsOf(ch);
+    if (!cards.length) {
+      return render(crumbs('Cards', chapterCrumb(ch)) +
+        '<div class="empty"><h2>No cards yet</h2><p>Add <code>decks/' + esc(ch.slug) + '.md</code> to build this deck.</p></div>');
+    }
+    var c = SRS.counts(cards);
+
+    render(
+      crumbs('Cards', chapterCrumb(ch)) +
+      '<section class="page-head">' +
+        '<div>' +
+          '<h1>' + esc(ch.title) + '</h1>' +
+          '<p class="muted">' + c.total + ' cards, ' + c.new + ' new, ' + (c.due + c.learning) + ' due, ' + c.later + ' scheduled</p>' +
+        '</div>' +
+        '<div class="page-head-actions">' +
+          studyLink(ch, 'btn btn-primary', 'Study') +
+          '<button class="btn" type="button" data-act="reset-deck">Reset progress</button>' +
+        '</div>' +
+      '</section>' +
+      '<div class="toolbar"><input id="search" class="input" type="search" placeholder="Search these cards…" autocomplete="off"></div>' +
+      '<section id="card-list" class="card-list"></section>'
+    );
+
+    paintCardList(cards);
     view.querySelector('[data-act="reset-deck"]').addEventListener('click', function () {
       if (!confirm('Reset scheduling for all ' + cards.length + ' cards in “' + ch.title + '”?')) return;
       SRS.resetDeck(cards);
       toast('Progress reset for this chapter');
       viewCards(slug);
+    });
+  }
+
+  /* ---------- molmed revision ---------- */
+
+  function molmedCrumbs(leaf) {
+    return '<div class="crumbs"><a href="#/">Chapters</a> <span>/</span> ' +
+      (leaf ? '<a href="#/molmed">MolMed revision</a> <span>/</span> ' + esc(leaf) : 'MolMed revision') +
+    '</div>';
+  }
+
+  function viewMolmed() {
+    if (!state.molmed.length) {
+      return render(molmedCrumbs('') +
+        '<div class="empty"><h2>No sessions yet</h2>' +
+        '<p>Drop a lecture\u2019s slides in <code>molmed/slides/</code>, named ' +
+        '<code>Session &lt;n&gt; - &lt;lecturer&gt;_&lt;title&gt;_Ch &lt;n&gt;.pdf</code>, then run ' +
+        '<code>python3 build-manifest.py</code>.</p></div>');
+    }
+
+    var cards = allMolmedCards();
+    var total = SRS.counts(cards);
+    var pct = total.total ? total.seen / total.total : 0;
+    var withDeck = state.molmed.filter(function (s) { return sessionCards(s).length; }).length;
+
+    var head =
+      '<section class="hero">' +
+        '<div class="hero-text">' +
+          '<h1>MolMed revision</h1>' +
+          '<p class="sub">The chapters the Molecular Medicine course lectures, with a deck per session ' +
+            'written only from that session\u2019s slides \u2014 which is what the exam asks about.</p>' +
+          '<div class="stat-row">' +
+            '<div class="stat"><span class="stat-n">' + state.molmed.length + '</span><span class="stat-l">sessions</span></div>' +
+            '<div class="stat"><span class="stat-n">' + withDeck + '</span><span class="stat-l">with cards</span></div>' +
+            '<div class="stat"><span class="stat-n">' + (total.due + total.learning) + '</span><span class="stat-l">due now</span></div>' +
+            '<div class="stat"><span class="stat-n">' + total.new + '</span><span class="stat-l">unseen</span></div>' +
+          '</div>' +
+          (total.due + total.learning + total.new
+            ? '<a class="btn btn-primary btn-lg" href="#/molmed/study/all">Study everything due</a>'
+            : '<span class="muted">Nothing due across the course.</span>') +
+        '</div>' +
+        '<div class="hero-ring">' + progressRing(pct) +
+          '<div class="ring-label"><b>' + Math.round(pct * 100) + '%</b><span>introduced</span></div>' +
+        '</div>' +
+      '</section>';
+
+    var list = state.molmed.map(function (s) {
+      var c = SRS.counts(sessionCards(s));
+      var dp = c.total ? c.seen / c.total : 0;
+      var ch = s.chapter ? chapterBySlug(s.chapter) : null;
+
+      var badges = [];
+      if (c.due + c.learning) badges.push('<span class="pill pill-due">' + (c.due + c.learning) + ' due</span>');
+      if (c.new) badges.push('<span class="pill pill-new">' + c.new + ' new</span>');
+      if (c.total && !c.new && !(c.due + c.learning)) badges.push('<span class="pill pill-done">caught up</span>');
+      if (!c.total) badges.push('<span class="pill pill-todo">no cards yet</span>');
+
+      var actions = [];
+      if (c.total) {
+        actions.push('<a class="btn btn-sm btn-primary" href="#/molmed/study/' + encodeURIComponent(s.id) + '">Study</a>');
+        actions.push('<a class="btn btn-sm" href="#/molmed/cards/' + encodeURIComponent(s.id) + '">Cards</a>');
+      }
+      if (ch && ch.notes) actions.push('<a class="btn btn-sm" href="#/chapter/' + encodeURIComponent(ch.slug) + '">Write-up</a>');
+
+      var meta = [];
+      if (s.lecturer) meta.push('<span class="muted small">' + esc(s.lecturer) + '</span>');
+      if (c.total) meta.push('<span class="muted small">' + c.total + ' cards</span>');
+      if (s.slides) meta.push('<a class="small" href="' + esc(encodeURI(s.slides)) + '" target="_blank" rel="noopener">Slides \u2197</a>');
+
+      var href = c.total ? '#/molmed/cards/' + encodeURIComponent(s.id)
+                         : (ch && ch.notes ? '#/chapter/' + encodeURIComponent(ch.slug) : '#/molmed');
+
+      return '<article class="chapter">' +
+        '<div class="chapter-n">' + esc(s.id) + '</div>' +
+        '<div class="chapter-main">' +
+          '<a class="chapter-head" href="' + href + '">' +
+            '<h3>' + esc(sessionTitle(s)) + '</h3>' +
+            (s.title ? '<p>' + esc(s.title) + '</p>' : '') +
+          '</a>' +
+          '<div class="chapter-meta">' + meta.join('') + badges.join('') + '</div>' +
+          (c.total ? '<div class="bar"><span style="width:' + (dp * 100).toFixed(1) + '%"></span></div>' : '') +
+        '</div>' +
+        '<div class="chapter-actions">' + actions.join('') + '</div>' +
+      '</article>';
+    }).join('');
+
+    render(molmedCrumbs('') + head + '<section class="chapter-list">' + list + '</section>');
+  }
+
+  function viewMolmedCards(id) {
+    var s = sessionById(id);
+    if (!s) return notFound('Session not found');
+    var cards = sessionCards(s);
+    if (!cards.length) {
+      return render(molmedCrumbs(sessionLabel(s)) +
+        '<div class="empty"><h2>No cards yet</h2>' +
+        '<p>Add <code>molmed/decks/' + esc(s.id + '-' + (s.chapter || '')) + '.md</code> to build this deck.</p></div>');
+    }
+    var c = SRS.counts(cards);
+
+    render(
+      molmedCrumbs(sessionLabel(s)) +
+      '<section class="page-head">' +
+        '<div>' +
+          '<h1>' + esc(sessionTitle(s)) + '</h1>' +
+          '<p class="muted">' + esc(sessionLabel(s)) + (s.lecturer ? ' \u00b7 ' + esc(s.lecturer) : '') + ' \u2014 ' +
+            c.total + ' cards, ' + c.new + ' new, ' + (c.due + c.learning) + ' due, ' + c.later + ' scheduled</p>' +
+        '</div>' +
+        '<div class="page-head-actions">' +
+          '<a class="btn btn-primary" href="#/molmed/study/' + encodeURIComponent(s.id) + '">Study</a>' +
+          '<button class="btn" type="button" data-act="reset-deck">Reset progress</button>' +
+        '</div>' +
+      '</section>' +
+      '<div class="toolbar"><input id="search" class="input" type="search" placeholder="Search these cards\u2026" autocomplete="off"></div>' +
+      '<section id="card-list" class="card-list"></section>'
+    );
+
+    paintCardList(cards);
+    view.querySelector('[data-act="reset-deck"]').addEventListener('click', function () {
+      if (!confirm('Reset scheduling for all ' + cards.length + ' cards in this session?')) return;
+      SRS.resetDeck(cards);
+      toast('Progress reset for this session');
+      viewMolmedCards(id);
     });
   }
 
@@ -930,6 +1136,16 @@
       cards = allCards();
       title = 'All chapters';
       home = '#/';
+    } else if (scope === 'molmed:all') {
+      cards = allMolmedCards();
+      title = 'MolMed revision';
+      home = '#/molmed';
+    } else if (scope.indexOf('molmed:') === 0) {
+      var s = sessionById(scope.slice('molmed:'.length));
+      if (!s) return notFound('Session not found');
+      cards = sessionCards(s);
+      title = sessionTitle(s);
+      home = '#/molmed/cards/' + encodeURIComponent(s.id);
     } else {
       var ch = chapterBySlug(scope);
       if (!ch) return notFound('Chapter not found');
@@ -999,7 +1215,9 @@
     var totalPlanned = Math.max(session.planned, session.done + session.queue.length);
     var pct = totalPlanned ? (session.done / totalPlanned) * 100 : 0;
     var st = SRS.get(card.id);
-    var owner = session.scope === 'all' ? chapterBySlug(card.deckId) : null;
+    // In a pooled session (everything, or all of molmed) say which deck a card
+    // came from; inside one deck that would be the same line on every card.
+    var owner = (session.scope === 'all' || session.scope === 'molmed:all') ? deckOwnerTitle(card) : '';
     // A follow-up carries the question it continues, so it still reads on its
     // own when a rating of Again brings it back later in the session.
     var follows = card.followUp ? parentOf(card) : null;
@@ -1015,7 +1233,7 @@
         '</div>' +
         '<div class="bar thin"><span style="width:' + pct.toFixed(1) + '%"></span></div>' +
         '<article class="card" id="card">' +
-          (owner ? '<div class="card-deck">' + esc(owner.title) + '</div>' : '') +
+          (owner ? '<div class="card-deck">' + esc(owner) + '</div>' : '') +
           (follows ? '<div class="card-follows">' + esc(excerpt(MD.plain(follows.front), 110)) + '</div>' : '') +
           '<div class="card-front">' + MD.render(card.front) + '</div>' +
           '<div class="card-body" id="card-body"></div>' +
@@ -1314,7 +1532,8 @@
     var parts = hash.split('/').filter(Boolean);
 
     document.querySelectorAll('[data-nav]').forEach(function (a) { a.classList.remove('active'); });
-    var navKey = parts[0] === 'study' ? 'study'
+    var navKey = parts[0] === 'molmed' ? 'molmed'
+               : parts[0] === 'study' ? 'study'
                : parts[0] === 'papers' || parts[0] === 'paper' ? 'papers'
                : parts[0] === 'settings' ? 'settings' : 'home';
     var nav = document.querySelector('[data-nav="' + navKey + '"]');
@@ -1322,6 +1541,11 @@
 
     if (!state.loaded) return render('<div class="loading"><span class="spinner"></span> Loading…</div>');
 
+    if (parts[0] === 'molmed') {
+      if (parts[1] === 'cards' && parts[2]) return viewMolmedCards(decodeURIComponent(parts[2]));
+      if (parts[1] === 'study' && parts[2]) return viewStudy('molmed:' + decodeURIComponent(parts[2]));
+      return viewMolmed();
+    }
     if (parts[0] === 'chapter' && parts[1]) return viewChapter(decodeURIComponent(parts[1]));
     if (parts[0] === 'cards' && parts[1]) return viewCards(decodeURIComponent(parts[1]));
     if (parts[0] === 'study' && parts[1]) return viewStudy(decodeURIComponent(parts[1]));
