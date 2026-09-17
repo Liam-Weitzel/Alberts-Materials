@@ -19,9 +19,13 @@ cells.
 
 There are a few hundred distinguishable human cell types. The exact number depends on how finely cell subtypes are classified.
 
+![Cell types can vary enormously in size and shape: a human neuron with a large branching dendritic tree is compared to a small round neutrophil white blood cell, drawn to the same scale](assets/img/fig-1-31.png)
+
 By number, red blood cells are the most abundant cells in the human body. Blood-associated cells account for a very large fraction of the total cell count.
 
 All cells are surrounded by a **plasma membrane**, which consists primarily of a **phospholipid bilayer**.
+
+![A phospholipid has a hydrophilic head and hydrophobic tails, and in water these molecules spontaneously form a closed bilayer vesicle with heads facing the water on both sides](assets/img/fig-1-06.png)
 
 Despite the diversity of life, the fundamental biochemistry of living cells is remarkably similar.
 
@@ -30,6 +34,8 @@ Despite the diversity of life, the fundamental biochemistry of living cells is r
 DNA is replicated by **template-directed polymerization**.
 
 Each DNA strand can serve as a template for the synthesis of a complementary strand.
+
+![The two strands of a DNA double helix pulled apart, each serving as a template for a new complementary strand, producing two identical daughter double helices](assets/img/fig-1-03.png)
 
 The basic flow of genetic information is:
 
@@ -41,9 +47,13 @@ DNA is **transcribed** into RNA.
 
 Protein-coding RNA is **translated** into protein.
 
+![From DNA to protein: DNA replicates itself, is transcribed into RNA, and RNA is translated into protein](assets/img/fig-1-04.png)
+
 Not all RNA is translated. Many RNAs have functions of their own.
 
 Proteins perform many of the catalytic reactions within cells, but proteins are not the only biological catalysts. Some RNA molecules also have catalytic activity.
+
+![Life as an autocatalytic process: DNA and RNA provide sequence information used to build proteins, and proteins provide the catalytic activity needed to build DNA, RNA and more protein, closing the loop](assets/img/fig-1-05.png)
 
 A major example is the **ribosome**. The ribosome contains both proteins and ribosomal RNA, and the catalytic center responsible for peptide bond formation is formed primarily by rRNA.
 
@@ -52,6 +62,8 @@ A major example is the **ribosome**. The ribosome contains both proteins and rib
 **Mycoplasma** species are notable for lacking a cell wall. They are surrounded only by a plasma membrane.
 
 Mycoplasma contamination is a common problem in cultured cells because the bacteria can grow alongside the culture without necessarily causing obvious changes at first.
+
+![Electron micrograph of a cross section through the small bacterium Mycoplasma genitalium](assets/img/fig-1-08.png)
 
 Examples include:
 
@@ -68,6 +80,8 @@ The genomes of organisms change over evolutionary time.
 
 These changes generate genetic diversity and can eventually produce organisms with new structures and biological functions.
 
+![Four modes of genetic innovation: intragenic mutation, gene duplication, DNA segment shuffling, and horizontal DNA transfer](assets/img/fig-1-18.png)
+
 Despite this divergence, many genes are highly conserved across evolution.
 
 ### Ribosomal RNA
@@ -78,7 +92,11 @@ Comparing rRNA sequences between organisms such as humans, *E. coli*, and archae
 
 The sequences are not identical. Instead, important regions have changed slowly enough that their common ancestry can still be recognized.
 
+![A stretch of ribosomal RNA gene sequence aligned across a human, an archaeon and a bacterium, with most positions identical, showing how little this gene has changed since the last universal common ancestor](assets/img/fig-1-17.png)
+
 Because rRNA is both universal and highly conserved, rRNA sequence comparison has been extremely useful for reconstructing the evolutionary relationships between organisms.
+
+![A global tree of life based on genome comparisons, with branch lengths proportional to genome differences, showing bacteria, archaea and eukaryotes](assets/img/fig-1-09.png)
 
 ## Human genes
 
@@ -149,6 +167,8 @@ Genes that share an evolutionary origin are called **homologs**.
 
 Homologs can be divided into paralogs and orthologs.
 
+![Orthologs arise from speciation, paralogs arise from gene duplication within one genome](assets/img/fig-1-20.png)
+
 ### Paralogs
 
 **Paralogs** are homologous genes produced by a gene duplication event.
@@ -171,6 +191,8 @@ Related genes produced through duplication and divergence form **gene families**
 
 Many genes can be assigned to one of hundreds of known gene families.
 
+![Pie chart of gene families in the Bacillus subtilis genome, showing how many genes fall into families of various sizes](assets/img/fig-1-19.png)
+
 If the function of a newly identified gene is unknown, comparison with known members of the same gene family can provide clues about its likely function.
 
 Sequence similarity can therefore be used to infer gene function.
@@ -180,6 +202,8 @@ Sequence similarity can therefore be used to infer gene function.
 There is a general tendency for more complex organisms to have larger genomes, but the relationship is weak and contains many exceptions.
 
 Genome size is therefore not a reliable measure of biological complexity.
+
+![Genome sizes compared on a log scale](assets/img/fig-1-30.png)
 
 Much of the difference in genome size between organisms comes from noncoding DNA, repetitive DNA, transposable elements, and differences in genome organization rather than simply the number of protein-coding genes.
 
@@ -193,11 +217,15 @@ Many fundamental cellular mechanisms are conserved across evolution, so discover
 
 A bacterium used to study fundamental mechanisms such as DNA replication, transcription, gene regulation, and basic molecular biology.
 
+![Scanning electron micrograph of a cluster of E. coli cells beside a circular map of the E. coli K-12 genome](assets/img/fig-1-38.png)
+
 ### Yeast
 
 *Saccharomyces cerevisiae* is a single-celled eukaryote.
 
 It has been important for studying the eukaryotic cell cycle, chromosome biology, intracellular organization, and many conserved cellular processes.
+
+![The yeast life cycle: diploid cells proliferate by budding, or under starvation undergo meiosis and sporulation into haploid spores, which hatch into haploid cells that proliferate by budding or mate to restore the diploid state](assets/img/fig-1-40.png)
 
 ### *Caenorhabditis elegans*
 
@@ -205,11 +233,15 @@ A small nematode worm with a highly reproducible pattern of development.
 
 It has been particularly important for studying development, cell lineage, programmed cell death, and the nervous system.
 
+![Photograph of the nematode Caenorhabditis elegans, about 1 mm long](assets/img/fig-1-42.png)
+
 ### *Drosophila melanogaster*
 
 The fruit fly has been central to genetics and developmental biology.
 
 Studies in *Drosophila* revealed many of the genes controlling body organization and development. Related genes were later found to perform similar functions in vertebrates.
+
+![A normal adult Drosophila beside a mutant in which legs have developed where the antennae should be](assets/img/fig-1-43.png)
 
 ### *Xenopus*
 
@@ -217,11 +249,15 @@ Frogs of the genus *Xenopus* produce large eggs that are easy to manipulate expe
 
 They have been useful for studying embryonic development, the cell cycle, and early vertebrate development.
 
+![Drawings of the early stages of Rana pipiens development from fertilized egg through blastula and gastrula to tadpole](assets/img/fig-1-45.png)
+
 ### Zebrafish
 
 Zebrafish embryos develop externally and are transparent during early development.
 
 They are useful for studying vertebrate development, genetics, organ formation, and disease.
+
+![Zebrafish adults, and a fluorescence image of a two-day-old embryo with blood vessels marked in red and lymphatic vessels in green](assets/img/fig-1-46.png)
 
 ### Mouse
 
@@ -229,10 +265,14 @@ The mouse is one of the most important mammalian model organisms.
 
 Its close evolutionary relationship to humans makes it useful for studying mammalian development, physiology, genetics, and human disease.
 
+![A human baby and a mouse, each with a similar abnormal white patch on the forehead caused by a mutation in the Kit gene](assets/img/fig-1-48.png)
+
 ## Central idea
 
 The diversity of life is built on a common cellular and molecular foundation.
 
 Many genes and cellular mechanisms have been conserved over enormous evolutionary distances.
+
+![Geological timescale of divergence times for pairs of vertebrates, with percent amino acid identity in the hemoglobin alpha chain shown alongside](assets/img/fig-1-47.png)
 
 Studying simpler organisms can therefore reveal principles that also apply to human cells.

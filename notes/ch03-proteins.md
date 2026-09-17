@@ -84,6 +84,8 @@ An ionic bond behaves like a covalent bond in a vacuum, but in water it behaves 
 
 In proteins, an ionic bond between two oppositely charged side chains, such as Lys and Glu, is called a **salt bridge**.
 
+![Three types of noncovalent bond acting together between amino acid side chains: electrostatic attractions, hydrogen bonds and van der Waals attractions](assets/img/fig-3-04.png)
+
 ### Van der Waals contacts
 
 **Van der Waals contacts** are very weak, about **0.2 kcal/mol** each.
@@ -182,6 +184,8 @@ Protein structure is described at four levels:
 
 A protein is a **covalent chain of amino acids linked by peptide bonds**.
 
+![Formation of a peptide bond between glycine and alanine with removal of water, and a two-dimensional representation of a polypeptide backbone with its attached side chains](assets/img/fig-3-01.png)
+
 A peptide bond forms in a **condensation reaction** between the carboxyl group of one amino acid and the amino group of the next, releasing water:
 
 $$
@@ -201,6 +205,8 @@ Protein sizes vary widely:
 There are **20 natural amino acids**.
 
 They share the same backbone, a central α-carbon (Cα) carrying an amino group, a carboxyl group and a hydrogen. They differ in their **side chain (R)**.
+
+![The 20 amino acids commonly found in proteins, grouped as acidic, basic, uncharged polar and nonpolar, with three-letter and one-letter abbreviations](assets/img/fig-3-02.png)
 
 Amino acids can be classified into **5 groups** depending on their side chain:
 
@@ -222,6 +228,8 @@ Amino acids can be classified into **5 groups** depending on their side chain:
 
 Methionine appears in both the aliphatic and the polar group on the slides. Its sulfur makes it slightly polar, but it mostly behaves as a hydrophobic amino acid.
 
+![Panel 3-1, first page: families of amino acids, the general amino acid formula, optical isomers, the basic side chains, and peptide bond formation](assets/img/panel-3-01.png)
+
 ### Histidine
 
 **Histidine is not always charged.**
@@ -239,6 +247,8 @@ This allows histidine to act as either a proton donor or a proton acceptor, whic
 **Glycine** has only a hydrogen as its side chain. With nothing to clash with, it can adopt many more backbone conformations than other amino acids. Glycine is therefore **more flexible**.
 
 **Proline** has a side chain that loops back and bonds covalently to its own backbone nitrogen, forming a ring. This makes proline **less flexible**. Its backbone nitrogen also has no hydrogen, so proline cannot donate a hydrogen bond. Proline therefore disrupts alpha helices and is commonly found in turns.
+
+![Panel 3-1, second page: the atomic structures of the acidic, uncharged polar and nonpolar side chains, and the disulfide bond between two cysteines](assets/img/panel-3-01b.png)
 
 ## Three-letter and one-letter codes
 
@@ -277,6 +287,8 @@ A **Ramachandran plot** plots the φ angle against the ψ angle for each residue
 * **forbidden** combinations, where atoms would clash
 
 The allowed regions correspond to the common secondary structures. There is one region for alpha helices and one for beta strands.
+
+![Steric limitations on bond angles in a polypeptide chain, with the planar peptide unit and the phi and psi rotations, and a Ramachandran plot of observed angle pairs](assets/img/fig-3-03.png)
 
 Glycine lacks a side chain, so it can also occupy regions that are forbidden for other amino acids.
 
@@ -322,6 +334,8 @@ Side-chain conformation is expressed in torsion angles **chi1 (χ1), chi2 (χ2)*
 
 Two cysteines can form a covalent **disulfide bridge** (S–S bond) between their sulfur atoms.
 
+![Covalent disulfide bonds forming between adjacent cysteine side chains, joining either two parts of one polypeptide chain or two different chains](assets/img/fig-3-25.png)
+
 Forming a disulfide is an **oxidation** reaction, so disulfide bridges require **oxidizing conditions**.
 
 The cytosol and nucleus are **reducing** environments. Disulfide bridges are therefore **not normally found in the cytosol**.
@@ -344,6 +358,8 @@ This matters for proteins outside the cell, such as proteins in blood serum. The
 Proteins do not form extended chains in water.
 
 They **behave like oil drops in water**: the hydrophobic side chains cluster together in the interior, and polar and charged side chains are exposed on the surface.
+
+![How a protein folds into a compact conformation, with polar side chains on the outside and nonpolar side chains buried in a hydrophobic core](assets/img/fig-3-05.png)
 
 **Noncovalent forces stabilize protein folding.**
 
@@ -420,6 +436,8 @@ Properties of the alpha helix:
 
 All the backbone hydrogen bonds run parallel to the helix axis, inside the helix.
 
+![The regular conformation of the polypeptide backbone in the alpha helix and the beta sheet, showing the hydrogen bonds between backbone peptide bonds](assets/img/fig-3-06.png)
+
 ## Beta sheet
 
 A **beta sheet** is made of extended **beta strands** lying next to each other. Hydrogen bonds form between the backbones of neighbouring strands.
@@ -433,6 +451,8 @@ Properties of the beta sheet:
 In an **anti-parallel** sheet, neighbouring strands run in opposite directions (N→C next to C→N).
 
 In a **parallel** sheet, neighbouring strands run in the same direction. The hydrogen bonds are then slightly angled.
+
+![An antiparallel beta sheet and a parallel beta sheet, both formed from hydrogen-bonded neighbouring strands](assets/img/fig-3-07.png)
 
 ## Turns and loops
 
@@ -452,6 +472,8 @@ This is **tertiary structure**.
 
 Over the years, certain recurring patterns of folding have been recognized and given names. Domains can often be recognized through **sequence motifs**.
 
+![Ribbon models of three protein domains: an all-alpha cytochrome, a mixed alpha and parallel beta NAD-binding domain, and an all-beta immunoglobulin light chain domain](assets/img/fig-3-10.png)
+
 **Independent folding domains may have defined functions.** For example, a particular domain may bind DNA, bind phosphorylated peptides, or catalyse a reaction.
 
 ## Multiple domains can be mixed and matched
@@ -460,12 +482,16 @@ Domains can be **mixed and matched** in different proteins, combining functions 
 
 A classic example is the **SH2 domain**, which binds phosphotyrosine. SH2 domains are found in many different proteins, in combination with other domains:
 
+![The SH2 domain drawn as a polypeptide backbone model, a ribbon model, a wire model including side chains, and a space-filling model](assets/img/fig-3-09.png)
+
 * adaptor proteins
 * kinases
 * phosphatases
 * proteins involved in Ras signalling, transcription, ubiquitination, and cytoskeletal regulation
 
 This is the protein-level result of the **DNA segment shuffling** described in Ch 1.
+
+![Domain shuffling, showing the two protease domains of chymotrypsin combined with EGF-like, calcium-binding and kringle domains in urokinase, factor IX and plasminogen](assets/img/fig-3-15.png)
 
 ## Bacterial versus human proteins
 
@@ -496,6 +522,8 @@ Examples include:
 
 Their large, regular surfaces are well suited for binding other proteins.
 
+![The seven-bladed kelch repeat domain of galactose oxidase, with the N- and C-termini marked adjacent to one another](assets/img/fig-q3-02.png)
+
 So we see both ends of the spectrum: some proteins are very nicely folded, others hardly at all.
 
 ---
@@ -515,6 +543,8 @@ Many proteins consist of more than one polypeptide chain, called **subunits**.
 
 Identical subunits often assemble into **symmetric** complexes, such as dimers, trimers, tetramers, and larger **rings**.
 
+![A symmetrical CAP protein dimer formed through one identical binding site on each monomer, and a symmetrical neuraminidase tetramer formed through two nonidentical binding sites](assets/img/fig-3-19.png)
+
 ## Why do dimers usually bind head to head?
 
 Identical subunits can bind in two ways.
@@ -523,7 +553,11 @@ Identical subunits can bind in two ways.
 
 **Head to tail (heterologous):** one surface of a subunit binds a *different* surface on the next subunit. Each new subunit leaves a free binding surface at the end of the complex. The complex can keep growing into a **long filament or helix**, as in actin filaments and microtubules.
 
+![A protein with one binding site forming a dimer, identical proteins with two different binding sites forming a long helical filament, and the same two sites arranged to close into a ring](assets/img/fig-3-21.png)
+
 A head-to-tail arrangement only gives a closed, defined complex if the geometry curves around and closes into a ring.
+
+![Electron micrographs of negatively stained actin filaments, and the helical arrangement of actin molecules with a 37 nm repeat between the minus and plus ends](assets/img/fig-3-22.png)
 
 For a defined dimer, head-to-head binding is therefore the self-limiting option.
 
@@ -570,6 +604,8 @@ Folding with the help of a **chaperone is NOT a PTM**. The chaperone assists fol
 
 A phosphate group is transferred from ATP onto a side chain by a **kinase**, and removed again by a **phosphatase**.
 
+![Transfer of a phosphate group from ATP to a serine side chain by a protein kinase and its removal by a protein phosphatase, with phosphorylation either raising or lowering activity](assets/img/fig-3-58.png)
+
 Phosphorylation adds a large **negative charge**. This can change the conformation of the protein or create a binding site for other proteins, such as the phosphotyrosine binding site of SH2 domains.
 
 Because it is reversible, phosphorylation is one of the most common ways to switch protein activity on or off.
@@ -580,6 +616,8 @@ Because it is reversible, phosphorylation is one of the most common ways to swit
 
 * **Chains** of ubiquitin (e.g. linked through Lys48) mark a protein for **degradation** by the proteasome.
 * A **single** ubiquitin (monoubiquitination), such as on histone H2A, acts as a signal that changes the protein's function or interactions.
+
+![The three-dimensional structure of ubiquitin, and the patterns of monoubiquitylation, multiubiquitylation and Lys48 and Lys63 polyubiquitylation with their meanings](assets/img/fig-3-65.png)
 
 ### Acetylation
 
@@ -601,6 +639,8 @@ It occurs in the ER and Golgi, so it is mainly found on **secreted** and **membr
 
 **Hydroxylation** of lysine (and proline) is essential in **collagen**, where it stabilizes the triple helix.
 
+![A short section of collagen fibril resolving into individual 300 nm collagen molecules, each a triple helix of three wound chains](assets/img/fig-3-24.png)
+
 ## Cofactors
 
 Many proteins bind **cofactors**: non-protein molecules or ions that are needed for their structure or function.
@@ -610,6 +650,8 @@ Many proteins bind **cofactors**: non-protein molecules or ions that are needed 
 The **heme group** of hemoglobin and myoglobin is not covalently bound. It sits in a pocket of the protein, where its iron is coordinated by a histidine side chain.
 
 The heme contributes to the shape of the protein, and without it the protein does not fold properly.
+
+![The isomerization of 11-cis retinal to all-trans retinal on absorbing light, and the structure of a heme group with its central iron atom](assets/img/fig-3-51.png)
 
 ### Light-harvesting complexes
 
@@ -644,6 +686,8 @@ Examples:
 * **Complement:** a similar protease cascade in the immune system.
 * **Hormones:** insulin is made as proinsulin. Cleavage removes a middle peptide, leaving two chains held together by disulfide bridges.
 
+![Proinsulin folding and stabilization by disulfide bonds, removal of the connecting peptide to leave two-chain insulin, and the irreversible separation of the chains by reduction](assets/img/fig-3-30.png)
+
 ## pH-induced conformational changes
 
 A change in pH is not a covalent modification, but it can also change protein shape.
@@ -655,6 +699,8 @@ The **hemagglutinin** protein of the influenza virus is a good example. It is fi
 Histones carry many different PTMs on their tails, including acetylation, methylation, phosphorylation, and ubiquitination.
 
 The **combination** of modifications acts as a signal that regulates chromatin structure and gene expression. The protein acts like a **"microchip"** that integrates many inputs.
+
+![A spectrum of covalent modifications producing a combinatorial regulatory code that is read to change a protein's binding, location or fate, and the known modifications of p53](assets/img/fig-3-81.png)
 
 The challenge is to **unravel these signals**.
 
@@ -673,6 +719,8 @@ Not all proteins have a stable fold.
 
 Disordered regions **can be stabilized** by, for example, **chaperones**.
 
+![Unstructured regions of polypeptide forming binding sites for other proteins, and the same regions carrying multiple phosphorylation sites that change their binding preferences](assets/img/fig-3-73.png)
+
 ## Aggregation of IDPs
 
 **Aggregation of IDPs can be functional.**
@@ -683,13 +731,19 @@ IDPs can undergo **phase separation**. Many weak, multivalent interactions cause
 
 These droplets (**condensates**) are compartments without a membrane. They concentrate specific molecules and exclude others, creating a local chemical environment that differs from the rest of the cell.
 
+![Types of weak multivalent interaction that drive condensate formation between unstructured proteins, structured proteins and RNA, and a FRAP experiment on labelled nucleoli](assets/img/fig-3-77.png)
+
 Phase separation is used as a **method of signalling** and organization. It is currently a hot topic.
+
+![Three spherical nucleoli inside a nucleus dissected from a Xenopus oocyte fusing into a single larger condensate under the light microscope](assets/img/fig-3-78.png)
 
 ### Disease
 
 Aggregation of IDPs can also be the **basis of disease**.
 
 In **synucleinopathies** such as Parkinson's disease, the disordered protein α-synuclein forms toxic aggregates.
+
+![How two alpha-synuclein monomers pair through a hydrophobic zipper to create the fibril spine, a cryo-EM rendering of the fibril, and an electron micrograph of the fibrils](assets/img/fig-3-32.png)
 
 ---
 
@@ -954,15 +1008,23 @@ A structure gives a **static view**, but protein function takes place in a **dyn
 * **Shape complementarity** assists, through van der Waals contacts.
 * **Different sequence regions** can contribute to a single binding site, brought together by folding.
 
+![A ligand fitting precisely into a protein's binding site like a hand into a glove, shown schematically and as a space-filling model](assets/img/fig-3-35.png)
+
 ### Protein–protein binding
 
 Proteins bind to other proteins through **several types of interfaces**, such as surface-to-surface, helix-to-groove, and peptide-to-surface.
 
+![Three ways two proteins bind: a rigid surface against an extended string of polypeptide, two alpha helices forming a coiled-coil, and two complementary rigid surfaces](assets/img/fig-3-39.png)
+
 **Antibodies** display very versatile protein interactions. Loops at the tips of the antibody vary between antibodies, creating a practically unlimited range of binding sites.
+
+![A Y-shaped antibody of two heavy and two light chains held by disulfide bonds, with antigen-binding sites formed where variable domains meet, and a light chain showing the hypervariable loops](assets/img/fig-3-40.png)
 
 ### Affinity
 
 The binding function of proteins depends on noncovalent interactions. Binding is described by three questions:
+
+![Molecule A encountering B, C and D, with poorly matched surfaces breaking apart under thermal motion and the well-matched pair staying bound](assets/img/fig-3-41.png)
 
 * How strong is the affinity? → $K_D$
 * How fast is the association? → $k_{on}$
@@ -981,6 +1043,8 @@ K_D = \frac{[A][B]}{[A{-}B]} = \frac{k_{off}}{k_{on}}
 $$
 
 $K_D$ has the unit **M**.
+
+![The dissociation and association rate equations, their equality at equilibrium giving K as kon over koff, and a table relating equilibrium constants to standard free-energy differences](assets/img/fig-3-42.png)
 
 The **lower** the $K_D$, the **higher** the affinity:
 
@@ -1014,11 +1078,15 @@ Binding and dissociation can be measured in real time by **surface plasmon reson
 
 **Enzymes stabilize the transition state and lower the activation energy barrier** (see Ch 2).
 
+![Free-energy diagram comparing the activation energy for an uncatalysed reaction with the lower activation energy of the enzyme-catalysed route through ES and EP](assets/img/fig-3-45.png)
+
 The reaction takes place in the **catalytic pocket**, or **active site**. The enzyme promotes the reaction by:
 
 1. **ideal positioning** of the reactants
 2. **arranging charges** to promote the reaction
 3. **straining the substrate** towards the transition state
+
+![Three general strategies for enzyme catalysis: orienting two substrates precisely, rearranging electrons to create partial charges, and straining the substrate toward a transition state](assets/img/fig-3-50.png)
 
 Because enzymes bind the transition state tightly, a molecule that mimics the transition state can act as a strong **inhibitor**. This is used in **drug design**. Antibodies raised against transition-state mimics can even act as enzymes (**catalytic antibodies**).
 
@@ -1038,6 +1106,8 @@ $$
 * $K_m$: substrate concentration at half $V_{max}$, a measure of **substrate affinity** (M)
 * $k_{cat}$: **turnover number**, the number of substrate molecules converted per enzyme per second (s⁻¹)
 
+![Panel 3-2, first page: why enzyme kinetics is analysed, and the steady-state derivation of the Michaelis-Menten equation](assets/img/panel-3-02.png)
+
 ### Regulation of enzyme activity
 
 The cell regulates the catalytic activities of its enzymes by:
@@ -1047,10 +1117,14 @@ The cell regulates the catalytic activities of its enzymes by:
 * **proteolysis**, e.g. blood clotting enzymes, complement
 * **protein interaction**
 
+![Feedback inhibition of a biosynthetic pathway, where the end product Z inhibits the first enzyme unique to its own synthesis](assets/img/fig-3-52.png)
+
 **Allosteric enzymes** have two or more binding sites that interact:
 
 * Two ligands whose binding sites are coupled must **reciprocally** affect each other's binding.
 * Activators and inhibitors can use the same or different allosteric sites.
+
+![A cooperative allosteric transition in an enzyme of two identical subunits, with the first inhibitory ligand binding with difficulty and the second easily](assets/img/fig-3-57.png)
 
 ## Switching
 
@@ -1062,7 +1136,11 @@ The cell regulates the catalytic activities of its enzymes by:
 * Ras hydrolyses GTP to GDP, giving the inactive **Ras–GDP** "off" state.
 * A GEF (guanine nucleotide exchange factor) swaps GDP for GTP to switch Ras on. A GAP (GTPase-activating protein) speeds up GTP hydrolysis to switch it off.
 
+![The GTPase cycle: an active GTP-bound protein, GTP hydrolysis releasing phosphate to give the inactive GDP-bound form, slow GDP dissociation and fast GTP rebinding](assets/img/fig-3-63.png)
+
 Mutant Ras proteins that are stuck in the GTP state are found in many cancers.
+
+![The structure of the Ras protein with GTP bound, with the regions that change conformation on hydrolysis highlighted and the switch helix marked](assets/img/fig-3-64.png)
 
 ## Structural proteins
 
@@ -1070,13 +1148,19 @@ Mutant Ras proteins that are stuck in the GTP state are found in many cancers.
 
 **Coiled coils** are built from two (or more) alpha helices wound around each other. The sequence has a regular pattern of seven residues (a heptad, positions *abcdefg*). Positions **a** and **d** are hydrophobic, often **leucines**. They form a hydrophobic stripe along each helix, which packs against the stripe on the partner helix.
 
+![A coiled-coil, showing the sevenfold abcdefg labelling of side chains, the stripe of nonpolar a and d residues, and two helices wrapped around each other](assets/img/fig-3-08.png)
+
 ## Mechanical work
 
 **Motor proteins use the energy of ATP to generate large movements.**
 
 Normal conformational changes of a protein are **nondirectional**: the protein moves back and forth between states.
 
+![A protein cycling between three conformations as it moves along a cytoskeletal filament, wandering randomly without an input of energy](assets/img/fig-3-70.png)
+
 Motor proteins produce directional movement by **coupling movement to an irreversible reaction**, ATP hydrolysis. This makes each step effectively one-way.
+
+![An allosteric motor protein driven by ATP hydrolysis walking along a filament, and a walking myosin motor visualized by high-speed atomic force microscopy](assets/img/fig-3-71.png)
 
 Examples:
 
@@ -1091,3 +1175,5 @@ The challenge is to unravel the steps in these multicomponent systems, using sin
 **Systems biology** aims to understand the integration between networks of proteins.
 
 This requires quantitative data, such as kinetic and binding constants, for the individual components.
+
+![A network of protein-binding interactions in Drosophila cells, with highly interactive groups such as the proteasome, ribosome and actin cytoskeleton labelled](assets/img/fig-3-82.png)

@@ -9,6 +9,8 @@ tags: [mboc, ch2]
 
 All cellular chemistry ultimately depends on atoms and the bonds and interactions between them.
 
+![Periodic table with the four main elements of cells highlighted in red, seven minor elements in blue, and trace elements in green](assets/img/fig-2-01.png)
+
 ### Covalent bonds
 
 A **covalent bond** forms when atoms share pairs of electrons.
@@ -16,6 +18,8 @@ A **covalent bond** forms when atoms share pairs of electrons.
 Covalent bonds are strong and are used to construct stable biological molecules such as proteins, nucleic acids, carbohydrates, and lipids.
 
 Breaking a covalent bond requires considerably more energy than disrupting the weak noncovalent interactions that organize many cellular structures.
+
+![Logarithmic scale of energies important to cells, from average thermal motions through noncovalent bond breakage to ATP hydrolysis and complete glucose oxidation](assets/img/fig-2-02.png)
 
 ### Ionic interactions
 
@@ -66,6 +70,8 @@ A **hydrogen bond** forms when a partially positive hydrogen atom interacts with
 
 In water, the hydrogen of one water molecule can form a hydrogen bond with the oxygen of another water molecule.
 
+![A hydrogen bond forming between two water molecules, and the general donor and acceptor arrangement between molecules containing oxygen or nitrogen](assets/img/fig-2-03.png)
+
 Hydrogen bonds can also involve nitrogen and other sufficiently electronegative atoms.
 
 Hydrogen bonding is important in many biological structures, including:
@@ -79,6 +85,8 @@ Polar and charged molecules generally dissolve well in water because they can fo
 ## Weak noncovalent interactions
 
 Many biological structures depend on large numbers of individually weak interactions.
+
+![Two macromolecules with complementary surfaces binding through many simultaneous noncovalent interactions](assets/img/fig-2-04.png)
 
 ### Van der Waals interactions
 
@@ -116,6 +124,8 @@ Ionic interactions are much weaker in water because polar water molecules surrou
 
 This is why many ionic compounds dissolve readily in water.
 
+![A molecule of acetic acid dissolving in water to give acetate and hydronium, and water molecules exchanging protons to form hydronium and hydroxyl ions](assets/img/fig-2-05.png)
+
 ---
 
 # Small organic molecules
@@ -128,6 +138,8 @@ Four major families of small organic molecules are particularly important in cel
 * nucleotides
 
 These molecules can serve as building blocks for larger biological molecules.
+
+![The four main families of small organic molecules in cells: sugars, fatty acids, amino acids and nucleotides, with the macromolecules each forms](assets/img/fig-2-06.png)
 
 Examples include:
 
@@ -145,6 +157,8 @@ $$
 
 Fatty acids are important components of lipids, although lipids are not generally polymers in the same way that proteins and nucleic acids are.
 
+![Panel on fatty acids and other lipids, showing saturated and unsaturated chains, triacylglycerols, phospholipids and micelle and bilayer formation](assets/img/panel-2-05.png)
+
 ## Condensation and hydrolysis
 
 Many biological macromolecules are assembled through **condensation reactions**.
@@ -156,6 +170,8 @@ These biosynthetic reactions generally require an input of energy.
 The reverse process is **hydrolysis**.
 
 During hydrolysis, water is used to break a covalent bond.
+
+![Condensation joins two subunits with the loss of a water molecule, while hydrolysis breaks the bond by adding water back](assets/img/fig-2-09.png)
 
 Hydrolysis reactions are often energetically favorable, although whether a particular reaction proceeds spontaneously depends on its overall free-energy change.
 
@@ -169,6 +185,8 @@ The **first law of thermodynamics** states that energy cannot be created or dest
 
 Energy can only be transferred or converted from one form into another.
 
+![Interconversions between forms of energy: a falling brick, formation of water from hydrogen and oxygen, a motor driven by chemical energy, and photosynthesis](assets/img/fig-2-17.png)
+
 Cells therefore do not create energy.
 
 They convert energy from food or other sources into forms that can be used to perform cellular work.
@@ -181,15 +199,21 @@ More precisely, spontaneous processes increase the total entropy of the system a
 
 Cells are highly ordered structures, but they do not violate the second law.
 
+![A room shown before and after becoming disordered, illustrating that reversing the tendency requires an input of energy](assets/img/fig-2-15.png)
+
 Cells maintain and create local order by consuming energy and releasing heat and waste into their surroundings.
 
 The increase in disorder outside the cell exceeds the decrease in disorder produced inside the cell.
+
+![A cell taking in energy and releasing heat, ordering its own molecules while increasing the disorder of the surrounding sea of matter](assets/img/fig-2-16.png)
 
 ## Metabolism
 
 Cells obtain energy by breaking down food molecules.
 
 The complete set of chemical reactions occurring in a cell is called **metabolism**.
+
+![Catabolic pathways breaking food molecules down to yield building blocks and useful energy, feeding anabolic pathways that build the molecules of the cell](assets/img/fig-2-14.png)
 
 ### Catabolism
 
@@ -213,6 +237,8 @@ Catabolic reactions can therefore provide both the energy and the building block
 
 These pathways depend on enzymes to occur at biologically useful rates.
 
+![A set of enzymes acting in series, each catalysing one reaction, converting molecule A through to molecule F](assets/img/fig-2-13.png)
+
 ---
 
 # Oxidation and reduction
@@ -228,6 +254,8 @@ In biological molecules, oxidation often corresponds to:
 * loss of hydrogen atoms
 * gain of oxygen atoms
 * a decrease in the number of C-H bonds
+
+![Formation of a polar covalent bond in which one atom gains a greater share of the electrons, and the ladder from methane through methanol, formaldehyde and formic acid to carbon dioxide](assets/img/fig-2-20.png)
 
 ## Reduction
 
@@ -276,6 +304,8 @@ Free energy is released during the reaction.
 
 This does not necessarily mean that the reaction occurs rapidly.
 
+![Diagram distinguishing an energetically favourable reaction with negative delta G from an unfavourable one with positive delta G](assets/img/fig-2-28.png)
+
 ## Positive ΔG
 
 If:
@@ -302,6 +332,8 @@ the system is at equilibrium.
 
 There is no net tendency for the reaction to proceed in either direction.
 
+![Diagram of a reaction reaching equilibrium, where forward and backward fluxes of molecules become equal and opposite](assets/img/fig-2-30.png)
+
 ---
 
 # Activation energy and enzymes
@@ -314,15 +346,21 @@ The energy required to reach this state is called the **activation energy**.
 
 On a graph of free energy against reaction progress, this appears as an energy barrier.
 
+![Energy diagram showing the activation energy barrier between a reactant and a lower-energy product, and how a catalyst lowers that barrier](assets/img/fig-2-21.png)
+
 ## Enzymes
 
 Enzymes lower the activation energy required for a reaction.
+
+![An enzyme binding substrate at its active site to form an enzyme-substrate complex, converting it to an enzyme-product complex, and releasing the product](assets/img/fig-2-25.png)
 
 This allows the reaction to proceed more rapidly.
 
 Enzymes do **not** change the overall ΔG of the reaction.
 
 They only provide a lower-energy pathway between reactants and products.
+
+![Diagram showing that catalysed and uncatalysed versions of a reaction reach the same equilibrium point, with the catalysed one arriving faster](assets/img/fig-2-23.png)
 
 ---
 
@@ -350,13 +388,19 @@ $$
 
 the combined process becomes energetically favorable.
 
+![An energetically unfavourable reaction driven by being coupled to a favourable one, so that the net free-energy change is negative](assets/img/fig-2-29.png)
+
 This principle is used throughout cellular metabolism.
+
+![A mechanical model in which falling rocks either produce heat alone, or turn a paddle wheel that lifts a bucket of water whose stored energy can drive machines](assets/img/fig-2-32.png)
 
 ---
 
 # Activated carrier molecules
 
 Cells use specialized molecules to transfer energy or chemical groups between reactions.
+
+![Activated carriers acting as shuttles that link catabolism to the energy-requiring reactions of anabolism](assets/img/fig-2-31.png)
 
 ## ATP
 
@@ -370,9 +414,13 @@ $$
 
 ATP hydrolysis can be coupled to an unfavorable reaction.
 
+![ATP synthesis by phosphorylation of ADP and its hydrolysis back to ADP and inorganic phosphate, showing the phosphoanhydride bonds](assets/img/fig-2-33.png)
+
 Cells often use ATP by transferring a phosphate group to another molecule.
 
 This produces a higher-energy intermediate that can participate in a reaction that would otherwise be unfavorable.
+
+![A phosphate group transferred from ATP to a hydroxyl group on another molecule, converting a phosphoanhydride bond into a phosphoester bond](assets/img/fig-2-34.png)
 
 ATP is commonly used during biosynthetic reactions in which molecules need to be joined together.
 
@@ -390,7 +438,11 @@ NADH is used primarily in reactions involved in energy production.
 
 NADPH is used primarily in biosynthetic reactions and other reductive processes.
 
+![NADPH being produced as two hydrogen atoms are removed from a substrate, with the structures of NADP+ and NADPH](assets/img/fig-2-36.png)
+
 Although they are chemically similar, cells maintain separate pools of NADH and NADPH for different purposes.
+
+![Cholesterol biosynthesis using NADPH as a reducing agent, and a comparison of the redox behaviour of the NADPH and NADH pairs](assets/img/fig-2-37.png)
 
 ## FAD and FADH₂
 
@@ -404,9 +456,13 @@ $$
 
 FAD and FADH₂ participate in redox reactions, including reactions involved in energy metabolism.
 
+![The structure of FADH2 with its hydrogen-carrying atoms highlighted, and its formation from FAD](assets/img/fig-2-39.png)
+
 ## Acetyl-CoA
 
 **Acetyl-CoA** carries an activated two-carbon acetyl group.
+
+![The structure of acetyl CoA, with the sulfur atom forming a thioester bond to acetate](assets/img/fig-2-38.png)
 
 It is important both in energy metabolism and in biosynthesis.
 
@@ -420,11 +476,15 @@ Cells break down food molecules in a series of controlled reactions.
 
 The energy released is captured in molecules such as ATP, NADH, and FADH₂ rather than being released entirely as heat.
 
+![Direct burning of sugar in a nonliving system compared with the stepwise enzyme-catalysed oxidation of sugar in a cell](assets/img/fig-2-45.png)
+
 ## Glycolysis
 
 **Glycolysis** occurs in the cytosol and does not require oxygen directly.
 
 One glucose molecule is converted into two pyruvate molecules.
+
+![Outline of the ten steps of glycolysis, showing the energy-investment phase, the cleavage of a six-carbon sugar into two three-carbon sugars, and the energy-generation phase](assets/img/fig-2-46.png)
 
 The overall yield is:
 
@@ -440,6 +500,8 @@ Four ATP molecules are produced during glycolysis, but two ATP molecules are con
 
 The **net gain is therefore 2 ATP**.
 
+![The oxidation of glyceraldehyde 3-phosphate coupled to the formation of ATP and NADH in steps 6 and 7 of glycolysis](assets/img/fig-2-47.png)
+
 ## Pyruvate without oxygen
 
 When oxidative metabolism cannot proceed, pyruvate can be reduced to lactate.
@@ -452,6 +514,8 @@ This reaction regenerates \(NAD^+\), allowing glycolysis to continue.
 
 This process is called **lactate fermentation**.
 
+![Fermentation in a vigorously active muscle cell producing lactate, and fermentation in yeast producing ethanol and carbon dioxide](assets/img/fig-2-50.png)
+
 ## Pyruvate with oxygen
 
 Under aerobic conditions, pyruvate enters the mitochondrion.
@@ -459,6 +523,8 @@ Under aerobic conditions, pyruvate enters the mitochondrion.
 It is converted into **acetyl-CoA**.
 
 Acetyl-CoA then enters the citric acid cycle.
+
+![Pathways converting both sugars and fats to acetyl CoA inside the mitochondrion](assets/img/fig-2-56.png)
 
 ---
 
@@ -486,6 +552,8 @@ $$
 
 The carbon atoms of the acetyl group are ultimately oxidized.
 
+![Overview of the citric acid cycle, with acetyl CoA joining oxaloacetate to form citrate and the cycle regenerating oxaloacetate](assets/img/fig-2-58.png)
+
 Most of the usable energy is captured in NADH and FADH₂.
 
 These electron carriers can then supply electrons to the electron transport chain, where much larger amounts of ATP can be generated.
@@ -501,6 +569,8 @@ They are transported into mitochondria and broken down through **beta-oxidation*
 Beta-oxidation repeatedly removes two-carbon units from fatty acids.
 
 These two-carbon units are released as acetyl-CoA.
+
+![Triacylglycerol hydrolysed to fatty acids, activated as fatty acyl CoA, and shortened two carbons at a time in a cycle producing acetyl CoA, NADH and FADH2](assets/img/fig-2-57.png)
 
 The pathway also produces NADH and FADH₂.
 
@@ -518,11 +588,15 @@ Glucose can be stored in the form of **glycogen**.
 
 When energy is required, glycogen can be broken down and the resulting glucose derivatives can enter glycolysis.
 
+![The branched structure of glycogen, an electron micrograph of glycogen granules in a liver cell, and the action of glycogen phosphorylase](assets/img/fig-2-52.png)
+
 ## Fat
 
 Fat is an especially concentrated form of energy storage.
 
 Fatty acids contain many reduced carbon atoms and therefore release a large amount of energy when oxidized.
+
+![Fat droplets stained red in the cytoplasm of developing adipocytes, and lipid droplets in yeast cells](assets/img/fig-2-51.png)
 
 ---
 
@@ -541,6 +615,10 @@ These molecules can be used to make:
 
 Metabolic pathways therefore form an interconnected network.
 
+![Glycolysis and the citric acid cycle shown feeding branches that lead to nucleotides, amino acids, lipids, sugars and other biosynthetic products](assets/img/fig-2-60.png)
+
 Catabolism provides both energy and molecular building blocks.
 
 Anabolism uses those resources to construct the molecules required by the cell.
+
+![Some 2000 metabolic reactions of a human cell shown schematically, with glycolysis and the citric acid cycle highlighted at the centre](assets/img/fig-2-62.png)

@@ -69,11 +69,15 @@ Two consequences:
 * **GC-rich DNA is harder to melt** than AT-rich DNA, because of the extra hydrogen bond per pair. This is also why AT-rich sequences are found at origins of replication, where the helix has to be opened.
 * **Each strand carries the information for the other.** That is what makes **templating** possible, and it is the basis of both replication and repair. If one strand is damaged, the other still holds the sequence. If both are broken at the same place, the information is gone from that molecule, which is why a double-strand break is such a serious lesion.
 
+![The parent double helix separating into an S strand and an S-prime strand, each acting as a template for a new complementary strand](assets/img/fig-5-02.png)
+
 ---
 
 # Anatomy of a replication fork
 
 Replication happens in **S phase** of the cell cycle.
+
+![The four phases of the eukaryotic cell cycle, G1, S, G2 and M, with DNA replication confined to S phase](assets/img/fig-5-29.png)
 
 ## Opening the helix
 
@@ -82,6 +86,8 @@ Replication starts at **origins of replication**. A human cell fires tens of tho
 The first step is unwinding. A **DNA helicase** is loaded onto the DNA at the origin and unwinds the duplex, moving ahead of the rest of the machinery. In eukaryotes the replicative helicase is the **MCM2–7** ring, which is loaded in G1 as an inactive double hexamer (origin **licensing**, by ORC, CDC6 and CDT1) and only activated in S phase, when CDK and DDK add **CDC45** and **GINS** to form the active **CMG** helicase.
 
 Splitting licensing (G1) from firing (S) is how the cell guarantees that every origin fires **at most once per cell cycle**. Re-replication is a source of genome instability in its own right.
+
+![Loading of two Mcm helicases in G1, phosphorylation of Mcm and ORC at S phase, CMG helicases moving apart, and the two complete replication machines](assets/img/fig-5-31.png)
 
 Unwinding is the initiating step: nothing else at the fork can happen until there is single-stranded DNA to work on.
 
@@ -93,6 +99,8 @@ DNA polymerase can only synthesize **5′→3′**, and it can only add to an ex
 * **Lagging strand:** synthesized **discontinuously**, in short pieces made in the direction *opposite* to fork movement. Each piece is an **Okazaki fragment** (~100–200 nucleotides in eukaryotes) and each one needs its own **RNA primer**.
 
 So "DNA is not synthesized continuously on both strands" is a direct consequence of two facts: the polymerase has one chemical direction, and the template strands have opposite polarity.
+
+![The asymmetric replication fork, with continuous leading-strand synthesis and discontinuous lagging-strand fragments at each of two forks](assets/img/fig-5-07.png)
 
 ## Who is at the fork
 
@@ -110,13 +118,19 @@ The order of events on the lagging strand is worth holding on to: **RPA binds th
 
 **Primase is physically linked to the helicase.** That coupling is what keeps priming synchronized with unwinding: as the helicase exposes new lagging-strand template, primase is right there to start the next Okazaki fragment.
 
+![A eukaryotic replication fork with polymerase epsilon on the leading strand, the CMG helicase, and polymerases alpha and delta on the lagging strand](assets/img/fig-5-19.png)
+
 ## The trombone model
 
 If the leading and lagging polymerases were independent, they would travel in opposite directions and the fork would fall apart as a machine. Instead the **lagging-strand template is looped out**, so that the lagging polymerase is physically dragged along in the same direction as the fork even though it synthesizes backwards along the template.
 
 The loop grows as the fragment is made and collapses when it is finished, like the slide of a **trombone**. This is what the lecture's **"Action at a DNA replication fork" / "Replication fork coupling"** animation (Oxford, *Molecular Biology: Principles of Genome Function*) is showing: both polymerases held in one complex, the lagging strand paying out and reeling back in.
 
+![A bacterial replication fork with one polymerase on the leading strand and two alternating on the lagging strand, plus an electron micrograph of the T4 replication machine](assets/img/fig-5-18.png)
+
 A human cell makes something like 50 million Okazaki fragments per S phase, so primer removal and ligation are not a footnote: **FEN1** clips the displaced RNA/DNA flap and **LIG1** seals the nick, on every fragment.
+
+![RNA primer synthesis by primase, extension into an Okazaki fragment, removal of the previous primer, gap filling by repair polymerase and sealing by DNA ligase](assets/img/fig-5-11.png)
 
 ---
 
@@ -130,10 +144,16 @@ Replication is accurate to about **one error per $10^9$–$10^{10}$ nucleotides*
 2. **Proofreading.** The **3′→5′ exonuclease** of Pol δ and Pol ε removes a mispaired nucleotide before moving on. Another ~100-fold.
 3. **Mismatch repair.** A separate system scans the new duplex, finds the mismatch, and, crucially, knows **which strand is new** and should be corrected. Another ~100–1000-fold.
 
+![Successive steps in which a polymerase adds an incorrect nucleotide, removes it by proofreading, and resumes synthesis](assets/img/fig-5-08.png)
+
+![MutS locking onto a mismatch, recruiting MutL, scanning to a sliding clamp and nick, and the excision and resynthesis that follow](assets/img/fig-5-20.png)
+
 Two consequences worth remembering:
 
 * **A proofreading polymerase cannot start a chain from scratch.** The first few nucleotides of a new chain are poorly paired, and an efficient proofreading exonuclease would simply chew them off. That is why the cell pays the cost of RNA primers and then replaces them: primase has no proofreading, so it is allowed to start.
 * **Losing a layer is oncogenic.** Germline mismatch repair defects cause **Lynch syndrome**; somatic exonuclease-domain mutations in **POLE/POLD1** give "ultramutated" tumours. Accuracy is not decoration.
+
+![Primase joining two ribonucleotides on a DNA template and extending them into a short RNA primer](assets/img/fig-5-10.png)
 
 ---
 
@@ -150,6 +170,10 @@ A replication fork can be slowed or stopped by:
 * **Transcription, and RNA–DNA hybrids (R-loops)** — the transcription machinery is a **blocking lesion** for the replication machinery. Head-on collisions are worse than co-directional ones. Managed by RNA processing machinery, helicases, topoisomerases and **RNase H**.
 * **Limiting nucleotides** — if the dNTP pool runs dry, forks stall everywhere. Controlled by **regulation of origin firing**.
 * **Fragile sites and oncogene-induced stress** — see below.
+
+![A nucleotide with arrows marking sites of oxidative damage in red, hydrolytic attack in blue and methylation in green, with arrow width showing relative frequency](assets/img/fig-5-37.png)
+
+![Torsional stress building ahead of a fork, relief by supercoiling, and relief by a topoisomerase-generated single-strand break](assets/img/fig-5-21.png)
 
 ## Oncogene-induced replication stress
 
@@ -218,6 +242,8 @@ Both ends of the break are present. After resection, one 3′ end invades the si
 **2. A broken replication fork, restored by HR.**
 Here the fork has run into a nick or single-strand lesion and the arm has broken off, giving a **one-ended** break. The 3′ end invades the sister duplex, forms a **D-loop**, and re-establishes a replication fork from the invading end. The junction is resolved afterwards. This is the "restoration of a broken replication fork" animation, and it is why homologous recombination is not just a repair pathway but part of normal replication.
 
+![A replication fork collapsing at a single-strand break, then being rebuilt by strand exchange and DNA synthesis so that replication restarts](assets/img/fig-5-49.png)
+
 Both depend on an **intact sister chromatid** being available, which is why HR is restricted to **S and G2**.
 
 ## The pathway, step by step
@@ -233,13 +259,21 @@ The slide's flow diagram, in order:
 7. **dHJ intermediate** — the second end is captured, giving a **double Holliday junction**.
 8. **Resolution** — **resolvases** (GEN1, MUS81–EME1, SLX1–SLX4) cut the junctions, giving crossover or non-crossover products. Alternatively the **BLM–TOP3A–RMI1/2** "dissolvasome" migrates and dissolves the junctions, which always gives **non-crossover** products. Somatic cells prefer dissolution, because crossovers between sisters are harmless but crossovers between homologues cause **loss of heterozygosity**.
 
+![Resection of the 5′ ends of a broken duplex, strand invasion into the undamaged homolog, repair synthesis, and ligation restoring both helices](assets/img/fig-5-47.png)
+
 **RAD51 is the central recombinase of the cell**, and it is essential: *Rad51* knockout mice die as embryos. Its importance comes from what it uniquely does — it takes over from RPA, and only then can a single strand **search the sister chromatid for homology and invade it**. Without RAD51 loading, resection still happens, RPA still binds, ATR still signals, but the break can never be repaired by homology.
+
+![RecA-bound single-stranded DNA held in a stretched conformation, and the heteroduplex formed after strand exchange](assets/img/fig-5-48.png)
 
 ## The pathway choice: HR or NHEJ
 
 Not on the slides in detail, but needed to make sense of BRCA and of PARP inhibitors.
 
+![Nonhomologous end joining, in which ends are cleaned and ligated with loss of nucleotides, beside homologous recombination, which repairs accurately from an undamaged homolog](assets/img/fig-5-45.png)
+
 **Non-homologous end joining (NHEJ)** is the alternative: **Ku70/80** binds the ends, recruits **DNA-PKcs**, ends are cleaned up by **Artemis** and polymerases, and **XRCC4–LIG4** with **XLF** ligates them.
+
+![Ku heterodimers grasping the broken ends, additional proteins holding them together and processing them, ligation, and the three-dimensional structure of Ku on duplex DNA](assets/img/fig-5-46.png)
 
 | | Homologous recombination | Non-homologous end joining |
 |---|---|---|
@@ -281,6 +315,8 @@ Both are therefore required for HR, at different steps, and germline mutations i
 BRCA1/2 have a function that is **separable from HR**: they **protect replication forks from nuclease-mediated degradation**.
 
 When a fork stalls, it can **reverse** into a four-way "chicken foot" structure (driven by SMARCAL1, ZRANB3, HLTF), which exposes the nascent strands as a one-ended duplex. BRCA1/2, with RAD51, stabilize that structure and **repel MRE11**.
+
+![A fork backing up so that the newly synthesized leading and lagging strands base-pair with each other, allowing synthesis past the lesion before the fork re-forms](assets/img/fig-5-50.png)
 
 Without BRCA1/2, **MRE11** (with CtIP and EXO1) attacks the reversed fork and **degrades the nascent strands**. The consequences on the slide:
 
@@ -356,6 +392,8 @@ Measurements you get from it: **fork speed** (track length / pulse time), **fork
 Gives **where the proteins are** and whether they got there.
 
 The slide's example: **RAD51** staining in untreated cells versus cells under replication stress. Untreated nuclei are almost blank; stressed nuclei are full of bright **RAD51 foci**. A focus is the microscopic shadow of a nucleoprotein filament assembled at a site of damage.
+
+![Fibroblast nuclei showing total DNA, sites of repair synthesis, and localization of the Mre11 complex in stripes matching the pattern of irradiation](assets/img/fig-5-51.png)
 
 Extended to HR competence (the "How to study HR?" slide): after **ionizing radiation**,
 
