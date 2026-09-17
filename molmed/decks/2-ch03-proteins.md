@@ -1,429 +1,724 @@
 ---
 title: Session 2. Protein Structure, Folding and Function
-description: Revision cards for Titia Sixma's lecture, written only from the slides.
+description: Revision for Titia Sixma's lecture. Built from the slides, including the self-study half on protein function.
 tags: [molmed, session-2, ch3]
 ---
 
-Q: Why does the lecture say we study protein structure?
-A: Proteins **regulate and execute** cellular processes, so we want to understand **when** a protein acts, **who** it acts with, and **how**. The "how" is **mechanistic insight**, and mechanistic insight is what lets you **interfere**, which is the basis of **drug design**.
-Tags: core
+Q: Why study protein structure at all?
+A: Proteins **regulate and execute** cellular processes, so we want to know **when** a protein acts, **who** with, and **how**. The "how" is **mechanistic insight**, and mechanistic insight is what lets you **interfere**, which is **drug design**.
+
+Read more: [Why study protein structure?](#/chapter/ch03-proteins/why-study-protein-structure)
+Tags: type/why, core
 
 ---
 
-Q: Which four blocks make up this lecture?
-A: **Basic principles** (covalent and noncovalent interactions, the hydrophobic effect); **protein structure** (primary, secondary, tertiary, quaternary); **protein folding** (theoretical, in vitro, in vivo, prediction); and **protein function** (enzyme, structural, signalling, motor), which is set as self study.
-Tags: core
+Q: The 20 amino acids are built from which atoms, and how is each of those atoms coloured by convention in structure figures?
+A: **Carbon, nitrogen, oxygen and sulfur**, plus hydrogen. **Nitrogen blue, oxygen red, sulfur orange**, carbon any colour.
 
----
-
-Q: A protein never works alone. Which three kinds of interaction does the lecture name?
-A: **Protein-ligand**, **protein-protein** and **protein-DNA**.
-Tags: core
-
----
-
-Q: Which atoms are the 20 amino acids built from, and how are they coloured in structure figures?
-A: **Carbon, nitrogen, oxygen and sulfur** (plus hydrogen). Standard colouring: **nitrogen blue, oxygen red, sulfur orange, carbon any colour**.
+Read more: [Proteins are chains of amino acids](#/chapter/ch03-proteins/proteins-are-chains-of-amino-acids)
 Tags: structure
 
 ---
 
-Q: An ionic bond is described in a way that depends on where it is. How?
-A: It behaves like a **covalent bond in vacuum**, and like a **noncovalent interaction in water**, because water molecules surround the charges and screen them.
-Tags: bonds, core
+Q+: Why are the blue and red atoms where the interesting chemistry happens?
+A: Because **nitrogen and oxygen are more electronegative than carbon**, so they carry partial negative charge and act as **hydrogen bond donors and acceptors**. Carbon and hydrogen are where the hydrophobic behaviour comes from.
+
+Read more: [Noncovalent interactions](#/chapter/ch03-proteins/noncovalent-interactions)
+Tags: type/why, core
 
 ---
 
-Q: Give the strengths the lecture quotes for van der Waals contacts and hydrogen bonds.
-A: **Van der Waals: about 0.2 kcal/mol** each. **Hydrogen bonds: about 2 to 5 kcal/mol.**
-Tags: bonds, numbers
+Q: An ionic bond is said to behave like a covalent bond in one setting and a noncovalent one in another. Which, and why?
+A: **Covalent-like in vacuum, noncovalent in water.** Water molecules surround each charge and screen it, so the interaction loses most of its strength.
+
+Read more: [Electrostatic interactions (ionic bonds)](#/chapter/ch03-proteins/electrostatic-interactions-ionic-bonds)
+Tags: type/why, core
 
 ---
 
-Q+: How does a van der Waals contact behave with distance?
-A: **Close to the atom it is repulsive, scaling as 1/r¹²; slightly further away it is attractive, scaling as 1/r⁶.** The balance is the **Lennard-Jones potential**, and the strong distance dependence means these contacts only count when surfaces fit closely.
-Tags: bonds
+Q: How does a van der Waals contact vary with distance?
+A: **Repulsive close in**, as $1/r^{12}$; **attractive slightly further out**, as $1/r^{6}$. The balance is the **Lennard-Jones potential**, and it is worth about **0.2 kcal/mol** per contact.
+
+![Energy against distance for van der Waals contacts, hydrogen bonds and ion pairs](assets/img/slide-2-16.png)
+
+Read more: [Van der Waals contacts](#/chapter/ch03-proteins/van-der-waals-contacts)
+Tags: type/figure, type/why, bonds
 
 ---
 
-Q: What makes the hydrogen bond a special case among noncovalent interactions?
-A: It has an **almost covalent character**: a **short optimal distance of about 2.8 Å** and a **directional component**. Donors are **NH and OH**; acceptors are **O and N**.
-Tags: bonds, core
+Q+: Reading the same plot, how does the hydrogen bond curve differ from the van der Waals curve?
+A: It is **deeper and narrower**, with a **short optimal distance of about 2.8 Å** and a **directional** requirement. That is the graphical version of "a hydrogen bond has almost covalent character".
+
+Read more: [Hydrogen bonds](#/chapter/ch03-proteins/hydrogen-bonds)
+Tags: type/figure, type/why
 
 ---
 
-Q: In water, how strong are the four interactions, and how long?
-A: **Covalent 0.15 nm, 90 kcal/mol**; **ionic bond (salt bridge) 0.25 nm, 3**; **hydrogen bond 0.30 nm, 1**; **van der Waals 0.35 nm, 0.1**.
-Tags: bonds, numbers, core
+Q+: Why can a hydrogen bond hold two atoms closer than van der Waals contact would allow?
+A: Because of that **partial covalent character**: the donor and acceptor share the hydrogen rather than merely touching, so the steric repulsion that stops two atoms at the van der Waals distance is overcome.
+
+Read more: [Hydrogen bonds](#/chapter/ch03-proteins/hydrogen-bonds)
+Tags: type/why
 
 ---
 
-Q: Explain the hydrophobic effect as the lecture explains it, in terms of water.
-A: Water makes **many hydrogen bonds** and is **oriented** by them. **Non-polar amino acids prevent the surrounding water from making its ideal hydrogen bonds**, so the water becomes **more ordered**, which is unfavourable. It is therefore **more favourable to sequester the apolar amino acids away from the water**.
-Tags: folding, core
+Q: Rank the four interaction types by strength in water, and say what that ranking implies.
+A: **Covalent** overwhelmingly strongest, then the **ionic bond (salt bridge)**, the **hydrogen bond** and the **van der Waals contact**, each roughly an order of magnitude below the one before. The three noncovalent ones all sit close to **thermal energy** in water, so no single one of them holds anything together.
+
+![The interactions table: lengths in nm and strengths in water in kcal per mole](assets/img/slide-2-17.png)
+
+Read more: [Lengths and strengths](#/chapter/ch03-proteins/lengths-and-strengths)
+Tags: type/figure, type/why, core
 
 ---
 
-Q: Name the four levels of protein structure and what each describes.
-A: **Primary**: the polypeptide chain of amino acids, plus rotamers. **Secondary**: alpha helices, beta sheets and turns. **Tertiary**: the domain fold. **Quaternary**: the relative orientation of domains and subunits.
+Q+: A hydrogen bond in water is worth about 1 kcal/mol, close to thermal energy. How do proteins get any stability out of that?
+A: By making **very many at once**, and by the **hydrophobic effect**, which is not in the table. Individually each contact is negligible and reversible; collectively they hold a fold together, which is exactly why folding is marginal and regulated.
+
+Read more: [Lengths and strengths](#/chapter/ch03-proteins/lengths-and-strengths)
+Tags: type/apply, core
+
+---
+
+Q: Explain the hydrophobic effect in terms of what happens to the water.
+A: Water **makes many hydrogen bonds and is oriented by them**. A **non-polar side chain prevents the surrounding water from making its ideal hydrogen bonds**, so that water becomes **more ordered**, which is unfavourable. It is therefore **more favourable to sequester the apolar amino acids away from water**.
+
+Read more: [The hydrophobic effect](#/chapter/ch03-proteins/the-hydrophobic-effect)
+Tags: type/why, folding, core
+
+---
+
+Q: Name the four levels of protein structure with what each describes.
+A: **Primary**, the polypeptide chain of amino acids, including rotamers. **Secondary**, alpha helices, beta sheets and turns. **Tertiary**, the domain fold. **Quaternary**, the relative orientation of domains and subunits.
+
+![The four levels of protein structure, from primary to quaternary](assets/img/slide-2-18.png)
+
+Read more: [Levels of protein structure](#/chapter/ch03-proteins/levels-of-protein-structure)
+Tags: type/figure, structure, core
+
+---
+
+Q: What is a protein chemically, and what sets the typical size of one?
+A: A **covalent chain of L-amino acids linked by peptide bonds**. A typical protein is a **few hundred residues**, roughly what it takes to build one or two folded **domains**; much larger proteins are generally **strings of domains** rather than a single enormous fold.
+
+Read more: [Proteins are chains of amino acids](#/chapter/ch03-proteins/proteins-are-chains-of-amino-acids)
 Tags: structure, core
 
 ---
 
-Q: How big are proteins, on the lecture's scale?
-A: **Smallest under 100 amino acids**, **average about 300 to 500**, **largest over 3,000**. The chain is built from **L-amino acids** joined by peptide bonds.
-Tags: structure, numbers
+Q: The amino acids fall into a small number of groups by side chain. Name the groups, and say what each one lets a protein do.
+A: **Aliphatic** and **aromatic** side chains are hydrophobic and **pack the core**. **Polar** side chains **make hydrogen bonds**, on the surface and in active sites. **Charged** ones, acidic or basic, make **salt bridges** and do **acid-base chemistry**. **Conformational** ones, glycine and proline, set the **flexibility of the backbone** rather than contributing chemistry of their own.
+
+Read more: [The 20 amino acids](#/chapter/ch03-proteins/the-20-amino-acids)
+Tags: type/why, structure, core
 
 ---
 
-Q: The 20 amino acids fall into five groups by side chain. Which?
-A: **Aliphatic** (hydrocarbon side chain), **charged** (positive/basic or negative/acidic at pH 7), **aromatic** (aromatic ring), **polar** (uncharged polar group), and **conformational** (an unusual effect on backbone flexibility).
+Q+: Methionine is classed as both polar and hydrophobic. Why, and what does that tell you about the groups?
+A: Its **sulfur** makes it formally polar, but in practice it behaves as a **hydrophobic** residue and is usually buried. The groups are a **convenience, not a law**: what matters is the chemistry of the side chain, not the box it is filed in.
+
+Read more: [The 20 amino acids](#/chapter/ch03-proteins/the-20-amino-acids)
+Tags: type/discriminate, core
+
+---
+
+Q+: Why does histidine turn up in so many active sites?
+A: Because its imidazole **pKa is near physiological pH**, so it is **only partly protonated** and can act as either a **proton donor or a proton acceptor** depending on its environment. The chymotrypsin triad on a later slide is exactly this.
+
+Read more: [Histidine](#/chapter/ch03-proteins/histidine)
+Tags: type/why, core
+
+---
+
+Q: Glycine is the most flexible residue and proline the least. What is responsible in each case?
+A: **Glycine** has only a **hydrogen** as its side chain, so nothing clashes and many phi/psi combinations are open to it. **Proline**'s side chain **loops back onto its own backbone nitrogen**, which fixes the ring, removes the N-H, and stops it donating a hydrogen bond.
+
+Read more: [Conformational amino acids](#/chapter/ch03-proteins/conformational-amino-acids)
+Tags: type/discriminate, core
+
+---
+
+Q: Which two angles describe the main chain, and why only two?
+A: **Phi**, rotation around **N-Cα**, and **psi**, rotation around **Cα-C**. The **peptide bond itself is planar** with partial double-bond character, so there is no free rotation about it.
+
+Read more: [Phi and psi angles](#/chapter/ch03-proteins/phi-and-psi-angles)
 Tags: structure, core
 
 ---
 
-Q+: Which amino acids are in each of the lecture's slides for those groups?
-A: **Aliphatic:** Ala, Val, Leu, Ile, Met. **Acidic:** Asp, Glu. **Basic:** His, Lys, Arg. **Aromatic:** Phe, Tyr, Trp. **Neutral polar:** Ser, Thr, Cys, Met, Asn, Gln. **Conformational:** Gly, Pro.
+Q+: What does a Ramachandran plot show, and what is a point in a forbidden region likely to mean?
+A: **Observed phi/psi pairs** against **allowed (orange)** and **forbidden (white)** regions, with the clusters corresponding to the alpha helix and the beta strand. A residue in a **strained, forbidden** combination is typically in an **active site**, where the strain is functional, or else it is a modelling error.
 
-![The 20 amino acids commonly found in proteins, grouped as acidic, basic, uncharged polar and nonpolar, with three-letter and one-letter abbreviations](assets/img/fig-3-02.png)
+![A Ramachandran plot with allowed regions in orange and forbidden regions in white](assets/img/slide-2-29.png)
+
+Read more: [Ramachandran plot](#/chapter/ch03-proteins/ramachandran-plot)
+Tags: type/figure, type/why, core
+
+---
+
+Q: Which conformation does the peptide bond usually take, and what is the exception?
+A: **Trans**, by rotation about the **omega** angle. **Proline** is found in the **cis** conformation relatively often, because its ring makes cis and trans similarly crowded.
+
+Read more: [Trans and cis peptide bonds](#/chapter/ch03-proteins/trans-and-cis-peptide-bonds)
+Tags: type/discriminate
+
+---
+
+Q: What is a rotamer, and why do side chains have preferred ones?
+A: A **preferred side chain conformation**, described by torsion angles **chi1, chi2** and so on. **Steric hindrance with the main chain** makes only certain combinations possible, so a side chain has a limited menu rather than a continuum.
+
+Read more: [Rotamers](#/chapter/ch03-proteins/rotamers)
 Tags: structure
 
 ---
 
-Q: Which two angles describe the main-chain conformation, and why only two?
-A: **Phi (rotation around N-Cα)** and **psi (rotation around Cα-C)**. The peptide bond itself has partial double-bond character and is planar, so there is no free rotation around it. **Clashes of side chains limit the allowed combinations of phi and psi.**
-Tags: structure, core
+Q: Why are disulfide bridges essentially absent from the cytosol?
+A: Because forming one is an **oxidation** and it **requires oxidizing conditions**, while the cytosol is reducing. They are found in the **secretory route** and **extracellularly**, where proteins face a harsher environment and need the extra covalent reinforcement.
+
+![Two cysteines forming a disulfide bridge, requiring oxidizing conditions](assets/img/slide-2-33.png)
+
+Read more: [Disulfide bridges](#/chapter/ch03-proteins/disulfide-bridges)
+Tags: type/figure, type/why, core
 
 ---
 
-Q: What does a Ramachandran plot show, and what is the significance of a residue in a forbidden region?
-A: It plots **phi against psi** for each residue, in regions of **allowed** and **forbidden** combinations. Occasionally a **strained, forbidden combination** is found, and those are typically in the **active sites** of proteins.
+Q: Proteins in water behave like {{oil drops}}: the {{nonpolar}} side chains form a core and the {{polar}} side chains face the solvent.
+A: The phrase to remember is that proteins do not form extended chains in water, they behave like oil drops in water, and noncovalent forces stabilise the result.
 
-![Steric limitations on bond angles in a polypeptide chain, with the planar peptide unit and the phi and psi rotations, and a Ramachandran plot of observed angle pairs](assets/img/fig-3-03.png)
-Tags: structure, core
+![An unfolded chain folding so that nonpolar side chains form a hydrophobic core](assets/img/slide-2-34.png)
 
----
-
-Q: Which conformation does the peptide bond usually adopt, and what is the exception?
-A: **Trans**, by rotation about the **omega** angle. **Proline is relatively often found in the cis conformation**, because its ring makes the two forms similarly crowded.
-Tags: structure
+Read more: [Proteins behave like oil drops in water](#/chapter/ch03-proteins/proteins-behave-like-oil-drops-in-water)
+Tags: type/figure, folding, core
 
 ---
 
-Q: What is a rotamer, and why do rotamers exist?
-A: A **preferred conformation of a side chain**, expressed in torsion angles **chi1, chi2** and so on. **Steric hindrance with the main chain** makes certain combinations preferred, so a side chain has only a limited set of conformations.
-Tags: structure
+Q: How does the energy holding a protein folded compare with the energy of a single hydrogen bond?
+A: They are of the **same order of magnitude**. The entire folded state is worth only a **handful of hydrogen bonds** more than the unfolded one, so stability is a small difference between two large numbers.
+
+Read more: [What drives protein folding?](#/chapter/ch03-proteins/what-drives-protein-folding)
+Tags: type/why, folding, core
 
 ---
 
-Q: Why are disulfide bridges not normally found in the cytosol?
-A: Because forming one is an **oxidation** and they **require oxidizing conditions**. They are normally only found in the **secretion route** of cells or **extracellularly**.
+Q+: What follows from that comparison?
+A: That a folded protein is **marginally stable**: losing a handful of hydrogen bonds can unfold it. Stability is a small difference between two large numbers, which is why proteins are sensitive to mutation, temperature and denaturants, and why folding can be regulated at all.
 
-![Covalent disulfide bonds forming between adjacent cysteine side chains, joining either two parts of one polypeptide chain or two different chains](assets/img/fig-3-25.png)
-Tags: structure, core
-
----
-
-Q: How does the lecture describe what a protein does in water?
-A: Proteins **do not form extended chains in water**; they **behave like oil drops in water**, with **noncovalent forces stabilizing the fold**.
-Tags: folding, core
-
----
-
-Q: How much free energy separates the folded and unfolded states, and what does that imply?
-A: Only **5 to 15 kcal/mol**, while **one hydrogen bond is worth 2 to 5 kcal/mol**. A folded protein is therefore **marginally stable**: losing a few hydrogen bonds can unfold it.
-Tags: folding, numbers, core
+Read more: [What drives protein folding?](#/chapter/ch03-proteins/what-drives-protein-folding)
+Tags: type/why, core
 
 ---
 
 Q+: So what actually drives folding?
-A: Two things: **prevention of the ordering of water**, by sequestering hydrophobic residues, and **making sure that all possible hydrogen bonds are made** after folding.
+A: **Prevention of the ordering of water**, by sequestering hydrophobic residues, and **making sure all possible hydrogen bonds are made** once folded.
+
+Read more: [What drives protein folding?](#/chapter/ch03-proteins/what-drives-protein-folding)
 Tags: folding, core
 
 ---
 
-Q: The lecture states a problem and a solution in one line each. What are they?
-A: **Problem: the main chain is hydrophilic**, since every residue carries an N-H donor and a C=O acceptor that must cross the hydrophobic core. **Solution: make all possible hydrogen bonds by creating secondary structure.**
-Tags: folding, core
+Q: Folding drags the backbone through a hydrophobic core. What is the problem with that, and what is the solution?
+A: **Problem: the main chain is hydrophilic**, carrying an N-H donor and a C=O acceptor on every residue, and it has to cross the hydrophobic core. **Solution: make all possible hydrogen bonds by creating secondary structure.**
+
+![The main chain is hydrophilic, with an N-H donor and a C=O acceptor on every residue](assets/img/slide-2-38.png)
+
+Read more: [The main chain is hydrophilic](#/chapter/ch03-proteins/the-main-chain-is-hydrophilic)
+Tags: type/figure, type/why, core
 
 ---
 
-Q: Give the numbers for the alpha helix.
-A: **3.6 residues per turn**, **5.4 Å rise per turn**, and side chains that **point outward and toward the N-terminus**, which the lecturer calls the Christmas-tree arrangement.
+Q: What is the shape of an alpha helix, and where do the side chains sit?
+A: A tight spiral with a **non-integer number of residues per turn**, a little over three and a half. The **side chains point outward** and toward the N-terminus, often described as a Christmas tree, and because the repeat is not a whole number they **spiral around the outside** rather than stacking in a line.
 
-![The regular conformation of the polypeptide backbone in the alpha helix and the beta sheet, showing the hydrogen bonds between backbone peptide bonds](assets/img/fig-3-06.png)
-Tags: structure, numbers, core
+![The alpha helix and the beta sheet, with backbone hydrogen bonds](assets/img/slide-2-40.png)
+
+Read more: [Alpha helix](#/chapter/ch03-proteins/alpha-helix)
+Tags: type/figure, type/why, core
 
 ---
 
 Q+: And the beta sheet?
-A: Side chains **point out of the plane of the sheet**, with **adjacent side chains above and below**. Strands can be **parallel, anti-parallel or mixed**.
+A: Side chains **point out of the plane of the sheet**, with **adjacent side chains alternating above and below**, and strands that can be **parallel, anti-parallel or mixed**.
 
-![An antiparallel beta sheet and a parallel beta sheet, both formed from hydrogen-bonded neighbouring strands](assets/img/fig-3-07.png)
+Read more: [Beta sheet](#/chapter/ch03-proteins/beta-sheet)
+Tags: type/figure
+
+---
+
+Q+: In both, which atoms make the hydrogen bonds that hold the structure together?
+A: The **main chain** ones: the **C=O of one residue to the N-H of another**. Side chains are not involved, which is why any sequence can in principle form either, and why secondary structure solves the hydrophilic main chain problem.
+
+Read more: [Secondary structure](#/chapter/ch03-proteins/secondary-structure)
+Tags: type/why, core
+
+---
+
+Q: What connects secondary structure elements, and which residues are common there?
+A: **Turns and loops**, usually on the surface, often containing **glycine and proline**. The standard catalogue is two-residue beta-hairpin turns (types I' and II') and reverse turns (types I and II).
+
+Read more: [Turns and loops](#/chapter/ch03-proteins/turns-and-loops)
 Tags: structure
 
 ---
 
-Q: What connects secondary structure elements, and what are they made of?
-A: **Turns and loops.** They are usually on the surface, and often contain **glycine and proline**.
-Tags: structure
+Q: What is a domain, and how can you spot one from sequence alone?
+A: **Beta strands and/or alpha helices connected by loops**, forming an **independently folding unit** that often has a **defined function**. From sequence, domains are recognised through **sequence motifs**.
 
----
-
-Q: What is a domain, in the lecture's definition?
-A: **Beta strands and/or alpha helices connected by loop regions**, forming an **independently folding unit** that **may have a defined function**. Domains can often be recognized through **sequence motifs**.
+Read more: [Tertiary structure: domains](#/chapter/ch03-proteins/tertiary-structure-domains)
 Tags: structure, core
 
 ---
 
-Q: Which domain does the lecture use as its example of mixing and matching, and what does it bind?
-A: The **SH2 domain**, which binds **phosphotyrosine** and turns up in adaptor proteins, kinases, phosphatases, and proteins of Ras signalling, transcription, ubiquitination and cytoskeletal regulation.
+Q+: A protein of unknown function turns out to contain an SH2 domain and a kinase domain. What can you infer from that, and on what principle?
+A: That it **binds phosphotyrosine** and **phosphorylates** something. The principle is that a domain is an **independently folding module with a conserved function**, so a protein's **domain composition predicts what it does** before any experiment is done on that protein itself.
 
-![The SH2 domain drawn as a polypeptide backbone model, a ribbon model, a wire model including side chains, and a space-filling model](assets/img/fig-3-09.png)
-Tags: structure, core
+![A table of domains and the ligands they bind](assets/img/slide-2-45.png)
+
+Read more: [Tertiary structure: domains](#/chapter/ch03-proteins/tertiary-structure-domains)
+Tags: type/figure, type/apply, structure, core
 
 ---
 
-Q: What is a solenoid?
-A: A **repeat architecture** in a large protein: a short structural unit repeated many times, stacking into a regular elongated or ring-shaped structure. Their large regular surfaces are well suited to binding other proteins.
+Q+: The SH2 domain appears in adaptors, kinases, phosphatases, Ras signalling, transcription, ubiquitination and cytoskeletal regulation. What does that tell you about how proteins evolve?
+![Many different proteins built from shared domains including SH2](assets/img/slide-2-47.png)
+A: That domains are **mixed and matched**: evolution builds new proteins by **recombining existing modules** rather than inventing folds. One binding function, phosphotyrosine recognition, is plugged into a dozen different outputs.
+
+Read more: [Multiple domains can be mixed and matched](#/chapter/ch03-proteins/multiple-domains-can-be-mixed-and-matched)
+Tags: type/figure, type/why, core
+
+---
+
+Q: What is a solenoid, and why are such proteins good at binding partners?
+A: A **repeat architecture** in which a short unit repeats many times and stacks into a regular ring or elongated shape, such as the **WD40, leucine-rich, armadillo and ankyrin** repeats. Their **large regular surfaces** are well suited to protein-protein interaction.
+
+Read more: [Repeat architecture (solenoids)](#/chapter/ch03-proteins/repeat-architecture-solenoids)
 Tags: structure
 
 ---
 
-Q: Which assemblies does the quaternary-structure slide name?
-A: **Homodimer (a₂)**, **heterodimer (ab)**, **heterotetramer (a₂b₂)** and **heteropentamer (a₂bcd)**, followed by a gallery running from dimer and trimer through pentamer, heptamer and octamer to dodecamer and icosahedron.
-Tags: structure
+Q: Many proteins work as multi-subunit assemblies rather than single chains. What are the two kinds of subunit composition, and what do the larger assemblies have in common?
+A: **Homomeric**, built from identical subunits, and **heteromeric**, built from different ones. The larger assemblies are **symmetric**, running from dimers and trimers up to rings and closed shells, because the same small set of **interfaces is used over and over**.
+
+![Homodimer, heterodimer, heterotetramer and heteropentamer, with a gallery of symmetric assemblies](assets/img/slide-2-50.png)
+
+Read more: [Quaternary structure](#/chapter/ch03-proteins/quaternary-structure)
+Tags: type/figure, structure, core
 
 ---
 
-Q: List the post-translational modifications on the lecture's slide with the residues they use.
-A: **Glycosylation** Asn, Ser; **phosphorylation** Tyr, Ser, Thr, His, Asp; **ADP-ribosylation** Arg, Glu, Asp; **carbamylation** Lys; **acetylation** amino groups; **methylation** Lys, Arg; **ubiquitination** Lys; **lysine hydroxylation** Lys.
-Tags: ptm, core
+Q: What makes a side chain a target for post-translational modification, and which modifications follow from that?
+A: A **reactive heteroatom** on the side chain. **Hydroxyls** (Ser, Thr, Tyr) take **phosphate and sugars**; **amines** (Lys and the N-terminus) take **acetyl, methyl and ubiquitin**; **carboxylates** and the histidine imidazole take the rest. The chemistry of the side chain decides the modification, which is why the same few residues recur.
+
+![The list of post-translational modifications and their target residues](assets/img/slide-2-52.png)
+
+Read more: [Chemical modifications](#/chapter/ch03-proteins/chemical-modifications)
+Tags: type/figure, type/why, ptm, core
 
 ---
 
-Q+: Which three things does the same slide count as modifications in the broad sense?
+Q+: Which three other events also count as post-translational modification, in the broad sense?
 A: **Disulfide bridge formation**, **cofactor binding** and **proteolysis**.
+
+Read more: [What are PTMs?](#/chapter/ch03-proteins/what-are-ptms)
 Tags: ptm
 
 ---
 
-Q: The lecture calls a modified protein a "microchip". What does it mean, and what is the challenge?
-A: That the **combination** of modifications, as on **histone tails**, is a signal that integrates many inputs. The challenge is to **unravel the signals**.
-Tags: ptm, core
+Q+: Why is a modified histone tail described as a "microchip", and what makes it hard to read?
+A: Because the **combination** of many modifications on one tail is an input pattern that is read as a whole, not a single switch. The challenge is to **unravel the signals**. The full catalogue is Huang et al., "SnapShot: histone modifications", *Cell* **159** (2014).
+
+Read more: [Histone modifications](#/chapter/ch03-proteins/histone-modifications)
+Tags: type/why, ptm, core
 
 ---
 
-Q: What are intrinsically disordered regions used for, according to the lecture?
-A: **Flexible linkers** between domains; **linear motifs**, which are binding regions and PTM sites; **regions that fold upon interaction**, that is coupled folding and binding; and **regions that remain disordered even in the bound state**. They can be stabilized by chaperones.
+Q: What do intrinsically disordered regions of a protein do?
+- [x] Act as flexible linkers between domains
+- [x] Carry linear motifs: binding regions and PTM sites
+- [x] Fold upon interaction with a partner
+- [x] Stay disordered even in the bound state
+- [ ] Serve as the catalytic core of most enzymes
+A: The catalytic core is the one thing they do not do. Disorder buys **binding versatility and regulation**, not catalysis, and such regions can be stabilised by chaperones. See Theillet et al., 2016.
+
+Read more: [Intrinsically disordered proteins (IDPs)](#/chapter/ch03-proteins/intrinsically-disordered-proteins-idps)
+Tags: type/discriminate, idp, core
+
+---
+
+Q+: Aggregation of disordered proteins is given two opposite faces. What are they?
+A: **Functional**, as a **method of signalling** through **phase separation**; and **pathological**, as the **basis of disease** in the **synucleinopathies**.
+
+Read more: [Aggregation of IDPs](#/chapter/ch03-proteins/aggregation-of-idps)
 Tags: idp, core
 
 ---
 
-Q+: Aggregation of disordered proteins can be either of two things. Which?
-A: **Functional**, as a method of signalling by **phase separation**; or the **basis of disease**, as in the **synucleinopathies**.
-Tags: idp, core
+Q: Put the X-ray crystallography pipeline in order, and name its two hard steps.
+A: **Purified protein, crystal, X-ray diffraction, electron density, 3D structure, biological interpretation.** The hard steps are **crystallization** and the **phase problem**.
+
+Read more: [X-ray crystallography](#/chapter/ch03-proteins/x-ray-crystallography)
+Tags: type/sequence, methods, core
 
 ---
 
-Q: Put the X-ray crystallography pipeline in order.
-A: **Purified protein, crystal, X-ray diffraction, electron density, 3D structure, biological interpretation.** The two hard parts are named on the slide: **crystallization** and the **phase problem**.
-Tags: methods, core
+Q: What does NMR need, and what does it give?
+A: A purified protein **labelled with NMR-active isotopes**, ¹⁵N and ¹³C, in a very strong magnet. The spectrum yields **distance constraints**, which are used to calculate an **ensemble of structures** rather than a single model, so it reports **flexibility** as well as shape.
 
----
-
-Q: What does an NMR experiment need, and what does it give you?
-A: A **purified protein labelled with NMR-active nuclei (¹⁵N, ¹³C, plus ¹H)**, in a **300 to 900 MHz magnet**. The spectrum gives **distance constraints**, from which an **ensemble of structures** is calculated.
+Read more: [Nuclear magnetic resonance (NMR)](#/chapter/ch03-proteins/nuclear-magnetic-resonance-nmr)
 Tags: methods, core
 
 ---
 
 Q: Put the single-particle cryo-EM workflow in order.
-A: **Select particles, sort into classes and average, reconstruct a 3D image, fit a structural model into the data.** From **2014 to today** a revolution in detectors and software has pushed the resolution to atomic; **Nobel Prize 2017**.
+A: **Select particles**, **sort into classes and average**, **reconstruct a 3D image**, **fit a structural model into the data**. Better detectors and software have taken it to atomic resolution, and unlike X-ray it needs **no crystal**, which is why it has grown so fast.
+
+Read more: [Single-particle cryo-electron microscopy (cryo-EM)](#/chapter/ch03-proteins/single-particle-cryo-electron-microscopy-cryo-em)
+Tags: type/sequence, methods, core
+
+---
+
+Q: Which method has produced most of the known structures, and what does the balance between the three reflect?
+A: **X-ray crystallography** by a wide margin, then **electron microscopy**, then **NMR**. The balance reflects what each method demands of the sample: a crystal, a thin vitrified film, or a small, soluble, isotope-labelled protein. EM is the one growing fastest.
+
+Read more: [Comparison](#/chapter/ch03-proteins/comparison)
 Tags: methods, core
 
 ---
 
-Q: How many structures are in the PDB, by method?
-A: About **187,000 X-ray**, **14,000 NMR** and **22,000 EM** structures. It stores proteins, peptides, viruses, protein-nucleic acid complexes and carbohydrates.
-Tags: methods, numbers
+Q: In this line from a PDB file, what is 12.72?
+
+```
+ATOM      1  N   SER A   2     -12.168  35.044  19.421  1.00 12.72   N
+```
+A: The **B-factor**, which reflects the **thermal motion** of that atom. Before it come the atom number and name, the residue name, chain and number, the **x, y, z coordinates** and the occupancy.
+
+Read more: [A PDB file is a text file](#/chapter/ch03-proteins/a-pdb-file-is-a-text-file)
+Tags: methods, core
 
 ---
 
-Q: In a PDB file, what is the last number on an atom line?
-A: The **B-factor**, which reflects the **thermal motion** of that atom. The line also carries the atom number and name, residue name, chain and number, the **x, y, z coordinates**, and the occupancy.
-Tags: methods
+Q+: A loop in a crystal structure has much higher B-factors than the core. What does that mean, and why should you care?
+A: That the loop is **mobile or poorly ordered**, so its coordinates are less reliable. It often matters functionally, since flexible loops are where binding partners and substrates are engaged, and it is the same flexibility NMR reports as a spread ensemble.
+
+Read more: [A PDB file is a text file](#/chapter/ch03-proteins/a-pdb-file-is-a-text-file)
+Tags: type/apply, methods
 
 ---
 
-Q: State Anfinsen's principle, and the experiment behind it.
-A: **"The information needed to properly fold a protein into its NATIVE 3-D structure is contained in its amino acid sequence."** Ribonuclease unfolded with **urea** refolds spontaneously into its **active native state** when the urea is removed. **Primary structure specifies the higher structure.**
+Q: State Anfinsen's principle and the experiment behind it.
+A: **"The information needed to properly fold a protein into its NATIVE 3-D structure is contained in its amino acid sequence."** Ribonuclease unfolded in **urea** refolds spontaneously to the **active native state** when the urea is removed, so **primary structure specifies the higher structure**. Anfinsen's own account is [[anfinsen-1973-principles-that-govern]].
+
+Read more: [Anfinsen's principle (1963)](#/chapter/ch03-proteins/anfinsen-s-principle-1963)
 Tags: folding, core
 
 ---
 
-Q: What is Levinthal's paradox?
-A: If a small protein folded by **randomly checking all possible conformations**, it would take **longer than the age of the universe**, over 100 billion years. Yet **folding occurs in a fraction of a second**. The resolution: proteins fold through **pathways and mechanisms that remove the need to probe all conformations**.
+Q: What is Levinthal's paradox, and what resolves it?
+A: If a small protein folded by **randomly sampling all conformations** it would take **longer than the age of the universe**, yet folding happens in a **fraction of a second**. The resolution: proteins fold through **pathways and mechanisms** that remove the need to probe all conformations.
+
+Read more: [Levinthal's paradox](#/chapter/ch03-proteins/levinthal-s-paradox)
 Tags: folding, core
 
 ---
 
-Q: Do chaperones violate Anfinsen's principle?
-A: **No.** Chaperones **act as catalysts**: they help a protein reach the structure encoded in its own sequence, and carry no information about the final structure themselves.
-Tags: folding, core
+Q+: Do chaperones contradict Anfinsen?
+- [ ] Yes, they add information the sequence lacks
+- [x] No, they act as catalysts
+- [ ] Yes, but only for proteins over 300 residues
+A: A chaperone **speeds the journey to the structure the sequence already encodes** and stops the chain aggregating on the way. It carries no information about the final fold.
+
+Read more: [Chaperones](#/chapter/ch03-proteins/chaperones)
+Tags: type/misconception, folding, core
 
 ---
 
-Q: Before AlphaFold, how well could a structure be predicted from sequence?
-A: **Over 70% identity** to a known structure gave **good homology models**; **over 30%** gave **good general topology but no detail in insertions and deletions**; at **low identity** it was only beginning to work, with massive trials such as Rosetta@home. The steps were **secondary structure prediction, threading on known folds, and analysis of co-evolution**, and progress is tracked by the **CASP** competition.
+Q: Before AlphaFold, how good was structure prediction from sequence?
+A: It depended entirely on **how close a known structure was**. High sequence identity gave a **reliable homology model**; moderate identity gave the **right overall topology but unreliable detail**, particularly where insertions and deletions sit; low identity barely worked. The toolkit was **secondary structure prediction, threading and co-evolution analysis**, benchmarked by **CASP**.
+
+Read more: [Fold prediction before AlphaFold](#/chapter/ch03-proteins/fold-prediction-before-alphafold)
 Tags: prediction, core
 
 ---
 
-Q: What is the logic of co-evolution analysis?
-A: **If a change in one amino acid leads to a change at a distant site in the sequence, infer that the two are likely close in space.** Comparing many species turns those correlated pairs into a contact map.
+Q+: What is the logic of co-evolution analysis?
+A: If a change at one position is consistently accompanied by a change at a **distant** position, infer that the two residues are **close in space**. Across many sequences those correlated pairs become a contact map, and a contact map constrains the fold.
+
+Read more: [Co-evolution analysis](#/chapter/ch03-proteins/co-evolution-analysis)
+Tags: type/why, prediction, core
+
+---
+
+Q: What is AlphaFold built from, and what are its three stated limitations?
+A: Built from **multiple sequence alignments**, **co-evolution analysis** and the **known structures in the PDB**, combined by new AI methods. Its limitations: it sometimes **hallucinates structure in regions that are genuinely disordered**, it covers **only a subset of cofactors, metals, ligands and ions**, and it **predicts a single state** per protein.
+
+Read more: [AlphaFold: the AI watershed moment](#/chapter/ch03-proteins/alphafold-the-ai-watershed-moment)
 Tags: prediction, core
 
 ---
 
-Q: What is AlphaFold built from, and when did it arrive?
-A: **Multiple sequence alignments, co-evolution analysis, known PDB structures** and pioneering AI approaches. **Announced December 2020**, **published July 2021** (Jumper et al.), **AlphaFold3 May 2024** (Abramson et al.). **Nobel Prize in Chemistry 2024.**
+Q+: Which protein is the standard counterexample to that single-state limitation, and why that one?
+A: **Mad2**, which genuinely exists in an **open** and a **closed** form, the closed one adopted when bound to **Mad1**. A predictor that returns one structure cannot represent a protein whose function *is* the switch between two.
+
+Read more: [Limitations of AlphaFold](#/chapter/ch03-proteins/limitations-of-alphafold)
+Tags: type/apply, prediction
+
+---
+
+Q+: In the AlphaFold database, what do the colour coding and the matrix tell you?
+A: The **colours** give confidence **per residue**; the **matrix** gives confidence **in the distance between pairs of residues**. So you can have confidently predicted domains whose **relative arrangement** is unreliable.
+
+Read more: [Reading an AlphaFold prediction](#/chapter/ch03-proteins/reading-an-alphafold-prediction)
 Tags: prediction, core
 
 ---
 
-Q+: What are its three stated limitations?
-A: It sometimes **hallucinates structure in unfolded regions** (AlphaFold3); it has **only a subset of cofactors, metals, ligands and ions**; and it **predicts only a single state** for each protein, which is why **Mad2**, with its open and Mad1-bound closed forms, is shown as the counterexample.
-Tags: prediction, core
+Q: In sickle cell anaemia the mutation is on the surface, and the protein folds normally. So why is it a disease?
+A: Because a **glutamate is replaced by a valine**, putting a **hydrophobic patch on the surface**. It binds a hydrophobic pocket on a neighbouring haemoglobin, and because the contact is **head to tail** the molecules **polymerize into long fibres** that deform the red cell.
+
+Read more: [Sickle cell anaemia: when folding goes wrong](#/chapter/ch03-proteins/sickle-cell-anaemia-when-folding-goes-wrong)
+Tags: type/why, folding, clinical, core
 
 ---
 
-Q: What do the two confidence readouts in the AlphaFold database tell you?
-A: The **colour coding** gives confidence **in the prediction per residue**; the **matrix** gives confidence **in the distance between amino acids**. So domains can be confidently predicted while their relative arrangement is not.
-Tags: prediction
+Q: A crystal structure is a single still image. What kinds of motion does a real protein make, and what powers each?
+A: The **static view of protein structure** gives way to the **dynamic world of protein function**. **Atomic fluctuations**, tiny and extremely fast, driven by **thermal energy**; **collective motions** of whole groups of atoms, larger and slower, also **thermal**; and **triggered conformational changes**, the largest and slowest, powered not by heat but by **binding**.
+
+![Types of motion found in proteins, with displacements, times and energy sources](assets/img/slide-2-78.png)
+
+Read more: [Protein function (self study)](#/chapter/ch03-proteins/protein-function-self-study)
+Tags: type/figure, type/why, function, core
 
 ---
 
-Q: Sickle cell anaemia is folding gone wrong. What is the change and what does it cause?
-A: A **glutamate replaced by a valine on the surface** of β-globin. The protein still folds, but the exposed hydrophobic valine binds a pocket on a neighbouring haemoglobin, and because the interaction is **head to tail** the molecules **polymerize into long fibres** that distort the red cell.
-Tags: folding, core
+Q+: Which of those three is "a protein doing something", and how can you tell?
+A: **Triggered conformational changes**, because they are the only ones **not powered by thermal energy**: their energy source is **binding**. They are also the largest and can be slow, which is exactly what a regulated switch needs.
+
+Read more: [Protein function (self study)](#/chapter/ch03-proteins/protein-function-self-study)
+Tags: type/why, core
 
 ---
 
-Q: The lecture turns from structure to function with one line. What is it?
-A: **"Static view of protein structure" gives way to the "dynamic world of protein function".**
-Tags: function
+Q: Protein function is classified under five headings. Name them, with what each means.
+A: **Binding** (bind a ligand, DNA or protein), **catalysis** (promote a reaction), **switching** (create a signal), **structural** (provide stability), **mechanical work** (transfer energy into motion).
 
----
-
-Q: Which three kinds of motion does the slide list, and which is the useful one?
-A: **Fluctuations** (atomic vibrations, 0.01 to 1 Å, 10⁻¹⁵ to 10⁻¹¹ s, thermal); **collective motions** (0.01 to over 5 Å, 10⁻¹² to 10⁻³ s, thermal); and **triggered conformational changes** (0.5 to over 10 Å, 10⁻⁹ to 10³ s), which are powered by **binding interactions** and are what a protein "doing something" means.
-Tags: function, numbers
-
----
-
-Q: Name the five protein functions in the lecture's table.
-A: **Binding** (bind a ligand, DNA or protein); **catalysis** (promote a reaction); **switching** (create a signal); **structural** (provide stability); **mechanical work** (transfer energy into motion).
+Read more: [Protein function (self study)](#/chapter/ch03-proteins/protein-function-self-study)
 Tags: function, core
 
 ---
 
-Q: What shapes a ligand-binding site?
-A: The **surface conformation** of the protein. **Noncovalent bonds generate the interaction**, **shape complementarity assists** through van der Waals contacts, and **different sequence regions can contribute to a single binding site**.
+Q: What shapes a ligand-binding site, and where does its specificity come from?
+A: The **surface conformation** of the folded protein. **Noncovalent bonds** generate the interaction and **shape complementarity** assists through van der Waals contacts. Crucially, **different sequence regions can contribute to one binding site**, brought together by folding.
+
+Read more: [Ligand binding](#/chapter/ch03-proteins/ligand-binding)
 Tags: function, core
 
 ---
 
-Q: Which three questions describe a binding interaction, and what are the symbols?
-A: **How strong is the affinity: K_D.** **How fast is the association: k_on.** **How fast is the dissociation: k_off.** K_D has units of **M**, and the lower it is, the higher the affinity.
+Q: Which three kinds of protein-protein interface are there?
+A: **Surface-string**, **helix-helix** (a coiled coil) and **surface-surface**.
+
+![Surface-string, helix-helix and surface-surface protein interfaces](assets/img/slide-2-82.png)
+
+Read more: [Protein–protein binding](#/chapter/ch03-proteins/protein-protein-binding)
+Tags: type/figure, binding, core
+
+---
+
+Q+: An antibody binds almost any antigen. Which part varies, and what is the underlying architecture?
+A: The **loops at the tips of the variable domains**. The molecule is two **heavy** and two **light** chains held by **disulfide bonds**, with the **antigen-binding site formed where VH and VL meet**, so varying a few loops on a constant scaffold gives a practically unlimited repertoire.
+
+Read more: [Protein–protein binding](#/chapter/ch03-proteins/protein-protein-binding)
 Tags: binding, core
 
 ---
 
-Q+: Give the lecture's four example affinities.
-A: **Ubiquitin binding domain 10⁻⁵ M**; **antigen-receptor 10⁻⁷ to 10⁻¹¹ M**; **transcription factor 10⁻⁹ M**; **avidin-biotin 10⁻¹⁵ M**. Weak is µM, strong is nM.
-Tags: binding, numbers
+Q: Binding is described by three questions. What are they, and what are the symbols?
+A: **How strong is the affinity: $K_D$**, in **M**. **How fast is association: $k_{on}$.** **How fast is dissociation: $k_{off}$.** At equilibrium $K_D = \frac{[A][B]}{[A-B]}$, and **affinity rises as $K_D$ falls**.
+
+![The definition of KD at equilibrium with example affinities](assets/img/slide-2-85.png)
+
+Read more: [Affinity](#/chapter/ch03-proteins/affinity)
+Tags: type/figure, binding, core
+
+---
+
+Q+: Order these by affinity: transcription factor, avidin-biotin, ubiquitin binding domain, antigen-receptor.
+A: Strongest to weakest: **avidin-biotin**, effectively irreversible; **antigen-receptor**; **transcription factor**; **ubiquitin binding domain**, the weakest of the four. The scale to carry is that **µM is weak, nM is tight**, and each interaction is tuned to how long it needs to last.
+
+Read more: [Affinity](#/chapter/ch03-proteins/affinity)
+Tags: type/discriminate, binding
+
+---
+
+Q+: A ubiquitin binding domain binds at 10⁻⁵ M, which is very weak. Why is that useful rather than a defect?
+A: Because ubiquitin signals must be **read and released quickly** and must respond to **how many ubiquitins are present**. Weak individual binding plus **avidity** across a chain gives a signal that is sharp, reversible and concentration-dependent, which a 10⁻¹⁵ M interaction could never be.
+
+Read more: [Affinity](#/chapter/ch03-proteins/affinity)
+Tags: type/apply, core
 
 ---
 
 Q: Give examples where binding does not obey a simple 1-to-1 model.
-A: **Cooperativity** between binding sites, as in oxygen binding by haemoglobin; **avidity**, where a molecule binds with several sites at once, as a bivalent antibody does; and binding **coupled to a conformational change**.
+A: **Cooperativity** between sites, as in oxygen binding by haemoglobin; **avidity**, where one molecule binds through several sites at once, as a bivalent antibody does; and binding **coupled to a conformational change**.
+
+Read more: [Binding kinetics](#/chapter/ch03-proteins/binding-kinetics)
 Tags: binding, core
 
 ---
 
-Q: How does surface plasmon resonance measure binding in real time?
-A: The **bait** is tethered to a **gold film about 50 nm thick**; light through a prism at the **resonance angle** excites surface plasmons whose field extends just beyond the film. Flowing **prey** over it shifts the resonance angle, giving **association** while prey flows and **dissociation** after a **buffer wash**.
-Tags: binding, methods
+Q: What do enzymes do to a reaction, and where?
+A: They **stabilize the transition state and lower the activation energy barrier**, in the **catalytic pocket**, or active site.
 
----
-
-Q: What do enzymes do to a reaction, in one sentence?
-A: They **stabilize the transition state and lower the activation energy barrier**, in the **catalytic pocket** or active site.
+Read more: [Catalysis](#/chapter/ch03-proteins/catalysis)
 Tags: catalysis, core
 
 ---
 
-Q+: What are the three strategies the catalytic pocket uses?
-A: **Ideal positioning of the reactants**, **arranging charges to promote the reaction**, and **straining the substrate** toward the transition state.
-Tags: catalysis, core
+Q+: Name the three strategies the catalytic pocket uses.
+A: **Ideal positioning of the reactants**; **arranging charges to promote the reaction**; **straining the substrate** toward the transition state.
+
+![Three catalytic strategies: orienting substrates, arranging charges and straining the substrate](assets/img/slide-2-92.png)
+
+Read more: [Catalysis](#/chapter/ch03-proteins/catalysis)
+Tags: type/figure, catalysis, core
+
+---
+
+Q+: In the chymotrypsin catalytic triad, what does the aspartate do to the histidine, and what does that produce?
+A: The aspartate makes the histidine **pull the proton off the serine**, producing a **reactive serine alkoxide** that attacks the substrate. It is the "arrange charges" strategy made concrete, and it is why histidine turns up in so many active sites.
+
+![The Asp-His-Ser catalytic triad producing a reactive serine](assets/img/slide-2-93.png)
+
+Read more: [Catalysis](#/chapter/ch03-proteins/catalysis)
+Tags: type/figure, type/apply, core
 
 ---
 
 Q: If an enzyme binds the transition state most tightly, what follows for drug design?
-A: A molecule that **mimics the transition state** is a strong **inhibitor**. Antibodies raised against such mimics can even act as enzymes.
-Tags: catalysis, core
+A: A **transition-state analog** is a strong **inhibitor**, because it binds the site better than the substrate does. Raising antibodies against such an analog can even produce a **catalytic antibody**.
+
+Read more: [Catalysis](#/chapter/ch03-proteins/catalysis)
+Tags: type/apply, catalysis, core
 
 ---
 
-Q: Define Vmax, Km and kcat with their units.
-A: **Vmax**: steady-state velocity of product formation at saturating substrate, in **mol/s**. **Km**: the substrate concentration at half Vmax, a measure of **substrate affinity**, in **M**. **kcat**: the **turnover** number, in **s⁻¹**.
-Tags: kinetics, core
+Q: Define Vmax, Km and kcat with units.
+A: **Vmax:** steady-state velocity of product formation at saturating substrate, **mol/s**. **Km:** substrate concentration at **half Vmax**, a measure of **substrate affinity**, in **M**. **kcat:** **turnover**, in **s⁻¹**.
+
+![The Michaelis-Menten curve with Vmax and Km marked](assets/img/slide-2-95.png)
+
+Read more: [Michaelis–Menten kinetics](#/chapter/ch03-proteins/michaelis-menten-kinetics)
+Tags: type/figure, kinetics, core
 
 ---
 
-Q: How much can an enzyme accelerate a reaction, on the lecture's comparison table?
-A: From about **4.6 × 10⁵** for cyclophilin to **10¹⁷** for alkaline phosphatase and **1.4 × 10¹⁷** for ODCase, with carbonic anhydrase, chymotrypsin, triosephosphate isomerase, fumarase, adenosine deaminase and urease in between.
-Tags: kinetics, numbers
+Q+: Two enzymes have the same Vmax but enzyme A has a Km ten times lower. What does that mean in the cell?
+A: Enzyme A reaches half its maximum rate at a **ten times lower substrate concentration**, so at the low concentrations typical in a cell it is much faster. Km matters more than Vmax when substrate is scarce.
+
+Read more: [Michaelis–Menten kinetics](#/chapter/ch03-proteins/michaelis-menten-kinetics)
+Tags: type/apply, kinetics
+
+---
+
+Q+: Rate accelerations differ by many orders of magnitude from one enzyme to another. What decides how large the acceleration is?
+A: **How slow the uncatalysed reaction was.** Turnover numbers on the enzyme itself are broadly comparable, so the acceleration is set almost entirely by the **uncatalysed rate**. The extreme cases are reactions that would take **millions of years** on their own and run **several times a second** on the enzyme.
+
+![A table of uncatalysed and catalysed rates with rate accelerations](assets/img/slide-2-96.png)
+
+Read more: [Michaelis–Menten kinetics](#/chapter/ch03-proteins/michaelis-menten-kinetics)
+Tags: type/figure, type/why, catalysis, core
 
 ---
 
 Q: How does the cell regulate the catalytic activity of its enzymes?
 A: By **allosteric binding** of other molecules, for example aspartate transcarbamoylase; by **post-translational modification**, for example phosphorylation; by **proteolysis**, for example blood clotting enzymes and complement; and by **protein interaction**.
+
+Read more: [Regulation of enzyme activity](#/chapter/ch03-proteins/regulation-of-enzyme-activity)
 Tags: regulation, core
 
 ---
 
-Q+: What is the rule about two coupled binding sites?
-A: **Allosteric enzymes have two or more binding sites that interact**, and **two ligands whose binding sites are coupled must reciprocally affect each other's binding**. Activators and inhibitors can use the same or different allosteric sites.
-Tags: regulation, core
+Q+: State the rule about two coupled binding sites, and what it implies.
+A: **Two ligands whose binding sites are coupled must reciprocally affect each other's binding.** If X helps glucose bind, then glucose must help X bind; there is no one-way allosteric effect. Activators and inhibitors may use the same or different sites.
+
+![Positive and negative allosteric regulation of an enzyme by molecule X](assets/img/slide-2-98.png)
+
+Read more: [Regulation of enzyme activity](#/chapter/ch03-proteins/regulation-of-enzyme-activity)
+Tags: type/figure, type/why, regulation, core
 
 ---
 
-Q: The lecture shows two molecular switches side by side. Which, and how is each reset?
-A: **Signalling by phosphorylation**: a **protein kinase** switches the protein on, a **protein phosphatase** switches it off. **Signalling by a GTP-binding protein**: **GTP-bound is on, GDP-bound is off**, with a **GEF** exchanging GDP for GTP and a **GAP** accelerating hydrolysis.
-Tags: switching, core
+Q: Two kinds of molecular switch run most signalling. What turns each one on and off?
+A: **Phosphorylation:** a **protein kinase** switches on, a **protein phosphatase** switches off. **GTP-binding protein:** **GTP-bound is on**, **GDP-bound is off**, with a **GEF** loading GTP and a **GAP** accelerating hydrolysis.
+
+![Signalling by phosphorylation beside signalling by a GTP-binding protein](assets/img/slide-2-100.png)
+
+Read more: [Switching](#/chapter/ch03-proteins/switching)
+Tags: type/figure, switching, core
 
 ---
 
-Q: What is the structural example of a coiled coil, and what holds it together?
-A: Two helices with a **regular hydrophobic sequence pattern** of seven residues, where positions **a and d are hydrophobic, often leucines**, forming a stripe that packs against the partner helix, with **ionic interactions** at the edges.
+Q+: Mutant Ras stuck in the GTP form is found in many cancers. Which of the two proteins in the cycle would that mutation have broken?
+A: The ability to **hydrolyse GTP**, either intrinsically or in response to a **GAP**. The switch can still be turned on and can no longer be turned off, so the signal is permanent.
+
+Read more: [Switching](#/chapter/ch03-proteins/switching)
+Tags: type/apply, clinical, core
+
+---
+
+Q: What holds a coiled coil together?
+A: A **regular hydrophobic sequence pattern of seven residues**, in which positions **a and d are hydrophobic, often leucines**. They form a stripe along each helix that packs against the partner's stripe, with **ionic interactions** at the edges.
+
+Read more: [Structural proteins](#/chapter/ch03-proteins/structural-proteins)
 Tags: structural, core
 
 ---
 
-Q: Elastin is the other structural example. What makes it work?
-A: **Cross-linked elastin molecules** form an **elastic fiber** that **stretches and relaxes**, so the function comes from the **absence** of a fixed fold rather than from a defined structure.
-Tags: structural
+Q+: Elastin is the other structural example. What makes it work, and how does that differ from a coiled coil?
+A: **Cross-linked, loosely structured molecules** that **stretch and recoil**. Its function comes from the **absence** of a fixed fold, which is the opposite of the coiled coil's precise packing.
+
+Read more: [Structural proteins](#/chapter/ch03-proteins/structural-proteins)
+Tags: type/discriminate, structural
 
 ---
 
-Q: How do motor proteins get directional movement out of a protein that ordinarily moves at random?
-A: By **coupling movement to an irreversible reaction**, ATP hydrolysis. **Normal conformational states are nondirectional.** Examples: **myosin on actin filaments, kinesin on microtubules, helicase on DNA**.
-Tags: motors, core
+Q: Normal conformational changes are nondirectional. How does a motor protein get directed movement?
+A: By **coupling movement to an irreversible reaction**, ATP binding and hydrolysis, so each cycle can only run one way. Examples: **myosin on actin**, **kinesin on microtubules**, **helicase on DNA**.
+
+![Motor movement coupled to ATP binding and hydrolysis](assets/img/slide-2-106.png)
+
+Read more: [Mechanical work](#/chapter/ch03-proteins/mechanical-work)
+Tags: type/figure, motors, core
 
 ---
 
-Q: What does the lecture give as the challenge in both motor proteins and systems biology?
-A: For motors, **unravelling the steps in multicomponent systems**, using single-molecule, quantitative and cellular data. For systems biology, **understanding the integration between networks of proteins**, which needs **quantitative kinetic and binding data for the individual components**.
+Q+: Why must the coupled reaction be irreversible?
+A: Because a reversible cycle would run **backwards as often as forwards** under thermal motion, giving no net displacement. Hydrolysis and product release make the return path effectively impossible, which is what converts random shape changes into work.
+
+Read more: [Mechanical work](#/chapter/ch03-proteins/mechanical-work)
+Tags: type/why, core
+
+---
+
+Q: What is the outstanding challenge in studying motor proteins, and in systems biology?
+A: For motors, **unravelling the steps in multicomponent systems**, using single-molecule, quantitative and cellular data. For systems biology, **understanding the integration between networks of proteins**, which needs **quantitative kinetic and binding data** for each component.
+
+Read more: [Systems biology](#/chapter/ch03-proteins/systems-biology)
 Tags: core
+
+---
+
+Q: **Exam-shaped question.** "Explain what drives a protein to fold, and why folded proteins are only marginally stable."
+A: A checklist for marks:
+
+| Point | Content |
+|---|---|
+| Driving force 1 | The hydrophobic effect: burying apolar side chains prevents ordering of water, which is entropically favourable |
+| Driving force 2 | Satisfying every hydrogen bond donor and acceptor after folding |
+| The problem | The main chain is hydrophilic, carrying an N-H and a C=O per residue, and must cross the core |
+| The solution | Secondary structure, which satisfies the main chain hydrogen bonds: the alpha helix, and beta sheets that can run parallel or antiparallel |
+| The energetics | The folded state is worth only a handful of hydrogen bonds more than the unfolded one, and in water each of those bonds is close to thermal energy |
+| Consequence | Marginal stability, so small mutations or conditions can unfold a protein, and folding can be regulated and assisted by chaperones |
+| Principle | Anfinsen: the information is in the sequence; chaperones catalyse, they do not instruct |
+
+Read more: [What drives protein folding?](#/chapter/ch03-proteins/what-drives-protein-folding)
+Tags: type/exam, core

@@ -142,9 +142,10 @@ A live example is the card in
 
 `assets/img/` holds the book's own figures, extracted from the PDF and named by their
 figure number: `fig-1-23.png` is Figure 1–23, `fig-q1-02.png` is problem figure Q1–2, and
-`panel-2-04.png` is Panel 2–4. Chapters 1 and 2 are covered. They are scans, so they carry
-a white background in both themes; the stylesheet puts them on a plate so they don't glare
-in dark mode.
+`panel-2-04.png` is Panel 2–4. Alongside them, `slide-3-16.png` is slide 16 of molmed
+session 3, cut out by [`tools/extract-slides.py`](tools/extract-slides.py). They are scans,
+so they carry a white background in both themes; the stylesheet puts them on a plate so
+they don't glare in dark mode.
 
 ## Writing cards
 
@@ -390,6 +391,46 @@ same three card types and the same markdown as anything in `decks/`. Check one w
 $ node tools/check-deck.js molmed/decks/2-ch03-proteins.md
 ```
 
+### Slides as figures
+
+A card can show the slide it came from. `tools/extract-slides.py` cuts single slides out of
+a lecture PDF into `assets/img/slide-<session>-<slide>.png`:
+
+```bash
+$ python3 tools/extract-slides.py 3 15 16 32      # slides 15, 16 and 32 of session 3
+$ python3 tools/extract-slides.py 2 95 96         # handouts with two slides per page work too
+```
+
+It renders at 150 dpi, trims the margin and resizes to 1100 px wide. Handout decks that
+print two slides to a page (session 2) are detected from the page shape, halved and
+numbered down the page, so the argument is always the **slide** number printed on the
+handout, not the page. Needs poppler-utils and ImageMagick.
+
+Use a slide image where the slide **is** the content: a table the lecturer built, a quiz,
+a data figure, a diagram that is not in the book. Where the book's own figure shows the
+same thing, prefer `assets/img/fig-6-11.png`, which is cleaner and already extracted.
+
+### What the cards are for
+
+These decks are written to be **understood**, not recited, so they use the whole card
+format rather than question-and-answer alone:
+
+| Card type | Used for | Tag |
+|---|---|---|
+| Why / mechanism | causal links, not just facts | `type/why` |
+| Discrimination | the confusions that lose marks | `type/discriminate` |
+| Prediction | trace a perturbation through a pathway | `type/apply` |
+| Figure-front | read a slide rather than recall its caption | `type/figure` |
+| Sequence | one step at a time, as a `Q+:` chain | `type/sequence` |
+| Misconception | the wrong answer, stated and killed | `type/misconception` |
+| Number | a value, usually clozed, with its significance | `type/number` |
+| Exam-shaped | an open question with a marking checklist | `type/exam` |
+
+The tags are searchable in the card browser, so `type/exam` the night before and
+`type/why` when a topic will not stick. Two rules keep them working: **the prompt must
+stand alone**, naming the biology rather than "the slide", and **one fact per card**, with
+lists broken into clozes or `Q+:` chains rather than one card carrying eight facts.
+
 **Scheduling is separate.** A card's identity is its deck id plus a hash of its question,
 and these decks carry a `molmed:` deck id, so a session's cards are scheduled
 independently of the book deck covering the same chapter. Revising for the exam never
@@ -414,7 +455,7 @@ rating button shows the interval it will actually give you.
 | `1` `2` `3` `4` | Again, Hard, Good, Easy |
 | `A` to `Z`, or `1` to `9` | Pick a multiple-choice option |
 
-Daily limits (20 new, 200 reviews) are adjustable in **Settings**, along with a shuffle
+Daily limits (100 new, 200 reviews) are adjustable in **Settings**, along with a shuffle
 toggle. **Cram** replays a whole chapter without touching your scheduling.
 
 ## Progress and your data
@@ -452,6 +493,7 @@ decks/*.md                  chapter cards
 papers/*.md                 paper summaries
 molmed/slides/*.pdf         the lecture decks the course is examined on
 molmed/decks/*.md           revision cards, one deck per lecture, slides only
+tools/extract-slides.py     cuts one slide out of a lecture PDF into assets/img/
 chapters.json               generated index of all of it
 videos.json                 videos per chapter, hand-edited, no build step
 build-manifest.py           regenerates chapters.json

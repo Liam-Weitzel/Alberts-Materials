@@ -480,7 +480,19 @@ Over the years, certain recurring patterns of folding have been recognized and g
 
 ![Ribbon models of three protein domains: an all-alpha cytochrome, a mixed alpha and parallel beta NAD-binding domain, and an all-beta immunoglobulin light chain domain](assets/img/fig-3-10.png)
 
-**Independent folding domains may have defined functions.** For example, a particular domain may bind DNA, bind phosphorylated peptides, or catalyse a reaction.
+**Independent folding domains may have defined functions**, and the lecture gives a table of them:
+
+| Domain | Function |
+|---|---|
+| **SH2** | binds phosphotyrosine |
+| **SH3** | binds proline-rich sequences |
+| **Pleckstrin homology (PH)** | binds G proteins and membranes |
+| **WD40** | protein-protein interaction |
+| **DH** | guanine nucleotide exchange |
+| **EF-hand** | binds calcium |
+| **Homeobox** | binds DNA |
+| **TRBD** | binds tRNA |
+| **Helix-turn-helix** | binds DNA |
 
 ## Multiple domains can be mixed and matched
 
@@ -1034,7 +1046,7 @@ Only the third row is what we mean by a protein "doing" something: it is large, 
 
 ### Protein–protein binding
 
-Proteins bind to other proteins through **several types of interfaces**, such as surface-to-surface, helix-to-groove, and peptide-to-surface.
+Proteins bind to other proteins through **several types of interfaces**, and the slide names three: **surface-string**, where an extended piece of polypeptide lies across a rigid surface; **helix-helix**, two helices wrapping into a coiled coil; and **surface-surface**, two complementary rigid faces.
 
 ![Three ways two proteins bind: a rigid surface against an extended string of polypeptide, two alpha helices forming a coiled-coil, and two complementary rigid surfaces](assets/img/fig-3-39.png)
 
@@ -1109,6 +1121,8 @@ The reaction takes place in the **catalytic pocket**, or **active site**. The en
 3. **straining the substrate** towards the transition state
 
 ![Three general strategies for enzyme catalysis: orienting two substrates precisely, rearranging electrons to create partial charges, and straining the substrate toward a transition state](assets/img/fig-3-50.png)
+
+The lecture's worked active site is **chymotrypsin**: **Asp 102** makes **His 57** pull the proton off **Ser 195**, producing the **reactive serine** that attacks the substrate. That is strategy (b), arranging charges, made concrete, and it is why histidine turns up in active sites.
 
 Because enzymes bind the transition state tightly, a molecule that mimics the transition state can act as a strong **inhibitor**. This is used in **drug design**. Antibodies raised against transition-state mimics can even act as enzymes (**catalytic antibodies**).
 

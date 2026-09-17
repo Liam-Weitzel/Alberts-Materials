@@ -16,7 +16,7 @@ window.SRS = (function () {
   var EASY_GRADUATE = 4;           // days, "Easy" out of learning
   var MIN_EASE = 1.3, MAX_EASE = 3.0, MAX_IVL = 365;
 
-  var DEFAULTS = { newPerDay: 20, maxReviews: 200, theme: 'auto', shuffle: true };
+  var DEFAULTS = { newPerDay: 100, maxReviews: 200, theme: 'auto', shuffle: true };
 
   var data = load();
 
