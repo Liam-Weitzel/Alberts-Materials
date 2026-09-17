@@ -374,6 +374,34 @@
       ]
     },
     {
+      "title": "Transcription (Advanced)",
+      "url": "https://www.youtube.com/watch?v=SMtWvDbfHLo",
+      "source": "Cold Spring Harbor Laboratory, DNA Learning Center",
+      "duration": "1:53",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "transcription",
+        "animation"
+      ],
+      "description": "Played in the chapter 6 lecture. Two minutes covering what Figures 6-15 and 6-18 show as stills: general transcription factors assembling at the promoter, the enhancer looping in, and the polymerase leaving to make RNA."
+    },
+    {
+      "title": "RNA Splicing",
+      "url": "https://www.youtube.com/watch?v=aVgwr0QpYNE",
+      "source": "Cold Spring Harbor Laboratory, DNA Learning Center",
+      "duration": "1:37",
+      "chapters": [
+        "ch06"
+      ],
+      "tags": [
+        "splicing",
+        "animation"
+      ],
+      "description": "Also played in the lecture, alongside Figure 6-29. Spliceosomes assembling on a transcript, each cutting out one intron as a lariat and joining the exons, with several introns being removed at once."
+    },
+    {
       "title": "Discovery of Transcription Factors",
       "url": "https://www.youtube.com/watch?v=bevffHy9pvg",
       "source": "iBiology Techniques",
