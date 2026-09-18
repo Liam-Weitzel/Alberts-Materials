@@ -536,3 +536,426 @@ A synthetic mRNA has the same parts as a cellular one — **5′ cap, 5′ UTR, 
 **Structure → stability.** The folded structures predicted for differently codon-optimised versions of the same open reading frame differ substantially, and those differences show up as measured **half-lives**: in the in-solution degradation assay on the slide, constructs range from **t½ ≈ 0.36 h** to **t½ ≈ 1.14 h**, with **pseudouridine (Ψ) substitution** adding further stability on top of the structural effect.
 
 That last point closes a loop with the rest of the lecture. **Ψ and 2′-O-methylation** are the modifications cells put on their own rRNA and mRNA; they are also, in part, how the innate immune system tells self from non-self. Building them into a synthetic message is what makes it usable as a medicine rather than an inflammatory stimulus — the same chemistry, read in the same way, applied deliberately.
+
+---
+
+> **Session 5** of the same course, given by **Thamar van Dijk**, who also gave session 1a.
+>
+> This is **part II** of chapter 6. Part I stopped at an export-ready mRNA sitting in the nucleus. Part II takes it out through the pore, translates it, folds the product, and then destroys both the message and the protein.
+
+The opening slide is the same whole-pathway figure that closed part I, and its point is that **every arrow on it is a regulatory step**: transcription initiation, capping and splicing, cleavage and polyadenylation, export, mRNA degradation, translation initiation, folding, and protein degradation. Part II covers the second half of that list.
+
+# Export-ready mRNA and its transport
+
+An mRNA never travels naked. It leaves the nucleus as a **particle**, an mRNP, wearing a coat of proteins that was assembled on it during processing: **hnRNP proteins**, **SR proteins**, **exon junction complexes (EJCs)**, **poly-A-binding proteins**, the **cap-binding complex (CBC)** on the 5' cap, and a **nuclear export receptor**.
+
+![An export-ready mRNA passing through the nuclear pore, with some proteins travelling with it, others staying behind, and cytosolic versions replacing the nuclear ones](assets/img/fig-6-40.png)
+
+Three things happen on the way out and just after:
+
+* **Nucleus-restricted proteins are left behind.** hnRNPs and the rest of the nuclear coat are stripped at the pore. A transcript still wearing them has not finished processing and does not get exported, which is itself a checkpoint.
+* **The nuclear cap protein is exchanged for the cytosolic ones.** **CBC** comes off and the **initiation factors for protein synthesis**, **eIF4E** on the cap and **eIF4G** behind it, take its place. On the slide this exchange is drawn as part of the same arrow labelled **nonsense-mediated decay**, because the first round of translation is where the message is proofread.
+* **The mRNA closes into a circle.** eIF4G at the 5' end contacts the **poly-A-binding proteins** at the 3' end, and the message becomes a loop.
+
+The lecture gives three reasons for the circle, and they are the reasons worth remembering:
+
+| Why circularise | What it buys |
+|---|---|
+| **Quality control** | The loop can only close if **both** the cap and the poly-A tail are present and intact. A truncated or uncapped message cannot form it, and so is never translated |
+| **Efficiency** | A ribosome that terminates at the 3' end is released next to the 5' end, so it can re-initiate on the same message instead of diffusing away |
+| **Stability** | Both ends are occupied by protein, and both ends are where exonucleases would attack |
+
+# The ribosome
+
+## Free and membrane-bound ribosomes
+
+An electron micrograph of the cytoplasm shows two populations: ribosomes **attached to the endoplasmic reticulum**, which give the rough ER its name, and ribosomes **free in the cytosol**.
+
+![Electron micrograph of ribosomes in the cytoplasm of a eukaryotic cell, some free and some attached to endoplasmic reticulum membranes](assets/img/fig-6-64.png)
+
+The split is by **destination, not by ribosome**: the ones on the ER are making proteins bound for **secretion** or for the membrane system, the free ones are making proteins that stay in the cytosol. A ribosome is not committed in advance; what it is translating decides where it ends up, which is chapter 12's subject.
+
+## Two sizes, one machine
+
+Bacterial and eukaryotic ribosomes are built to the same plan and differ in size. Both are **two subunits, one large and one small**, named by how fast they sediment: the bacterial ribosome is **70S**, from a **50S** and a **30S** subunit; the eukaryotic one is **80S**, from a **60S** and a **40S**.
+
+![Bacterial 70S and eukaryotic 80S ribosomes broken down into their subunits, rRNAs and protein counts](assets/img/fig-6-65.png)
+
+Two things follow that matter more than the numbers. First, the **S values do not add up** (50 + 30 gives 70, not 80), because a sedimentation coefficient depends on shape as well as mass and is not additive. Second, the **eukaryotic ribosome is the larger of the two at every level**: bigger overall, bigger subunits, longer rRNAs and more proteins, around eighty against around fifty-five. That size difference is what antibiotics exploit later in the lecture.
+
+## Mostly RNA, and the RNA does the work
+
+Each subunit is a complex of **rRNA** and **ribosomal proteins**, and the composition is roughly **two thirds RNA to one third protein**. Shown with **RNA in blue and protein in green**, the picture makes the relationship obvious.
+
+![The bacterial large subunit with rRNA in blue and its proteins in green, occupying the surface and crevices](assets/img/fig-6-72.png)
+
+The RNA is not scaffolding for the proteins; it is the other way round. The **rRNA provides the overall structure** and the **rRNA performs the catalysis**. The proteins sit mostly on the **surface and in the crevices**, stabilising the fold and tuning efficiency. The ribosome is therefore a **ribozyme**, and the peptidyl transferase centre is made of RNA. This is the same conclusion part I reached about the spliceosome, and it is the single most important structural fact in this lecture.
+
+## A conserved core with eukaryotic additions
+
+rRNA was the example of sequence conservation in session 1a, where an aligned stretch from human, *Methanococcus* and *E. coli* was still largely identical after billions of years. The structures say the same thing.
+
+![Aligned rRNA sequence from human, Methanococcus and E. coli beside bacterial and eukaryotic ribosome structures coloured by which parts are universally conserved](assets/img/slide-5-09.png)
+
+Colouring the two ribosomes by conservation shows a **universally conserved core**, the part that does the chemistry, with the eukaryotic ribosome carrying **extensions built on top of it**. Some regions are bacteria-only, some are shared by archaea and eukaryotes, some are eukaryote-only. The machine was solved once, very early, and has been decorated since.
+
+# The nucleolus: the ribosome factory
+
+## Why a cell needs so many rRNA genes
+
+A cell holds on the order of **millions of ribosomes**, and it holds roughly **two hundred copies of the rRNA gene** per haploid genome. Those two facts are connected: a single copy of a gene, transcribed at the maximum rate a polymerase can manage, cannot supply that many ribosomes. **Amplification by gene copy number** is the only way to meet the demand, and an electron micrograph of rRNA genes in action shows why: each gene is coated with polymerases, transcribing simultaneously, in the "Christmas tree" pattern.
+
+![Electron micrograph of tandemly arranged rRNA genes, showing alternating transcribed genes and untranscribed spacers](assets/img/fig-6-41.png)
+
+## The nucleolus is built by the genes it transcribes
+
+In humans the rRNA gene clusters sit on the short arms of the **acrocentric chromosomes**, and this is where the nucleolus comes from. A **fibrillar centre** nucleates at an rDNA locus; **rDNA loci from different chromosomes are then drawn together into one nucleolus**; and the result is a **multiphasic** body, with a fibrillar centre, a dense fibrillar component and a granular component arranged as an **assembly line**.
+
+![Nucleolus formation after mitosis from three distinct condensates, with rDNA loci from different chromosomes brought together into one assembly line](assets/img/fig-6-46.png)
+
+This is the transcription-factory idea from part I, made concrete: the nucleolus is **not a membrane-bounded organelle**. It is a condensate held together by the work going on inside it, which is why it has no membrane, why loci from separate chromosomes can share one, and why it behaves as a liquid.
+
+That also explains its behaviour through the cell cycle. The nucleolus **disperses at mitosis and reassembles afterwards**, because rRNA transcription stops while the chromosomes are condensed. A compartment maintained by an activity cannot outlive the activity.
+
+![Changes in the appearance of the nucleolus through the cell cycle, dispersing at mitosis and reassembling afterwards](assets/img/fig-6-47.png)
+
+## Where the subunits are actually finished
+
+This is the point the rough note got tangled in, so it is worth setting out in order.
+
+![The nucleolus taking in rRNA gene transcripts and ribosomal proteins from the cytoplasm, processing and assembling immature subunits that are exported through nuclear pores](assets/img/fig-6-49.png)
+
+1. The **rRNA gene is transcribed** in the nucleolus into a single long **precursor**.
+2. **Ribosomal proteins are made in the cytoplasm**, like every other protein, and **imported into the nucleus**. So do the **assembly factors** and the **snoRNPs** that modify the rRNA.
+3. The precursor is **modified and processed**, and the pieces are assembled with the imported proteins into **immature subunits**.
+4. The **large and small subunits are exported separately** through nuclear pores.
+5. Each undergoes **additional assembly in the cytoplasm**, and only there are they complete.
+6. The two subunits **come together only on an mRNA**, at initiation, and separate again at termination.
+
+So assembly **begins** in the nucleolus and **finishes** in the cytoplasm. Note also the traffic this implies: the proteins of the ribosome are made by ribosomes in the cytoplasm and then carried back into the nucleus to be built into the next generation of ribosomes. The same figure shows the nucleolus assembling **telomerase** as well, which is a reminder that it is a general ribonucleoprotein assembly site rather than a ribosome-only factory.
+
+# tRNA and the genetic code
+
+Translating RNA into protein needs the ribosome **and one more component**: an adaptor that can read a codon at one end and hold an amino acid at the other. That is **tRNA**.
+
+## The shape of a tRNA
+
+![A phenylalanine tRNA drawn as a cloverleaf with its base-paired stems, as the folded L-shaped structure from x-ray diffraction, and as its linear sequence with modified bases marked](assets/img/fig-6-54.png)
+
+Drawn flat, a tRNA is a **cloverleaf** of base-paired stems and loops. Folded, it is an **L**, and the two things that matter sit at **opposite ends of the L**: the **anticodon** in its loop at one end, and the **amino acid attached to the 3' end** of the acceptor stem at the other. That geometry is the whole point of the molecule: one end reads the message, the other end carries the cargo, and they are far enough apart to be handled independently.
+
+## The code is redundant, not partly unused
+
+There are **4 nucleotides** and a codon is **3 consecutive nucleotides**, so there are **4 x 4 x 4 = 64** codons for **20 amino acids**. The lecture puts the question the right way round: does that mean some triplets are **never used**, or that the code is **redundant**?
+
+It is redundant. Every triplet is used: **61 specify amino acids and 3 are stops**, and most amino acids are specified by more than one codon. What you are asked to carry from the code table is not the table but its shape: **AUG is both the start codon and the methionine codon**, and there are **three stop codons**.
+
+Redundancy is achieved two ways:
+
+* **More than one tRNA for many amino acids.**
+* **Some tRNAs base-pair with more than one codon.**
+
+The counts make the second mechanism necessary: a cell has far fewer tRNA species than it has sense codons, so tRNAs must be reading more than one codon each.
+
+## Wobble, and inosine
+
+Synonymous codons almost always differ in the **third** position, and that is not a coincidence. When a tRNA pairs with a codon, the third codon base pairs with the first anticodon base under **relaxed, non-standard geometry**. That position is called the **wobble position**.
+
+![The wobble rules, listing which anticodon bases can pair with each codon base at the third position, separately for bacteria and eukaryotes](assets/img/fig-6-55.png)
+
+The nucleotide to know here is **inosine (I)**. It is made by **deamination of adenosine**, an ordinary chemical modification of an already-made tRNA, and its value is that it is **permissive**: an inosine in the wobble position of the anticodon can pair with **U, C or A** in the codon. One tRNA then covers three codons. Inosine matters for **decoding**, not for the shape of the tRNA.
+
+Inosine is one of a family of **modified nucleotides** found in tRNA, alongside methylated G, dihydrouridine and 4-thiouridine.
+
+![Unusual tRNA nucleotides including N,N-dimethyl G, dihydrouridine, 4-thiouridine and inosine](assets/img/fig-6-57.png)
+
+## The code is not quite universal
+
+The genetic code is called universal, and it very nearly is, which is what makes the exceptions interesting. **Mitochondria** run slightly different codes, and the differences are not the same in every lineage.
+
+![Table 14-3, some differences between the universal code and mitochondrial genetic codes in mammals, invertebrates, yeasts and plants](assets/img/slide-5-21.png)
+
+A codon that is a **stop** in the universal code can specify an amino acid in one mitochondrial code, and an amino acid codon can become a stop. The concept: the code is a **frozen accident that is not completely frozen**, and a genome small and isolated enough can drift away from it.
+
+## Two adaptors, not one
+
+The slide title is the point: **the genetic code is translated by means of two adaptors**.
+
+![An aminoacyl-tRNA synthetase charging a tRNA with tryptophan, and the charged tRNA then base-pairing with the UGG codon on mRNA](assets/img/fig-6-60.png)
+
+The **first adaptor** is the **aminoacyl-tRNA synthetase**, which decides **which amino acid goes onto which tRNA**. The **second adaptor** is the **tRNA itself**, whose anticodon decides **which codon that tRNA reads**. The ribosome checks only the second: it verifies codon-anticodon pairing and takes whatever amino acid is attached on trust. Net result: **the amino acid is selected by its codon**, but only because the synthetase got the first step right.
+
+That is also why a mischarged tRNA is dangerous. The ribosome has no way of detecting it.
+
+Charging costs energy: **ATP is hydrolysed to AMP plus two phosphates**, and the amino acid ends up joined to the tRNA by a **high-energy bond**.
+
+**Is there a different synthetase for each amino acid, or for each codon?** For each **amino acid**. Since several tRNAs can carry the same amino acid, one synthetase serves all the tRNAs for that amino acid, and it recognises them by features spread over the molecule, in the **anticodon** and in the **acceptor stem**.
+
+![A tRNA-Gln bound to its synthetase, with recognition nucleotides in the anticodon and the acceptor stem and the ATP used for coupling](assets/img/fig-6-62.png)
+
+## Editing
+
+Distinguishing chemically similar amino acids is hard, so synthetases get it wrong sometimes and then fix it. The enzyme has **two sites**: a **synthesis site** and a separate **editing site**.
+
+![Hydrolytic editing by an aminoacyl-tRNA synthetase compared with the exonucleolytic proofreading of DNA polymerase, both showing separate synthesis and editing sites](assets/img/fig-6-61.png)
+
+If the wrong amino acid has been attached, the 3' end of the tRNA is **moved into the editing site**, where the incorrect amino acid is **hydrolysed off**. This is the same architecture as the proofreading exonuclease of DNA polymerase: **a second active site that undoes the work of the first**, which is how a cell buys accuracy it cannot get from a single binding step.
+
+## Where the energy for the peptide bond comes from
+
+Chapter 2 distinguished two ways of building a polymer, and proteins use the less obvious one.
+
+![Polymer-end activation compared with direct-monomer activation for the condensation reactions that build biological polymers](assets/img/fig-2-44.png)
+
+In **direct-monomer activation**, used for DNA, RNA and polysaccharides, **each incoming monomer carries the high-energy bond for its own addition**. In **polymer-end activation**, used for proteins and fatty acids, **the high-energy bond sits at the growing end of the chain**, and the incoming monomer brings the energy that will be used for the **next** addition.
+
+For translation this means the growing chain is held to the ribosome as a **peptidyl-tRNA**, an activated species. Each new **aminoacyl-tRNA** attacks that activated end, the chain is transferred onto the new amino acid, and **the new tRNA now carries the activated end**. The energy was paid for earlier, by the synthetase, when the tRNA was charged.
+
+# Translation
+
+## The ribosome has three tRNA sites
+
+![A bacterial ribosome with tRNAs bound in the E, P and A sites, shown from several angles and as the schematic used in later figures](assets/img/fig-6-66.png)
+
+Three sites hold tRNAs, and they are named for what occupies them:
+
+| Site | Name | What sits there |
+|---|---|---|
+| **A** | aminoacyl-tRNA | the incoming charged tRNA, matched to the codon being read |
+| **P** | peptidyl-tRNA | the tRNA carrying the growing chain |
+| **E** | exit | the now-empty tRNA, on its way out |
+
+Each site **spans both subunits**. The **mRNA-binding site is in the small subunit**, and the **peptidyl transferase centre is in the large subunit**, so a tRNA in the A or P site is being read at one end by the small subunit and having its amino acid handled at the other by the large subunit. That is why both subunits are needed and why they only assemble around a message.
+
+## Elongation
+
+![The translation cycle drawn as four steps: aminoacyl-tRNA binding to the A site, peptide bond formation, large subunit translocation into hybrid states, and small subunit translocation carrying the mRNA three nucleotides](assets/img/fig-6-68.png)
+
+One cycle, four steps, always in the same order:
+
+1. A **charged tRNA binds the A site**, selected by codon-anticodon pairing.
+2. A **peptide bond forms**: the chain on the P-site tRNA is transferred onto the A-site amino acid. The P-site tRNA is now empty and the A-site tRNA now carries the chain.
+3. The **large subunit translocates**, putting the tRNAs into hybrid positions.
+4. The **small subunit translocates**, carrying the mRNA along by exactly **three nucleotides**, which moves the new peptidyl-tRNA into the P site and **ejects the empty tRNA from the E site**.
+
+The A site is now empty over the next codon and the cycle repeats.
+
+## Speed
+
+Translation runs at roughly **six amino acids per second** in a mammalian cell, and a typical protein is a few hundred residues. Two consequences are worth holding on to. First, **a typical protein takes on the order of a minute to make**, which is slow compared with almost everything else a cell does and explains why regulation acts on initiation rather than on elongation. Second, an extreme case such as **titin**, tens of thousands of residues long, takes the better part of an hour on a single ribosome, which is one reason a cell puts many ribosomes on one message.
+
+## Elongation factors 1: speed and accuracy
+
+An incoming tRNA is not delivered bare. It arrives bound to an elongation factor carrying **GTP** (**EF-Tu** in bacteria), and that factor is what turns a binding event into a proofread decision.
+
+![The detailed translation cycle with EF-Tu delivering aminoacyl-tRNA and hydrolysing GTP at the first proofreading step, and EF-G driving translocation](assets/img/fig-6-69.png)
+
+The accuracy comes from **two separate proofreading steps**, both of which work by **delay**:
+
+* **Before GTP hydrolysis.** The tRNA is held in the A site by the factor. Only a **correct codon-anticodon pair** holds on long enough for the ribosome to trigger hydrolysis; incorrectly paired tRNAs **dissociate preferentially** before it happens.
+* **After GTP hydrolysis.** The factor, now **GDP-bound**, releases the tRNA and leaves. There is a further pause before the amino acid is committed to the chain, and again **incorrectly paired tRNAs dissociate preferentially** during it.
+
+The mechanism is the same both times: **a wrong pairing is not impossible, it is short-lived**, and the ribosome simply waits long enough that most wrong ones let go. The small-subunit rRNA does the checking, hydrogen-bonding to the minor groove of the codon-anticodon helix to verify that the geometry is right.
+
+![A nucleotide of the small-subunit rRNA hydrogen-bonding to the first base pair of a correctly matched codon-anticodon pair](assets/img/fig-6-70.png)
+
+This is why speed and accuracy are on the same slide: the delay that buys accuracy is also what limits the rate.
+
+## Elongation factors 2: efficiency
+
+A second factor (**EF-G** in bacteria), also **GTP-bound**, drives **translocation**: the step that moves the **small subunit and the mRNA** on by one codon and ejects the spent tRNA. It hydrolyses GTP and leaves.
+
+Translocation would happen without it, but slowly and reversibly. The factor makes the step **fast and directional**, which is the same trick as any other GTP-driven motor: **couple the motion to an irreversible hydrolysis** so the cycle cannot run backwards.
+
+## Initiation
+
+![The eukaryotic initiation pathway, with Met-tRNAi loaded into the small subunit, the cap bound by eIF4E and eIF4G, scanning for the first AUG, and the large subunit joining](assets/img/fig-6-74.png)
+
+Initiation is the most regulated step, and the order matters:
+
+1. A **special initiator tRNA charged with methionine** is loaded, with **eIF2 and GTP**, into the **P site of the free small subunit**. Note that this is the one occasion a tRNA enters at the P site rather than the A site.
+2. The small subunit is brought to the **5' cap**, which is held by **eIF4E** with **eIF4G** behind it, the same pair that replaced the CBC on export.
+3. The small subunit **scans along the message**, spending **ATP**, looking for the **first AUG**.
+4. The context around that AUG is the **Kozak sequence**, which is what marks a particular AUG as the real start rather than one that happens to be in the 5' UTR.
+5. At the start codon, **eIF2 hydrolyses its GTP and the initiation factors dissociate**, and only then does the **large subunit join**.
+6. The first **aminoacyl-tRNA enters the A site** and the **first peptide bond** forms. Elongation has begun.
+
+![The Kozak sequence as a sequence logo, showing the preferred bases around the AUG start codon](assets/img/slide-5-44.png)
+
+## Initiation in bacteria
+
+Bacteria do not scan. Each start codon is preceded by a **Shine-Dalgarno sequence**, a **ribosome-binding site** that base-pairs directly with the small subunit's rRNA and places the ribosome straight onto the start codon.
+
+![A bacterial mRNA carrying three ribosome-binding sites, each preceding an AUG, and each yielding a different protein](assets/img/fig-6-75.png)
+
+The consequence is structural, and it is the real reason to know this: because a ribosome can be placed **anywhere** on the message rather than having to enter at the 5' end, a single bacterial mRNA can carry **several ribosome-binding sites and encode several proteins**. Eukaryotic scanning from the cap makes that impossible, which is why eukaryotic mRNAs are essentially one message per protein.
+
+## Alternative initiation: IRES
+
+Cap-dependent scanning is not the only route in. An **internal ribosome entry site (IRES)** is a **structured region of the mRNA** that recruits **eIF4G directly**, with **no cap and no eIF4E**.
+
+![Cap-dependent initiation compared with initiation at an internal ribosome entry site, which recruits eIF4G without a cap](assets/img/slide-5-47.png)
+
+This matters because it is a **bypass**: a cell shutting down cap-dependent translation, and a virus wanting to be translated while it does so, both care about a route that does not need the cap. The topic belongs to chapter 7.
+
+## Termination
+
+There is no tRNA for a stop codon. Instead a **release factor**, a protein, enters the **A site**.
+
+![Release factor binding an A site bearing a stop codon, water added instead of an amino acid, and the ribosome dissociating into subunits](assets/img/fig-6-76.png)
+
+Two features are worth holding:
+
+* **It is a protein that behaves like a tRNA.** The release factor has evolved to **mimic the shape of a tRNA** closely enough to occupy the A site. The lecture shows this beside a moth that mimics a dead leaf, and the analogy is exact: an unrelated object shaped to fit a slot it has no right to.
+* **It carries water instead of an amino acid.** The peptidyl transferase centre does its usual chemistry, but with **H2O as the nucleophile** rather than an amino group. Instead of another peptide bond, the chain is **hydrolysed off the tRNA**, leaving a free **carboxyl terminus**. The protein is released.
+
+![A release factor shaped like a tRNA beside a moth mimicking a dead leaf](assets/img/slide-5-49.png)
+
+GTP is hydrolysed, and the ribosome then **dissociates into its two subunits**, which return to the cytosolic pool and are used again on another message.
+
+## Polyribosomes
+
+One ribosome per message would be wasteful, and it is not what happens. As soon as one ribosome has cleared the start codon, another initiates behind it, so a single mRNA carries **many ribosomes at once**, each at a different point in the same protein.
+
+![A series of ribosomes translating one mRNA simultaneously, and an electron micrograph of a polyribosome](assets/img/fig-6-77.png)
+
+Drawn out, a polyribosome is the circularised message with ribosomes strung around it. **The scaffold is the mRNA itself**, closed into a loop by eIF4E and eIF4G at the cap and the poly-A-binding proteins at the tail. Nothing else holds the cluster together, and that is the elegance of it: the same loop that proves the message is intact also recycles terminating ribosomes back to the start.
+
+# Antibiotics and the ribosome
+
+**What is the connection between translation and antibiotics?** The lecture answers it in one line: **fungi versus bacteria, coevolution, antibiotics**. Organisms that have competed with bacteria for hundreds of millions of years have evolved molecules that poison them, and we have borrowed those molecules.
+
+The reason so many of them hit the **ribosome** is the size and sequence difference established earlier. A bacterial ribosome is different enough from a eukaryotic one that a compound can **jam the bacterial machine and leave ours running**. That is selective toxicity, and it is the whole basis of the class.
+
+![Binding sites for tetracycline, spectinomycin, streptomycin, hygromycin B, chloramphenicol, erythromycin and streptogramin B mapped onto the two bacterial ribosomal subunits](assets/img/fig-6-79.png)
+
+Mapped onto the structure, the binding sites cluster where the work happens: around the **decoding centre and the mRNA channel** on the small subunit, and around the **peptidyl transferase centre and the exit tunnel** on the large one.
+
+![Table 6-4, inhibitors of protein or RNA synthesis grouped by whether they act on bacteria, on eukaryotes, or on both](assets/img/slide-5-56.png)
+
+The table is not to be learned by heart. What it is for is its **three groupings**, and the footnote:
+
+| Group | What it means |
+|---|---|
+| **Acting only on bacteria** | The useful antibiotics. They exploit a bacterial-specific feature of the ribosome or polymerase |
+| **Acting on bacteria and eukaryotes** | Not useful as antibiotics, useful as laboratory tools, because they poison the patient too |
+| **Acting on eukaryotes but not bacteria** | Toxins and research reagents |
+
+The footnote is the clinically important part: **mitochondrial ribosomes resemble bacterial ones**, so some antibacterial antibiotics have a **deleterious effect on human mitochondria**. The endosymbiotic origin of the mitochondrion turns up as a side-effect profile.
+
+## Puromycin
+
+Puromycin is the one to know, because its mechanism follows from its shape.
+
+![Puromycin compared with a tyrosyl-tRNA, showing the amide bond in place of the ester bond, and its effect on translation elongation](assets/img/slide-5-57.png)
+
+It is a **structural mimic of the aminoacyl end of a charged tRNA**. The ribosome accepts it into the **A site** and transfers the growing chain onto it, exactly as it would onto a real aminoacyl-tRNA.
+
+The difference is one bond. In a real aminoacyl-tRNA the amino acid is attached through an **ester bond**, which the peptidyl transferase centre can break again to pass the chain on. In puromycin the equivalent linkage is an **amide (peptide) bond**, which it cannot. So the chain goes on and **cannot come off**. The peptidyl-puromycin **falls out of the ribosome**, and translation of that message stops with a **truncated protein**.
+
+That is why puromycin acts on **both bacteria and eukaryotes**: it does not exploit a difference between the ribosomes, it abuses a reaction they both perform. It is also why it is such a useful reagent, since the truncated chains it releases are tagged with puromycin and can be detected.
+
+# Quality control
+
+Two checkpoints act on the message itself, and both work by **using the first round of translation as the test**.
+
+## Cap and poly-A
+
+The first is the circle. An mRNA that has **lost its cap or its poly-A tail**, whether because it was truncated, degraded or never finished, **cannot form the loop**, so eIF4G never meets the poly-A-binding proteins and **translation never initiates efficiently**. The structural requirement doubles as an integrity check on both ends at once.
+
+## Nonsense-mediated decay
+
+The second uses the **exon junction complexes** left behind by splicing. An EJC marks **where an intron was removed**, and EJCs are **stripped off by the first ribosome to pass over them**.
+
+![A correctly spliced mRNA whose exon junction complexes are all stripped off before the stop codon, beside an aberrantly spliced one where a premature stop is reached while EJCs remain, triggering degradation](assets/img/fig-6-80.png)
+
+That gives the cell a simple rule. On a correctly spliced message, the **normal stop codon lies in the last exon**, past every junction, so by the time a ribosome terminates **every EJC has already been removed**. If a ribosome reaches a stop codon while **EJCs are still present downstream of it**, then the stop came too early and the message is faulty.
+
+The commonest way that happens is **abnormal splicing**: an intron retained in the message is read in frame and almost always contains an in-frame stop codon. When the ribosome stalls at such a premature stop with an EJC still downstream, **Upf proteins** are recruited and **trigger degradation of the whole mRNA**.
+
+The logic is worth stating plainly, because it is a favourite exam point: **the cell has no way of knowing what a protein should look like, so it cannot inspect the protein. It inspects the message instead, using a mark that records the splicing history, and reads a stop codon in the wrong place relative to that mark as evidence of a splicing error.** Destroying the message is cheaper than making a truncated protein, which might be not merely useless but actively harmful.
+
+# Folding
+
+## Folding starts before synthesis finishes
+
+![The steps from a newly synthesized chain through folding and cofactor binding, covalent modification, and assembly with partner subunits into a mature functional protein](assets/img/fig-6-82.png)
+
+A polypeptide begins to fold **while it is still being made**. The N-terminal part emerges from the exit tunnel and can **fold into its domain** while the C-terminal part is still being synthesized, so a multi-domain protein folds **domain by domain, N to C**. The tunnel itself is too narrow for much more than a helix, so real folding happens **outside** the ribosome, and the fold is only **completed after release**.
+
+This is Anfinsen's principle from chapter 3 at work: the sequence contains the information. But a crowded cytosol full of half-made hydrophobic surfaces is a difficult place to fold in, which is what the chaperones are for.
+
+## Chaperones
+
+**Heat shock proteins (HSPs)** are named for the conditions that first revealed them, since heat denatures proteins and cells respond by making more of the machinery that deals with denatured proteins. They are **not** only heat-stress proteins; they work constantly.
+
+**HSP70** acts **at the ribosome exit tunnel**, on the chain as it emerges.
+
+![An hsp70 clamping its substrate-binding domain onto exposed hydrophobic amino acids driven by ATP hydrolysis, its three-dimensional structure, and hsp70 acting at the ribosome exit tunnel](assets/img/fig-6-83.png)
+
+It **binds exposed hydrophobic stretches**, which in a finished protein would be buried, and therefore act as a signal that folding is incomplete. **Cycles of ATP-driven binding and release** give the chain repeated chances to fold and stop it from aggregating or from committing to a wrong structure in the meantime.
+
+**HSP60**, the chaperonin, handles a harder case: a protein that is **already incorrectly or incompletely folded**.
+
+![A misfolded protein captured at the hydrophobic opening of a barrel-shaped chaperonin, enclosed by the GroES cap for folding in isolation, then released, with the crystal structure of GroEL-GroES](assets/img/fig-6-84.png)
+
+It is a **barrel** with **hydrophobic binding sites** at the opening. The misfolded protein is captured, a **cap** closes over it, and ATP hydrolysis drives the folding attempt **in an isolated chamber**, away from every other protein in the cytosol. Then the cap comes off and the protein is released.
+
+The contrast is the thing to hold: **HSP70 works on a chain as it appears and prevents trouble; HSP60 encloses a chain that is already in trouble and gives it a private second chance.** Both spend ATP, and neither adds information about the final structure.
+
+## What happens to a protein that will not fold
+
+![The fates of a newly synthesized protein: folded without help, folded with a chaperone, digested by the proteasome, or aggregated](assets/img/slide-5-64.png)
+
+Four outcomes, and one of them is a disease mechanism:
+
+* **correctly folded without help**
+* **correctly folded with the help of a molecular chaperone**
+* **incompletely folded, and digested by the proteasome**
+* **aggregated**, which is the failure mode behind the neurodegenerative diseases mentioned in chapter 3
+
+# Degradation
+
+## The proteasome
+
+![The proteasome cap recognizing a polyubiquitin chain, cleaving off the ubiquitin for recycling, and threading the unfolded protein into the core, with the cap's ubiquitin receptor and ubiquitin hydrolase](assets/img/fig-6-87.png)
+
+The proteasome is built so that proteolysis can only happen **inside** it:
+
+* a **central cylinder** whose **protease active sites face an internal chamber**, so nothing is digested by accident;
+* an **unfoldase ring** that grips the substrate and **pulls it apart**, spending ATP, because a folded protein will not fit through;
+* a **cap** at each end that **recognises the polyubiquitin chain**, and **removes the ubiquitin for recycling** before the chain is fed in.
+
+## The ubiquitin system
+
+![Six routes to inducing destruction of a protein, three activating a ubiquitin ligase and three creating an exposed degradation signal in the target](assets/img/fig-6-89.png)
+
+Ubiquitin is added to the **epsilon-amino group of a lysine side chain** on the target, by a **ubiquitin ligase (E3)** working with an **E2**. One ubiquitin is added, then more onto the first, giving a **polyubiquitin chain**, and it is the **chain**, not a single ubiquitin, that the proteasome cap reads as a destruction signal.
+
+The specificity lives in the **E3**, which is what recognises the **degradation signal** on the target. There are very many E3s, and that is how one shared destruction machine handles thousands of different substrates on different schedules.
+
+## Regulated destruction
+
+Degradation is **not only a way of clearing up mistakes**. It is a normal, scheduled part of signalling and of the cell cycle, and it is controlled by switching the degradation signal on and off rather than by changing the proteasome.
+
+Three ways to expose a signal that was previously hidden:
+
+* **Phosphorylation by a protein kinase**, creating the signal.
+* **Unmasking by dissociation of a partner protein** that was covering it.
+* **Creation of a destabilizing N-terminus**, by cleaving the protein.
+
+The point is the same in all three: the protein was **already destructible**, and what changed was whether the signal could be seen. That makes destruction fast, because nothing has to be synthesized, and **irreversible**, which is exactly what you want at a point of no return such as a cell-cycle transition.
+
+# Learning goals
+
+The closing slide lists what to be able to talk about:
+
+* **mRNA as a particle**, and the **nucleolus**
+* **tRNA** and **tRNA synthetase**
+* **codon** and **wobble position**
+* **basics of the ribosome**
+* **translation: start, elongation, termination**
+* **puromycin**
+* **mRNA quality control** and **nonsense-mediated decay**
+* **chaperones**
+* **proteasome, the ubiquitin system, regulated destruction**

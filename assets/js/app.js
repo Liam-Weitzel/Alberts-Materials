@@ -26,7 +26,7 @@
 
   var view = document.getElementById('view');
   var toastEl = document.getElementById('toast');
-  var state = { manifest: null, chapters: null, molmed: [], loaded: false, error: null };
+  var state = { manifest: null, chapters: null, molmed: [], molmedExam: null, loaded: false, error: null };
   var session = null;
 
   /* ---------- helpers ---------- */
@@ -36,6 +36,10 @@
   // Write-ups render as an article: `##` is a top-level section (h2, under the
   // page's h1) and every heading gets an anchor so the sidebar can link to it.
   var NOTE_OPTS = { headingOffset: 0, minHeading: 2, ids: true };
+
+  // The exam panel sits inside the molmed page rather than being a page of its
+  // own, so its `##` sections render one level down, as h3.
+  var PANEL_OPTS = { headingOffset: 1, minHeading: 3 };
 
   function el(html) {
     var t = document.createElement('template');
@@ -243,11 +247,20 @@
         var videos = Videos.load().then(function (data) { Videos.init(data, slugs); });
         var chapters = Promise.all((manifest.chapters || []).map(loadChapter));
         var molmed = Promise.all((manifest.molmed || []).map(loadMolmed));
-        return Promise.all([videos, chapters, molmed]);
+        // The course's exam rules. Small, and wanted on the molmed page itself,
+        // so it is fetched up front rather than on demand. Optional: if it is
+        // missing the page simply does not show the panel.
+        var exam = manifest.molmedExam
+          ? getText('molmed/' + manifest.molmedExam)
+              .then(function (text) { return MD.frontMatter(text); })
+              .catch(function (e) { console.error('[molmed] exam details failed', e); return null; })
+          : Promise.resolve(null);
+        return Promise.all([videos, chapters, molmed, exam]);
       })
       .then(function (results) {
         state.chapters = results[1];
         state.molmed = results[2];
+        state.molmedExam = results[3];
         state.loaded = true;
       })
       .catch(function (e) {
@@ -371,7 +384,10 @@
 
   /* ---------- chapter write-up ---------- */
 
-  function viewChapter(slug) {
+  /* A third path segment, `#/chapter/<slug>/<heading-id>`, lands on one heading
+   * of the write-up. That is what the "read more" link on a revision card uses,
+   * so a card can point at the paragraphs it was condensed from. */
+  function viewChapter(slug, anchor) {
     var ch = chapterBySlug(slug);
     if (!ch) return notFound('Chapter not found');
     if (!ch.notes) {
@@ -414,6 +430,18 @@
 
     buildToc();
     MD.typeset(view);
+    if (anchor) requestAnimationFrame(function () { jumpTo(anchor); });
+  }
+
+  /* Scroll to a heading and flash it, so it is obvious where the jump landed in
+   * what is often a very long page. An unknown id simply leaves you at the top. */
+  function jumpTo(id) {
+    var prose = view.querySelector('#prose');
+    var target = prose && prose.querySelector('#' + CSS.escape(id));
+    if (!target) return;
+    target.scrollIntoView({ block: 'start' });
+    target.classList.add('is-landed');
+    setTimeout(function () { target.classList.remove('is-landed'); }, 2200);
   }
 
   function practicePanel(ch, c) {
@@ -584,6 +612,21 @@
     '</div>';
   }
 
+  /* The course's own rules about the exam: format, marking and what is in scope.
+   * Collapsed by default, because it is reference material you consult a few
+   * times a term rather than something you read on the way to studying. */
+  function examPanel() {
+    var doc = state.molmedExam;
+    if (!doc || !doc.body.trim()) return '';
+    return '<details class="exam-panel">' +
+      '<summary>' +
+        '<span class="exam-title">' + esc(doc.meta.title || 'Exam details') + '</span>' +
+        (doc.meta.description ? '<span class="exam-sub">' + esc(doc.meta.description) + '</span>' : '') +
+      '</summary>' +
+      '<div class="prose">' + MD.render(doc.body, PANEL_OPTS) + '</div>' +
+    '</details>';
+  }
+
   function viewMolmed() {
     if (!state.molmed.length) {
       return render(molmedCrumbs('') +
@@ -659,7 +702,8 @@
       '</article>';
     }).join('');
 
-    render(molmedCrumbs('') + head + '<section class="chapter-list">' + list + '</section>');
+    render(molmedCrumbs('') + head + examPanel() + '<section class="chapter-list">' + list + '</section>');
+    MD.typeset(view);
   }
 
   function viewMolmedCards(id) {
@@ -1546,7 +1590,10 @@
       if (parts[1] === 'study' && parts[2]) return viewStudy('molmed:' + decodeURIComponent(parts[2]));
       return viewMolmed();
     }
-    if (parts[0] === 'chapter' && parts[1]) return viewChapter(decodeURIComponent(parts[1]));
+    if (parts[0] === 'chapter' && parts[1]) {
+      return viewChapter(decodeURIComponent(parts[1]),
+                         parts[2] ? decodeURIComponent(parts[2]) : null);
+    }
     if (parts[0] === 'cards' && parts[1]) return viewCards(decodeURIComponent(parts[1]));
     if (parts[0] === 'study' && parts[1]) return viewStudy(decodeURIComponent(parts[1]));
     if (parts[0] === 'paper' && parts[1]) return viewPaper(decodeURIComponent(parts[1]));

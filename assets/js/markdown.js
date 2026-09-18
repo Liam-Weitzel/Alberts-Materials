@@ -82,9 +82,14 @@ window.MD = (function () {
     t = t.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, function (m, alt, src) {
       return '<img src="' + attr(src) + '" alt="' + attr(alt) + '" loading="lazy">';
     });
+    // A link into a chapter write-up, `#/chapter/<slug>/<heading>`, is how a
+    // card points at the fuller story. It opens in its own tab so that reading
+    // up on a card does not abandon the study session behind it.
     t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, label, href) {
-      var ext = /^[a-z]+:\/\//i.test(href) ? ' target="_blank" rel="noopener"' : '';
-      return '<a href="' + attr(href) + '"' + ext + '>' + label + '</a>';
+      var note = href.indexOf('#/chapter/') === 0;
+      var ext = note || /^[a-z]+:\/\//i.test(href) ? ' target="_blank" rel="noopener"' : '';
+      return '<a' + (note ? ' class="note-ref"' : '') + ' href="' + attr(href) + '"' + ext +
+        '>' + label + '</a>';
     });
     t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     t = t.replace(/(^|[^\w*])\*([^*\n]+)\*(?![\w*])/g, '$1<em>$2</em>');

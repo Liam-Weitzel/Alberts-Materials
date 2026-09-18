@@ -559,6 +559,24 @@ tbody tr:last-child td { border-bottom: none; }
 .reading-head a:hover { color: var(--accent); }
 
 /* A [[slug]] citation of a paper, inside a write-up or a card. */
+/* "Read more" from a card into the chapter write-up. Quieter than a paper
+   citation, since it is a navigational aside rather than part of the answer. */
+.note-ref {
+  text-decoration: none;
+  font-size: .92em;
+  color: var(--ink-faint);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 30%, transparent);
+}
+.note-ref:hover { color: var(--accent); border-bottom-color: currentColor; }
+
+/* The heading a `#/chapter/<slug>/<heading>` link landed on. */
+.prose .is-landed {
+  background: var(--accent-soft);
+  box-shadow: -.6rem 0 0 var(--accent-soft), .6rem 0 0 var(--accent-soft);
+  border-radius: 2px;
+  transition: background .4s ease, box-shadow .4s ease;
+}
+
 .paper-ref { text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
 .paper-ref:hover { border-bottom-color: currentColor; }
 .paper-ref.is-missing {
@@ -712,6 +730,51 @@ a.stat:hover .stat-n { color: var(--accent); }
 }
 .practice h2 { margin: 0 0 .2rem; font-size: 1.05rem; }
 .practice p { margin: 0; font-size: .9rem; }
+
+/* ---------- molmed exam details ---------- */
+
+/* The course's exam rules, collapsed on the molmed page. Reads as a quiet
+   reference card until opened, then as ordinary prose. */
+.exam-panel {
+  margin: 1.5rem 0;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.exam-panel[open] { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+
+.exam-panel > summary {
+  display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap;
+  padding: .9rem 1.2rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.exam-panel > summary::-webkit-details-marker { display: none; }
+.exam-panel > summary:hover { background: var(--bg-sunken); }
+.exam-panel > summary::after {
+  content: "▸";
+  margin-left: auto;
+  color: var(--ink-faint);
+  transition: transform .15s ease;
+}
+.exam-panel[open] > summary::after { transform: rotate(90deg); }
+
+.exam-title { font-weight: 600; font-size: 1rem; }
+.exam-sub { font-size: .85rem; color: var(--ink-faint); }
+
+.exam-panel > .prose {
+  padding: .2rem 1.2rem 1.2rem;
+  border-top: 1px solid var(--line);
+  font-size: .94rem;
+}
+.exam-panel > .prose > h3:first-child { margin-top: 1rem; }
+
+@media (max-width: 34rem) {
+  .exam-panel > summary { flex-direction: column; gap: .25rem; }
+  .exam-panel > summary::after { display: none; }
+}
 
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
 .pager-link {

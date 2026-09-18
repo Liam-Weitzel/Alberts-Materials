@@ -251,6 +251,17 @@
       "chapterNumber": 6,
       "slides": "molmed/slides/Session 4 - Fabio Catalano_From DNA to protein part I_Ch 6a_.pdf",
       "deck": "4-ch06-how-cells-read-the-genome.md"
+    },
+    {
+      "session": "5",
+      "lecturer": "Thamar van Dijk",
+      "title": "From RNA to protein",
+      "part": "b",
+      "chapter": "ch06-how-cells-read-the-genome",
+      "chapterNumber": 6,
+      "slides": "molmed/slides/Session 5 - Thamar van Dijk_From RNA to protein_Ch6b 2026.pdf",
+      "deck": "5-ch06-how-cells-read-the-genome.md"
     }
-  ]
+  ],
+  "molmedExam": "exam_details.md"
 }

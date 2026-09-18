@@ -256,6 +256,9 @@ if CHAPTERS.exists():
 chapters = collect_chapters()
 papers = collect_papers([c["slug"] for c in chapters])
 molmed = collect_molmed([c["slug"] for c in chapters])
+# The course's own rules: format, marking and scope. Optional, and listed by name
+# only, since the site fetches it the same way it fetches a write-up.
+exam = "exam_details.md" if (MOLMED / "exam_details.md").is_file() else None
 
 if not chapters and not papers:
     print("warning: found no .md files in notes/, decks/ or papers/", file=sys.stderr)
@@ -268,6 +271,7 @@ CHAPTERS.write_text(
             "chapters": chapters,
             "papers": papers,
             "molmed": molmed,
+            "molmedExam": exam,
         },
         indent=2,
         ensure_ascii=False,
@@ -286,6 +290,9 @@ for ch in chapters:
 
 for paper in papers:
     print(f"  {paper['slug']:<40} {', '.join(paper['chapters']) or 'unlinked'}")
+
+if exam:
+    print(f"\nmolmed exam details: molmed/{exam}")
 
 if molmed:
     print(f"\n{len(molmed)} molmed session(s):")

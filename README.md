@@ -20,7 +20,7 @@ separately because a chapter's write-up, deck, and summary rarely finish togethe
 | 3 | 68 | 2.0 | ✅ | ✅ | ✅ | ⬜ |
 | 4 | 70 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 5 | 68 | 2.0 | ✅ | ✅ | ✅ | ⬜ |
-| 6 | 76 | 2.0 | ✅ | ✅ | 🟨 | ⬜ |
+| 6 | 76 | 2.0 | ✅ | ✅ | ✅ | ⬜ |
 | 10 | 34 | 1.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 12 | 66 | 2.0 | ✅ | ✅ | ⬜ | ⬜ |
 | 14 | 62 | 2.0 | 🟨 | 🟨 | ⬜ | ⬜ |
@@ -371,6 +371,14 @@ molmed/decks/2-ch03-proteins.md                                    the cards
 molmed/exam_details.md                                             exam rules and logistics
 ```
 
+`molmed/exam_details.md` holds the course's own rules: format, marking, scope, and what the
+lecturers have said will be asked. `build-manifest.py` records it as `molmedExam`, and the
+MolMed page renders it as a collapsed **Exam details** panel between the hero and the
+session list, so the rules sit beside the material they govern. It is an ordinary write-up:
+front matter for the title and description, `##` for its sections, tables where the content
+is a set of rules. Keep each paragraph on **one line**, as the write-ups in `notes/` do,
+since a newline inside a paragraph renders as a line break.
+
 Nothing here is hand-registered. `build-manifest.py` scans `molmed/slides/` and reads each
 filename, which has to look like this:
 
@@ -423,13 +431,36 @@ format rather than question-and-answer alone:
 | Figure-front | read a slide rather than recall its caption | `type/figure` |
 | Sequence | one step at a time, as a `Q+:` chain | `type/sequence` |
 | Misconception | the wrong answer, stated and killed | `type/misconception` |
-| Number | a value, usually clozed, with its significance | `type/number` |
 | Exam-shaped | an open question with a marking checklist | `type/exam` |
 
 The tags are searchable in the card browser, so `type/exam` the night before and
 `type/why` when a topic will not stick. Two rules keep them working: **the prompt must
 stand alone**, naming the biology rather than "the slide", and **one fact per card**, with
 lists broken into clozes or `Q+:` chains rather than one card carrying eight facts.
+
+**Concepts, not numbers or names.** The lecturers are explicit that the exam asks about
+understanding, so no card asks for a value or for a roster to recite. A magnitude still
+appears in an *answer* where it carries the point, and in a *question* as a premise to
+reason from, but "how many" and "name all the members of" are not questions these decks
+ask: the conceptual version is "what sets the size of this", "what does the ranking
+imply", "what does this arrangement record". Terminology is the exception, since a concept
+cannot be stated without the words for it, so RAD51, the sigma factor and the spliceosome
+stay while drug codes, prize years and exact base-pair counts do not.
+
+### Reading up from a card
+
+Every revision card ends with a link into the chapter write-up:
+
+```markdown
+Read more: [The hydrophobic effect](#/chapter/ch03-proteins/the-hydrophobic-effect)
+```
+
+The third path segment is a heading id, slugified from the heading text exactly as
+`markdown.js` slugifies it, and `#/chapter/<slug>/<heading>` opens the write-up scrolled to
+that heading with the heading flashed. These links open in a new tab, so reading up on a
+card does not throw away the study session behind it. A card is deliberately short; the
+write-up is where the argument is spelled out, and this is how you get from one to the
+other without hunting for the right paragraph.
 
 **Scheduling is separate.** A card's identity is its deck id plus a hash of its question,
 and these decks carry a `molmed:` deck id, so a session's cards are scheduled
