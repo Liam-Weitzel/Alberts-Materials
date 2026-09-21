@@ -261,6 +261,16 @@
       "chapterNumber": 6,
       "slides": "molmed/slides/Session 5 - Thamar van Dijk_From RNA to protein_Ch6b 2026.pdf",
       "deck": "5-ch06-how-cells-read-the-genome.md"
+    },
+    {
+      "session": "6",
+      "lecturer": "Andrea Conidi",
+      "title": "Membrane Protein Transport · Ch 10",
+      "part": "",
+      "chapter": "ch12-intracellular-organization-and-protein-sorting",
+      "chapterNumber": 12,
+      "slides": "molmed/slides/Session 6 - Andrea Conidi_Membrane Protein Transport_Ch 10_Ch 12.pdf",
+      "deck": "6-ch12-intracellular-organization-and-protein-sorting.md"
     }
   ],
   "molmedExam": "exam_details.md"
