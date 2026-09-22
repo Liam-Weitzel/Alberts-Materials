@@ -271,6 +271,16 @@
       "chapterNumber": 12,
       "slides": "molmed/slides/Session 6 - Andrea Conidi_Membrane Protein Transport_Ch 10_Ch 12.pdf",
       "deck": "6-ch12-intracellular-organization-and-protein-sorting.md"
+    },
+    {
+      "session": "7",
+      "lecturer": "Raymond Poot",
+      "title": "DNA, Chromosomes and Genomes",
+      "part": "",
+      "chapter": "ch04-dna-chromosomes-and-genomes",
+      "chapterNumber": 4,
+      "slides": "molmed/slides/Session 7 - 2025_Raymond Poot_DNA, Chromosomes and Genomes_Ch 4.pdf",
+      "deck": "7-ch04-dna-chromosomes-and-genomes.md"
     }
   ],
   "molmedExam": "exam_details.md"
