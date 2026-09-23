@@ -1796,7 +1796,8 @@
       "source": "Gia Voeltz, Science Communication Lab",
       "duration": "24:32",
       "chapters": [
-        "ch12"
+        "ch12",
+        "ch14"
       ],
       "tags": [
         "er",
@@ -1861,6 +1862,166 @@
         "er"
       ],
       "description": "A compact blackboard treatment of the SRP cycle at the level the chapter expects, useful for fixing the order of events before watching any of the research talks."
+    },
+    {
+      "title": "Q-Cycle and Complex III of Electron Transport Chain",
+      "url": "https://www.youtube.com/watch?v=rOv-X7VFbp0",
+      "source": "Andrey K",
+      "duration": "15:38",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "q-cycle",
+        "respiratory-chain"
+      ],
+      "description": "A step-by-step walk through the Q cycle, the part of the respiratory chain the chapter itself says is best understood by following it one electron at a time."
+    },
+    {
+      "title": "Structure and mechanism of respiratory complex I",
+      "url": "https://www.youtube.com/watch?v=ymViR-N7IMI",
+      "source": "IUCr2017 Archives",
+      "duration": "1:00:52",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "complex-i",
+        "structural-biology"
+      ],
+      "description": "Leonid Sazanov's IUCr keynote on the structures behind the chapter's 'connecting rod' model of Complex I. Companion to the Kampjut and Sazanov paper filed under this chapter; the talk predates that paper's mammalian coupling mechanism."
+    },
+    {
+      "title": "The Fuel of Life",
+      "url": "https://www.youtube.com/watch?v=R6VxJCVW8oY",
+      "source": "Accademia Nazionale dei Lincei",
+      "duration": "1:01:21",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "atp-synthase",
+        "structural-biology"
+      ],
+      "description": "John Walker's 2019 Perutz lecture on ATP synthase, by the person whose group solved the F1 structure and counted the eight-subunit c-ring in mammals."
+    },
+    {
+      "title": "Mitochondria",
+      "url": "https://www.youtube.com/watch?v=WEECyKKgNo0",
+      "source": "iBiology",
+      "duration": "28:03",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "mitochondrial-dynamics",
+        "fission-fusion"
+      ],
+      "description": "Jodi Nunnari, whose yeast time-lapse images appear in Figure 14-7, on mitochondrial origins and on the fission and fusion machinery."
+    },
+    {
+      "title": "Mitochondria: The Mysterious Cellular Parasite",
+      "url": "https://www.youtube.com/watch?v=vnw76pfiteQ",
+      "source": "iBiology",
+      "duration": "30:59",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "mitochondria",
+        "metabolism"
+      ],
+      "description": "Jared Rutter, the major contributor to this chapter of the book, on mitochondrial structure and the metabolic roles beyond ATP that Table 14-2 lists."
+    },
+    {
+      "title": "Photosynthesis",
+      "url": "https://www.youtube.com/watch?v=c4x-o_4a1dQ",
+      "source": "HHMI BioInteractive",
+      "duration": "10:58",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "photosynthesis",
+        "animation"
+      ],
+      "description": "An animation zooming from leaf to chloroplast to the thylakoid complexes and the Calvin cycle; the photosynthesis half of the chapter has nothing else on the list."
+    },
+    {
+      "title": "Photosystem II: how plants use sunlight to give us oxygen, food and fuel",
+      "url": "https://www.youtube.com/watch?v=ULe2ckxDyGQ",
+      "source": "University of Otago",
+      "duration": "1:01:55",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "photosystem-ii",
+        "water-splitting"
+      ],
+      "description": "Julian Eaton-Rye's inaugural lecture on photosystem II, the only enzyme that splits water and the source of all atmospheric oxygen."
+    },
+    {
+      "title": "The Evolution of C4 Photosynthesis",
+      "url": "https://www.youtube.com/watch?v=cQ-bP3ZL00o",
+      "source": "ARC Centre of Excellence for Translational Photosynthesis",
+      "duration": "1:00:46",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "c4-photosynthesis",
+        "photorespiration",
+        "evolution"
+      ],
+      "description": "Rowan Sage on how C4 photosynthesis evolved independently many times, which the chapter states and does not explain."
+    },
+    {
+      "title": "Structure, Biogenesis, and Engineering of the Pyrenoid",
+      "url": "https://www.youtube.com/watch?v=r9bf0Qgp-7Y",
+      "source": "Carnegie Science",
+      "duration": "33:58",
+      "chapters": [
+        "ch14",
+        "ch12"
+      ],
+      "tags": [
+        "pyrenoid",
+        "rubisco",
+        "condensates"
+      ],
+      "description": "Martin Jonikas on the Rubisco condensate that algae use to concentrate CO2, the pyrenoid the chapter gives a paragraph to."
+    },
+    {
+      "title": "Energy at the origin of life",
+      "url": "https://www.youtube.com/watch?v=gb7pZyks_HE",
+      "source": "New Scientist",
+      "duration": "31:25",
+      "chapters": [
+        "ch14",
+        "ch01"
+      ],
+      "tags": [
+        "origin-of-life",
+        "chemiosmosis",
+        "evolution"
+      ],
+      "description": "Nick Lane's case that proton gradients came first, an alternative to the chapter's fermentation-first story of how chemiosmosis evolved in stages. A hypothesis argued by its main proponent, not a settled account."
+    },
+    {
+      "title": "Mitigating mitochondrial mutational meltdown: can we save the species?",
+      "url": "https://www.youtube.com/watch?v=dzOqBfJTOyM",
+      "source": "Cambridge Philosophical Society",
+      "duration": "55:03",
+      "chapters": [
+        "ch14"
+      ],
+      "tags": [
+        "mtdna-disease",
+        "heteroplasmy",
+        "inheritance"
+      ],
+      "description": "Patrick Chinnery on mtDNA mutation, heteroplasmy and maternal inheritance. His group is also behind the mega-NUMT work that explained away apparent paternal mtDNA inheritance."
     }
   ]
 }

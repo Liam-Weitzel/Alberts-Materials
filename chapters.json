@@ -41,9 +41,35 @@
       "slug": "ch12-intracellular-organization-and-protein-sorting",
       "notes": "ch12-intracellular-organization-and-protein-sorting.md",
       "deck": "ch12-intracellular-organization-and-protein-sorting.md"
+    },
+    {
+      "slug": "ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts",
+      "notes": "ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts.md",
+      "deck": "ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts.md"
     }
   ],
   "papers": [
+    {
+      "slug": "kampjut-2020-coupling-mechanism-mammalian",
+      "file": "kampjut-2020-coupling-mechanism-mammalian.md",
+      "title": "The coupling mechanism of mammalian respiratory complex I",
+      "authors": "Domen Kampjut, Leonid A. Sazanov",
+      "year": "2020",
+      "journal": "Science 370(6516)",
+      "link": "https://doi.org/10.1126/science.abc4209",
+      "date": "2026-09-23",
+      "chapters": [
+        "ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts"
+      ],
+      "tags": [
+        "complex I",
+        "proton pumping",
+        "respiratory chain",
+        "cryo-EM"
+      ],
+      "excerpt": "Not summarised yet. What were they actually asking, and what did they do about it? Write it down so that it still makes sense in six months.",
+      "words": 27
+    },
     {
       "slug": "noller-2017-parable-caveman-ferrari",
       "file": "noller-2017-parable-caveman-ferrari.md",
