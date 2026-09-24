@@ -307,6 +307,16 @@
       "chapterNumber": 4,
       "slides": "molmed/slides/Session 7 - 2025_Raymond Poot_DNA, Chromosomes and Genomes_Ch 4.pdf",
       "deck": "7-ch04-dna-chromosomes-and-genomes.md"
+    },
+    {
+      "session": "8",
+      "lecturer": "Alessandro Iuliano",
+      "title": "Energy Conversion · Mitochondria and Chloroplasts",
+      "part": "",
+      "chapter": "ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts",
+      "chapterNumber": 14,
+      "slides": "molmed/slides/Session 8 - Alessandro Iuliano_Energy Conversion_Mitochondria and Chloroplasts_Ch 14.pdf",
+      "deck": "8-ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts.md"
     }
   ],
   "molmedExam": "exam_details.md"
