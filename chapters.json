@@ -236,7 +236,10 @@
       "chapter": "ch01-cells-and-genomes",
       "chapterNumber": 1,
       "slides": "molmed/slides/Session 1a - Thamar van Dijk_Course Introduction_Cells Genomes and the Diversity of Life _Ch 1.pdf",
-      "deck": "1a-ch01-cells-and-genomes.md"
+      "deck": "1a-ch01-cells-and-genomes.md",
+      "exam": null,
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "1b",
@@ -246,7 +249,10 @@
       "chapter": "ch02-cell-chemistry-and-bioenergetics",
       "chapterNumber": 2,
       "slides": "molmed/slides/Session 1b - Andrea Lolli_Cell chemistry and bioenergetics_Ch 2.pdf",
-      "deck": "1b-ch02-cell-chemistry-and-bioenergetics.md"
+      "deck": "1b-ch02-cell-chemistry-and-bioenergetics.md",
+      "exam": "1b-ch02-cell-chemistry-and-bioenergetics.md",
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "2",
@@ -256,7 +262,10 @@
       "chapter": "ch03-proteins",
       "chapterNumber": 3,
       "slides": "molmed/slides/Session 2 - Titia Sixma_Protein Structure_Ch 3.pdf",
-      "deck": "2-ch03-proteins.md"
+      "deck": "2-ch03-proteins.md",
+      "exam": "2-ch03-proteins.md",
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "3",
@@ -266,7 +275,10 @@
       "chapter": "ch05-dna-replication-repair-and-recombination",
       "chapterNumber": 5,
       "slides": "molmed/slides/Session 3 - 2025_Arnab Ray Chaudhuri_DNA Replication, Repair, and Recombination_Ch 5.pdf",
-      "deck": "3-ch05-dna-replication-repair-and-recombination.md"
+      "deck": "3-ch05-dna-replication-repair-and-recombination.md",
+      "exam": "3-ch05-dna-replication-repair-and-recombination.md",
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "4",
@@ -276,7 +288,10 @@
       "chapter": "ch06-how-cells-read-the-genome",
       "chapterNumber": 6,
       "slides": "molmed/slides/Session 4 - Fabio Catalano_From DNA to protein part I_Ch 6a_.pdf",
-      "deck": "4-ch06-how-cells-read-the-genome.md"
+      "deck": "4-ch06-how-cells-read-the-genome.md",
+      "exam": "4-ch06-how-cells-read-the-genome.md",
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "5",
@@ -286,7 +301,10 @@
       "chapter": "ch06-how-cells-read-the-genome",
       "chapterNumber": 6,
       "slides": "molmed/slides/Session 5 - Thamar van Dijk_From RNA to protein_Ch6b 2026.pdf",
-      "deck": "5-ch06-how-cells-read-the-genome.md"
+      "deck": "5-ch06-how-cells-read-the-genome.md",
+      "exam": "5-ch06-how-cells-read-the-genome.md",
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "6",
@@ -296,7 +314,10 @@
       "chapter": "ch12-intracellular-organization-and-protein-sorting",
       "chapterNumber": 12,
       "slides": "molmed/slides/Session 6 - Andrea Conidi_Membrane Protein Transport_Ch 10_Ch 12.pdf",
-      "deck": "6-ch12-intracellular-organization-and-protein-sorting.md"
+      "deck": "6-ch12-intracellular-organization-and-protein-sorting.md",
+      "exam": "6-ch12-intracellular-organization-and-protein-sorting.md",
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "7",
@@ -306,7 +327,10 @@
       "chapter": "ch04-dna-chromosomes-and-genomes",
       "chapterNumber": 4,
       "slides": "molmed/slides/Session 7 - 2025_Raymond Poot_DNA, Chromosomes and Genomes_Ch 4.pdf",
-      "deck": "7-ch04-dna-chromosomes-and-genomes.md"
+      "deck": "7-ch04-dna-chromosomes-and-genomes.md",
+      "exam": "7-ch04-dna-chromosomes-and-genomes.md",
+      "paper": "A",
+      "kind": "lecture"
     },
     {
       "session": "8",
@@ -316,7 +340,23 @@
       "chapter": "ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts",
       "chapterNumber": 14,
       "slides": "molmed/slides/Session 8 - Alessandro Iuliano_Energy Conversion_Mitochondria and Chloroplasts_Ch 14.pdf",
-      "deck": "8-ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts.md"
+      "deck": "8-ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts.md",
+      "exam": "8-ch14-energy-conversion-and-metabolic-compartmentation-mitochondria-and-chloroplasts.md",
+      "paper": "A",
+      "kind": "lecture"
+    },
+    {
+      "session": "9",
+      "lecturer": "Thamar and Andrea",
+      "title": "Q and A",
+      "part": "",
+      "chapter": null,
+      "chapterNumber": 0,
+      "slides": "molmed/slides/Session 9 - Thamar and Andrea_Q and A.pdf",
+      "deck": null,
+      "exam": null,
+      "paper": "A",
+      "kind": "qa"
     }
   ],
   "molmedExam": "exam_details.md"

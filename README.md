@@ -394,6 +394,11 @@ lecture is therefore a matter of dropping its deck in the folder and rebuilding.
 with no revision deck yet is listed with its slides and a *no cards yet* badge; a deck
 whose name matches no session is reported as a warning rather than shown.
 
+The `_Ch <n>` is optional. A session without one, such as `Session 9 - Thamar and
+Andrea_Q and A.pdf`, is a session with no chapter: it is listed with its slides and never
+asks for a deck or a write-up. One whose title reads *Q and A* is recorded as `kind: qa`,
+and its row links to the Q&A questions of the practice exam.
+
 The revision deck is named `<session>-<chapter-slug>.md` and is an ordinary deck file, the
 same three card types and the same markdown as anything in `decks/`. Check one with:
 
@@ -471,9 +476,57 @@ disturbs the reading, the same fact can be drilled in both places at different t
 **Reset progress** on a session only touches that session. **Export progress** carries
 both, since it is one store.
 
+### Part A and part B
+
+The course is examined in two written papers, and the MolMed tab is split the same way:
+the exam details on top, since they govern both, then a **Part A** and a **Part B** section,
+each with its own lectures, due count, study button and mock exam. The split is set in one
+place, the front matter of `molmed/exam_details.md`:
+
+```markdown
+part-a: [1a, 1b, 2, 3, 4, 5, 6, 7, 8]
+```
+
+Every session not in that list is part B, so a new lecture's slides land in part B with no
+further registration. `build-manifest.py` records the result on each session as `paper`.
+Delete the line and the page goes back to one undivided list. `#/molmed/study/part-a`
+studies one paper's cards; `#/molmed/exam/part-a` works through all of its exam questions.
+
+### Practice exam
+
+Beside the decks sits a **practice exam**: open questions in the style of the course's own
+sample questions (`molmed/Sample exam questions MBC part A_2026.pdf`), with a model answer for
+each. You write your answer in a text box, reveal the model answer, and score yourself out
+of 10, which is what each question on the real paper is worth. Nothing is scheduled.
+
+```
+molmed/exam/4-ch06-how-cells-read-the-genome.md    questions for session 4, same naming as its deck
+```
+
+The file is in the deck format, so `Q:`/`A:` separated by `---`, and it is checked the same
+way with `node tools/check-deck.js`. A question carries its parts as **a)**, **b)**, **c)**, the
+model answer takes them in the same order. Every model answer opens with an
+`**In brief:**` paragraph, two or three lines on what a full-marks answer needs, because the
+paper asks for answers that are "brief, but not too brief"; the page sets it apart above the
+full explanation. `Tags: official` marks one of the course's own sample questions and
+`Tags: qa` one the lecturers worked through in the Q&A session, copied in their wording.
+`build-manifest.py` attaches the file to its session as `exam`.
+
+Each paper gets its own **mock exam** (`#/molmed/exam/mock-a`), one question per lecture of
+that paper drawn at random, which is the shape of the real paper (one equally weighted
+question per lecture). Its summary adds up the points out of 80 and converts them the way
+the paper does, points divided by eight, so 44 points is the 5.5 needed to pass; an unscored
+question counts as zero. **Official sample questions** runs the three the course released,
+and **Q&A session questions** the ones from the Q&A. What you write and how you score it
+lives in `localStorage` under `alberts-exam-v1`, keyed by a hash of the question, and travels
+in **Export progress** as an `exam` key; marks from before scoring existed are read as 0, 5
+and 10. Keys: Ctrl+Enter in the answer box reveals, then `0` to `9` score (`F` for 10) and
+`←` `→` move.
+
 Routes: [`#/molmed`](https://alberts.liam-w.com/#/molmed) for the session list,
 `#/molmed/cards/<session>` to browse a deck, `#/molmed/study/<session>` to study one and
-`#/molmed/study/all` for everything due across the course. The home page grows a **molmed
+`#/molmed/study/all` for everything due across the course, `#/molmed/exam` for the practice
+exam and `#/molmed/exam/<session|mock-a|part-a|official|qa>` to work through one set of questions. The home page grows a **molmed
 due** counter when revision cards come due, since they are otherwise invisible from there.
 
 ## Studying
@@ -519,6 +572,7 @@ assets/js/deck.js           deck file to cards
 assets/js/papers.js         the paper library, and lazy loading of summaries
 assets/js/videos.js         video links to embeds, and chapter matching
 assets/js/srs.js            SM-2 scheduling and localStorage
+assets/js/exam.js           practice-exam answers and self-marks
 assets/js/app.js            hash router and views
 assets/img/*.png            figures from the book, named by figure number
 notes/*.md                  chapter write-ups
@@ -526,6 +580,7 @@ decks/*.md                  chapter cards
 papers/*.md                 paper summaries
 molmed/slides/*.pdf         the lecture decks the course is examined on
 molmed/decks/*.md           revision cards, one deck per lecture, slides only
+molmed/exam/*.md            open practice-exam questions with model answers, per lecture
 tools/extract-slides.py     cuts one slide out of a lecture PDF into assets/img/
 chapters.json               generated index of all of it
 videos.json                 videos per chapter, hand-edited, no build step

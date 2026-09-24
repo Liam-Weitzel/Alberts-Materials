@@ -16,10 +16,15 @@
  * revising for the exam never disturbs the reading. See the `molmed` section of
  * chapters.json, built from molmed/slides/ by build-manifest.py.
  *
+ * The practice exam sits beside those decks: open questions per lecture, in the
+ * style of the course's sample questions, answered in a text box and checked
+ * against a model answer rather than scheduled. See exam.js.
+ *
  * Hash routing keeps everything working on GitHub Pages with no server-side
  * rewrites:  #/ , #/chapter/<slug> , #/cards/<slug> , #/study/<slug|all> ,
  * #/papers , #/paper/<slug> , #/molmed , #/molmed/cards/<session> ,
- * #/molmed/study/<session|all> , #/settings
+ * #/molmed/study/<session|all> , #/molmed/exam ,
+ * #/molmed/exam/<session|mock|official> , #/settings
  */
 (function () {
   'use strict';
@@ -120,6 +125,49 @@
     return state.molmed.reduce(function (acc, s) { return acc.concat(sessionCards(s)); }, []);
   }
 
+  function sessionQuestions(s) { return s && s.exam ? s.exam.cards : []; }
+
+  function allQuestions() {
+    return state.molmed.reduce(function (acc, s) { return acc.concat(sessionQuestions(s)); }, []);
+  }
+
+  function isOfficial(q) { return q.tags.indexOf('official') !== -1; }
+
+  function isQA(q) { return q.tags.indexOf('qa') !== -1; }
+
+  /* The written papers that have questions, in order: ['A'], later ['A', 'B']. */
+  function examPapers() {
+    var seen = [];
+    state.molmed.forEach(function (s) {
+      if (sessionQuestions(s).length && seen.indexOf(s.paper) === -1) seen.push(s.paper);
+    });
+    return seen.sort();
+  }
+
+  function paperName(paper) { return paper ? 'Part ' + paper : 'No paper set'; }
+
+  // The same, mid-sentence: "Mock exam, part A".
+  function paperLabel(paper) { return paper ? 'part ' + paper : 'no paper set'; }
+
+  function mockHref(paper) { return '#/molmed/exam/mock-' + encodeURIComponent((paper || 'none').toLowerCase()); }
+
+  /* The two written papers split the course: part A lists its sessions in the
+   * exam details, everything else is part B. With no list, there is no split
+   * and the page shows the sessions as one list, under paper ''. */
+  function molmedPapers() {
+    var split = state.molmed.some(function (s) { return s.paper; });
+    return split ? ['A', 'B'] : [''];
+  }
+
+  function paperSessions(paper) {
+    return state.molmed.filter(function (s) { return s.paper === paper; });
+  }
+
+  function paperFromSlug(slug) {
+    var m = /^part-(\w+)$/.exec(slug || '');
+    return m ? m[1].toUpperCase() : null;
+  }
+
   /* What to call the deck a card came from, in a session pooling several decks.
    * A molmed card's deckId is `molmed:<session>`; a chapter card's is its slug. */
   function deckOwnerTitle(card) {
@@ -141,7 +189,9 @@
 
   function sessionTitle(s) {
     var ch = s.chapter ? chapterBySlug(s.chapter) : null;
-    return ch ? ch.title : (s.title || sessionLabel(s));
+    if (ch) return ch.title;
+    if (s.kind === 'qa') return 'Q&A session';
+    return s.title || sessionLabel(s);
   }
 
   function render(html) {
@@ -224,14 +274,26 @@
       part: entry.part || '',
       chapter: entry.chapter || null,
       chapterNumber: entry.chapterNumber || 0,
+      kind: entry.kind || 'lecture',   // a Q&A or other session has no chapter
       slides: entry.slides || '',
-      deck: null
+      deck: null,
+      exam: null,
+      paper: entry.paper || ''     // which written paper examines it: A or B
     };
-    if (!entry.deck) return Promise.resolve(session);
-    return getText('molmed/decks/' + entry.deck)
-      .then(function (text) { session.deck = Deck.parse(text, 'molmed:' + entry.session, entry.deck); })
-      .catch(function (e) { console.error('[molmed] deck failed for session ' + entry.session, e); })
-      .then(function () { return session; });
+    var jobs = [];
+    if (entry.deck) {
+      jobs.push(getText('molmed/decks/' + entry.deck)
+        .then(function (text) { session.deck = Deck.parse(text, 'molmed:' + entry.session, entry.deck); })
+        .catch(function (e) { console.error('[molmed] deck failed for session ' + entry.session, e); }));
+    }
+    // Practice-exam questions share the deck format, so deck.js parses them,
+    // but under an `exam:` id: they are never scheduled, only answered.
+    if (entry.exam) {
+      jobs.push(getText('molmed/exam/' + entry.exam)
+        .then(function (text) { session.exam = Deck.parse(text, 'exam:' + entry.session, entry.exam); })
+        .catch(function (e) { console.error('[molmed] exam questions failed for session ' + entry.session, e); }));
+    }
+    return Promise.all(jobs).then(function () { return session; });
   }
 
   function loadAll() {
@@ -662,7 +724,7 @@
         '</div>' +
       '</section>';
 
-    var list = state.molmed.map(function (s) {
+    function sessionRow(s) {
       var c = SRS.counts(sessionCards(s));
       var dp = c.total ? c.seen / c.total : 0;
       var ch = s.chapter ? chapterBySlug(s.chapter) : null;
@@ -671,39 +733,98 @@
       if (c.due + c.learning) badges.push('<span class="pill pill-due">' + (c.due + c.learning) + ' due</span>');
       if (c.new) badges.push('<span class="pill pill-new">' + c.new + ' new</span>');
       if (c.total && !c.new && !(c.due + c.learning)) badges.push('<span class="pill pill-done">caught up</span>');
-      if (!c.total) badges.push('<span class="pill pill-todo">no cards yet</span>');
+      // A session with no chapter (the Q&A) never gets a deck, so it is not "missing" one.
+      if (!c.total && s.chapter) badges.push('<span class="pill pill-todo">no cards yet</span>');
+      var nqa = s.kind === 'qa' ? allQuestions().filter(isQA).length : 0;
 
       var actions = [];
       if (c.total) {
         actions.push('<a class="btn btn-sm btn-primary" href="#/molmed/study/' + encodeURIComponent(s.id) + '">Study</a>');
         actions.push('<a class="btn btn-sm" href="#/molmed/cards/' + encodeURIComponent(s.id) + '">Cards</a>');
       }
+      if (sessionQuestions(s).length) {
+        actions.push('<a class="btn btn-sm" href="#/molmed/exam/' + encodeURIComponent(s.id) + '">Exam</a>');
+      }
+      if (nqa) actions.push('<a class="btn btn-sm btn-primary" href="#/molmed/exam/qa">Q&amp;A questions</a>');
       if (ch && ch.notes) actions.push('<a class="btn btn-sm" href="#/chapter/' + encodeURIComponent(ch.slug) + '">Write-up</a>');
 
+      var nq = sessionQuestions(s).length + nqa;
       var meta = [];
       if (s.lecturer) meta.push('<span class="muted small">' + esc(s.lecturer) + '</span>');
       if (c.total) meta.push('<span class="muted small">' + c.total + ' cards</span>');
+      if (nq) meta.push('<span class="muted small">' + nq + ' exam question' + (nq > 1 ? 's' : '') + '</span>');
       if (s.slides) meta.push('<a class="small" href="' + esc(encodeURI(s.slides)) + '" target="_blank" rel="noopener">Slides \u2197</a>');
 
       var href = c.total ? '#/molmed/cards/' + encodeURIComponent(s.id)
-                         : (ch && ch.notes ? '#/chapter/' + encodeURIComponent(ch.slug) : '#/molmed');
+                         : ch && ch.notes ? '#/chapter/' + encodeURIComponent(ch.slug)
+                         : nqa ? '#/molmed/exam/qa' : '#/molmed';
+      var sub = s.kind === 'qa'
+        ? 'Exam-style questions worked through in class, now in the practice exam with model answers'
+        : s.title;
 
       return '<article class="chapter">' +
         '<div class="chapter-n">' + esc(s.id) + '</div>' +
         '<div class="chapter-main">' +
           '<a class="chapter-head" href="' + href + '">' +
             '<h3>' + esc(sessionTitle(s)) + '</h3>' +
-            (s.title ? '<p>' + esc(s.title) + '</p>' : '') +
+            (sub ? '<p>' + esc(sub) + '</p>' : '') +
           '</a>' +
           '<div class="chapter-meta">' + meta.join('') + badges.join('') + '</div>' +
           (c.total ? '<div class="bar"><span style="width:' + (dp * 100).toFixed(1) + '%"></span></div>' : '') +
         '</div>' +
         '<div class="chapter-actions">' + actions.join('') + '</div>' +
       '</article>';
+    }
+
+    var papers = molmedPapers();
+    var parts = papers.map(function (paper) {
+      var rows = paperSessions(paper).map(sessionRow).join('');
+      return paper ? paperSection(paper, rows) : '<section class="chapter-list">' + rows + '</section>';
     }).join('');
 
-    render(molmedCrumbs('') + head + examPanel() + '<section class="chapter-list">' + list + '</section>');
+    // The exam details govern both papers, so they sit above the split.
+    render(molmedCrumbs('') + head + examPanel() + parts);
     MD.typeset(view);
+  }
+
+  /* One written paper: its lectures, what is due in them, and its own study
+   * and practice-exam entry points. */
+  function paperSection(paper, rows) {
+    var sessions = paperSessions(paper);
+    var slug = 'part-' + paper.toLowerCase();
+    var c = SRS.counts(sessions.reduce(function (acc, s) { return acc.concat(sessionCards(s)); }, []));
+    var qs = sessions.reduce(function (acc, s) { return acc.concat(sessionQuestions(s)); }, []);
+    var due = c.due + c.learning;
+
+    var facts = [];
+    if (sessions.length) {
+      facts.push(sessions.length + ' session' + (sessions.length > 1 ? 's' : '') +
+        (sessions.length > 1 ? ', ' + sessions[0].id + ' to ' + sessions[sessions.length - 1].id : ', session ' + sessions[0].id));
+    }
+    if (c.total) facts.push(c.total + ' cards');
+    if (due) facts.push(due + ' due');
+    if (qs.length) facts.push(qs.length + ' exam questions');
+
+    var actions = [];
+    if (due + c.new) actions.push('<a class="btn btn-sm btn-primary" href="#/molmed/study/' + slug + '">Study ' + esc(paperLabel(paper)) + '</a>');
+    if (qs.length) {
+      actions.push('<a class="btn btn-sm" href="' + mockHref(paper) + '">Mock exam</a>');
+      actions.push('<a class="btn btn-sm" href="#/molmed/exam/' + slug + '">All exam questions</a>');
+    }
+
+    return '<section class="molmed-paper">' +
+      '<div class="paper-bar">' +
+        '<div>' +
+          '<h2>' + esc(paperName(paper)) + '</h2>' +
+          (facts.length ? '<p class="muted small">' + esc(facts.join(' \u00b7 ')) + '</p>' : '') +
+        '</div>' +
+        (actions.length ? '<div class="row">' + actions.join('') + '</div>' : '') +
+      '</div>' +
+      (rows
+        ? '<div class="chapter-list">' + rows + '</div>'
+        : '<div class="empty small paper-empty"><p>No lectures yet. ' + esc(paperName(paper)) +
+          ' examines the lectures still to come; each appears here once its slides are in <code>molmed/slides/</code>.</p></div>') +
+    '</section>';
   }
 
   function viewMolmedCards(id) {
@@ -742,6 +863,412 @@
       viewMolmedCards(id);
     });
   }
+
+  /* ---------- practice exam ---------- */
+
+  /* Open questions per lecture, answered in your own words. Nothing here is
+   * scheduled: you write an answer, reveal the model answer, and score yourself
+   * out of 10, as the paper does. What you wrote and scored is kept by exam.js. */
+
+  var run = null;    // the practice run in progress: { scope, title, list, i, revealed }
+  var saveTimer = null;
+
+  function examCrumbs(leaf) {
+    return '<div class="crumbs"><a href="#/">Chapters</a> <span>/</span> ' +
+      '<a href="#/molmed">MolMed revision</a> <span>/</span> ' +
+      (leaf ? '<a href="#/molmed/exam">Practice exam</a> <span>/</span> ' + esc(leaf) : 'Practice exam') +
+    '</div>';
+  }
+
+  /* A question's opening, for lists: the stem up to its first **a)** part,
+   * without figures or tables. The "Official sample question" lead-in stays,
+   * since it is useful to see which ones those are. */
+  function questionTitle(q) {
+    var stem = q.front
+      .replace(/\*\*[a-z]\)\*\*[\s\S]*$/, '')
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+      .replace(/^\|.*$/gm, '');
+    return excerpt(MD.plain(stem), 150);
+  }
+
+  function questionSession(q) {
+    return sessionById(q.deckId.slice('exam:'.length));
+  }
+
+  /* Three bands, so a list of scores can be scanned by colour: full or nearly,
+   * a pass, and under half, which is what to revisit. */
+  function scoreBand(score) { return score >= 8 ? 'good' : score >= 5 ? 'mid' : 'low'; }
+
+  function scorePill(score) {
+    if (score === null) return '';
+    return '<span class="pill pill-score-' + scoreBand(score) + '">' + score + '/' + Exam.MAX + '</span>';
+  }
+
+  function oneDecimal(x) { return (Math.round(x * 10) / 10).toFixed(1).replace(/\.0$/, ''); }
+
+  function scoreTally(c) {
+    if (!c.scored) return '<span class="pill pill-todo">not started</span>';
+    var avg = c.points / c.scored;
+    return '<span class="pill pill-score-' + scoreBand(avg) + '">avg ' + oneDecimal(avg) + '/' + Exam.MAX + '</span>' +
+      (c.low ? '<span class="pill pill-score-low">' + c.low + ' to revisit</span>' : '') +
+      (c.scored < c.total ? '<span class="muted small">' + c.scored + ' of ' + c.total + ' scored</span>' : '');
+  }
+
+  /* The questions a scope stands for. A mock exam mirrors the real paper: one
+   * question per lecture, drawn at random, in lecture order. */
+  function examScope(scope) {
+    // `mock-a` is the mock for paper A; a bare `mock` means the first paper.
+    var mock = /^mock(?:-(\w+))?$/.exec(scope);
+    if (mock) {
+      var paper = mock[1] ? (mock[1] === 'none' ? '' : mock[1].toUpperCase()) : (examPapers()[0] || '');
+      var picks = state.molmed.filter(function (s) { return s.paper === paper; }).map(function (s) {
+        var qs = sessionQuestions(s);
+        return qs.length ? qs[Math.floor(Math.random() * qs.length)] : null;
+      }).filter(Boolean);
+      return { title: 'Mock exam, ' + paperLabel(paper), list: picks, pooled: true, mock: true };
+    }
+    var part = paperFromSlug(scope);
+    if (part) {
+      return {
+        title: paperName(part) + ', all questions',
+        list: paperSessions(part).reduce(function (acc, s) { return acc.concat(sessionQuestions(s)); }, []),
+        pooled: true
+      };
+    }
+    if (scope === 'official') {
+      return { title: 'Official sample questions', list: allQuestions().filter(isOfficial), pooled: true };
+    }
+    if (scope === 'qa') {
+      return { title: 'Q&A session questions', list: allQuestions().filter(isQA), pooled: true };
+    }
+    var s = sessionById(scope);
+    if (!s) return null;
+    return { title: sessionTitle(s), list: sessionQuestions(s), pooled: false, session: s };
+  }
+
+  function viewExamHome() {
+    var qs = allQuestions();
+    if (!qs.length) {
+      return render(examCrumbs('') +
+        '<div class="empty"><h2>No practice questions yet</h2>' +
+        '<p>Add <code>molmed/exam/&lt;session&gt;-&lt;chapter-slug&gt;.md</code>, in the deck format, ' +
+        'then run <code>python3 build-manifest.py</code>.</p></div>');
+    }
+    var c = Exam.counts(qs);
+    var official = qs.filter(isOfficial).length;
+    var qa = qs.filter(isQA).length;
+    var papers = examPapers();
+
+    function modeCard(href, title, sub) {
+      return '<a class="exam-mode" href="' + href + '">' +
+        '<span class="exam-mode-title">' + esc(title) + '</span>' +
+        '<span class="exam-mode-sub">' + esc(sub) + '</span>' +
+      '</a>';
+    }
+
+    var head =
+      '<section class="page-head">' +
+        '<div>' +
+          '<h1>Practice exam</h1>' +
+          '<p class="muted exam-intro">Open questions in the style of the course’s sample questions. ' +
+            'Write your answer as you would on the paper, then reveal the model answer and score yourself out of 10, ' +
+            'as each question on the paper is scored. Your answers stay in this browser.</p>' +
+          '<div class="stat-row">' +
+            '<div class="stat"><span class="stat-n">' + qs.length + '</span><span class="stat-l">questions</span></div>' +
+            '<div class="stat"><span class="stat-n">' + c.written + '</span><span class="stat-l">answered</span></div>' +
+            '<div class="stat"><span class="stat-n">' + (c.scored ? oneDecimal(c.points / c.scored) : '–') + '</span><span class="stat-l">average /10</span></div>' +
+            '<div class="stat"><span class="stat-n">' + c.low + '</span><span class="stat-l">to revisit</span></div>' +
+          '</div>' +
+        '</div>' +
+      '</section>' +
+      '<section class="exam-modes">' +
+        papers.map(function (paper) {
+          var n = state.molmed.filter(function (s) { return s.paper === paper && sessionQuestions(s).length; }).length;
+          return modeCard(mockHref(paper), 'Mock exam, ' + paperLabel(paper),
+            n + ' questions, one per lecture of ' + paperName(paper) + ', drawn at random and scored out of ' + (n * Exam.MAX) + ', as on the real paper.');
+        }).join('') +
+        (official ? modeCard('#/molmed/exam/official', 'Official sample questions',
+          'The ' + official + ' questions the course released, with model answers.') : '') +
+        (qa ? modeCard('#/molmed/exam/qa', 'Q&A session questions',
+          'The ' + qa + ' questions worked through in the Q&A session, in the lecturers’ wording.') : '') +
+      '</section>';
+
+    function sessionRow(s) {
+      var sq = sessionQuestions(s);
+      var sc = Exam.counts(sq);
+      var dp = sc.total ? sc.scored / sc.total : 0;
+      var off = sq.filter(isOfficial).length;
+      var nqa = sq.filter(isQA).length;
+      return '<article class="chapter">' +
+        '<div class="chapter-n">' + esc(s.id) + '</div>' +
+        '<div class="chapter-main">' +
+          '<a class="chapter-head" href="#/molmed/exam/' + encodeURIComponent(s.id) + '">' +
+            '<h3>' + esc(sessionTitle(s)) + '</h3>' +
+            (s.title ? '<p>' + esc(s.title) + '</p>' : '') +
+          '</a>' +
+          '<div class="chapter-meta">' +
+            '<span class="muted small">' + sq.length + ' questions</span>' +
+            (off ? '<span class="pill pill-new">' + off + ' official</span>' : '') +
+            (nqa ? '<span class="pill pill-new">' + nqa + ' from Q&amp;A</span>' : '') +
+            scoreTally(sc) +
+          '</div>' +
+          '<div class="bar"><span style="width:' + (dp * 100).toFixed(1) + '%"></span></div>' +
+        '</div>' +
+        '<div class="chapter-actions">' +
+          '<a class="btn btn-sm btn-primary" href="#/molmed/exam/' + encodeURIComponent(s.id) + '">Practise</a>' +
+        '</div>' +
+      '</article>';
+    }
+
+    // One block per written paper, since each is its own exam. A paper with no
+    // questions yet still gets its block, so the split reads the same as on the
+    // molmed page.
+    var list = molmedPapers().map(function (paper) {
+      var sessions = paperSessions(paper).filter(function (s) { return sessionQuestions(s).length; });
+      var pc = Exam.counts(sessions.reduce(function (acc, s) { return acc.concat(sessionQuestions(s)); }, []));
+      if (!paper) return '<section class="chapter-list">' + sessions.map(sessionRow).join('') + '</section>';
+      return '<section class="exam-paper">' +
+        '<div class="reading-head">' +
+          '<h2>' + esc(paperName(paper)) + '</h2>' +
+          (pc.total
+            ? '<span class="small muted">' + sessions.length + ' lectures · ' + pc.total + ' questions · ' + pc.scored + ' scored · ' +
+              '<a href="#/molmed/exam/part-' + paper.toLowerCase() + '">Work through all</a></span>'
+            : '') +
+        '</div>' +
+        (sessions.length
+          ? '<div class="chapter-list">' + sessions.map(sessionRow).join('') + '</div>'
+          : '<div class="empty small paper-empty"><p>No questions for ' + esc(paperName(paper)) + ' yet.</p></div>') +
+      '</section>';
+    }).join('');
+
+    render(examCrumbs('') + head + list);
+  }
+
+  /* Coming back to the same scope keeps the run, so a mock exam keeps its
+   * draw and you land on the question you left. */
+  function viewExamRun(scope) {
+    // A finished run starts over; for a mock exam that means a fresh draw.
+    if (run && run.scope === scope && run.i >= run.list.length) run = null;
+    if (!run || run.scope !== scope) {
+      var sc = examScope(scope);
+      if (!sc) return notFound('Session not found');
+      if (!sc.list.length) {
+        return render(examCrumbs(sc.title) +
+          '<div class="empty"><h2>No questions here yet</h2><p><a href="#/molmed/exam">Back to the practice exam</a></p></div>');
+      }
+      run = { scope: scope, title: sc.title, list: sc.list, pooled: sc.pooled, mock: !!sc.mock, i: 0, revealed: false };
+    }
+    run.revealed = false;
+    drawExam();
+  }
+
+  function saveDraft() {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+    var box = view.querySelector('#exam-answer');
+    if (box && run && run.list[run.i]) Exam.setText(run.list[run.i].id, box.value);
+  }
+
+  function goTo(i) {
+    saveDraft();
+    run.i = i;
+    run.revealed = false;
+    if (run.i >= run.list.length) return examDone();
+    drawExam();
+  }
+
+  function drawExam() {
+    var q = run.list[run.i];
+    var s = questionSession(q);
+    var n = run.list.length;
+    var pct = (run.i / n) * 100;
+    var owner = [];
+    if (s) owner.push(sessionLabel(s));
+    if (s && s.lecturer) owner.push(s.lecturer);
+    if (isOfficial(q)) owner.push('Official sample question');
+    else if (isQA(q)) owner.push('From the Q&A session');
+    var prev = Exam.score(q.id);
+
+    render(
+      '<section class="study exam-run">' +
+        '<div class="study-top">' +
+          '<a class="back" href="#/molmed/exam">← ' + esc(run.title) + '</a>' +
+          '<div class="study-counts">' +
+            (prev !== null ? '<span class="muted small">Last time</span>' + scorePill(prev) : '') +
+            '<span class="muted">' + (run.i + 1) + ' / ' + n + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="bar thin"><span style="width:' + pct.toFixed(1) + '%"></span></div>' +
+        '<article class="card exam-card">' +
+          '<div class="card-deck">' + esc(owner.join(' · ')) + '</div>' +
+          '<div class="card-front">' + MD.render(q.front) + '</div>' +
+        '</article>' +
+        '<section class="exam-work">' +
+          '<label class="exam-label" for="exam-answer">Your answer</label>' +
+          '<textarea id="exam-answer" class="input exam-answer" rows="9" spellcheck="true" ' +
+            'placeholder="Write your answer as you would on the paper: brief, but not too brief, and always explained. It is saved in this browser as you type.">' +
+            esc(Exam.text(q.id)) + '</textarea>' +
+        '</section>' +
+        '<div id="exam-model"></div>' +
+        '<div class="controls" id="exam-controls"></div>' +
+        '<nav class="exam-nav">' +
+          '<button class="btn" type="button" data-act="prev"' + (run.i ? '' : ' disabled') + '>← Previous</button>' +
+          '<button class="btn" type="button" data-act="next">' + (run.i + 1 < n ? 'Next →' : 'Finish') + '</button>' +
+        '</nav>' +
+        '<p class="hints" id="exam-hints"></p>' +
+      '</section>'
+    );
+
+    var box = view.querySelector('#exam-answer');
+    box.addEventListener('input', function () {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveDraft, 400);
+    });
+    box.addEventListener('blur', saveDraft);
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); revealModel(); }
+    });
+    view.querySelector('[data-act="prev"]').addEventListener('click', function () { if (run.i) goTo(run.i - 1); });
+    view.querySelector('[data-act="next"]').addEventListener('click', function () { goTo(run.i + 1); });
+
+    drawExamControls();
+  }
+
+  function drawExamControls() {
+    var controls = view.querySelector('#exam-controls');
+    var hints = view.querySelector('#exam-hints');
+    var q = run.list[run.i];
+    if (!run.revealed) {
+      controls.innerHTML = '<button class="btn btn-primary btn-lg" type="button" data-act="reveal">Show model answer</button>';
+      controls.querySelector('[data-act="reveal"]').addEventListener('click', revealModel);
+      hints.textContent = 'Ctrl+Enter in the answer box to reveal';
+      return;
+    }
+    var current = Exam.score(q.id);
+    var buttons = [];
+    for (var p = 0; p <= Exam.MAX; p++) {
+      buttons.push('<button class="btn exam-score exam-score-' + scoreBand(p) + (current === p ? ' is-on' : '') + '" type="button" ' +
+        'data-score="' + p + '" aria-pressed="' + (current === p) + '">' + p + '</button>');
+    }
+    controls.innerHTML =
+      '<div class="exam-marking">' +
+        '<p class="exam-marking-q">How many of the 10 points would your answer earn?</p>' +
+        '<div class="exam-scores" role="group" aria-label="Score out of 10">' + buttons.join('') + '</div>' +
+      '</div>';
+    controls.querySelectorAll('[data-score]').forEach(function (btn) {
+      btn.addEventListener('click', function () { setExamScore(+btn.dataset.score); });
+    });
+    hints.textContent = '0 to 9 to score, F for full marks, then → for the next question';
+  }
+
+  function setExamScore(p) {
+    var q = run.list[run.i];
+    // Pressing the score that is already on clears it, so a slip can be undone.
+    Exam.setScore(q.id, Exam.score(q.id) === p ? null : p);
+    drawExamControls();
+  }
+
+  /* A model answer opens with an **In brief:** paragraph, what a full-marks
+   * answer needs; it is set apart so it can be checked at a glance before
+   * reading the full explanation. */
+  function modelAnswerHTML(back) {
+    var m = /^\*\*In brief:\*\*\s*([\s\S]*?)(?:\n\s*\n([\s\S]*))?$/.exec(back);
+    if (!m) return '<div class="answer">' + MD.render(back) + '</div>';
+    return '<div class="exam-brief"><span class="exam-brief-head">In brief</span>' + MD.render(m[1]) + '</div>' +
+      (m[2] ? '<div class="answer">' + MD.render(m[2]) + '</div>' : '');
+  }
+
+  function revealModel() {
+    if (!run || run.revealed) return;
+    saveDraft();
+    run.revealed = true;
+    var q = run.list[run.i];
+    var model = view.querySelector('#exam-model');
+    model.innerHTML =
+      '<section class="exam-model">' +
+        '<h2 class="exam-model-head">Model answer</h2>' +
+        modelAnswerHTML(q.back) +
+      '</section>';
+    MD.typeset(model);
+    drawExamControls();
+    model.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function examDone() {
+    var c = Exam.counts(run.list);
+    var rows = run.list.map(function (q, i) {
+      var s = questionSession(q);
+      return '<li class="exam-done-row">' +
+        '<button class="exam-done-link" type="button" data-go="' + i + '">' +
+          '<span class="exam-done-n">' + (i + 1) + '</span>' +
+          '<span class="exam-done-text">' +
+            (run.pooled && s ? '<span class="exam-done-owner">' + esc(sessionLabel(s)) + '</span>' : '') +
+            esc(questionTitle(q)) +
+          '</span>' +
+        '</button>' +
+        (scorePill(Exam.score(q.id)) || '<span class="pill pill-todo">not scored</span>') +
+      '</li>';
+    }).join('');
+
+    // A mock is marked like the paper: every question counts, an unscored one
+    // as zero, and the grade is the share of the total times ten.
+    var max = run.list.length * Exam.MAX;
+    var grade = Exam.grade(c.points, max);
+    var passLine = Math.ceil(max * Exam.PASS);
+    var verdict = run.mock
+      ? '<p class="sub exam-verdict exam-verdict-' + (grade >= 5.5 ? 'pass' : 'fail') + '">' +
+          c.points + ' of ' + max + ' points: a <b>' + oneDecimal(grade) + '</b>. ' +
+          (grade >= 5.5 ? 'That passes' : 'That is below the pass') + ' (' + passLine + ' points gives a 5.5).' +
+          (c.scored < c.total ? ' ' + (c.total - c.scored) + ' unscored question' + (c.total - c.scored > 1 ? 's count' : ' counts') + ' as zero.' : '') +
+        '</p>'
+      : (c.scored ? '<p class="sub">Average ' + oneDecimal(c.points / c.scored) + ' out of 10 over ' + c.scored + ' scored question' + (c.scored > 1 ? 's' : '') + '.</p>' : '');
+
+    render(
+      '<section class="done exam-done">' +
+        '<div class="done-mark">✓</div>' +
+        '<h1>' + esc(run.title) + ' done</h1>' +
+        verdict +
+        '<div class="stat-row centered">' +
+          '<div class="stat"><span class="stat-n">' + c.points + '/' + (run.mock ? max : c.max) + '</span><span class="stat-l">points</span></div>' +
+          '<div class="stat"><span class="stat-n">' + c.full + '</span><span class="stat-l">full marks</span></div>' +
+          '<div class="stat"><span class="stat-n">' + c.low + '</span><span class="stat-l">under 5</span></div>' +
+          '<div class="stat"><span class="stat-n">' + (c.total - c.scored) + '</span><span class="stat-l">not scored</span></div>' +
+        '</div>' +
+        '<ol class="exam-done-list">' + rows + '</ol>' +
+        '<div class="done-actions">' +
+          '<a class="btn btn-primary" href="#/molmed/exam">Back to practice exam</a>' +
+          (run.mock
+            ? '<button class="btn" type="button" data-act="redraw">New mock exam</button>'
+            : '<button class="btn" type="button" data-act="restart">Start again</button>') +
+        '</div>' +
+      '</section>'
+    );
+
+    view.querySelectorAll('[data-go]').forEach(function (btn) {
+      btn.addEventListener('click', function () { goTo(+btn.dataset.go); });
+    });
+    var again = view.querySelector('[data-act="restart"]');
+    if (again) again.addEventListener('click', function () { goTo(0); });
+    var redraw = view.querySelector('[data-act="redraw"]');
+    if (redraw) redraw.addEventListener('click', function () { var sc = run.scope; run = null; viewExamRun(sc); });
+  }
+
+  /* Keys only act outside the answer box, so typing a digit or an arrow in your
+   * answer never scores or skips anything. */
+  function onExamKey(e) {
+    if (!run || e.metaKey || e.ctrlKey || e.altKey) return;
+    var tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (!view.querySelector('.exam-run')) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(run.i + 1); return; }
+    if (e.key === 'ArrowLeft' && run.i) { e.preventDefault(); goTo(run.i - 1); return; }
+    if (!run.revealed) return;
+    if (/^[0-9]$/.test(e.key)) { e.preventDefault(); setExamScore(+e.key); }
+    else if (e.key === 'f' || e.key === 'F') { e.preventDefault(); setExamScore(Exam.MAX); }
+  }
+
+  // Leaving mid-sentence is normal; the debounce must not eat the last words.
+  window.addEventListener('pagehide', function () { if (saveTimer) saveDraft(); });
 
   /* ---------- papers ---------- */
 
@@ -1184,6 +1711,11 @@
       cards = allMolmedCards();
       title = 'MolMed revision';
       home = '#/molmed';
+    } else if (paperFromSlug(scope.slice('molmed:'.length))) {
+      var paper = paperFromSlug(scope.slice('molmed:'.length));
+      cards = paperSessions(paper).reduce(function (acc, s) { return acc.concat(sessionCards(s)); }, []);
+      title = 'MolMed ' + paperLabel(paper);
+      home = '#/molmed';
     } else if (scope.indexOf('molmed:') === 0) {
       var s = sessionById(scope.slice('molmed:'.length));
       if (!s) return notFound('Session not found');
@@ -1261,7 +1793,8 @@
     var st = SRS.get(card.id);
     // In a pooled session (everything, or all of molmed) say which deck a card
     // came from; inside one deck that would be the same line on every card.
-    var owner = (session.scope === 'all' || session.scope === 'molmed:all') ? deckOwnerTitle(card) : '';
+    var owner = (session.scope === 'all' || session.scope === 'molmed:all' || /^molmed:part-/.test(session.scope))
+      ? deckOwnerTitle(card) : '';
     // A follow-up carries the question it continues, so it still reads on its
     // own when a rating of Again brings it back later in the session.
     var follows = card.followUp ? parentOf(card) : null;
@@ -1427,6 +1960,7 @@
   }
 
   function onKey(e) {
+    if (/^#\/molmed\/exam\//.test(location.hash)) return onExamKey(e);
     if (!session || !/^#\/study\//.test(location.hash)) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     var tag = e.target && e.target.tagName;
@@ -1476,7 +2010,7 @@
       '</section>' +
       '<section class="panel">' +
         '<h2>Progress</h2>' +
-        '<p class="muted">' + total.seen + ' of ' + total.total + ' cards introduced. Scheduling and video watch progress live in this browser\'s localStorage. Export carries both to another device.</p>' +
+        '<p class="muted">' + total.seen + ' of ' + total.total + ' cards introduced. Scheduling, video watch progress and practice-exam answers live in this browser\'s localStorage. Export carries all three to another device.</p>' +
         '<div class="row">' +
           '<button class="btn" type="button" data-act="export">Export progress</button>' +
           '<button class="btn" type="button" data-act="import">Import progress…</button>' +
@@ -1512,6 +2046,7 @@
     function exportAll() {
       var payload = JSON.parse(SRS.exportJSON());
       payload.videos = Videos.dump();
+      payload.exam = Exam.dump();
       return JSON.stringify(payload, null, 2);
     }
 
@@ -1535,8 +2070,10 @@
           // SRS first: it is the half that validates the file, so a bad import
           // throws before any watch progress has been overwritten.
           var n = SRS.importJSON(reader.result);
-          var v = Videos.restore(JSON.parse(reader.result).videos);
-          toast('Imported ' + n + ' cards' + (v ? ' and ' + v + ' videos' : '') + ' of progress');
+          var parsed = JSON.parse(reader.result);
+          var v = Videos.restore(parsed.videos);
+          var a = Exam.restore(parsed.exam);
+          toast('Imported ' + n + ' cards' + (v ? ', ' + v + ' videos' : '') + (a ? ', ' + a + ' exam answers' : '') + ' of progress');
           viewSettings();
         } catch (e) {
           alert('Could not import that file: ' + e.message);
@@ -1546,9 +2083,10 @@
     });
 
     view.querySelector('[data-act="reset"]').addEventListener('click', function () {
-      if (!confirm('Delete all scheduling, history and watch progress? This cannot be undone.')) return;
+      if (!confirm('Delete all scheduling, history, watch progress and practice-exam answers? This cannot be undone.')) return;
       SRS.resetAll();
       Videos.forget();
+      Exam.forget();
       toast('All progress cleared');
       viewSettings();
     });
@@ -1586,6 +2124,8 @@
     if (!state.loaded) return render('<div class="loading"><span class="spinner"></span> Loading…</div>');
 
     if (parts[0] === 'molmed') {
+      if (parts[1] === 'exam' && parts[2]) return viewExamRun(decodeURIComponent(parts[2]));
+      if (parts[1] === 'exam') return viewExamHome();
       if (parts[1] === 'cards' && parts[2]) return viewMolmedCards(decodeURIComponent(parts[2]));
       if (parts[1] === 'study' && parts[2]) return viewStudy('molmed:' + decodeURIComponent(parts[2]));
       return viewMolmed();
@@ -1602,7 +2142,7 @@
     return viewHome();
   }
 
-  window.addEventListener('hashchange', route);
+  window.addEventListener('hashchange', function () { if (saveTimer) saveDraft(); route(); });
   document.addEventListener('keydown', onKey);
 
   // Delegated so it survives every re-render without rebinding per view.

@@ -808,3 +808,133 @@ a.stat:hover .stat-n { color: var(--accent); }
   .paper-head { padding-right: 0; }
   .paper-out { position: static; display: inline-block; margin-top: .6rem; }
 }
+
+/* ---------- molmed practice exam ---------- */
+
+.exam-intro { max-width: 44rem; margin: .3rem 0 0; }
+
+.exam-modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .8rem; margin-bottom: 1.6rem; }
+.exam-mode {
+  display: flex; flex-direction: column; gap: .3rem;
+  padding: 1rem 1.2rem;
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: var(--radius);
+  text-decoration: none; color: inherit;
+}
+.exam-mode:hover { border-color: var(--accent); }
+.exam-mode-title { font-weight: 640; color: var(--accent); }
+.exam-mode-sub { font-size: .88rem; color: var(--ink-soft); }
+
+.pill-score-good { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.pill-score-mid { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+.pill-score-low { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger); }
+
+/* A question runs to several parts, often with a table or figure, so it reads
+   at body size rather than the enlarged size of a one-line card. */
+.exam-run { max-width: 48rem; }
+.exam-card { min-height: 0; }
+.exam-card .card-front { font-size: 1em; }
+.exam-card .card-front > :last-child { margin-bottom: 0; }
+
+.exam-work { margin-top: 1.2rem; }
+.exam-label {
+  display: block; margin-bottom: .4rem;
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint);
+}
+.exam-answer {
+  display: block; width: 100%; min-height: 12rem; resize: vertical;
+  font-family: var(--font-read); font-size: 1rem; line-height: 1.55;
+  padding: .8rem 1rem;
+}
+
+.exam-model {
+  margin-top: 1.2rem;
+  padding: clamp(1rem, 3vw, 1.6rem);
+  background: var(--bg-raised);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  font-family: var(--font-read);
+  scroll-margin-top: 1rem;
+}
+.exam-model-head {
+  margin: 0 0 .8rem;
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 640;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--accent);
+}
+.exam-model .answer > :last-child { margin-bottom: 0; }
+
+.exam-marking { width: 100%; text-align: center; }
+.exam-marking-q { margin: 0 0 .6rem; font-size: .9rem; color: var(--ink-soft); }
+/* Eleven buttons, 0 to 10, coloured by the same three bands as the pills. */
+.exam-scores { display: grid; grid-template-columns: repeat(11, 1fr); gap: .35rem; }
+.exam-score { padding: .55rem 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+.exam-score.is-on { color: #fff; }
+.exam-score-low:hover { border-color: var(--danger); color: var(--danger); }
+.exam-score-mid:hover { border-color: var(--warn); color: var(--warn); }
+.exam-score-good:hover { border-color: var(--ok); color: var(--ok); }
+.exam-score-low.is-on { background: var(--danger); border-color: var(--danger); }
+.exam-score-mid.is-on { background: var(--warn); border-color: var(--warn); }
+.exam-score-good.is-on { background: var(--ok); border-color: var(--ok); }
+.exam-score.is-on:hover { color: #fff; }
+
+/* What a full-marks answer needs, set apart above the full explanation. */
+.exam-brief {
+  margin: 0 0 1.2rem;
+  padding: .8rem 1rem;
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+}
+.exam-brief-head {
+  display: block; margin-bottom: .3rem;
+  font-family: var(--font-ui); font-size: .72rem; font-weight: 640;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--accent);
+}
+.exam-brief > p:last-child { margin-bottom: 0; }
+
+.exam-verdict b { font-size: 1.15em; }
+.exam-verdict-pass b { color: var(--ok); }
+.exam-verdict-fail b { color: var(--danger); }
+
+.exam-nav { display: flex; justify-content: space-between; gap: .6rem; margin-top: 1.2rem; }
+
+.exam-done { max-width: 44rem; }
+.exam-done-list { list-style: none; margin: 0 0 1.6rem; padding: 0; text-align: left; display: flex; flex-direction: column; gap: .4rem; }
+.exam-done-row {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .5rem .7rem;
+  background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.exam-done-link {
+  flex: 1; min-width: 0; display: flex; gap: .6rem; align-items: baseline;
+  background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
+  font: inherit; font-size: .9rem; color: var(--ink);
+}
+.exam-done-link:hover .exam-done-text { color: var(--accent); }
+.exam-done-n { flex: none; font-weight: 640; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.exam-done-text { min-width: 0; }
+.exam-done-owner { display: block; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); }
+.exam-done-row .pill { flex: none; }
+
+@media (max-width: 640px) {
+  .exam-scores { grid-template-columns: repeat(6, 1fr); }
+  .exam-nav .btn { flex: 1; }
+  .exam-done-row { flex-wrap: wrap; }
+}
+
+.exam-paper { margin-bottom: 2rem; }
+.exam-paper .reading-head { flex-wrap: wrap; }
+
+/* ---------- molmed: the two written papers ---------- */
+
+.molmed-paper { margin: 2.2rem 0 0; }
+.paper-bar {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: .8rem 1.2rem; flex-wrap: wrap;
+  padding-bottom: .7rem; margin-bottom: .9rem;
+  border-bottom: 1px solid var(--line);
+}
+.paper-bar h2 { margin: 0 0 .15rem; }
+.paper-bar p { margin: 0; }
+.paper-empty { padding: 1.4rem 1rem; border: 1px dashed var(--line-strong); border-radius: var(--radius); }
+.paper-empty p { margin: 0; }

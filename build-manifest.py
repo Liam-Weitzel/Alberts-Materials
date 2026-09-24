@@ -22,10 +22,18 @@ scanning the slide decks themselves:
 
     molmed/slides/Session 2 - Titia Sixma_Protein Structure_Ch 3.pdf
     molmed/decks/2-ch03-proteins.md     revision cards, written from those slides
+    molmed/slides/Session 9 - Thamar and Andrea_Q and A.pdf
+                                        a session with no chapter: listed, slides only
+    molmed/exam/2-ch03-proteins.md      open practice-exam questions, same naming
 
 The session number, lecturer, title and chapter are read out of the PDF's
 filename, so adding a lecture is a matter of dropping its deck in the folder.
-The revision deck is optional and is named `<session>-<chapter-slug>.md`.
+The revision deck and the exam questions are both optional, and both are named
+`<session>-<chapter-slug>.md`.
+
+The course is examined in two written papers. `molmed/exam_details.md` lists the sessions
+of part A in its front matter (`part-a: [1a, 1b, 2, …]`); every other session is part B,
+so a new lecture lands in part B without anyone registering it.
 
 Static hosting can't list a directory, so this file is how the site finds any of
 it. Run this after adding or renaming anything:
@@ -49,6 +57,7 @@ PAPERS = ROOT / "papers"
 MOLMED = ROOT / "molmed"
 MOLMED_SLIDES = MOLMED / "slides"
 MOLMED_DECKS = MOLMED / "decks"
+MOLMED_EXAM = MOLMED / "exam"
 CHAPTERS = ROOT / "chapters.json"
 
 FRONT_MATTER = re.compile(r"^---[ \t]*\n(.*?)\n---[ \t]*(?:\n|$)", re.S)
@@ -182,6 +191,16 @@ SESSION_FILE = re.compile(
     r"^Session\s+(?P<session>[0-9]+[a-z]?)\s*-\s*(?P<rest>.+)\.pdf$", re.I)
 
 
+def part_a_sessions():
+    """The sessions examined in paper A, from the exam details' front matter."""
+    path = MOLMED / "exam_details.md"
+    if not path.is_file():
+        return None
+    meta, _ = front_matter(path.read_text(encoding="utf-8"))
+    listed = as_list(meta.get("part-a"))
+    return {str(x).lower() for x in listed} if listed else None
+
+
 def collect_molmed(chapter_slugs):
     """Sessions of the Molecular Medicine course, read from the slide filenames.
 
@@ -194,7 +213,10 @@ def collect_molmed(chapter_slugs):
         return []
 
     decks = {p.stem: p.name for p in MOLMED_DECKS.glob("*.md")} if MOLMED_DECKS.is_dir() else {}
+    exams = {p.stem: p.name for p in MOLMED_EXAM.glob("*.md")} if MOLMED_EXAM.is_dir() else {}
     used_decks = set()
+    used_exams = set()
+    part_a = part_a_sessions()
     sessions = []
 
     for path in sorted(MOLMED_SLIDES.glob("*.pdf")):
@@ -211,35 +233,47 @@ def collect_molmed(chapter_slugs):
         if re.fullmatch(r"(19|20)\d\d", parts[0]):      # `Session 3 - 2025_Name_…`
             parts.pop(0)
 
-        chapter_part = parts.pop()
-        ch = re.search(r"ch\s*(\d+)\s*([a-z]?)", chapter_part, re.I)
-        if not ch:
-            warn(f"{path.name}: no 'Ch <n>' at the end of the filename; skipped")
-            continue
-
-        number = int(ch.group(1))
-        slug = resolve_chapter(f"ch{number:02d}", chapter_slugs, path.name)
+        # A session need not cover a chapter: a Q&A or revision session has
+        # slides but no `Ch <n>`, and is listed with its slides and nothing else.
+        ch = re.search(r"ch\s*(\d+)\s*([a-z]?)", parts[-1], re.I)
+        if ch:
+            parts.pop()
+            number = int(ch.group(1))
+            slug = resolve_chapter(f"ch{number:02d}", chapter_slugs, path.name)
+        else:
+            number, slug = 0, None
         lecturer = parts.pop(0) if parts else ""
         title = " · ".join(parts)
+        kind = "lecture" if ch else ("qa" if re.search(r"\bq\s*(?:and|&)\s*a\b", title, re.I) else "other")
 
         session = m.group("session")
         deck = decks.get(f"{session}-{slug}") if slug else None
         if deck:
             used_decks.add(f"{session}-{slug}")
+        exam = exams.get(f"{session}-{slug}") if slug else None
+        if exam:
+            used_exams.add(f"{session}-{slug}")
+        # Without a part-a list there is no split, and the page shows one list.
+        paper = "" if part_a is None else ("A" if session.lower() in part_a else "B")
 
         sessions.append({
             "session": session,
             "lecturer": lecturer,
             "title": title,
-            "part": ch.group(2).lower(),        # the `a` of `Ch 6a`, when a chapter is split
+            "part": ch.group(2).lower() if ch else "",   # the `a` of `Ch 6a`, when a chapter is split
             "chapter": slug,
             "chapterNumber": number,
             "slides": f"molmed/slides/{path.name}",
             "deck": deck,
+            "exam": exam,
+            "paper": paper,
+            "kind": kind,                       # lecture, qa, or other (no chapter)
         })
 
     for stem in sorted(set(decks) - used_decks):
         warn(f"molmed/decks/{decks[stem]}: no session's slides match '{stem}'; not listed")
+    for stem in sorted(set(exams) - used_exams):
+        warn(f"molmed/exam/{exams[stem]}: no session's slides match '{stem}'; not listed")
 
     # Natural order: session 1a, 1b, 2, 3 … rather than lexicographic 1a, 1b, 10, 2.
     sessions.sort(key=lambda s: (int(re.match(r"\d+", s["session"]).group()), s["session"]))
@@ -298,7 +332,9 @@ if molmed:
     print(f"\n{len(molmed)} molmed session(s):")
     for s_ in molmed:
         deck = s_["deck"] or "no revision deck yet"
-        print(f"  session {s_['session']:<4} {(s_['chapter'] or '?'):<40} {s_['lecturer']:<22} {deck}")
+        exam = " + exam questions" if s_["exam"] else ""
+        part = f"part {s_['paper']}  " if s_["paper"] else ""
+        print(f"  session {s_['session']:<4} {part}{(s_['chapter'] or '(' + s_['kind'] + ', no chapter)'):<40} {s_['lecturer']:<22} {deck}{exam}")
 
 partial = [c["slug"] for c in chapters if not c["notes"] or not c["deck"]]
 if partial:
